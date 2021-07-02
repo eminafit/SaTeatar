@@ -7,5 +7,6 @@ namespace SaTeatar.WebAPI.Services
 {
     public interface IPredstaveService
     {
+        public int MyProperty { get; set; }
     }
 }
