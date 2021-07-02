@@ -9,5 +9,6 @@ namespace SaTeatar.WebAPI.Services
     {
         public int MyProperty { get; set; }
         public int bla { get; set; }
+        public int brla { get; set; }
     }
 }
