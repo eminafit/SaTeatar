@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SaTeatar.WebAPI.Database;
+using SaTeatar.WebAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,7 @@ namespace SaTeatar
             services.AddDbContext<SaTeatarContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IKorisniciService, KorisniciService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
