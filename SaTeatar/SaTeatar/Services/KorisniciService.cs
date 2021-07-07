@@ -16,7 +16,7 @@ namespace SaTeatar.WebAPI.Services
         : BaseCRUDService<mKorisnici, Korisnici, object, rKorisniciInsert, rKorisniciUpdate>
         , IKorisniciService
     {
-        public KorisniciService(SaTeatarContext context, IMapper mapper)
+        public KorisniciService(SaTeatarDbContext context, IMapper mapper)
             : base(context, mapper)
         {
         }
@@ -24,7 +24,7 @@ namespace SaTeatar.WebAPI.Services
         public override mKorisnici Insert(rKorisniciInsert request)
         {
             var entity = _mapper.Map<Korisnici>(request);
-            //_context.Korisnicis.Add(entity);
+
             if (request.Password != request.PasswordPotvrda)
             {
                 //throw new NotImplementedException();
@@ -33,18 +33,18 @@ namespace SaTeatar.WebAPI.Services
 
             entity.LozinkaSalt = GenerateSalt();
             entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Password); 
-            _context.Korisnicis.Add(entity);
-
+            
+            _context.Korisnici.Add(entity);
             _context.SaveChanges();
 
             foreach (var uloga in request.Uloge)
             {
-                Database.KorisniciUloge korisniciUloge = new KorisniciUloge();
+                KorisniciUloge korisniciUloge = new KorisniciUloge();
                 korisniciUloge.KorisnikId = entity.KorisnikId;
                 korisniciUloge.UlogaId = uloga;
                 korisniciUloge.DatumIzmjene = DateTime.Now;
 
-                _context.KorisniciUloges.Add(korisniciUloge);
+                _context.KorisniciUloge.Add(korisniciUloge);
             }
 
             _context.SaveChanges();

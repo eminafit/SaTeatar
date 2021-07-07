@@ -6,41 +6,41 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SaTeatar.WebAPI.Database
 {
-    public partial class SaTeatarContext : DbContext
+    public partial class SaTeatarDbContext : DbContext
     {
-        public SaTeatarContext()
+        public SaTeatarDbContext()
         {
         }
 
-        public SaTeatarContext(DbContextOptions<SaTeatarContext> options)
+        public SaTeatarDbContext(DbContextOptions<SaTeatarDbContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Djelatnici> Djelatnicis { get; set; }
-        public virtual DbSet<Izvodjenja> Izvodjenjas { get; set; }
-        public virtual DbSet<IzvodjenjaZone> IzvodjenjaZones { get; set; }
-        public virtual DbSet<Karte> Kartes { get; set; }
-        public virtual DbSet<Korisnici> Korisnicis { get; set; }
-        public virtual DbSet<KorisniciUloge> KorisniciUloges { get; set; }
-        public virtual DbSet<Kupci> Kupcis { get; set; }
-        public virtual DbSet<Ocjene> Ocjenes { get; set; }
-        public virtual DbSet<PoslaneObavijesti> PoslaneObavijestis { get; set; }
-        public virtual DbSet<PostavkeObavijesti> PostavkeObavijestis { get; set; }
-        public virtual DbSet<Pozoristum> Pozorista { get; set; }
-        public virtual DbSet<Predstave> Predstaves { get; set; }
-        public virtual DbSet<PredstaveDjelatnici> PredstaveDjelatnicis { get; set; }
-        public virtual DbSet<TipoviPredstava> TipoviPredstavas { get; set; }
-        public virtual DbSet<Uloge> Uloges { get; set; }
-        public virtual DbSet<VrsteDjelatnika> VrsteDjelatnikas { get; set; }
-        public virtual DbSet<Zone> Zones { get; set; }
+        public virtual DbSet<Djelatnici> Djelatnici { get; set; }
+        public virtual DbSet<Izvodjenja> Izvodjenja { get; set; }
+        public virtual DbSet<IzvodjenjaZone> IzvodjenjaZone { get; set; }
+        public virtual DbSet<Karte> Karte { get; set; }
+        public virtual DbSet<Korisnici> Korisnici { get; set; }
+        public virtual DbSet<KorisniciUloge> KorisniciUloge { get; set; }
+        public virtual DbSet<Kupci> Kupci { get; set; }
+        public virtual DbSet<Ocjene> Ocjene { get; set; }
+        public virtual DbSet<PoslaneObavijesti> PoslaneObavijesti { get; set; }
+        public virtual DbSet<PostavkeObavijesti> PostavkeObavijesti { get; set; }
+        public virtual DbSet<Pozorista> Pozorista { get; set; }
+        public virtual DbSet<Predstave> Predstave { get; set; }
+        public virtual DbSet<PredstaveDjelatnici> PredstaveDjelatnici { get; set; }
+        public virtual DbSet<TipoviPredstava> TipoviPredstava { get; set; }
+        public virtual DbSet<Uloge> Uloge { get; set; }
+        public virtual DbSet<VrsteDjelatnika> VrsteDjelatnika { get; set; }
+        public virtual DbSet<Zone> Zone { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=localhost; Initial Catalog=SaTeatar; Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Data Source=localhost; Initial Catalog=SaTeatarDb; Integrated Security=True;");
             }
         }
 
@@ -54,9 +54,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("Djelatnici");
 
-                entity.Property(e => e.DjelatnikId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("DjelatnikID");
+                entity.Property(e => e.DjelatnikId).HasColumnName("DjelatnikID");
 
                 entity.Property(e => e.Ime)
                     .IsRequired()
@@ -81,9 +79,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("Izvodjenja");
 
-                entity.Property(e => e.IzvodjenjeId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("IzvodjenjeID");
+                entity.Property(e => e.IzvodjenjeId).HasColumnName("IzvodjenjeID");
 
                 entity.Property(e => e.DatumVrijeme).HasColumnType("datetime");
 
@@ -118,9 +114,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("IzvodjenjaZone");
 
-                entity.Property(e => e.IzvodjenjeZonaId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("IzvodjenjeZonaID");
+                entity.Property(e => e.IzvodjenjeZonaId).HasColumnName("IzvodjenjeZonaID");
 
                 entity.Property(e => e.Cijena).HasColumnType("decimal(18, 2)");
 
@@ -149,9 +143,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("Karte");
 
-                entity.Property(e => e.KartaId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("KartaID");
+                entity.Property(e => e.KartaId).HasColumnName("KartaID");
 
                 entity.Property(e => e.IzvodjenjeId).HasColumnName("IzvodjenjeID");
 
@@ -180,9 +172,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("Korisnici");
 
-                entity.Property(e => e.KorisnikId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("KorisnikID");
+                entity.Property(e => e.KorisnikId).HasColumnName("KorisnikID");
 
                 entity.Property(e => e.Email)
                     .IsRequired()
@@ -215,9 +205,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("KorisniciUloge");
 
-                entity.Property(e => e.KorisnikUlogaId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("KorisnikUlogaID");
+                entity.Property(e => e.KorisnikUlogaId).HasColumnName("KorisnikUlogaID");
 
                 entity.Property(e => e.DatumIzmjene).HasColumnType("datetime");
 
@@ -244,9 +232,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("Kupci");
 
-                entity.Property(e => e.KupacId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("KupacID");
+                entity.Property(e => e.KupacId).HasColumnName("KupacID");
 
                 entity.Property(e => e.DatumRegistracije).HasColumnType("datetime");
 
@@ -281,9 +267,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("Ocjene");
 
-                entity.Property(e => e.OcjenaId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("OcjenaID");
+                entity.Property(e => e.OcjenaId).HasColumnName("OcjenaID");
 
                 entity.Property(e => e.Datum).HasColumnType("datetime");
 
@@ -310,9 +294,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("PoslaneObavijesti");
 
-                entity.Property(e => e.PoslanaObavijestId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("PoslanaObavijestID");
+                entity.Property(e => e.PoslanaObavijestId).HasColumnName("PoslanaObavijestID");
 
                 entity.Property(e => e.KupacId).HasColumnName("KupacID");
 
@@ -339,9 +321,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("PostavkeObavijesti");
 
-                entity.Property(e => e.PostavkaObavijestiId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("PostavkaObavijestiID");
+                entity.Property(e => e.PostavkaObavijestiId).HasColumnName("PostavkaObavijestiID");
 
                 entity.Property(e => e.KupacId).HasColumnName("KupacID");
 
@@ -360,13 +340,11 @@ namespace SaTeatar.WebAPI.Database
                     .HasConstraintName("FK_PostavkeObavijesti_TipoviPredstava");
             });
 
-            modelBuilder.Entity<Pozoristum>(entity =>
+            modelBuilder.Entity<Pozorista>(entity =>
             {
                 entity.HasKey(e => e.PozoristeId);
 
-                entity.Property(e => e.PozoristeId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("PozoristeID");
+                entity.Property(e => e.PozoristeId).HasColumnName("PozoristeID");
 
                 entity.Property(e => e.Adresa)
                     .IsRequired()
@@ -383,9 +361,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("Predstave");
 
-                entity.Property(e => e.PredstavaId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("PredstavaID");
+                entity.Property(e => e.PredstavaId).HasColumnName("PredstavaID");
 
                 entity.Property(e => e.Naziv)
                     .IsRequired()
@@ -411,8 +387,6 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("PredstaveDjelatnici");
 
-                entity.Property(e => e.PredstavaDjelatnik).ValueGeneratedNever();
-
                 entity.Property(e => e.DjelatnikId).HasColumnName("DjelatnikID");
 
                 entity.Property(e => e.PredstavaId).HasColumnName("PredstavaID");
@@ -436,9 +410,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("TipoviPredstava");
 
-                entity.Property(e => e.TipPredstaveId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("TipPredstaveID");
+                entity.Property(e => e.TipPredstaveId).HasColumnName("TipPredstaveID");
 
                 entity.Property(e => e.Naziv)
                     .IsRequired()
@@ -451,9 +423,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("Uloge");
 
-                entity.Property(e => e.UlogaId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("UlogaID");
+                entity.Property(e => e.UlogaId).HasColumnName("UlogaID");
 
                 entity.Property(e => e.Naziv)
                     .IsRequired()
@@ -468,9 +438,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("VrsteDjelatnika");
 
-                entity.Property(e => e.VrstaDjelatnikaId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("VrstaDjelatnikaID");
+                entity.Property(e => e.VrstaDjelatnikaId).HasColumnName("VrstaDjelatnikaID");
 
                 entity.Property(e => e.Naziv)
                     .IsRequired()
@@ -483,9 +451,7 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.ToTable("Zone");
 
-                entity.Property(e => e.ZonaId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ZonaID");
+                entity.Property(e => e.ZonaId).HasColumnName("ZonaID");
 
                 entity.Property(e => e.Naziv)
                     .IsRequired()

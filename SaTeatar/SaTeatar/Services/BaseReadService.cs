@@ -11,9 +11,9 @@ namespace SaTeatar.WebAPI.Services
         : IReadService<TModel, TSearch>
         where TModel : class where TDatabase : class where TSearch: class
     {
-        protected readonly SaTeatarContext _context;
+        protected readonly SaTeatarDbContext _context;
         protected readonly IMapper _mapper;
-        public BaseReadService(SaTeatarContext context, IMapper mapper)
+        public BaseReadService(SaTeatarDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

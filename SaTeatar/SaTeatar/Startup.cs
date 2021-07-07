@@ -36,7 +36,7 @@ namespace SaTeatar
             services.AddSwaggerGen();
 
             //konekcija na bazu
-            services.AddDbContext<SaTeatarContext>(options =>
+            services.AddDbContext<SaTeatarDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IKorisniciService, KorisniciService>();

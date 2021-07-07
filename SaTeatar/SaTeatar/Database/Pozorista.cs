@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace SaTeatar.WebAPI.Database
 {
-    public partial class Pozoristum
+    public partial class Pozorista
     {
-        public Pozoristum()
+        public Pozorista()
         {
             Izvodjenjas = new HashSet<Izvodjenja>();
             Zones = new HashSet<Zone>();

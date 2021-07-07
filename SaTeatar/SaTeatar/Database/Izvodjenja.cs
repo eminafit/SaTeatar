@@ -22,7 +22,7 @@ namespace SaTeatar.WebAPI.Database
         public string Napomena { get; set; }
 
         public virtual Korisnici Korisnik { get; set; }
-        public virtual Pozoristum Pozoriste { get; set; }
+        public virtual Pozorista Pozoriste { get; set; }
         public virtual Predstave Predstava { get; set; }
         public virtual ICollection<IzvodjenjaZone> IzvodjenjaZones { get; set; }
         public virtual ICollection<Karte> Kartes { get; set; }
