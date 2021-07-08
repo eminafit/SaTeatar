@@ -24,6 +24,11 @@ namespace SaTeatar.WebAPI.Mapping
             CreateMap<Izvodjenja, mIzvodjenja>();
             CreateMap<rPozoristaInsert, Pozorista>();
             CreateMap<rPozoristaUpdate, Pozorista>();
+
+            CreateMap<Predstave, mPredstave>();
+            CreateMap<TipoviPredstava, mTipoviPredstava>();
+            CreateMap<rPredstavaInsert, Predstave>();
+            CreateMap<rPredstavaSearch, Predstave>();
         }
     }
 }
