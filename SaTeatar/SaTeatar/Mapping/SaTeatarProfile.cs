@@ -18,6 +18,12 @@ namespace SaTeatar.WebAPI.Mapping
             CreateMap<KorisniciUloge, mKorisniciUloge>();
             CreateMap<rKorisniciInsert, Korisnici>();
             CreateMap<rKorisniciUpdate, Korisnici>();
+
+            CreateMap<Pozorista, mPozorista>();
+            CreateMap<Zone, mZone>();
+            CreateMap<Izvodjenja, mIzvodjenja>();
+            CreateMap<rPozoristaInsert, Pozorista>();
+            CreateMap<rPozoristaUpdate, Pozorista>();
         }
     }
 }

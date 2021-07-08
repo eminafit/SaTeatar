@@ -20,7 +20,7 @@ namespace SaTeatar.WebAPI.Services
         }
 
         //search se overridea ako treba
-        public virtual IEnumerable<TModel> Get(TSearch search) 
+        public virtual IList<TModel> Get(TSearch search) 
         {
             var entity = _context.Set<TDatabase>();
             var list = entity.ToList();

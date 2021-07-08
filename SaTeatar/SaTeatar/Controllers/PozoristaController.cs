@@ -4,16 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using SaTeatar.Model.Models;
 using SaTeatar.Model.Requests;
+using SaTeatar.WebAPI.Database;
 using SaTeatar.WebAPI.Services;
 
 namespace SaTeatar.WebAPI.Controllers
 {
-    public class KorisniciController
-        : BaseCRUDController<mKorisnici,rKorisniciSearch,rKorisniciInsert,rKorisniciUpdate>      
+    public class PozoristaController : BaseCRUDController<mPozorista, rPozoristaSearch, rPozoristaInsert, rPozoristaUpdate>
     {
-        public KorisniciController(IKorisniciService service)
+        public PozoristaController(IPozoristaService service)
             :base(service)
         {
+
         }
     }
 }

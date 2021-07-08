@@ -8,7 +8,7 @@ using SaTeatar.Model.Requests;
 
 namespace SaTeatar.WebAPI.Services
 {
-    public interface IKorisniciService : ICRUDService<mKorisnici, object, rKorisniciInsert, rKorisniciUpdate>
+    public interface IKorisniciService : ICRUDService<mKorisnici, rKorisniciSearch, rKorisniciInsert, rKorisniciUpdate>
     {
         //IList<Model.Korisnici> GetAll(KorisniciSearchRequest search);
 

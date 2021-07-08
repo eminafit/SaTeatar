@@ -13,46 +13,13 @@ using SaTeatar.WebAPI.Filters;
 namespace SaTeatar.WebAPI.Services
 {
     public class KorisniciService
-        : BaseCRUDService<mKorisnici, Korisnici, object, rKorisniciInsert, rKorisniciUpdate>
+        : BaseCRUDService<mKorisnici, Korisnici, rKorisniciSearch, rKorisniciInsert, rKorisniciUpdate>
         , IKorisniciService
     {
         public KorisniciService(SaTeatarDbContext context, IMapper mapper)
             : base(context, mapper)
         {
         }
-
-        public override mKorisnici Insert(rKorisniciInsert request)
-        {
-            var entity = _mapper.Map<Korisnici>(request);
-
-            if (request.Password != request.PasswordPotvrda)
-            {
-                //throw new NotImplementedException();
-                throw new UserException("Lozinka nije ispravna");
-            }
-
-            entity.LozinkaSalt = GenerateSalt();
-            entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Password); 
-            
-            _context.Korisnici.Add(entity);
-            _context.SaveChanges();
-
-            foreach (var uloga in request.Uloge)
-            {
-                KorisniciUloge korisniciUloge = new KorisniciUloge();
-                korisniciUloge.KorisnikId = entity.KorisnikId;
-                korisniciUloge.UlogaId = uloga;
-                korisniciUloge.DatumIzmjene = DateTime.Now;
-
-                _context.KorisniciUloge.Add(korisniciUloge);
-            }
-
-            _context.SaveChanges();
-
-            return _mapper.Map<mKorisnici>(entity);
-
-        }
-
 
         public static string GenerateSalt()
         {
@@ -72,6 +39,57 @@ namespace SaTeatar.WebAPI.Services
             HashAlgorithm algorithm = HashAlgorithm.Create("SHA1");
             byte[] inArray = algorithm.ComputeHash(dst);
             return Convert.ToBase64String(inArray);
+        }
+
+        public override mKorisnici Insert(rKorisniciInsert request)
+        {
+            var entity = _mapper.Map<Korisnici>(request);
+
+            if (request.Lozinka != request.LozinkaPotvrda)
+            {
+                throw new UserException("Lozinka nije ispravna");
+            }
+
+            entity.LozinkaSalt = GenerateSalt();
+            entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Lozinka); 
+            
+            _context.Korisnici.Add(entity);
+            _context.SaveChanges();
+
+            foreach (var uloga in request.Uloge)
+            {
+                KorisniciUloge korisniciUloge = new KorisniciUloge();
+                korisniciUloge.KorisnikId = entity.KorisnikId;
+                korisniciUloge.UlogaId = uloga;
+                korisniciUloge.DatumIzmjene = DateTime.Now;
+
+                _context.KorisniciUloge.Add(korisniciUloge);
+            }
+
+            _context.SaveChanges();
+
+            return _mapper.Map<mKorisnici>(entity);
+        }
+
+        public override IList<mKorisnici> Get(rKorisniciSearch search)
+        {
+            var query = _context.Korisnici.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search?.Ime))
+            {
+                query = query.Where(x => x.Ime == search.Ime);
+            }
+
+            if (!string.IsNullOrWhiteSpace(search?.Prezime))
+            {
+                query = query.Where(x => x.Prezime == search.Prezime);
+            }
+
+            var entities = query.ToList();
+
+            var result = _mapper.Map<IList<mKorisnici>>(entities);
+
+            return result;
         }
 
     }

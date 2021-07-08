@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace SaTeatar.WebAPI.Services
 {
-    public interface IReadService <TModel, TSearch>
-        where TModel: class where TSearch: class
+    public interface IReadService<TModel, TSearch>
+        where TModel : class where TSearch : class
     {
-        IEnumerable<TModel> Get(TSearch search = null);
+        IList<TModel> Get(TSearch search = null);
         TModel GetById(int id);
     }
 }

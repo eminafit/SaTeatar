@@ -4,9 +4,9 @@ using System.Text;
 
 namespace SaTeatar.Model.Requests
 {
-    public class rKorisniciSearch
+    public class rPozoristaSearch
     {
-        public string Ime { get; set; }
-        public string Prezime { get; set; }
+        public string Naziv { get; set; }
+
     }
 }
