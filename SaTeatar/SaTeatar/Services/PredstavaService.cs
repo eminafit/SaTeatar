@@ -17,5 +17,22 @@ namespace SaTeatar.WebAPI.Services
         {
 
         }
+
+        public override IList<mPredstave> Get(rPredstavaSearch search)
+        {
+            var query = _context.Predstave.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search?.Naziv))
+            {
+                query = query.Where(x => x.Naziv.Contains(search.Naziv));
+            }
+
+
+            var entities = query.ToList();
+
+            var result = _mapper.Map<IList<mPredstave>>(entities);
+
+            return result;
+        }
     }
 }

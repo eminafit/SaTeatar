@@ -20,8 +20,8 @@ namespace SaTeatar.Model.Models
         public int TipPredstaveId { get; set; }
         public bool Status { get; set; }
 
-        public virtual mTipoviPredstava TipPredstave { get; set; }
-        public virtual ICollection<mIzvodjenja> Izvodjenjas { get; set; }
+       // public virtual mTipoviPredstava TipPredstave { get; set; }
+        //public virtual ICollection<mIzvodjenja> Izvodjenjas { get; set; }
         //public virtual ICollection<PoslaneObavijesti> PoslaneObavijestis { get; set; }
         //public virtual ICollection<PredstaveDjelatnici> PredstaveDjelatnicis { get; set; }
     }

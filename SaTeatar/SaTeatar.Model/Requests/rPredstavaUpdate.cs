@@ -13,6 +13,6 @@ namespace SaTeatar.Model.Requests
         public int TipPredstaveId { get; set; }
         public bool Status { get; set; }
         //valjda ovdje ide model???
-        public virtual mTipoviPredstava TipPredstave { get; set; }
+       // public virtual mTipoviPredstava TipPredstave { get; set; }
     }
 }
