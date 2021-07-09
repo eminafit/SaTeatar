@@ -20,8 +20,8 @@ namespace SaTeatar.Model.Models
         public DateTime DatumVrijeme { get; set; }
         public string Napomena { get; set; }
 
-        public virtual mKorisnici Korisnik { get; set; }
-        public virtual mPozorista Pozoriste { get; set; }
+        //public virtual mKorisnici Korisnik { get; set; }
+        //public virtual mPozorista Pozoriste { get; set; }
         //public virtual Predstave Predstava { get; set; }
         //public virtual ICollection<IzvodjenjaZone> IzvodjenjaZones { get; set; }
         //public virtual ICollection<Karte> Kartes { get; set; }

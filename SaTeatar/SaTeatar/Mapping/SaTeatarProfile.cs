@@ -33,6 +33,10 @@ namespace SaTeatar.WebAPI.Mapping
             CreateMap<Djelatnici, mDjelatnici>();
             CreateMap<rDjelatniciInsert, Djelatnici>();
             CreateMap<rDjelatniciUpdate, Djelatnici>();
+
+            CreateMap<Izvodjenja, mIzvodjenja>();
+            CreateMap<rIzvodjenjaInsert, Izvodjenja>();
+            CreateMap<rIzvodjenjaUpdate, Izvodjenja>();
         }
     }
 }
