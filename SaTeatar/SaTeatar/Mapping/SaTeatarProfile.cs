@@ -41,6 +41,10 @@ namespace SaTeatar.WebAPI.Mapping
             CreateMap<Zone, mZone>();
             CreateMap<rZoneInsert, Zone>();
             CreateMap<rZoneUpdate, Zone>();
+
+            CreateMap<IzvodjenjaZone, mIzvodjenjaZone>();
+            CreateMap<rIzvodjenjaZoneInsert, IzvodjenjaZone>();
+            CreateMap<rIzvodjenjaZoneUpdate, IzvodjenjaZone>();
         }
     }
 }
