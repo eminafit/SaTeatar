@@ -9,6 +9,7 @@ using AutoMapper;
 using System.Security.Cryptography;
 using System.Text;
 using SaTeatar.WebAPI.Filters;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SaTeatar.WebAPI.Services
 {
@@ -71,7 +72,7 @@ namespace SaTeatar.WebAPI.Services
             return _mapper.Map<mKorisnici>(entity);
         }
 
-        public override IList<mKorisnici> Get(rKorisniciSearch search)
+        public override IList<mKorisnici> Get ( [FromQuery] rKorisniciSearch search)
         {
             var query = _context.Korisnici.AsQueryable();
 
@@ -91,6 +92,6 @@ namespace SaTeatar.WebAPI.Services
 
             return result;
         }
-
+        //za add i update treba lozinka
     }
 }
