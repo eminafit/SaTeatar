@@ -18,6 +18,7 @@ namespace SaTeatar.WebAPI.Services
 
         }
 
+
         public override IList<mPredstave> Get(rPredstavaSearch search)
         {
             var query = _context.Predstave.AsQueryable();
@@ -27,6 +28,11 @@ namespace SaTeatar.WebAPI.Services
                 query = query.Where(x => x.Naziv.Contains(search.Naziv));
             }
 
+            if (search?.TipPredstaveId != 0)
+            {
+                query = query.Where(x => x.TipPredstaveId == search.TipPredstaveId);
+
+            }
 
             var entities = query.ToList();
 

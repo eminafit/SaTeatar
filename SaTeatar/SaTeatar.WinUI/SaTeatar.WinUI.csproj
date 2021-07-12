@@ -84,6 +84,18 @@
     <Compile Include="Korisnici\frmKorisniciDetalji.Designer.cs">
       <DependentUpon>frmKorisniciDetalji.cs</DependentUpon>
     </Compile>
+    <Compile Include="Predstave\frmPredstave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Predstave\frmPredstave.Designer.cs">
+      <DependentUpon>frmPredstave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Predstave\frmPredstaveDetalji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Predstave\frmPredstaveDetalji.Designer.cs">
+      <DependentUpon>frmPredstaveDetalji.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmIndex.resx">
@@ -94,6 +106,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Korisnici\frmKorisniciDetalji.resx">
       <DependentUpon>frmKorisniciDetalji.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Predstave\frmPredstave.resx">
+      <DependentUpon>frmPredstave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Predstave\frmPredstaveDetalji.resx">
+      <DependentUpon>frmPredstaveDetalji.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

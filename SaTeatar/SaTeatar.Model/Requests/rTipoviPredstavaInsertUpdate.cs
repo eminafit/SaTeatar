@@ -4,10 +4,9 @@ using System.Text;
 
 namespace SaTeatar.Model.Requests
 {
-    public class rPredstavaSearch
+    public class rTipoviPredstavaInsertUpdate
     {
         public string Naziv { get; set; }
-        public int TipPredstaveId { get; set; }
 
     }
 }

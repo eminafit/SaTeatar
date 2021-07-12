@@ -1,4 +1,5 @@
 ﻿using SaTeatar.WinUI.Korisnici;
+using SaTeatar.WinUI.Predstave;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -116,6 +117,20 @@ namespace SaTeatar.WinUI
         private void noviKorisnikToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmKorisniciDetalji frm = new frmKorisniciDetalji();
+            frm.Show();
+        }
+
+        private void pretragaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmPredstave frm = new frmPredstave();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void novaPredstavaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPredstaveDetalji frm = new frmPredstaveDetalji();
             frm.Show();
         }
     }

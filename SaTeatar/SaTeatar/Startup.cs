@@ -42,6 +42,7 @@ namespace SaTeatar
             services.AddScoped<IKorisniciService, KorisniciService>();
             services.AddScoped<IPozoristaService, PozoristaService>();
             services.AddScoped<IPredstavaService, PredstavaService>();
+            services.AddScoped<ITipoviPredstavaService, TipoviPredstavaService>();
             services.AddScoped<IDjelatniciService, DjelatniciService>();
             services.AddScoped<IIzvodjenjaService, IzvodjenjaService>();
             services.AddScoped<IZoneService, ZoneService>();
