@@ -60,6 +60,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIService.cs" />
+    <Compile Include="Djelatnici\frmDjelatnici.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Djelatnici\frmDjelatnici.Designer.cs">
+      <DependentUpon>frmDjelatnici.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Djelatnici\frmDjelatniciDetalji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Djelatnici\frmDjelatniciDetalji.Designer.cs">
+      <DependentUpon>frmDjelatniciDetalji.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +110,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Djelatnici\frmDjelatnici.resx">
+      <DependentUpon>frmDjelatnici.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Djelatnici\frmDjelatniciDetalji.resx">
+      <DependentUpon>frmDjelatniciDetalji.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmIndex.resx">
       <DependentUpon>frmIndex.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,5 +161,6 @@
       <Name>SaTeatar.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

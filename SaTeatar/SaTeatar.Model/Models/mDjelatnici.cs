@@ -14,6 +14,9 @@ namespace SaTeatar.Model.Models
         public int DjelatnikId { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
+
+        //public string ImePrezime { get; set { }; }
+        public string ImePrezime => $"{Ime} {Prezime}";
         public string Biografija { get; set; }
         public byte[] Slika { get; set; }
         public bool Status { get; set; }

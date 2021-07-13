@@ -26,9 +26,16 @@ namespace SaTeatar.WebAPI.Services
                 upit = upit.Where(x => x.Ime.Contains(search.Ime));
             }
 
+
             if (!string.IsNullOrWhiteSpace(search?.Prezime))
             {
                 upit = upit.Where(x => x.Prezime.Contains(search.Prezime));
+            }
+
+
+            if (search.VrstaDjelatnikaId!=0)
+            {
+                upit = upit.Where(x => x.VrstaDjelatnikaId == search.VrstaDjelatnikaId);
             }
 
             var lista = upit.ToList();

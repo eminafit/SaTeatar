@@ -7,6 +7,7 @@ namespace SaTeatar.Model.Requests
 {
     public class rPredstavaInsert
     {
+        public int PredstavaId { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }
         public byte[] Slika { get; set; }

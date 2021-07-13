@@ -34,6 +34,12 @@ namespace SaTeatar.WebAPI.Mapping
             CreateMap<rDjelatniciInsert, Djelatnici>();
             CreateMap<rDjelatniciUpdate, Djelatnici>();
 
+            CreateMap<rPredstaveDjelatniciUpsert, PredstaveDjelatnici>();
+            CreateMap<PredstaveDjelatnici, mPredstaveDjelatnici>();
+
+            CreateMap<VrsteDjelatnika, mVrsteDjelatnika>().ReverseMap();
+
+
             CreateMap<Izvodjenja, mIzvodjenja>();
             CreateMap<rIzvodjenjaInsert, Izvodjenja>();
             CreateMap<rIzvodjenjaUpdate, Izvodjenja>();

@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-#nullable disable
-
-namespace SaTeatar.WebAPI.Database
+namespace SaTeatar.Model.Requests
 {
-    public partial class PredstaveDjelatnici
+    public class rPredstaveDjelatniciUpsert
     {
         public int PredstavaDjelatnikId { get; set; }
         public int PredstavaId { get; set; }
         public int DjelatnikId { get; set; }
-
-        public virtual Djelatnici Djelatnik { get; set; }
-        public virtual Predstave Predstava { get; set; }
     }
 }

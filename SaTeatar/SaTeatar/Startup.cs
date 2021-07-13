@@ -44,9 +44,11 @@ namespace SaTeatar
             services.AddScoped<IPredstavaService, PredstavaService>();
             services.AddScoped<ITipoviPredstavaService, TipoviPredstavaService>();
             services.AddScoped<IDjelatniciService, DjelatniciService>();
+            services.AddScoped<IPredstaveDjelatniciService, PredstaveDjelatniciService>();
             services.AddScoped<IIzvodjenjaService, IzvodjenjaService>();
             services.AddScoped<IZoneService, ZoneService>();
             services.AddScoped<IIzvodjenjaZoneService, IzvodjenjaZoneService>();
+            services.AddScoped<IVrsteDjelatnikaService, VrsteDjelatnikaService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

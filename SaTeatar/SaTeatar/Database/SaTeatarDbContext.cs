@@ -383,7 +383,7 @@ namespace SaTeatar.WebAPI.Database
 
             modelBuilder.Entity<PredstaveDjelatnici>(entity =>
             {
-                entity.HasKey(e => e.PredstavaDjelatnik);
+                entity.HasKey(e => e.PredstavaDjelatnikId);
 
                 entity.ToTable("PredstaveDjelatnici");
 
