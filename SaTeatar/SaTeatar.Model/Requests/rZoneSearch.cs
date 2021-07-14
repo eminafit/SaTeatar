@@ -6,7 +6,8 @@ namespace SaTeatar.Model.Requests
 {
     public class rZoneSearch
     {
-        public string Naziv { get; set; }
+        public int PozoristeId { get; set; }
+        //public string Naziv { get; set; }
 
     }
 }

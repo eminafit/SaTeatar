@@ -1,5 +1,7 @@
 ﻿using SaTeatar.WinUI.Djelatnici;
+using SaTeatar.WinUI.Izvodjenja;
 using SaTeatar.WinUI.Korisnici;
+using SaTeatar.WinUI.Pozorista;
 using SaTeatar.WinUI.Predstave;
 using System;
 using System.Collections.Generic;
@@ -146,6 +148,34 @@ namespace SaTeatar.WinUI
         private void noviDjelatnikToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDjelatniciDetalji frm = new frmDjelatniciDetalji();
+            frm.Show();
+        }
+
+        private void pretragaToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            frmPozorista frm = new frmPozorista();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void novoPozoristeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPozoristeDetalji frm = new frmPozoristeDetalji();
+            frm.Show();
+        }
+
+        private void novoIzvodjenjeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmIzvodjenjeDetalji frm = new frmIzvodjenjeDetalji();
+            frm.Show();
+        }
+
+        private void pretragaToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            frmIzvodjenja frm = new frmIzvodjenja();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
     }

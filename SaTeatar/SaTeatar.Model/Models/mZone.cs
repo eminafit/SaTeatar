@@ -16,6 +16,8 @@ namespace SaTeatar.Model.Models
         public string Naziv { get; set; }
         public int UkupanBrojSjedista { get; set; }
 
+        public string NazivSjedista  => $"{Naziv} {UkupanBrojSjedista}";
+
         //public virtual Pozorista Pozoriste { get; set; }
         //public virtual ICollection<IzvodjenjaZone> IzvodjenjaZones { get; set; }
     }

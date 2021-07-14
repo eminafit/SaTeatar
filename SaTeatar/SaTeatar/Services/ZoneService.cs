@@ -21,9 +21,14 @@ namespace SaTeatar.WebAPI.Services
         {
             var upit = _context.Zone.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(search?.Naziv))
+            //if (!string.IsNullOrWhiteSpace(search?.Naziv))
+            //{
+            //    upit = upit.Where(x => x.Naziv.Contains(search.Naziv));
+            //}
+
+            if (search.PozoristeId!=0)
             {
-                upit = upit.Where(x => x.Naziv.Contains(search.Naziv));
+                upit = upit.Where(x => x.PozoristeId==search.PozoristeId);
             }
 
             var lista = upit.ToList();
