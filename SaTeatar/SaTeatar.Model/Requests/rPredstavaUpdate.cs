@@ -12,7 +12,6 @@ namespace SaTeatar.Model.Requests
         public byte[] Slika { get; set; }
         public int TipPredstaveId { get; set; }
         public bool Status { get; set; }
-        //valjda ovdje ide model???
        // public virtual mTipoviPredstava TipPredstave { get; set; }
     }
 }

@@ -44,6 +44,7 @@ namespace SaTeatar.WinUI.Djelatnici
             request.Prezime = txtPrezime.Text;
             request.Biografija = txtBiografija.Text;
             request.Status = chStatus.Checked;
+            request.Slika = null;
 
             await _djelatnici.Insert<mDjelatnici>(request);
 

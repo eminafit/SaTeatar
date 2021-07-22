@@ -45,7 +45,6 @@ namespace SaTeatar.WinUI.Predstave
                 if (id!=0)
                 {
                     await LoadPredstave(id);
-
                 }
             }
         }
@@ -61,6 +60,16 @@ namespace SaTeatar.WinUI.Predstave
                 );
             dgvPredstave.AutoGenerateColumns = false;
             dgvPredstave.DataSource = result;
+        }
+
+        private void dgvPredstave_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int rowindex = dgvPredstave.CurrentCell.RowIndex;
+            int columnindex = dgvPredstave.CurrentCell.ColumnIndex;
+            var value = dgvPredstave.CurrentCell.Value; 
+            var id = dgvPredstave.Rows[rowindex].Cells[0].Value;
+            frmPredstaveDetalji frm = new frmPredstaveDetalji(int.Parse(id.ToString()));
+            frm.Show();
         }
     }
 }

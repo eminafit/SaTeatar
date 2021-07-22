@@ -36,5 +36,18 @@ namespace SaTeatar.WebAPI.Services
 
             return _mapper.Map<TModel>(entity);
         }
+
+        public virtual TModel Delete(int Id)
+        {
+            var entity = _context.Set<TDatabase>().Find(Id);
+            if (entity == null)
+                throw new ArgumentNullException();
+            var x = entity;
+            _context.Set<TDatabase>().Remove(entity);
+            _context.SaveChanges();
+            return _mapper.Map<TModel>(x);
+        }
+
+
     }
 }

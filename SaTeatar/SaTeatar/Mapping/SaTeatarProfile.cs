@@ -13,6 +13,8 @@ namespace SaTeatar.WebAPI.Mapping
     {
         public SaTeatarProfile()
         {
+            //CreateMap<izvor, destinacija>
+
             CreateMap<Korisnici, mKorisnici>();
             CreateMap<Uloge, mUloge>();
             CreateMap<KorisniciUloge, mKorisniciUloge>();

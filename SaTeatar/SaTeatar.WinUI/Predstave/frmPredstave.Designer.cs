@@ -32,6 +32,7 @@ namespace SaTeatar.WinUI.Predstave
             this.dgvPredstave = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbTipoviPredstave = new System.Windows.Forms.ComboBox();
+            this.PredstavaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPredstave)).BeginInit();
@@ -43,6 +44,7 @@ namespace SaTeatar.WinUI.Predstave
             this.dgvPredstave.AllowUserToDeleteRows = false;
             this.dgvPredstave.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPredstave.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PredstavaId,
             this.Naziv,
             this.Status});
             this.dgvPredstave.Location = new System.Drawing.Point(29, 136);
@@ -52,6 +54,7 @@ namespace SaTeatar.WinUI.Predstave
             this.dgvPredstave.RowTemplate.Height = 24;
             this.dgvPredstave.Size = new System.Drawing.Size(726, 279);
             this.dgvPredstave.TabIndex = 0;
+            this.dgvPredstave.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPredstave_MouseDoubleClick);
             // 
             // label1
             // 
@@ -70,6 +73,15 @@ namespace SaTeatar.WinUI.Predstave
             this.cmbTipoviPredstave.Size = new System.Drawing.Size(284, 24);
             this.cmbTipoviPredstave.TabIndex = 2;
             this.cmbTipoviPredstave.SelectedIndexChanged += new System.EventHandler(this.cmbTipoviPredstave_SelectedIndexChanged);
+            // 
+            // PredstavaId
+            // 
+            this.PredstavaId.DataPropertyName = "PredstavaId";
+            this.PredstavaId.HeaderText = "PredstavaId";
+            this.PredstavaId.MinimumWidth = 6;
+            this.PredstavaId.Name = "PredstavaId";
+            this.PredstavaId.ReadOnly = true;
+            this.PredstavaId.Width = 125;
             // 
             // Naziv
             // 
@@ -113,6 +125,7 @@ namespace SaTeatar.WinUI.Predstave
         private System.Windows.Forms.DataGridView dgvPredstave;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbTipoviPredstave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PredstavaId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Naziv;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Status;
     }

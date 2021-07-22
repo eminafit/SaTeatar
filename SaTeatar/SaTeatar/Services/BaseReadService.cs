@@ -24,8 +24,8 @@ namespace SaTeatar.WebAPI.Services
         {
             var entity = _context.Set<TDatabase>();
             var list = entity.ToList();
-
-            return _mapper.Map<List<TModel>>(list);
+            var result = _mapper.Map<List<TModel>>(list);
+            return result;
         }
 
         public virtual TModel GetById(int id)

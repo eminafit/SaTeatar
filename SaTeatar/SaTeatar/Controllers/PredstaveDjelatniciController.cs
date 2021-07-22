@@ -8,7 +8,7 @@ using SaTeatar.WebAPI.Services;
 
 namespace SaTeatar.WebAPI.Controllers
 {
-    public class PredstaveDjelatniciController : BaseCRUDController<mPredstaveDjelatnici, object, rPredstaveDjelatniciUpsert, rPredstaveDjelatniciUpsert>
+    public class PredstaveDjelatniciController : BaseCRUDController<mPredstaveDjelatnici, rPredstaveDjelatnicSearch, rPredstaveDjelatniciUpsert, rPredstaveDjelatniciUpsert>
     {
         public PredstaveDjelatniciController(IPredstaveDjelatniciService service) : base(service)
         {

@@ -9,5 +9,8 @@ namespace SaTeatar.Model.Models
         public int PredstavaDjelatnikId { get; set; }
         public int PredstavaId { get; set; }
         public int DjelatnikId { get; set; }
+
+        public virtual mDjelatnici Djelatnik { get; set; }
+
     }
 }

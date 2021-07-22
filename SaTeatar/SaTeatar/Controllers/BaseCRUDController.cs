@@ -30,5 +30,13 @@ namespace SaTeatar.WebAPI.Controllers
             return _crudService.Update(id, request);
         }
 
+        [HttpDelete("{Id}")]
+        public TModel Delete(int Id)
+        {
+            return _crudService.Delete(Id);
+        }
+
+
+
     }
 }
