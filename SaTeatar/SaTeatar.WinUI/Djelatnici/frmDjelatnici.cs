@@ -74,5 +74,14 @@ namespace SaTeatar.WinUI.Djelatnici
             dgvDjelatnici.AutoGenerateColumns = false;
             dgvDjelatnici.DataSource = result;
         }
+
+        private void dgvDjelatnici_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int redIndex = dgvDjelatnici.CurrentCell.RowIndex;
+            var did = dgvDjelatnici.Rows[redIndex].Cells["DjelatnikId"].Value;
+            frmDjelatniciDetalji frm = new frmDjelatniciDetalji(int.Parse(did.ToString()));
+            frm.Show();
+
+        }
     }
 }

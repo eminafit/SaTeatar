@@ -32,13 +32,14 @@ namespace SaTeatar.WinUI.Djelatnici
             this.cmbDjelatnici = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvDjelatnici = new System.Windows.Forms.DataGridView();
-            this.ImePrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.txtIme = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnPretrazi = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPrezime = new System.Windows.Forms.TextBox();
+            this.DjelatnikId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImePrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDjelatnici)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,6 +67,7 @@ namespace SaTeatar.WinUI.Djelatnici
             this.dgvDjelatnici.AllowUserToDeleteRows = false;
             this.dgvDjelatnici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDjelatnici.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DjelatnikId,
             this.ImePrezime,
             this.Status});
             this.dgvDjelatnici.Location = new System.Drawing.Point(28, 171);
@@ -75,26 +77,7 @@ namespace SaTeatar.WinUI.Djelatnici
             this.dgvDjelatnici.RowTemplate.Height = 24;
             this.dgvDjelatnici.Size = new System.Drawing.Size(597, 233);
             this.dgvDjelatnici.TabIndex = 2;
-            // 
-            // ImePrezime
-            // 
-            this.ImePrezime.DataPropertyName = "ImePrezime";
-            this.ImePrezime.HeaderText = "Ime i prezime";
-            this.ImePrezime.MinimumWidth = 6;
-            this.ImePrezime.Name = "ImePrezime";
-            this.ImePrezime.ReadOnly = true;
-            this.ImePrezime.Width = 125;
-            // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "Status";
-            this.Status.HeaderText = "Status";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            this.Status.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Status.Width = 125;
+            this.dgvDjelatnici.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvDjelatnici_MouseDoubleClick);
             // 
             // txtIme
             // 
@@ -142,6 +125,35 @@ namespace SaTeatar.WinUI.Djelatnici
             this.txtPrezime.Size = new System.Drawing.Size(295, 22);
             this.txtPrezime.TabIndex = 6;
             // 
+            // DjelatnikId
+            // 
+            this.DjelatnikId.DataPropertyName = "DjelatnikId";
+            this.DjelatnikId.HeaderText = "DjelatnikId";
+            this.DjelatnikId.MinimumWidth = 6;
+            this.DjelatnikId.Name = "DjelatnikId";
+            this.DjelatnikId.ReadOnly = true;
+            this.DjelatnikId.Width = 125;
+            // 
+            // ImePrezime
+            // 
+            this.ImePrezime.DataPropertyName = "ImePrezime";
+            this.ImePrezime.HeaderText = "Ime i prezime";
+            this.ImePrezime.MinimumWidth = 6;
+            this.ImePrezime.Name = "ImePrezime";
+            this.ImePrezime.ReadOnly = true;
+            this.ImePrezime.Width = 125;
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Status.Width = 125;
+            // 
             // frmDjelatnici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -169,12 +181,13 @@ namespace SaTeatar.WinUI.Djelatnici
         private System.Windows.Forms.ComboBox cmbDjelatnici;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvDjelatnici;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ImePrezime;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Status;
         private System.Windows.Forms.TextBox txtIme;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnPretrazi;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPrezime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DjelatnikId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ImePrezime;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Status;
     }
 }

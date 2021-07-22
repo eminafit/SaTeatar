@@ -17,17 +17,47 @@ namespace SaTeatar.WinUI.Djelatnici
     {
         private APIService _vrsteDjelatnika = new APIService("vrstedjelatnika");
         private APIService _djelatnici = new APIService("djelatnici");
-        public frmDjelatniciDetalji()
+        private int? _id = null;
+        public frmDjelatniciDetalji(int? idDjelatnika=null)
         {
             InitializeComponent();
+            _id = idDjelatnika;
         }
+
+        private rDjelatniciInsert inrequest = new rDjelatniciInsert();
+        private rDjelatniciUpdate uprequest = new rDjelatniciUpdate();
+        private mDjelatnici djelatnik = new mDjelatnici();
+        private bool dodanaSlika = false;
 
         private async void frmDjelatniciDetalji_Load(object sender, EventArgs e)
         {
             await LoadVrstaDjelatnika();
-        }
 
-        private rDjelatniciInsert request = new rDjelatniciInsert();
+            djelatnik = await _djelatnici.GetById<mDjelatnici>(_id);
+
+            if (_id.HasValue)
+            {
+                txtIme.Text = djelatnik.Ime;
+                txtPrezime.Text = djelatnik.Prezime;
+                txtBiografija.Text = djelatnik.Biografija;
+                chStatus.Checked = djelatnik.Status;
+                cmbVrsteDjelatnika.SelectedValue = djelatnik.VrstaDjelatnikaId;
+
+
+                if (djelatnik.Slika?.Length>0)
+                {
+                    using (MemoryStream ms = new MemoryStream(djelatnik.Slika))
+                    {
+                        pbSlika.Image = Image.FromStream(ms);
+                    }
+                }
+                else
+                {
+                    pbSlika.Visible = false;
+                }
+
+            }
+        }
 
         private async Task LoadVrstaDjelatnika()
         {
@@ -40,16 +70,41 @@ namespace SaTeatar.WinUI.Djelatnici
 
         private async void txtSacuvaj_Click(object sender, EventArgs e)
         {
-            request.Ime = txtIme.Text;
-            request.Prezime = txtPrezime.Text;
-            request.Biografija = txtBiografija.Text;
-            request.Status = chStatus.Checked;
-            request.Slika = null;
+            if (!_id.HasValue)
+            {
+                inrequest.Ime = txtIme.Text;
+                inrequest.Prezime = txtPrezime.Text;
+                inrequest.Biografija = txtBiografija.Text;
+                inrequest.Status = chStatus.Checked;
+                if (dodanaSlika==false)
+                {
+                    inrequest.Slika = null;
+                }
 
-            await _djelatnici.Insert<mDjelatnici>(request);
+                await _djelatnici.Insert<mDjelatnici>(inrequest);
 
-            MessageBox.Show("Uspjesno dodan djelatnik!");
-            this.Close();
+                MessageBox.Show("Uspjesno dodan djelatnik!");
+                this.Close();
+            }
+            else
+            {
+
+                uprequest.Biografija = txtBiografija.Text;
+                uprequest.Ime = txtIme.Text;
+                uprequest.Prezime = txtPrezime.Text;
+                uprequest.Status = chStatus.Checked;
+
+                if (dodanaSlika == false)
+                {
+                    uprequest.Slika = djelatnik.Slika; 
+                }
+
+                await _djelatnici.Update<mDjelatnici>(_id, uprequest);
+
+                MessageBox.Show("Uspjesno izmijenjen djelatnik!");
+                this.Close();
+            }
+
         }
 
         private void btnDodajSliku_Click(object sender, EventArgs e)
@@ -59,7 +114,16 @@ namespace SaTeatar.WinUI.Djelatnici
             {
                 var filename = openFileDialog1.FileName;
                 var file = File.ReadAllBytes(filename);
-                request.Slika = file;
+                if (_id.HasValue)
+                {
+                    uprequest.Slika = file;
+                    dodanaSlika = true;
+                }
+                else
+                {
+                    inrequest.Slika = file;
+                    dodanaSlika = true;
+                }
                 txtSlikaInput.Text = filename;
 
                 Image slika = Image.FromFile(filename);
@@ -74,7 +138,14 @@ namespace SaTeatar.WinUI.Djelatnici
             {
                 if (idvd!=0)
                 {
-                    request.VrstaDjelatnikaId = idvd;
+                    if (_id.HasValue)
+                    {
+                        uprequest.VrstaDjelatnikaId = idvd;
+                    }
+                    else
+                    {
+                        inrequest.VrstaDjelatnikaId = idvd;
+                    }
                 }
             }
         }
