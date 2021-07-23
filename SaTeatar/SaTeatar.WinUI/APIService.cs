@@ -13,6 +13,9 @@ namespace SaTeatar.WinUI
     public class APIService
     {
         private string _route = null;
+
+        public static string Username { get; set; }
+        public static string Password { get; set; }
         public APIService(string route) //Korisnici, predstave..
         {
             _route = route;
@@ -28,28 +31,28 @@ namespace SaTeatar.WinUI
                 url += await search.ToQueryString();
             }
 
-            return await url.GetJsonAsync<T>();
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }        
 
         public async Task<T> GetById <T> (object id)
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
 
-            return await url.GetJsonAsync<T>();
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }
 
         public async Task<T> Insert <T>(object request)
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}";
 
-            return await url.PostJsonAsync(request).ReceiveJson<T>();
+            return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<T>();
         }
 
         public async Task<T> Update<T>(object id, object request)
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
 
-            return await url.PutJsonAsync(request).ReceiveJson<T>();
+            return await url.WithBasicAuth(Username, Password).PutJsonAsync(request).ReceiveJson<T>();
         }
 
         public async Task<T> Delete<T>(object id)
@@ -57,7 +60,7 @@ namespace SaTeatar.WinUI
             try
             {
                 var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
-                return await url.DeleteAsync().ReceiveJson<T>();
+                return await url.WithBasicAuth(Username, Password).DeleteAsync().ReceiveJson<T>();
 
             }
             catch (FlurlHttpException ex)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SaTeatar.WebAPI.Services;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace SaTeatar.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class BaseReadController<TModel, TSearch>
         : ControllerBase
         where TModel: class where TSearch: class

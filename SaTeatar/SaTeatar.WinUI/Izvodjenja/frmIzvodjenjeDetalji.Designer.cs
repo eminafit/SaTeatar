@@ -59,7 +59,7 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.cmbPredstave.Name = "cmbPredstave";
             this.cmbPredstave.Size = new System.Drawing.Size(258, 24);
             this.cmbPredstave.TabIndex = 1;
-            this.cmbPredstave.SelectedIndexChanged += new System.EventHandler(this.cmbPredstave_SelectedIndexChanged);
+            //this.cmbPredstave.SelectedIndexChanged += new System.EventHandler(this.cmbPredstave_SelectedIndexChanged);
             // 
             // cmbPozoriste
             // 
@@ -68,7 +68,7 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.cmbPozoriste.Name = "cmbPozoriste";
             this.cmbPozoriste.Size = new System.Drawing.Size(258, 24);
             this.cmbPozoriste.TabIndex = 3;
-            this.cmbPozoriste.SelectedIndexChanged += new System.EventHandler(this.cmbPozoriste_SelectedIndexChanged);
+            //this.cmbPozoriste.SelectedIndexChanged += new System.EventHandler(this.cmbPozoriste_SelectedIndexChanged);
             // 
             // label2
             // 

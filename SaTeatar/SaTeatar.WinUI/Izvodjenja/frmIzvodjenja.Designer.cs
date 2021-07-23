@@ -35,6 +35,7 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.DatumVrijeme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Napomena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Korisnik = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IzvodjenjeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIzvodjenja)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +49,8 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.Pozoriste,
             this.DatumVrijeme,
             this.Napomena,
-            this.Korisnik});
+            this.Korisnik,
+            this.IzvodjenjeId});
             this.dgvIzvodjenja.Location = new System.Drawing.Point(25, 101);
             this.dgvIzvodjenja.Name = "dgvIzvodjenja";
             this.dgvIzvodjenja.ReadOnly = true;
@@ -56,6 +58,7 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.dgvIzvodjenja.RowTemplate.Height = 24;
             this.dgvIzvodjenja.Size = new System.Drawing.Size(688, 284);
             this.dgvIzvodjenja.TabIndex = 0;
+            this.dgvIzvodjenja.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvIzvodjenja_MouseDoubleClick);
             // 
             // Predstava
             // 
@@ -102,6 +105,15 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.Korisnik.ReadOnly = true;
             this.Korisnik.Width = 125;
             // 
+            // IzvodjenjeId
+            // 
+            this.IzvodjenjeId.DataPropertyName = "IzvodjenjeId";
+            this.IzvodjenjeId.HeaderText = "IzvodjenjeId";
+            this.IzvodjenjeId.MinimumWidth = 6;
+            this.IzvodjenjeId.Name = "IzvodjenjeId";
+            this.IzvodjenjeId.ReadOnly = true;
+            this.IzvodjenjeId.Width = 125;
+            // 
             // frmIzvodjenja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -124,5 +136,6 @@ namespace SaTeatar.WinUI.Izvodjenja
         private System.Windows.Forms.DataGridViewTextBoxColumn DatumVrijeme;
         private System.Windows.Forms.DataGridViewTextBoxColumn Napomena;
         private System.Windows.Forms.DataGridViewTextBoxColumn Korisnik;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IzvodjenjeId;
     }
 }

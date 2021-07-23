@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using SaTeatar.WebAPI.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace SaTeatar.WebAPI.Services
 {
@@ -93,5 +94,26 @@ namespace SaTeatar.WebAPI.Services
             return result;
         }
         //za add i update treba lozinka
+
+
+        //autorizacija
+        public async Task<mKorisnici>Login(string username, string password)
+        {
+            var entity = await _context.Korisnici.Include("KorisniciUloges.Uloga").FirstOrDefaultAsync(x => x.KorisnickoIme == username);
+
+            if (entity==null)
+            {
+                throw new UserException("Pogresan username ili password");
+            }
+
+            var hash = GenerateHash(entity.LozinkaSalt, password);
+            if (hash!=entity.LozinkaHash)
+            {
+                throw new UserException("Pogresan username ili password");
+            }
+
+            return _mapper.Map<mKorisnici>(entity);
+
+        }
     }
 }

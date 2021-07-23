@@ -35,5 +35,13 @@ namespace SaTeatar.WinUI.Pozorista
             dgvPozorista.AutoGenerateColumns = false;
             dgvPozorista.DataSource = upit;
         }
+
+        private void dgvPozorista_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var redIndex = dgvPozorista.CurrentCell.RowIndex;
+            var idPozorista = dgvPozorista.Rows[redIndex].Cells["PozoristeId"].Value;
+            frmPozoristeDetalji frm = new frmPozoristeDetalji(int.Parse(idPozorista.ToString()));
+            frm.Show();
+        }
     }
 }

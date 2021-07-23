@@ -55,5 +55,13 @@ namespace SaTeatar.WinUI.Izvodjenja
             dgvIzvodjenja.DataSource = izvodjenja;
 
         }
+
+        private void dgvIzvodjenja_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var redIndex = dgvIzvodjenja.CurrentCell.RowIndex;
+            var idIzvodjenja = dgvIzvodjenja.Rows[redIndex].Cells["IzvodjenjeId"].Value;
+            frmIzvodjenjeDetalji frm = new frmIzvodjenjeDetalji(int.Parse(idIzvodjenja.ToString()));
+            frm.Show();
+        }
     }
 }

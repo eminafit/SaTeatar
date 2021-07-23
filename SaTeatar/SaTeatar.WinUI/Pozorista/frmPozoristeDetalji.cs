@@ -18,14 +18,19 @@ namespace SaTeatar.WinUI.Pozorista
     {
         APIService _pozoristaService = new APIService("pozorista");
         APIService _zoneService = new APIService("zone");
+        private int? _id = null;
 
-        public frmPozoristeDetalji()
+        public frmPozoristeDetalji(int? pozoristeId=null)
         {
             InitializeComponent();
+            _id = pozoristeId;
         }
 
-        rPozoristaInsert upit = new rPozoristaInsert();
-        mPozorista result = new mPozorista();
+        rPozoristaInsert inrequest = new rPozoristaInsert();
+        rPozoristaUpdate uprequest = new rPozoristaUpdate();
+        mPozorista pozoriste = new mPozorista();
+        private bool dodanaSlika = false;
+            
 
         private void btnDodajSliku_Click(object sender, EventArgs e)
         {
@@ -35,8 +40,14 @@ namespace SaTeatar.WinUI.Pozorista
             {
                 var filename = openFileDialog1.FileName;
                 var file = File.ReadAllBytes(filename);
-                upit.Logo = file;
-
+                if (_id.HasValue)
+                {
+                    uprequest.Logo = file;
+                }
+                else
+                {
+                    inrequest.Logo = file;
+                }
                 txtSlikaInput.Text = filename;
                 Image slika = Image.FromFile(filename);
                 pbSlika.Image = slika;
@@ -47,21 +58,32 @@ namespace SaTeatar.WinUI.Pozorista
 
         private async void btnSacuvaj_Click(object sender, EventArgs e)
         {
-            upit.Naziv = txtNaziv.Text;
-            upit.Adresa = txtAdresa.Text;
+            if (_id.HasValue)
+            {
+                uprequest.Naziv = txtNaziv.Text;
+                uprequest.Adresa = txtAdresa.Text;
+                if (!dodanaSlika)
+                {
+                    uprequest.Logo = pozoriste.Logo;
+                }
+                await _pozoristaService.Update<mPozorista>(_id, uprequest);
+                MessageBox.Show("Pozoriste uspjesno izmijenjeno!");
 
-            result = await _pozoristaService.Insert<mPozorista>(upit);
-            MessageBox.Show("Pozoriste uspjesno dodato!");
-            //if (result.PozoristeId != 0)
-            //{
-            //    btnDodajZone_Click(null, null);
-            //}
+            }
+            else
+            {
+                inrequest.Naziv = txtNaziv.Text;
+                inrequest.Adresa = txtAdresa.Text;
+
+                pozoriste = await _pozoristaService.Insert<mPozorista>(inrequest);
+                MessageBox.Show("Pozoriste uspjesno dodato!");
+            }
 
         }
 
         private void btnDodajZone_Click(object sender, EventArgs e)
         {
-            if (result.PozoristeId==0)
+            if (pozoriste.PozoristeId==0)
             {
                 MessageBox.Show("Pozoriste se treba najprije dodati! Kliknuti na dugme 'Sacuvaj'");
 
@@ -69,23 +91,40 @@ namespace SaTeatar.WinUI.Pozorista
             }
             else
             {
-                frmZonaDetalji frm = new frmZonaDetalji(result.PozoristeId, result.Naziv);
+                frmZonaDetalji frm = new frmZonaDetalji(pozoriste.PozoristeId, pozoriste.Naziv);
                 //frm.MdiParent = this;
                // frm.Parent = this;
                 frm.Show();
             }
         }
 
-        private void frmPozoristeDetalji_Load(object sender, EventArgs e)
+        private async void frmPozoristeDetalji_Load(object sender, EventArgs e)
         {
+            if (_id.HasValue)
+            {
+                pozoriste = await _pozoristaService.GetById<mPozorista>(_id);
 
+                txtNaziv.Text = pozoriste.Naziv;
+                txtAdresa.Text = pozoriste.Adresa;
+                if (pozoriste.Logo?.Length>0)
+                {
+                    using(MemoryStream ms = new MemoryStream(pozoriste.Logo))
+                    {
+                        pbSlika.Image = Image.FromStream(ms);
+                    }
+                }
+
+                var zone = await _zoneService.Get<List<mZone>>(new rZoneSearch() { PozoristeId=(int)_id});
+                lbZone.DataSource = zone;
+                lbZone.DisplayMember = "NazivSjedista";
+            }
         }
 
         private async void txtPrikaziZone_Click(object sender, EventArgs e)
         {
-            if (result.PozoristeId != 0)
+            if (pozoriste.PozoristeId != 0)
             {
-                rZoneSearch zahtjev = new rZoneSearch() { PozoristeId = result.PozoristeId };
+                rZoneSearch zahtjev = new rZoneSearch() { PozoristeId = pozoriste.PozoristeId };
                 var zone = await _zoneService.Get<List<mZone>>(zahtjev);
                 lbZone.DisplayMember = "NazivSjedista";
                 lbZone.DataSource = zone;

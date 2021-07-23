@@ -27,11 +27,12 @@ namespace SaTeatar.WinUI.Predstave
             _id = predstavaId;
         }
 
-        rPredstavaInsert request = new rPredstavaInsert(); //zbog slike
+        rPredstavaInsert inrequest = new rPredstavaInsert(); //zbog slike
+        rPredstavaUpdate uprequest = new rPredstavaUpdate();
         mPredstave predstava = null;
         List<int> ListaVecDodatihGlumacIDeva = new List<int>();
         List<mPredstaveDjelatnici> predstavaDjelatnici = new List<mPredstaveDjelatnici>();
-
+        private bool dodanaSlika = false;
 
         private async void frmPredstaveDetalji_Load(object sender, EventArgs e)
         {
@@ -128,19 +129,19 @@ namespace SaTeatar.WinUI.Predstave
 
             if (int.TryParse(idTPObj.ToString(), out int tipid))
             {
-                request.TipPredstaveId = tipid;
+                inrequest.TipPredstaveId = tipid;
             }
 
-            request.Naziv = txtNaziv.Text;
-            request.Opis = txtOpis.Text;
-            request.Status = chbStatus.Checked;
-            request.Slika = null;
+            inrequest.Naziv = txtNaziv.Text;
+            inrequest.Opis = txtOpis.Text;
+            inrequest.Status = chbStatus.Checked;
+            inrequest.Slika = null;
 
             var listGlumciIdCB = lbGlumci.SelectedItems.Cast<mDjelatnici>().Select(x => x.DjelatnikId).ToList();
 
             if (!_id.HasValue)
             {
-                var insertPredstave = await _predstaveService.Insert<mPredstave>(request);
+                var insertPredstave = await _predstaveService.Insert<mPredstave>(inrequest);
 
                 for (int i = 0; i < listGlumciIdCB.Count; i++)
                 {
@@ -204,21 +205,23 @@ namespace SaTeatar.WinUI.Predstave
                     }
                 }
 
-                rPredstavaUpdate purequest = new rPredstavaUpdate();
 
-                purequest.Naziv = txtNaziv.Text;
-                purequest.Opis = txtOpis.Text;
-                purequest.Status = chbStatus.Checked;
+                uprequest.Naziv = txtNaziv.Text;
+                uprequest.Opis = txtOpis.Text;
+                uprequest.Status = chbStatus.Checked;
                 var idTPObjpu = cmbTipPredstave.SelectedValue;
 
                 if (int.TryParse(idTPObjpu.ToString(), out int tipidpu))
                 {
-                    purequest.TipPredstaveId = tipidpu;
+                    uprequest.TipPredstaveId = tipidpu;
                 }
-                
-                purequest.Slika = predstava.Slika;
+                if (!dodanaSlika)
+                {
+                    uprequest.Slika = predstava.Slika;
 
-                var updatePredstave = await _predstaveService.Update<mPredstave>(_id, purequest);
+                }
+
+                var updatePredstave = await _predstaveService.Update<mPredstave>(_id, uprequest);
 
                 MessageBox.Show("Uspjesno izmijenjena predstava!");
                 this.Close();
@@ -234,11 +237,21 @@ namespace SaTeatar.WinUI.Predstave
             {
                 var fileName = openFileDialog1.FileName;
                 var file = File.ReadAllBytes(fileName);
-                request.Slika = file;
+                if (_id.HasValue)
+                {
+                    uprequest.Slika = file;
+                    dodanaSlika = true;
+                }
+                else
+                {
+                    inrequest.Slika = file;
+                    dodanaSlika = true;
+                }
                 txtSlikaInput.Text = fileName;
 
                 Image image = Image.FromFile(fileName);
                 pbSlika.Image = image;
+                pbSlika.Visible = true;
             }
         }
 

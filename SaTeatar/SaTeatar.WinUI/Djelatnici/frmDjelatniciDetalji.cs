@@ -33,10 +33,11 @@ namespace SaTeatar.WinUI.Djelatnici
         {
             await LoadVrstaDjelatnika();
 
-            djelatnik = await _djelatnici.GetById<mDjelatnici>(_id);
 
             if (_id.HasValue)
             {
+                djelatnik = await _djelatnici.GetById<mDjelatnici>(_id);
+
                 txtIme.Text = djelatnik.Ime;
                 txtPrezime.Text = djelatnik.Prezime;
                 txtBiografija.Text = djelatnik.Biografija;
