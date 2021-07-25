@@ -1,0 +1,33 @@
+version: '3'
+services:
+#mssql docker
+  sateatar-sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Trat1nc!c@2
+      - MSSQL_PID=Developer
+    ports:
+      - 1401:1433
+    networks:
+      - sateatarnet
+
+  sateatar-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=sateatar-sql,1433;Database=SaTeatarDockerCompose;User=sa;Password=Trat1nc!c@2;ConnectRetryCount=0
+    ports:
+      - 5010:5010
+    networks:
+      - sateatarnet      
+    links:
+      - sateatar-sql
+    depends_on:
+      - sateatar-sql
+      
+networks:
+  sateatarnet:
+    driver: bridge

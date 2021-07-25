@@ -10,7 +10,7 @@ namespace SaTeatar.WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
+    //[Authorize]
     public class BaseReadController<TModel, TSearch>
         : ControllerBase
         where TModel: class where TSearch: class
