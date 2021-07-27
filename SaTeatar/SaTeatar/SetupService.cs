@@ -35,7 +35,18 @@ namespace SaTeatar.WebAPI
 
                 context.Korisnici.Add(new Korisnici()
                 {
-                    Ime = "Moderator",
+                    Ime = "Moderator Prvi",
+                    Prezime = "Moderatoric",
+                    KorisnickoIme = "moderator",
+                    Email = "moderator@gmail.com",
+                    LozinkaHash = "UNUL/8RuC8Yzyk/Jphk+Z8evbnQ=",
+                    LozinkaSalt = "zDeZ2nOy4yQ2a4/lJR6rJA==",
+                    Status = true
+                });
+
+                context.Korisnici.Add(new Korisnici()
+                {
+                    Ime = "Moderator Drugi",
                     Prezime = "Moderatoric",
                     KorisnickoIme = "moderator",
                     Email = "moderator@gmail.com",
@@ -88,6 +99,8 @@ namespace SaTeatar.WebAPI
             {
                 context.VrsteDjelatnika.Add(new VrsteDjelatnika() { Naziv = "Reziser" });
                 context.VrsteDjelatnika.Add(new VrsteDjelatnika() { Naziv = "Gumac" });
+                context.VrsteDjelatnika.Add(new VrsteDjelatnika() { Naziv = "Koreograf" });
+                
             }
 
             context.SaveChanges(); //trebaju idevi za ostale tabele
@@ -193,7 +206,7 @@ namespace SaTeatar.WebAPI
                     TipPredstaveId = 1,
                     Slika = File.ReadAllBytes("Images/predstave/Princeza_na_zrnu_graska.jpg")
                 });
-
+                //#9 Zaljubljeni krokodil
                 context.Predstave.Add(new Predstave()
                 {
                     Naziv = "Zaljubljeni krokodil",
@@ -202,7 +215,7 @@ namespace SaTeatar.WebAPI
                     TipPredstaveId = 1,
                     Slika = File.ReadAllBytes("Images/predstave/Zaljubljeni_krokodil.jpg")
                 });
-
+                //#10 Patkica Blatkica
                 context.Predstave.Add(new Predstave()
                 {
                     Naziv = "Patkica Blatkica",
@@ -211,7 +224,7 @@ namespace SaTeatar.WebAPI
                     TipPredstaveId = 1,
                     Slika = File.ReadAllBytes("Images/predstave/Patkica_Blatkica.jpg")
                 });
-
+                //#11 Okovani prometej
                 context.Predstave.Add(new Predstave()
                 {
                     Naziv = "Okovani prometej",
@@ -220,7 +233,7 @@ namespace SaTeatar.WebAPI
                     TipPredstaveId = 2,
                     Slika = File.ReadAllBytes("Images/predstave/Okovani_prometej.jpg")
                 });
-
+                //#12 Palcica
                 context.Predstave.Add(new Predstave()
                 {
                     Naziv = "Palcica",
@@ -229,7 +242,7 @@ namespace SaTeatar.WebAPI
                     TipPredstaveId = 2,
                     Slika = File.ReadAllBytes("Images/predstave/Palcica.jpg")
                 });
-
+                //#13 Uspavana ljepotica
                 context.Predstave.Add(new Predstave()
                 {
                     Naziv = "Uspavana ljepotica",
@@ -238,7 +251,7 @@ namespace SaTeatar.WebAPI
                     TipPredstaveId = 2,
                     Slika = File.ReadAllBytes("Images/predstave/Uspavana_ljepotica.jpg")
                 });
-
+                //#14 La Traviata
                 context.Predstave.Add(new Predstave()
                 {
                     Naziv = "La Traviata",
@@ -247,7 +260,7 @@ namespace SaTeatar.WebAPI
                     TipPredstaveId = 3,
                     Slika = File.ReadAllBytes("Images/predstave/La_Traviata.jpg")
                 });
-
+                //#15 Don Giovanni
                 context.Predstave.Add(new Predstave()
                 {
                     Naziv = "Don Giovanni",
@@ -256,7 +269,7 @@ namespace SaTeatar.WebAPI
                     TipPredstaveId = 3,
                     Slika = File.ReadAllBytes("Images/predstave/Don_Giovanni.jpg")
                 });
-
+                //#16 Rigoletto
                 context.Predstave.Add(new Predstave()
                 {
                     Naziv = "Rigoletto",
@@ -459,16 +472,257 @@ namespace SaTeatar.WebAPI
                     VrstaDjelatnikaId = 2,
                     Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
                 });
-                //#21
+                //#20 Daniela Gogic 
                 context.Djelatnici.Add(new Djelatnici()
                 {
-                    Ime = "Ermin",
-                    Prezime = "Sijamija",
+                    Ime = "Daniela",
+                    Prezime = "Gogic",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 1,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0reziseri.jpg")
+                });
+                //#21 Mario Drmac
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Mario",
+                    Prezime = "Drmac",
                     Biografija = "...",
                     Status = true,
                     VrstaDjelatnikaId = 2,
                     Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
                 });
+                //#22 Belma Lizde Kurt
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Belma",
+                    Prezime = "Lizde Kurt",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#23  Irfan Avdic
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Irfan",
+                    Prezime = "Avdic",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 1,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0reziseri.jpg")
+                });
+                //#24 Sanin Milavic
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Sanin",
+                    Prezime = "Milavic",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#25 Semir Krivic
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Semir",
+                    Prezime = "Krivic",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#26  Drago Buka 
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Drago",
+                    Prezime = "Buka",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 1,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0reziseri.jpg")
+                });
+                //#27 Alma Merunka
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Alma",
+                    Prezime = "Merunka",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#28 Ajla Cabrera
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Ajla",
+                    Prezime = "Cabrera",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#29 Belma Ceco Bakrac
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Belma",
+                    Prezime = "Ceco Bakrac",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 3,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0reziseri.jpg")
+                });
+                //#30 Milan Rus
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Milan",
+                    Prezime = "Rus",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#31 Tamara Ljubičić
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Tamara",
+                    Prezime = "Ljubicic",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#32 Nermina Damian
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Nermina",
+                    Prezime = "Damian",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 3,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0reziseri.jpg")
+                });
+                //#33 Natasa Gaponko
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Natasa",
+                    Prezime = "Gaponko",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#34 Ekaterina Verescagina
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Ekaterina",
+                    Prezime = "Verescagina",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#35 Dinko Bogdanic
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Dinko",
+                    Prezime = "Bogdanic",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 3,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0reziseri.jpg")
+                });
+                //#36 Adnan Djindo
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Adnan",
+                    Prezime = "Djindo",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#37 Dajana Zilic
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Dajana",
+                    Prezime = "Zilic",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#38  Ognian Draganoff
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Ognian",
+                    Prezime = "Draganoff",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 1,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0reziseri.jpg")
+                });
+                //#39 Martina Zadro
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Martina",
+                    Prezime = "Zadro",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#40 Amir Saracevic
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Amir",
+                    Prezime = "Saracevic",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#41 Aleksandar Nikolic
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Aleksandar",
+                    Prezime = "Nikolic",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 1,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0reziseri.jpg")
+                });
+                //#42 Marko Kalajanovic
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Marko",
+                    Prezime = "Kalajanovic",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#43 Leonardo Saric
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Leonardo",
+                    Prezime = "Saric",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+                //#44 Dragutin Matic
+                context.Djelatnici.Add(new Djelatnici()
+                {
+                    Ime = "Dragutin",
+                    Prezime = "Matic",
+                    Biografija = "...",
+                    Status = true,
+                    VrstaDjelatnikaId = 2,
+                    Slika = File.ReadAllBytes("Images/djelatnici/a0glumci.jpg")
+                });
+
             }
 
             context.SaveChanges(); //trebaju idevi za ostale tabele
@@ -510,6 +764,65 @@ namespace SaTeatar.WebAPI
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 7, DjelatnikId = 17 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 7, DjelatnikId = 19 });
 
+                //#8 Princeza na zrnu graska
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 8, DjelatnikId = 20 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 8, DjelatnikId = 21 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 8, DjelatnikId = 22 });
+
+                //#9 Zaljubljeni krokodil
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 9, DjelatnikId = 26 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 9, DjelatnikId = 27 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 9, DjelatnikId = 28 });
+
+                //#10 Patkica Blatkica
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 10, DjelatnikId = 23 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 10, DjelatnikId = 24 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 10, DjelatnikId = 25 });
+
+                //#11 Okovani prometej
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 11, DjelatnikId = 29 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 11, DjelatnikId = 30 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 11, DjelatnikId = 31 });
+
+                //#12 Palcica
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 12, DjelatnikId = 32 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 12, DjelatnikId = 33 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 12, DjelatnikId = 34 });
+
+                //#13 Uspavana ljepotica
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 13, DjelatnikId = 35 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 13, DjelatnikId = 36 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 13, DjelatnikId = 37 });
+
+                //#14 La Traviata
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 14, DjelatnikId = 38 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 14, DjelatnikId = 39 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 14, DjelatnikId = 40 });
+
+                //#15 Don Giovanni
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 15, DjelatnikId = 41 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 15, DjelatnikId = 42 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 15, DjelatnikId = 43 });
+
+                //#16 Rigoletto
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 16, DjelatnikId = 38 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 16, DjelatnikId = 40 });
+                context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 16, DjelatnikId = 44 });
+
+            }
+
+            if (!context.Izvodjenja.Any(x=>x.PredstavaId==1))
+            {
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 1,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme=DateTime.Now,//
+
+
+                });
             }
 
             context.SaveChanges();
