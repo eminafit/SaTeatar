@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SaTeatar.WebAPI.Migrations
+namespace SaTeatar.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitalCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -154,8 +154,8 @@ namespace SaTeatar.WebAPI.Migrations
                 {
                     PredstavaID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Naziv = table.Column<string>(type: "nchar(50)", fixedLength: true, maxLength: 50, nullable: false),
-                    Opis = table.Column<string>(type: "nchar(500)", fixedLength: true, maxLength: 500, nullable: true),
+                    Naziv = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    Opis = table.Column<string>(type: "varchar(max)", unicode: false, nullable: true),
                     Slika = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     TipPredstaveID = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false)
@@ -258,6 +258,35 @@ namespace SaTeatar.WebAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Ocjene",
+                columns: table => new
+                {
+                    OcjenaID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    KupacID = table.Column<int>(type: "int", nullable: false),
+                    PredstavaID = table.Column<int>(type: "int", nullable: false),
+                    Datum = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Ocjena = table.Column<int>(type: "int", nullable: false),
+                    Opis = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Ocjene", x => x.OcjenaID);
+                    table.ForeignKey(
+                        name: "FK_Ocjene_Kupci",
+                        column: x => x.KupacID,
+                        principalTable: "Kupci",
+                        principalColumn: "KupacID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Ocjene_Predstave",
+                        column: x => x.PredstavaID,
+                        principalTable: "Predstave",
+                        principalColumn: "PredstavaID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PoslaneObavijesti",
                 columns: table => new
                 {
@@ -288,14 +317,14 @@ namespace SaTeatar.WebAPI.Migrations
                 name: "PredstaveDjelatnici",
                 columns: table => new
                 {
-                    PredstavaDjelatnikId = table.Column<int>(type: "int", nullable: false)
+                    PredstavaDjelatnikID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PredstavaID = table.Column<int>(type: "int", nullable: false),
                     DjelatnikID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PredstaveDjelatnici", x => x.PredstavaDjelatnikId);
+                    table.PrimaryKey("PK_PredstaveDjelatnici", x => x.PredstavaDjelatnikID);
                     table.ForeignKey(
                         name: "FK_PredstaveDjelatnici_Djelatnici",
                         column: x => x.DjelatnikID,
@@ -366,35 +395,6 @@ namespace SaTeatar.WebAPI.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Ocjene",
-                columns: table => new
-                {
-                    OcjenaID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    KupacID = table.Column<int>(type: "int", nullable: false),
-                    IzvodjenjeID = table.Column<int>(type: "int", nullable: false),
-                    Datum = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Ocjena = table.Column<int>(type: "int", nullable: false),
-                    Opis = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Ocjene", x => x.OcjenaID);
-                    table.ForeignKey(
-                        name: "FK_Ocjene_Izvodjenja",
-                        column: x => x.IzvodjenjeID,
-                        principalTable: "Izvodjenja",
-                        principalColumn: "IzvodjenjeID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Ocjene_Kupci",
-                        column: x => x.KupacID,
-                        principalTable: "Kupci",
-                        principalColumn: "KupacID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Djelatnici_VrstaDjelatnikaID",
                 table: "Djelatnici",
@@ -446,14 +446,14 @@ namespace SaTeatar.WebAPI.Migrations
                 column: "UlogaID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ocjene_IzvodjenjeID",
-                table: "Ocjene",
-                column: "IzvodjenjeID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Ocjene_KupacID",
                 table: "Ocjene",
                 column: "KupacID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ocjene_PredstavaID",
+                table: "Ocjene",
+                column: "PredstavaID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PoslaneObavijesti_KupacID",
@@ -523,10 +523,10 @@ namespace SaTeatar.WebAPI.Migrations
                 name: "Zone");
 
             migrationBuilder.DropTable(
-                name: "Uloge");
+                name: "Izvodjenja");
 
             migrationBuilder.DropTable(
-                name: "Izvodjenja");
+                name: "Uloge");
 
             migrationBuilder.DropTable(
                 name: "Kupci");

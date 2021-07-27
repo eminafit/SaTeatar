@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace SaTeatar.WebAPI.Database
+namespace SaTeatar.Database
 {
     public partial class SaTeatarDbContext : DbContext
     {
@@ -271,21 +271,21 @@ namespace SaTeatar.WebAPI.Database
 
                 entity.Property(e => e.Datum).HasColumnType("datetime");
 
-                entity.Property(e => e.IzvodjenjeId).HasColumnName("IzvodjenjeID");
-
                 entity.Property(e => e.KupacId).HasColumnName("KupacID");
 
-                entity.HasOne(d => d.Izvodjenje)
-                    .WithMany(p => p.Ocjenes)
-                    .HasForeignKey(d => d.IzvodjenjeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Ocjene_Izvodjenja");
+                entity.Property(e => e.PredstavaId).HasColumnName("PredstavaID");
 
                 entity.HasOne(d => d.Kupac)
                     .WithMany(p => p.Ocjenes)
                     .HasForeignKey(d => d.KupacId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Ocjene_Kupci");
+
+                entity.HasOne(d => d.Predstava)
+                    .WithMany(p => p.Ocjenes)
+                    .HasForeignKey(d => d.PredstavaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Ocjene_Predstave");
             });
 
             modelBuilder.Entity<PoslaneObavijesti>(entity =>
@@ -364,13 +364,10 @@ namespace SaTeatar.WebAPI.Database
                 entity.Property(e => e.PredstavaId).HasColumnName("PredstavaID");
 
                 entity.Property(e => e.Naziv)
-                    .IsRequired()
                     .HasMaxLength(50)
-                    .IsFixedLength(true);
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Opis)
-                    .HasMaxLength(500)
-                    .IsFixedLength(true);
+                entity.Property(e => e.Opis).IsUnicode(false);
 
                 entity.Property(e => e.TipPredstaveId).HasColumnName("TipPredstaveID");
 
@@ -386,6 +383,8 @@ namespace SaTeatar.WebAPI.Database
                 entity.HasKey(e => e.PredstavaDjelatnikId);
 
                 entity.ToTable("PredstaveDjelatnici");
+
+                entity.Property(e => e.PredstavaDjelatnikId).HasColumnName("PredstavaDjelatnikID");
 
                 entity.Property(e => e.DjelatnikId).HasColumnName("DjelatnikID");
 

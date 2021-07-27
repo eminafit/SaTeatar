@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using SaTeatar.WebAPI.Database;
+using SaTeatar.Database;
 using SaTeatar.WebAPI.Security;
 using SaTeatar.WebAPI.Services;
 using System;

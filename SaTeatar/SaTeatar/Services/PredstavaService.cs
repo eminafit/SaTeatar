@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using SaTeatar.Model.Models;
 using SaTeatar.Model.Requests;
-using SaTeatar.WebAPI.Database;
+using SaTeatar.Database;
 
 namespace SaTeatar.WebAPI.Services
 {

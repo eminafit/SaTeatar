@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SaTeatar.Model.Models;
 using SaTeatar.Model.Requests;
-using SaTeatar.WebAPI.Database;
+using SaTeatar.Database;
 using SaTeatar.WebAPI.Services;
 
 namespace SaTeatar.WebAPI.Controllers

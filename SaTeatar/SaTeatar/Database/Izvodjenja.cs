@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace SaTeatar.WebAPI.Database
+namespace SaTeatar.Database
 {
     public partial class Izvodjenja
     {
@@ -11,7 +11,6 @@ namespace SaTeatar.WebAPI.Database
         {
             IzvodjenjaZones = new HashSet<IzvodjenjaZone>();
             Kartes = new HashSet<Karte>();
-            Ocjenes = new HashSet<Ocjene>();
         }
 
         public int IzvodjenjeId { get; set; }
@@ -26,6 +25,5 @@ namespace SaTeatar.WebAPI.Database
         public virtual Predstave Predstava { get; set; }
         public virtual ICollection<IzvodjenjaZone> IzvodjenjaZones { get; set; }
         public virtual ICollection<Karte> Kartes { get; set; }
-        public virtual ICollection<Ocjene> Ocjenes { get; set; }
     }
 }

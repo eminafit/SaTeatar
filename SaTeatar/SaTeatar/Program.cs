@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SaTeatar.WebAPI.Database;
+using SaTeatar.Database;
 using SaTeatar.WebAPI;
 
 namespace SaTeatar
@@ -21,7 +21,7 @@ namespace SaTeatar
             using (var scope=host.Services.CreateScope())
             {
                 var database = scope.ServiceProvider.GetService<SaTeatarDbContext>();
-                new SetupService().Init(database);
+                //new SetupService().Init(database);
             }
             host.Run();
         }

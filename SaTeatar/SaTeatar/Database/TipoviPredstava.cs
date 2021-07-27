@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace SaTeatar.WebAPI.Database
+namespace SaTeatar.Database
 {
     public partial class TipoviPredstava
     {

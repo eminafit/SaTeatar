@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SaTeatar.WebAPI.Database;
+using SaTeatar.Database;
 
-namespace SaTeatar.WebAPI.Migrations
+namespace SaTeatar.Migrations
 {
     [DbContext(typeof(SaTeatarDbContext))]
     partial class SaTeatarDbContextModelSnapshot : ModelSnapshot
@@ -20,7 +20,7 @@ namespace SaTeatar.WebAPI.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Djelatnici", b =>
+            modelBuilder.Entity("SaTeatar.Database.Djelatnici", b =>
                 {
                     b.Property<int>("DjelatnikId")
                         .ValueGeneratedOnAdd()
@@ -58,7 +58,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("Djelatnici");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Izvodjenja", b =>
+            modelBuilder.Entity("SaTeatar.Database.Izvodjenja", b =>
                 {
                     b.Property<int>("IzvodjenjeId")
                         .ValueGeneratedOnAdd()
@@ -95,7 +95,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("Izvodjenja");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.IzvodjenjaZone", b =>
+            modelBuilder.Entity("SaTeatar.Database.IzvodjenjaZone", b =>
                 {
                     b.Property<int>("IzvodjenjeZonaId")
                         .ValueGeneratedOnAdd()
@@ -126,7 +126,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("IzvodjenjaZone");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Karte", b =>
+            modelBuilder.Entity("SaTeatar.Database.Karte", b =>
                 {
                     b.Property<int>("KartaId")
                         .ValueGeneratedOnAdd()
@@ -159,7 +159,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("Karte");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Korisnici", b =>
+            modelBuilder.Entity("SaTeatar.Database.Korisnici", b =>
                 {
                     b.Property<int>("KorisnikId")
                         .ValueGeneratedOnAdd()
@@ -205,7 +205,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("Korisnici");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.KorisniciUloge", b =>
+            modelBuilder.Entity("SaTeatar.Database.KorisniciUloge", b =>
                 {
                     b.Property<int>("KorisnikUlogaId")
                         .ValueGeneratedOnAdd()
@@ -233,7 +233,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("KorisniciUloge");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Kupci", b =>
+            modelBuilder.Entity("SaTeatar.Database.Kupci", b =>
                 {
                     b.Property<int>("KupacId")
                         .ValueGeneratedOnAdd()
@@ -282,7 +282,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("Kupci");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Ocjene", b =>
+            modelBuilder.Entity("SaTeatar.Database.Ocjene", b =>
                 {
                     b.Property<int>("OcjenaId")
                         .ValueGeneratedOnAdd()
@@ -292,10 +292,6 @@ namespace SaTeatar.WebAPI.Migrations
 
                     b.Property<DateTime>("Datum")
                         .HasColumnType("datetime");
-
-                    b.Property<int>("IzvodjenjeId")
-                        .HasColumnType("int")
-                        .HasColumnName("IzvodjenjeID");
 
                     b.Property<int>("KupacId")
                         .HasColumnType("int")
@@ -307,16 +303,20 @@ namespace SaTeatar.WebAPI.Migrations
                     b.Property<string>("Opis")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PredstavaId")
+                        .HasColumnType("int")
+                        .HasColumnName("PredstavaID");
+
                     b.HasKey("OcjenaId");
 
-                    b.HasIndex("IzvodjenjeId");
-
                     b.HasIndex("KupacId");
+
+                    b.HasIndex("PredstavaId");
 
                     b.ToTable("Ocjene");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.PoslaneObavijesti", b =>
+            modelBuilder.Entity("SaTeatar.Database.PoslaneObavijesti", b =>
                 {
                     b.Property<int>("PoslanaObavijestId")
                         .ValueGeneratedOnAdd()
@@ -344,7 +344,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("PoslaneObavijesti");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.PostavkeObavijesti", b =>
+            modelBuilder.Entity("SaTeatar.Database.PostavkeObavijesti", b =>
                 {
                     b.Property<int>("PostavkaObavijestiId")
                         .ValueGeneratedOnAdd()
@@ -369,7 +369,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("PostavkeObavijesti");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Pozorista", b =>
+            modelBuilder.Entity("SaTeatar.Database.Pozorista", b =>
                 {
                     b.Property<int>("PozoristeId")
                         .ValueGeneratedOnAdd()
@@ -395,7 +395,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("Pozorista");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Predstave", b =>
+            modelBuilder.Entity("SaTeatar.Database.Predstave", b =>
                 {
                     b.Property<int>("PredstavaId")
                         .ValueGeneratedOnAdd()
@@ -404,15 +404,13 @@ namespace SaTeatar.WebAPI.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Naziv")
-                        .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nchar(50)")
-                        .IsFixedLength(true);
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Opis")
-                        .HasMaxLength(500)
-                        .HasColumnType("nchar(500)")
-                        .IsFixedLength(true);
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
 
                     b.Property<byte[]>("Slika")
                         .HasColumnType("varbinary(max)");
@@ -431,11 +429,12 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("Predstave");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.PredstaveDjelatnici", b =>
+            modelBuilder.Entity("SaTeatar.Database.PredstaveDjelatnici", b =>
                 {
                     b.Property<int>("PredstavaDjelatnikId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
+                        .HasColumnName("PredstavaDjelatnikID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("DjelatnikId")
@@ -455,7 +454,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("PredstaveDjelatnici");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.TipoviPredstava", b =>
+            modelBuilder.Entity("SaTeatar.Database.TipoviPredstava", b =>
                 {
                     b.Property<int>("TipPredstaveId")
                         .ValueGeneratedOnAdd()
@@ -473,7 +472,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("TipoviPredstava");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Uloge", b =>
+            modelBuilder.Entity("SaTeatar.Database.Uloge", b =>
                 {
                     b.Property<int>("UlogaId")
                         .ValueGeneratedOnAdd()
@@ -495,7 +494,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("Uloge");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.VrsteDjelatnika", b =>
+            modelBuilder.Entity("SaTeatar.Database.VrsteDjelatnika", b =>
                 {
                     b.Property<int>("VrstaDjelatnikaId")
                         .ValueGeneratedOnAdd()
@@ -513,7 +512,7 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("VrsteDjelatnika");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Zone", b =>
+            modelBuilder.Entity("SaTeatar.Database.Zone", b =>
                 {
                     b.Property<int>("ZonaId")
                         .ValueGeneratedOnAdd()
@@ -540,9 +539,9 @@ namespace SaTeatar.WebAPI.Migrations
                     b.ToTable("Zone");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Djelatnici", b =>
+            modelBuilder.Entity("SaTeatar.Database.Djelatnici", b =>
                 {
-                    b.HasOne("SaTeatar.WebAPI.Database.VrsteDjelatnika", "VrstaDjelatnika")
+                    b.HasOne("SaTeatar.Database.VrsteDjelatnika", "VrstaDjelatnika")
                         .WithMany("Djelatnicis")
                         .HasForeignKey("VrstaDjelatnikaId")
                         .HasConstraintName("FK_Djelatnici_VrsteDjelatnika")
@@ -551,21 +550,21 @@ namespace SaTeatar.WebAPI.Migrations
                     b.Navigation("VrstaDjelatnika");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Izvodjenja", b =>
+            modelBuilder.Entity("SaTeatar.Database.Izvodjenja", b =>
                 {
-                    b.HasOne("SaTeatar.WebAPI.Database.Korisnici", "Korisnik")
+                    b.HasOne("SaTeatar.Database.Korisnici", "Korisnik")
                         .WithMany("Izvodjenjas")
                         .HasForeignKey("KorisnikId")
                         .HasConstraintName("FK_Izvodjenja_Korisnici")
                         .IsRequired();
 
-                    b.HasOne("SaTeatar.WebAPI.Database.Pozorista", "Pozoriste")
+                    b.HasOne("SaTeatar.Database.Pozorista", "Pozoriste")
                         .WithMany("Izvodjenjas")
                         .HasForeignKey("PozoristeId")
                         .HasConstraintName("FK_Izvodjenja_Pozorista")
                         .IsRequired();
 
-                    b.HasOne("SaTeatar.WebAPI.Database.Predstave", "Predstava")
+                    b.HasOne("SaTeatar.Database.Predstave", "Predstava")
                         .WithMany("Izvodjenjas")
                         .HasForeignKey("PredstavaId")
                         .HasConstraintName("FK_Izvodjenja_Predstave")
@@ -578,15 +577,15 @@ namespace SaTeatar.WebAPI.Migrations
                     b.Navigation("Predstava");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.IzvodjenjaZone", b =>
+            modelBuilder.Entity("SaTeatar.Database.IzvodjenjaZone", b =>
                 {
-                    b.HasOne("SaTeatar.WebAPI.Database.Izvodjenja", "Izvodjenje")
+                    b.HasOne("SaTeatar.Database.Izvodjenja", "Izvodjenje")
                         .WithMany("IzvodjenjaZones")
                         .HasForeignKey("IzvodjenjeId")
                         .HasConstraintName("FK_IzvodjenjaZone_Izvodjenja")
                         .IsRequired();
 
-                    b.HasOne("SaTeatar.WebAPI.Database.Zone", "Zona")
+                    b.HasOne("SaTeatar.Database.Zone", "Zona")
                         .WithMany("IzvodjenjaZones")
                         .HasForeignKey("ZonaId")
                         .HasConstraintName("FK_IzvodjenjaZone_Zone")
@@ -597,15 +596,15 @@ namespace SaTeatar.WebAPI.Migrations
                     b.Navigation("Zona");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Karte", b =>
+            modelBuilder.Entity("SaTeatar.Database.Karte", b =>
                 {
-                    b.HasOne("SaTeatar.WebAPI.Database.Izvodjenja", "Izvodjenje")
+                    b.HasOne("SaTeatar.Database.Izvodjenja", "Izvodjenje")
                         .WithMany("Kartes")
                         .HasForeignKey("IzvodjenjeId")
                         .HasConstraintName("FK_Karte_Izvodjenja")
                         .IsRequired();
 
-                    b.HasOne("SaTeatar.WebAPI.Database.Kupci", "Kupac")
+                    b.HasOne("SaTeatar.Database.Kupci", "Kupac")
                         .WithMany("Kartes")
                         .HasForeignKey("KupacId")
                         .HasConstraintName("FK_Karte_Kupci")
@@ -616,15 +615,15 @@ namespace SaTeatar.WebAPI.Migrations
                     b.Navigation("Kupac");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.KorisniciUloge", b =>
+            modelBuilder.Entity("SaTeatar.Database.KorisniciUloge", b =>
                 {
-                    b.HasOne("SaTeatar.WebAPI.Database.Korisnici", "Korisnik")
+                    b.HasOne("SaTeatar.Database.Korisnici", "Korisnik")
                         .WithMany("KorisniciUloges")
                         .HasForeignKey("KorisnikId")
                         .HasConstraintName("FK_KorisniciUloge_Korisnici")
                         .IsRequired();
 
-                    b.HasOne("SaTeatar.WebAPI.Database.Uloge", "Uloga")
+                    b.HasOne("SaTeatar.Database.Uloge", "Uloga")
                         .WithMany("KorisniciUloges")
                         .HasForeignKey("UlogaId")
                         .HasConstraintName("FK_KorisniciUloge_Uloge")
@@ -635,34 +634,34 @@ namespace SaTeatar.WebAPI.Migrations
                     b.Navigation("Uloga");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Ocjene", b =>
+            modelBuilder.Entity("SaTeatar.Database.Ocjene", b =>
                 {
-                    b.HasOne("SaTeatar.WebAPI.Database.Izvodjenja", "Izvodjenje")
-                        .WithMany("Ocjenes")
-                        .HasForeignKey("IzvodjenjeId")
-                        .HasConstraintName("FK_Ocjene_Izvodjenja")
-                        .IsRequired();
-
-                    b.HasOne("SaTeatar.WebAPI.Database.Kupci", "Kupac")
+                    b.HasOne("SaTeatar.Database.Kupci", "Kupac")
                         .WithMany("Ocjenes")
                         .HasForeignKey("KupacId")
                         .HasConstraintName("FK_Ocjene_Kupci")
                         .IsRequired();
 
-                    b.Navigation("Izvodjenje");
+                    b.HasOne("SaTeatar.Database.Predstave", "Predstava")
+                        .WithMany("Ocjenes")
+                        .HasForeignKey("PredstavaId")
+                        .HasConstraintName("FK_Ocjene_Predstave")
+                        .IsRequired();
 
                     b.Navigation("Kupac");
+
+                    b.Navigation("Predstava");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.PoslaneObavijesti", b =>
+            modelBuilder.Entity("SaTeatar.Database.PoslaneObavijesti", b =>
                 {
-                    b.HasOne("SaTeatar.WebAPI.Database.Kupci", "Kupac")
+                    b.HasOne("SaTeatar.Database.Kupci", "Kupac")
                         .WithMany("PoslaneObavijestis")
                         .HasForeignKey("KupacId")
                         .HasConstraintName("FK_PoslaneObavijesti_Kupci")
                         .IsRequired();
 
-                    b.HasOne("SaTeatar.WebAPI.Database.Predstave", "Prestava")
+                    b.HasOne("SaTeatar.Database.Predstave", "Prestava")
                         .WithMany("PoslaneObavijestis")
                         .HasForeignKey("PrestavaId")
                         .HasConstraintName("FK_PoslaneObavijesti_Predstave")
@@ -673,15 +672,15 @@ namespace SaTeatar.WebAPI.Migrations
                     b.Navigation("Prestava");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.PostavkeObavijesti", b =>
+            modelBuilder.Entity("SaTeatar.Database.PostavkeObavijesti", b =>
                 {
-                    b.HasOne("SaTeatar.WebAPI.Database.Kupci", "Kupac")
+                    b.HasOne("SaTeatar.Database.Kupci", "Kupac")
                         .WithMany("PostavkeObavijestis")
                         .HasForeignKey("KupacId")
                         .HasConstraintName("FK_PostavkeObavijesti_Kupci")
                         .IsRequired();
 
-                    b.HasOne("SaTeatar.WebAPI.Database.TipoviPredstava", "TipPredstave")
+                    b.HasOne("SaTeatar.Database.TipoviPredstava", "TipPredstave")
                         .WithMany("PostavkeObavijestis")
                         .HasForeignKey("TipPredstaveId")
                         .HasConstraintName("FK_PostavkeObavijesti_TipoviPredstava")
@@ -692,9 +691,9 @@ namespace SaTeatar.WebAPI.Migrations
                     b.Navigation("TipPredstave");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Predstave", b =>
+            modelBuilder.Entity("SaTeatar.Database.Predstave", b =>
                 {
-                    b.HasOne("SaTeatar.WebAPI.Database.TipoviPredstava", "TipPredstave")
+                    b.HasOne("SaTeatar.Database.TipoviPredstava", "TipPredstave")
                         .WithMany("Predstaves")
                         .HasForeignKey("TipPredstaveId")
                         .HasConstraintName("FK_Predstave_TipoviPredstava")
@@ -703,15 +702,15 @@ namespace SaTeatar.WebAPI.Migrations
                     b.Navigation("TipPredstave");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.PredstaveDjelatnici", b =>
+            modelBuilder.Entity("SaTeatar.Database.PredstaveDjelatnici", b =>
                 {
-                    b.HasOne("SaTeatar.WebAPI.Database.Djelatnici", "Djelatnik")
+                    b.HasOne("SaTeatar.Database.Djelatnici", "Djelatnik")
                         .WithMany("PredstaveDjelatnicis")
                         .HasForeignKey("DjelatnikId")
                         .HasConstraintName("FK_PredstaveDjelatnici_Djelatnici")
                         .IsRequired();
 
-                    b.HasOne("SaTeatar.WebAPI.Database.Predstave", "Predstava")
+                    b.HasOne("SaTeatar.Database.Predstave", "Predstava")
                         .WithMany("PredstaveDjelatnicis")
                         .HasForeignKey("PredstavaId")
                         .HasConstraintName("FK_PredstaveDjelatnici_Predstave")
@@ -722,9 +721,9 @@ namespace SaTeatar.WebAPI.Migrations
                     b.Navigation("Predstava");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Zone", b =>
+            modelBuilder.Entity("SaTeatar.Database.Zone", b =>
                 {
-                    b.HasOne("SaTeatar.WebAPI.Database.Pozorista", "Pozoriste")
+                    b.HasOne("SaTeatar.Database.Pozorista", "Pozoriste")
                         .WithMany("Zones")
                         .HasForeignKey("PozoristeId")
                         .HasConstraintName("FK_Zone_Pozorista")
@@ -733,28 +732,26 @@ namespace SaTeatar.WebAPI.Migrations
                     b.Navigation("Pozoriste");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Djelatnici", b =>
+            modelBuilder.Entity("SaTeatar.Database.Djelatnici", b =>
                 {
                     b.Navigation("PredstaveDjelatnicis");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Izvodjenja", b =>
+            modelBuilder.Entity("SaTeatar.Database.Izvodjenja", b =>
                 {
                     b.Navigation("IzvodjenjaZones");
 
                     b.Navigation("Kartes");
-
-                    b.Navigation("Ocjenes");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Korisnici", b =>
+            modelBuilder.Entity("SaTeatar.Database.Korisnici", b =>
                 {
                     b.Navigation("Izvodjenjas");
 
                     b.Navigation("KorisniciUloges");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Kupci", b =>
+            modelBuilder.Entity("SaTeatar.Database.Kupci", b =>
                 {
                     b.Navigation("Kartes");
 
@@ -765,40 +762,42 @@ namespace SaTeatar.WebAPI.Migrations
                     b.Navigation("PostavkeObavijestis");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Pozorista", b =>
+            modelBuilder.Entity("SaTeatar.Database.Pozorista", b =>
                 {
                     b.Navigation("Izvodjenjas");
 
                     b.Navigation("Zones");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Predstave", b =>
+            modelBuilder.Entity("SaTeatar.Database.Predstave", b =>
                 {
                     b.Navigation("Izvodjenjas");
+
+                    b.Navigation("Ocjenes");
 
                     b.Navigation("PoslaneObavijestis");
 
                     b.Navigation("PredstaveDjelatnicis");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.TipoviPredstava", b =>
+            modelBuilder.Entity("SaTeatar.Database.TipoviPredstava", b =>
                 {
                     b.Navigation("PostavkeObavijestis");
 
                     b.Navigation("Predstaves");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Uloge", b =>
+            modelBuilder.Entity("SaTeatar.Database.Uloge", b =>
                 {
                     b.Navigation("KorisniciUloges");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.VrsteDjelatnika", b =>
+            modelBuilder.Entity("SaTeatar.Database.VrsteDjelatnika", b =>
                 {
                     b.Navigation("Djelatnicis");
                 });
 
-            modelBuilder.Entity("SaTeatar.WebAPI.Database.Zone", b =>
+            modelBuilder.Entity("SaTeatar.Database.Zone", b =>
                 {
                     b.Navigation("IzvodjenjaZones");
                 });

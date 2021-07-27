@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SaTeatar.WebAPI.Database;
+using SaTeatar.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
