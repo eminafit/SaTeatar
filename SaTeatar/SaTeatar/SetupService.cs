@@ -56,6 +56,130 @@ namespace SaTeatar.WebAPI
                 });
             }
 
+            if (!context.Kupci.Any(x=>x.KorisnickoIme=="mobile"))
+            {
+                //#1 mobile
+                context.Kupci.Add(new Kupci()
+                {
+                    Ime = "Mobilni",
+                    Prezime = "Mobilovic",
+                    KorisnickoIme = "mobile",
+                    DatumRegistracije = new DateTime(2021, 5, 2, 8, 0, 0),
+                    Email= "mobilni@gmail.com",
+                    Status=true,
+                    LozinkaHash= "UNUL/8RuC8Yzyk/Jphk+Z8evbnQ=",
+                    LozinkaSalt= "zDeZ2nOy4yQ2a4/lJR6rJA==",
+                });
+                //#2 Pero Peric
+                context.Kupci.Add(new Kupci()
+                {
+                    Ime = "Pero",
+                    Prezime = "Peric",
+                    KorisnickoIme = "pero.peric",
+                    DatumRegistracije = new DateTime(2021, 5, 20, 8, 0, 0),
+                    Email = "pero@gmail.com",
+                    Status = true,
+                    LozinkaHash = "UNUL/8RuC8Yzyk/Jphk+Z8evbnQ=",
+                    LozinkaSalt = "zDeZ2nOy4yQ2a4/lJR6rJA==",
+                });
+                //#3 Mare Maric
+                context.Kupci.Add(new Kupci()
+                {
+                    Ime = "Mare",
+                    Prezime = "Maric",
+                    KorisnickoIme = "mare.maric",
+                    DatumRegistracije = new DateTime(2021, 5, 20, 9, 0, 0),
+                    Email = "mare@gmail.com",
+                    Status = true,
+                    LozinkaHash = "UNUL/8RuC8Yzyk/Jphk+Z8evbnQ=",
+                    LozinkaSalt = "zDeZ2nOy4yQ2a4/lJR6rJA==",
+                });
+                //#4 Niko Nikic
+                context.Kupci.Add(new Kupci()
+                {
+                    Ime = "Niko",
+                    Prezime = "Nikic",
+                    KorisnickoIme = "niko.nikic",
+                    DatumRegistracije = new DateTime(2021, 5, 20, 9, 30, 0),
+                    Email = "niko@gmail.com",
+                    Status = true,
+                    LozinkaHash = "UNUL/8RuC8Yzyk/Jphk+Z8evbnQ=",
+                    LozinkaSalt = "zDeZ2nOy4yQ2a4/lJR6rJA==",
+                });
+                //#5 Luka Lukic
+                context.Kupci.Add(new Kupci()
+                {
+                    Ime = "Luka",
+                    Prezime = "Lukic",
+                    KorisnickoIme = "luka.lukic",
+                    DatumRegistracije = new DateTime(2021, 5, 20, 10, 0, 0),
+                    Email = "luka@gmail.com",
+                    Status = true,
+                    LozinkaHash = "UNUL/8RuC8Yzyk/Jphk+Z8evbnQ=",
+                    LozinkaSalt = "zDeZ2nOy4yQ2a4/lJR6rJA==",
+                });
+                //#6 Tin Tinovic
+                context.Kupci.Add(new Kupci()
+                {
+                    Ime = "Tin",
+                    Prezime = "Tinovic",
+                    KorisnickoIme = "tin.tinovic",
+                    DatumRegistracije = new DateTime(2021, 5, 20, 11, 0, 0),
+                    Email = "tin@gmail.com",
+                    Status = true,
+                    LozinkaHash = "UNUL/8RuC8Yzyk/Jphk+Z8evbnQ=",
+                    LozinkaSalt = "zDeZ2nOy4yQ2a4/lJR6rJA==",
+                });
+                //#7 Boro Boric
+                context.Kupci.Add(new Kupci()
+                {
+                    Ime = "Boro",
+                    Prezime = "Boric",
+                    KorisnickoIme = "boro.boric",
+                    DatumRegistracije = new DateTime(2021, 5, 20, 12, 0, 0),
+                    Email = "boro@gmail.com",
+                    Status = true,
+                    LozinkaHash = "UNUL/8RuC8Yzyk/Jphk+Z8evbnQ=",
+                    LozinkaSalt = "zDeZ2nOy4yQ2a4/lJR6rJA==",
+                });
+                //#8 Drago Dragic
+                context.Kupci.Add(new Kupci()
+                {
+                    Ime = "Drago",
+                    Prezime = "Dragic",
+                    KorisnickoIme = "drago.dragic",
+                    DatumRegistracije = new DateTime(2021, 5, 20, 13, 0, 0),
+                    Email = "drago@gmail.com",
+                    Status = true,
+                    LozinkaHash = "UNUL/8RuC8Yzyk/Jphk+Z8evbnQ=",
+                    LozinkaSalt = "zDeZ2nOy4yQ2a4/lJR6rJA==",
+                });
+                //#9 Ljubo Ljubic
+                context.Kupci.Add(new Kupci()
+                {
+                    Ime = "Ljubo",
+                    Prezime = "Ljubic",
+                    KorisnickoIme = "ljubo.ljubic",
+                    DatumRegistracije = new DateTime(2021, 5, 20, 14, 0, 0),
+                    Email = "ljubo@gmail.com",
+                    Status = true,
+                    LozinkaHash = "UNUL/8RuC8Yzyk/Jphk+Z8evbnQ=",
+                    LozinkaSalt = "zDeZ2nOy4yQ2a4/lJR6rJA==",
+                });
+                //#10 Aleks Aleksic
+                context.Kupci.Add(new Kupci()
+                {
+                    Ime = "Aleks",
+                    Prezime = "Aleksic",
+                    KorisnickoIme = "aleks.aleksic",
+                    DatumRegistracije = new DateTime(2021, 5, 20, 15, 0, 0),
+                    Email = "aleks.aleksic@gmail.com",
+                    Status = true,
+                    LozinkaHash = "UNUL/8RuC8Yzyk/Jphk+Z8evbnQ=",
+                    LozinkaSalt = "zDeZ2nOy4yQ2a4/lJR6rJA==",
+                });
+            }
+
             if (!context.Pozorista.Any(x => x.Naziv == "Kamerni teatar 55"))
             {
                 //#1 Kamerni teatar 55
@@ -107,8 +231,9 @@ namespace SaTeatar.WebAPI
 
             if (!context.KorisniciUloge.Any(x=>x.KorisnikId==1))
             {
-                context.KorisniciUloge.Add(new KorisniciUloge() { KorisnikId = 1, UlogaId = 1, DatumIzmjene = DateTime.Now });
-                context.KorisniciUloge.Add(new KorisniciUloge() { KorisnikId = 2, UlogaId = 2, DatumIzmjene = DateTime.Now });
+                context.KorisniciUloge.Add(new KorisniciUloge() { KorisnikId = 1, UlogaId = 1, DatumIzmjene = new DateTime(2021, 5, 1, 8,0,0) });
+                context.KorisniciUloge.Add(new KorisniciUloge() { KorisnikId = 2, UlogaId = 2, DatumIzmjene = new DateTime(2021, 5, 1, 9, 0, 0) });
+                context.KorisniciUloge.Add(new KorisniciUloge() { KorisnikId = 3, UlogaId = 2, DatumIzmjene = new DateTime(2021, 5, 1, 10, 0, 0) });
             }
 
             if (!context.Zone.Any(x=>x.PozoristeId==1))
@@ -815,7 +940,6 @@ namespace SaTeatar.WebAPI
 
             }
 
-            // // 2015 - year, 12 - month, 25 – day, 10 – hour, 30 – minute, 50 - second  
             if (!context.Izvodjenja.Any(x=>x.PredstavaId==1))
             {
                 //#1 Helverova noc 1/6/21
