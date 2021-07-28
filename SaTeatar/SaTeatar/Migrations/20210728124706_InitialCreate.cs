@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SaTeatar.Migrations
 {
-    public partial class InitalCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -376,7 +376,8 @@ namespace SaTeatar.Migrations
                     KupacID = table.Column<int>(type: "int", nullable: false),
                     IzvodjenjeID = table.Column<int>(type: "int", nullable: false),
                     Sifra = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Placeno = table.Column<bool>(type: "bit", nullable: false)
+                    Placeno = table.Column<bool>(type: "bit", nullable: false),
+                    IzvodjenjeZonaID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -386,6 +387,12 @@ namespace SaTeatar.Migrations
                         column: x => x.IzvodjenjeID,
                         principalTable: "Izvodjenja",
                         principalColumn: "IzvodjenjeID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Karte_IzvodjenjaZone",
+                        column: x => x.IzvodjenjeZonaID,
+                        principalTable: "IzvodjenjaZone",
+                        principalColumn: "IzvodjenjeZonaID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Karte_Kupci",
@@ -429,6 +436,11 @@ namespace SaTeatar.Migrations
                 name: "IX_Karte_IzvodjenjeID",
                 table: "Karte",
                 column: "IzvodjenjeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Karte_IzvodjenjeZonaID",
+                table: "Karte",
+                column: "IzvodjenjeZonaID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Karte_KupacID",
@@ -499,9 +511,6 @@ namespace SaTeatar.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "IzvodjenjaZone");
-
-            migrationBuilder.DropTable(
                 name: "Karte");
 
             migrationBuilder.DropTable(
@@ -520,10 +529,7 @@ namespace SaTeatar.Migrations
                 name: "PredstaveDjelatnici");
 
             migrationBuilder.DropTable(
-                name: "Zone");
-
-            migrationBuilder.DropTable(
-                name: "Izvodjenja");
+                name: "IzvodjenjaZone");
 
             migrationBuilder.DropTable(
                 name: "Uloge");
@@ -535,16 +541,22 @@ namespace SaTeatar.Migrations
                 name: "Djelatnici");
 
             migrationBuilder.DropTable(
-                name: "Korisnici");
+                name: "Izvodjenja");
 
             migrationBuilder.DropTable(
-                name: "Pozorista");
+                name: "Zone");
+
+            migrationBuilder.DropTable(
+                name: "VrsteDjelatnika");
+
+            migrationBuilder.DropTable(
+                name: "Korisnici");
 
             migrationBuilder.DropTable(
                 name: "Predstave");
 
             migrationBuilder.DropTable(
-                name: "VrsteDjelatnika");
+                name: "Pozorista");
 
             migrationBuilder.DropTable(
                 name: "TipoviPredstava");

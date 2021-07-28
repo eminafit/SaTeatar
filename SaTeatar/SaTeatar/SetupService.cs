@@ -1202,6 +1202,7 @@ namespace SaTeatar.WebAPI
                     KorisnikId = 3,
                     DatumVrijeme = new DateTime(2021, 6, 17, 15, 0, 0),
                 });
+
                 //#29 Patkica Blatkica 4/6/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
@@ -2385,6 +2386,207 @@ namespace SaTeatar.WebAPI
                     Cijena = 10,
                     Popust = null,
                 });
+            }
+           
+            context.SaveChanges(); //trebaju idevi za ostale tabele
+
+            if (!context.Karte.Any(x=>x.KupacId==1))
+            {
+                // Helverova noc, Izvodjenja 1-5 - Kupci 1,2,4,5,7,8,9,10
+                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 1, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0001" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 1, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0002" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 2, IzvodjenjeZonaId = 2, Placeno = false, Sifra = "k0003" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 2, IzvodjenjeZonaId = 2, Placeno = false, Sifra = "k0004" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 2, IzvodjenjeZonaId = 2, Placeno = false, Sifra = "k0005" });
+                
+                context.Karte.Add(new Karte() { IzvodjenjeId = 2, KupacId = 4, IzvodjenjeZonaId = 2, Placeno = false, Sifra = "k0006" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 2, KupacId = 4, IzvodjenjeZonaId = 2, Placeno = false, Sifra = "k0007" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 2, KupacId = 5, IzvodjenjeZonaId = 3, Placeno = false, Sifra = "k0008" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 2, KupacId = 7, IzvodjenjeZonaId = 3, Placeno = false, Sifra = "k0009" });
+                
+                context.Karte.Add(new Karte() { IzvodjenjeId = 3, KupacId = 8, IzvodjenjeZonaId = 3, Placeno = false, Sifra = "k0010" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 3, KupacId = 8, IzvodjenjeZonaId = 3, Placeno = false, Sifra = "k0011" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 3, KupacId = 8, IzvodjenjeZonaId = 3, Placeno = false, Sifra = "k0012" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 3, KupacId = 8, IzvodjenjeZonaId = 3, Placeno = false, Sifra = "k0013" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 4, KupacId = 9, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0014" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 4, KupacId = 9, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0015" });
+                
+                context.Karte.Add(new Karte() { IzvodjenjeId = 5, KupacId = 10, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0016" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 5, KupacId = 10, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0017" });
+
+                // Mirna Bosna, Izvodjenja 6-9 - Kupci 1, 3, 5, 9, 
+                context.Karte.Add(new Karte() { IzvodjenjeId = 6, KupacId = 1, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0018" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 6, KupacId = 1, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0019" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 7, KupacId = 3, IzvodjenjeZonaId = 2, Placeno = false, Sifra = "k0020" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 7, KupacId = 3, IzvodjenjeZonaId = 2, Placeno = false, Sifra = "k0021" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 8, KupacId = 5, IzvodjenjeZonaId = 3, Placeno = false, Sifra = "k0022" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 8, KupacId = 5, IzvodjenjeZonaId = 3, Placeno = false, Sifra = "k0023" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 9, KupacId = 9, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0024" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 9, KupacId = 9, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0025" });
+
+                //Knjiga mojih zivota, Izvodjenja 10 - 13 - Kupci 2, 6, 8, 10
+                context.Karte.Add(new Karte() { IzvodjenjeId = 10, KupacId = 2, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0026" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 10, KupacId = 2, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0027" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 11, KupacId = 6, IzvodjenjeZonaId = 2, Placeno = false, Sifra = "k0028" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 11, KupacId = 6, IzvodjenjeZonaId = 2, Placeno = false, Sifra = "k0029" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 12, KupacId = 8, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0030" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 12, KupacId = 8, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0031" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 12, KupacId = 8, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0032" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 13, KupacId = 10, IzvodjenjeZonaId = 2, Placeno = false, Sifra = "k0033" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 13, KupacId = 10, IzvodjenjeZonaId = 2, Placeno = false, Sifra = "k0034" });
+
+                //Tajna dzema od malina, Izvodjenja 14 - 17 - Kupci 1, 5, 7, 9
+                context.Karte.Add(new Karte() { IzvodjenjeId = 14, KupacId = 1, IzvodjenjeZonaId = 8, Placeno = false, Sifra = "k0035" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 14, KupacId = 1, IzvodjenjeZonaId = 8, Placeno = false, Sifra = "k0036" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 15, KupacId = 5, IzvodjenjeZonaId = 8, Placeno = false, Sifra = "k0037" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 15, KupacId = 5, IzvodjenjeZonaId = 8, Placeno = false, Sifra = "k0038" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 16, KupacId = 7, IzvodjenjeZonaId = 9, Placeno = false, Sifra = "k0039" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 16, KupacId = 7, IzvodjenjeZonaId = 9, Placeno = false, Sifra = "k0040" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 17, KupacId = 9, IzvodjenjeZonaId = 10, Placeno = false, Sifra = "k0041" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 17, KupacId = 9, IzvodjenjeZonaId = 10, Placeno = false, Sifra = "k0042" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 17, KupacId = 9, IzvodjenjeZonaId = 10, Placeno = false, Sifra = "k0043" });
+
+                //Ay Carmela, Izvodjenje 18 - Kupci 1,2,7,8,9
+                context.Karte.Add(new Karte() { IzvodjenjeId = 18, KupacId = 1, IzvodjenjeZonaId = 8, Placeno = false, Sifra = "k0044" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 18, KupacId = 2, IzvodjenjeZonaId = 8, Placeno = false, Sifra = "k0045" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 18, KupacId = 7, IzvodjenjeZonaId = 8, Placeno = false, Sifra = "k0046" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 18, KupacId = 8, IzvodjenjeZonaId = 8, Placeno = false, Sifra = "k0047" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 18, KupacId = 9, IzvodjenjeZonaId = 8, Placeno = false, Sifra = "k0048" });
+
+                // Dogville, Izvodjenja 19-21 - Kupci 3, 7, 5, 10
+                context.Karte.Add(new Karte() { IzvodjenjeId = 19, KupacId = 3, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0049" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 19, KupacId = 3, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0050" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 19, KupacId = 7, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0051" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 19, KupacId = 7, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0052" });
+               
+                context.Karte.Add(new Karte() { IzvodjenjeId = 20, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0053" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 20, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0054" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 20, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0055" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 21, KupacId = 5, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0056" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 21, KupacId = 5, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0057" });
+
+
+                // Snijeg, Izvodjenja 22-24 - Kupci 3,4,7
+                context.Karte.Add(new Karte() { IzvodjenjeId = 22, KupacId = 3, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0058" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 22, KupacId = 3, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0059" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 22, KupacId = 3, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0060" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 23, KupacId = 4, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0061" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 23, KupacId = 4, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0062" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 24, KupacId = 7, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0063" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 24, KupacId = 7, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0064" });
+
+                //Princeza na zrnu graska, Izvodjenja 25, 26 - Kupci 2,3,6
+                context.Karte.Add(new Karte() { IzvodjenjeId = 25, KupacId = 2, IzvodjenjeZonaId = 11, Placeno = false, Sifra = "k0065" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 25, KupacId = 2, IzvodjenjeZonaId = 11, Placeno = false, Sifra = "k0066" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 25, KupacId = 3, IzvodjenjeZonaId = 12, Placeno = false, Sifra = "k0067" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 25, KupacId = 3, IzvodjenjeZonaId = 12, Placeno = false, Sifra = "k0068" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 26, KupacId = 6, IzvodjenjeZonaId = 13, Placeno = false, Sifra = "k0069" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 26, KupacId = 6, IzvodjenjeZonaId = 13, Placeno = false, Sifra = "k0070" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 26, KupacId = 6, IzvodjenjeZonaId = 13, Placeno = false, Sifra = "k0071" });
+
+                // Zaljubljeni krokodil, Izvodjenja 27,28 - Kupci 1,9,10
+                context.Karte.Add(new Karte() { IzvodjenjeId = 27, KupacId = 1, IzvodjenjeZonaId = 11, Placeno = false, Sifra = "k0072" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 27, KupacId = 1, IzvodjenjeZonaId = 11, Placeno = false, Sifra = "k0073" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 27, KupacId = 9, IzvodjenjeZonaId = 12, Placeno = false, Sifra = "k0074" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 27, KupacId = 9, IzvodjenjeZonaId = 12, Placeno = false, Sifra = "k0075" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 28, KupacId = 10, IzvodjenjeZonaId = 13, Placeno = false, Sifra = "k0076" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 28, KupacId = 10, IzvodjenjeZonaId = 13, Placeno = false, Sifra = "k0077" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 28, KupacId = 10, IzvodjenjeZonaId = 13, Placeno = false, Sifra = "k0078" });
+
+                // Patkica Blatkica, Izvodjenja 29,30 - Kupci 3,6,10
+                context.Karte.Add(new Karte() { IzvodjenjeId = 29, KupacId = 3, IzvodjenjeZonaId = 11, Placeno = false, Sifra = "k0079" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 29, KupacId = 3, IzvodjenjeZonaId = 11, Placeno = false, Sifra = "k0080" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 29, KupacId = 6, IzvodjenjeZonaId = 12, Placeno = false, Sifra = "k0081" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 29, KupacId = 6, IzvodjenjeZonaId = 12, Placeno = false, Sifra = "k0082" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 30, KupacId = 10, IzvodjenjeZonaId = 13, Placeno = false, Sifra = "k0083" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 30, KupacId = 10, IzvodjenjeZonaId = 13, Placeno = false, Sifra = "k0084" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 30, KupacId = 10, IzvodjenjeZonaId = 13, Placeno = false, Sifra = "k0085" });
+
+                // Okovani prometej, Izvodjenja 31,32 - Kupci - 4,8,9,10
+                context.Karte.Add(new Karte() { IzvodjenjeId = 31, KupacId = 4, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0086" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 31, KupacId = 4, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0087" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 31, KupacId = 8, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0088" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 31, KupacId = 8, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0089" });
+               
+                context.Karte.Add(new Karte() { IzvodjenjeId = 32, KupacId = 9, IzvodjenjeZonaId = 7, Placeno = false, Sifra = "k0090" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 32, KupacId = 9, IzvodjenjeZonaId = 7, Placeno = false, Sifra = "k0091" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 32, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0092" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 32, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0093" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 32, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0094" });
+
+
+                // Palcica, Izvodjenja 33,34 - Kupci 5,8,9,10
+                context.Karte.Add(new Karte() { IzvodjenjeId = 33, KupacId = 5, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0095" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 33, KupacId = 5, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0096" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 33, KupacId = 8, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0097" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 33, KupacId = 8, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0098" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 34, KupacId = 9, IzvodjenjeZonaId = 7, Placeno = false, Sifra = "k0099" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 34, KupacId = 9, IzvodjenjeZonaId = 7, Placeno = false, Sifra = "k0100" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 34, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0101" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 34, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0102" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 34, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0103" });
+
+                // Uspavana ljepotica, Izvodjenja 35, 36 - Kupci - 2,3,9,10
+                context.Karte.Add(new Karte() { IzvodjenjeId = 35, KupacId = 2, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0104" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 35, KupacId = 2, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0105" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 35, KupacId = 3, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0106" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 35, KupacId = 3, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0107" });
+
+                context.Karte.Add(new Karte() { IzvodjenjeId = 36, KupacId = 9, IzvodjenjeZonaId = 7, Placeno = false, Sifra = "k0108" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 36, KupacId = 9, IzvodjenjeZonaId = 7, Placeno = false, Sifra = "k0109" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 36, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0110" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 36, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0111" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 36, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0112" });
+
+                // La Traviata, Izvodjenje 37 - Kupci 7,9,10
+                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 7, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0113" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 7, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0114" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 7, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0115" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 7, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0116" });                                                               
+                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 9, IzvodjenjeZonaId = 7, Placeno = false, Sifra = "k0117" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 9, IzvodjenjeZonaId = 7, Placeno = false, Sifra = "k0118" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0119" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0120" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0121" });
+
+                // Don Giovanni, Izvodjenje 38 - Kupci 6,9,8
+                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 7, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0122" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 7, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0123" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 7, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0124" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 7, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0125" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 9, IzvodjenjeZonaId = 7, Placeno = false, Sifra = "k0126" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 9, IzvodjenjeZonaId = 7, Placeno = false, Sifra = "k0127" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0128" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0129" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0130" });
+
+                // Rigoletto, Izvodjenje 39 - Kupci 5,6,9,10
+                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 5, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0122" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 5, IzvodjenjeZonaId = 4, Placeno = false, Sifra = "k0123" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 6, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0124" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 6, IzvodjenjeZonaId = 5, Placeno = false, Sifra = "k0125" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 9, IzvodjenjeZonaId = 7, Placeno = false, Sifra = "k0126" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 9, IzvodjenjeZonaId = 7, Placeno = false, Sifra = "k0127" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0128" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0129" });
+                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0130" });
             }
 
             context.SaveChanges();

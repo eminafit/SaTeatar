@@ -7,6 +7,11 @@ namespace SaTeatar.Database
 {
     public partial class IzvodjenjaZone
     {
+        public IzvodjenjaZone()
+        {
+            Kartes = new HashSet<Karte>();
+        }
+
         public int IzvodjenjeZonaId { get; set; }
         public int IzvodjenjeId { get; set; }
         public int ZonaId { get; set; }
@@ -15,5 +20,6 @@ namespace SaTeatar.Database
 
         public virtual Izvodjenja Izvodjenje { get; set; }
         public virtual Zone Zona { get; set; }
+        public virtual ICollection<Karte> Kartes { get; set; }
     }
 }

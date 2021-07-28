@@ -138,6 +138,10 @@ namespace SaTeatar.Migrations
                         .HasColumnType("int")
                         .HasColumnName("IzvodjenjeID");
 
+                    b.Property<int>("IzvodjenjeZonaId")
+                        .HasColumnType("int")
+                        .HasColumnName("IzvodjenjeZonaID");
+
                     b.Property<int>("KupacId")
                         .HasColumnType("int")
                         .HasColumnName("KupacID");
@@ -153,6 +157,8 @@ namespace SaTeatar.Migrations
                     b.HasKey("KartaId");
 
                     b.HasIndex("IzvodjenjeId");
+
+                    b.HasIndex("IzvodjenjeZonaId");
 
                     b.HasIndex("KupacId");
 
@@ -604,6 +610,12 @@ namespace SaTeatar.Migrations
                         .HasConstraintName("FK_Karte_Izvodjenja")
                         .IsRequired();
 
+                    b.HasOne("SaTeatar.Database.IzvodjenjaZone", "IzvodjenjeZona")
+                        .WithMany("Kartes")
+                        .HasForeignKey("IzvodjenjeZonaId")
+                        .HasConstraintName("FK_Karte_IzvodjenjaZone")
+                        .IsRequired();
+
                     b.HasOne("SaTeatar.Database.Kupci", "Kupac")
                         .WithMany("Kartes")
                         .HasForeignKey("KupacId")
@@ -611,6 +623,8 @@ namespace SaTeatar.Migrations
                         .IsRequired();
 
                     b.Navigation("Izvodjenje");
+
+                    b.Navigation("IzvodjenjeZona");
 
                     b.Navigation("Kupac");
                 });
@@ -741,6 +755,11 @@ namespace SaTeatar.Migrations
                 {
                     b.Navigation("IzvodjenjaZones");
 
+                    b.Navigation("Kartes");
+                });
+
+            modelBuilder.Entity("SaTeatar.Database.IzvodjenjaZone", b =>
+                {
                     b.Navigation("Kartes");
                 });
 

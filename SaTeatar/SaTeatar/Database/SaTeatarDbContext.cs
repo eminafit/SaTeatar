@@ -147,6 +147,8 @@ namespace SaTeatar.Database
 
                 entity.Property(e => e.IzvodjenjeId).HasColumnName("IzvodjenjeID");
 
+                entity.Property(e => e.IzvodjenjeZonaId).HasColumnName("IzvodjenjeZonaID");
+
                 entity.Property(e => e.KupacId).HasColumnName("KupacID");
 
                 entity.Property(e => e.Sifra)
@@ -158,6 +160,12 @@ namespace SaTeatar.Database
                     .HasForeignKey(d => d.IzvodjenjeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Karte_Izvodjenja");
+
+                entity.HasOne(d => d.IzvodjenjeZona)
+                    .WithMany(p => p.Kartes)
+                    .HasForeignKey(d => d.IzvodjenjeZonaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Karte_IzvodjenjaZone");
 
                 entity.HasOne(d => d.Kupac)
                     .WithMany(p => p.Kartes)
