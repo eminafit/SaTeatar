@@ -113,19 +113,23 @@ namespace SaTeatar.WebAPI
 
             if (!context.Zone.Any(x=>x.PozoristeId==1))
             {
+                //#1 Kamerni teatar 55
                 context.Zone.Add(new Zone() { Naziv = "Zona A", PozoristeId = 1, UkupanBrojSjedista = 15 });
                 context.Zone.Add(new Zone() { Naziv = "Zona B", PozoristeId = 1, UkupanBrojSjedista = 45 });
                 context.Zone.Add(new Zone() { Naziv = "Zona C", PozoristeId = 1, UkupanBrojSjedista = 135 });
 
+                //#2 Narodno pozoriste Sarajevo
                 context.Zone.Add(new Zone() { Naziv = "VIP", PozoristeId = 2, UkupanBrojSjedista = 15 });
                 context.Zone.Add(new Zone() { Naziv = "Zona A", PozoristeId = 2, UkupanBrojSjedista = 30 });
                 context.Zone.Add(new Zone() { Naziv = "Zona B", PozoristeId = 2, UkupanBrojSjedista = 90 });
                 context.Zone.Add(new Zone() { Naziv = "Zona C", PozoristeId = 2, UkupanBrojSjedista = 180 });
 
+                //#3 Sartr
                 context.Zone.Add(new Zone() { Naziv = "Zona A", PozoristeId = 3, UkupanBrojSjedista = 10 });
                 context.Zone.Add(new Zone() { Naziv = "Zona B", PozoristeId = 3, UkupanBrojSjedista = 30 });
                 context.Zone.Add(new Zone() { Naziv = "Zona C", PozoristeId = 3, UkupanBrojSjedista = 40 });
 
+                //#4 Pozoriste mladih Sarajevo
                 context.Zone.Add(new Zone() { Naziv = "Zona A", PozoristeId = 4, UkupanBrojSjedista = 20 });
                 context.Zone.Add(new Zone() { Naziv = "Zona A", PozoristeId = 4, UkupanBrojSjedista = 40 });
                 context.Zone.Add(new Zone() { Naziv = "Zona A", PozoristeId = 4, UkupanBrojSjedista = 120 });
@@ -811,17 +815,1451 @@ namespace SaTeatar.WebAPI
 
             }
 
+            // // 2015 - year, 12 - month, 25 – day, 10 – hour, 30 – minute, 50 - second  
             if (!context.Izvodjenja.Any(x=>x.PredstavaId==1))
             {
+                //#1 Helverova noc 1/6/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 1,
                     PozoristeId = 1,
                     Napomena = "",
                     KorisnikId = 2,
-                    DatumVrijeme=DateTime.Now,//
+                    DatumVrijeme = new DateTime(2021, 6, 1, 20, 0, 0),                  
+                });
+                //#2 Helverova noc 8/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 1,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 8, 20, 0, 0),
+                });
+                //#3 Helverova noc 15/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 1,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 15, 20, 0, 0),
+                });
+                //#4 Helverova noc 22/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 1,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 22, 20, 0, 0),
+                });
+                //#5 Helverova noc 29/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 1,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 29, 20, 0, 0),
+                });
 
+                //#6 Mirna Bosna 3/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 2,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 3, 20, 0, 0),
+                });
+                //#7 Mirna Bosna 10/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 2,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 10, 20, 0, 0),
+                });
+                //#8 Mirna Bosna 17/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 2,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 17, 20, 0, 0),
+                });
+                //#9 Mirna Bosna 24/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 2,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 24, 20, 0, 0),
+                });
 
+                //#10 Knjiga mojih zivota 5/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 3,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 5, 20, 0, 0),
+                });
+                //#11 Knjiga mojih zivota 12/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 3,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 12, 20, 0, 0),
+                });
+                //#12 Knjiga mojih zivota 19/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 3,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 19, 20, 0, 0),
+                });
+                //#13 Knjiga mojih zivota 26/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 3,
+                    PozoristeId = 1,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 26, 20, 0, 0),
+                });
+
+                //#14 Tajna dzema od malina 2/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 4,
+                    PozoristeId = 3,
+                    Napomena = "",
+                    KorisnikId = 3,
+                    DatumVrijeme = new DateTime(2021, 6, 2, 20, 0, 0),
+                });
+                //#15 Tajna dzema od malina 9/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 4,
+                    PozoristeId = 3,
+                    Napomena = "",
+                    KorisnikId = 3,
+                    DatumVrijeme = new DateTime(2021, 6, 9, 20, 0, 0),
+                });
+                //#16 Tajna dzema od malina 16/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 4,
+                    PozoristeId = 3,
+                    Napomena = "",
+                    KorisnikId = 3,
+                    DatumVrijeme = new DateTime(2021, 6, 16, 20, 0, 0),
+                });
+                //#17 Tajna dzema od malina 23/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 4,
+                    PozoristeId = 3,
+                    Napomena = "",
+                    KorisnikId = 3,
+                    DatumVrijeme = new DateTime(2021, 6, 23, 20, 0, 0),
+                });
+
+                //#18 Ay Carmela 4/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 5,
+                    PozoristeId = 3,
+                    Napomena = "",
+                    KorisnikId = 3,
+                    DatumVrijeme = new DateTime(2021, 6, 4, 20, 0, 0),
+                });
+
+                //#19 Dogville 1/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 6,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 1, 20, 0, 0),
+                });
+                //#20 Dogville 15/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 6,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 15, 20, 0, 0),
+                });
+                //#21 Dogville 29/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 6,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 29, 20, 0, 0),
+                });
+
+                //#22 Snijeg 2/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 7,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 2, 20, 0, 0),
+                });
+                //#23 Snijeg 16/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 7,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 16, 20, 0, 0),
+                });
+                //#24 Snijeg 30/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 7,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 30, 20, 0, 0),
+                });
+
+                //#25 Princeza na zrnu graska 2/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 8,
+                    PozoristeId = 4,
+                    Napomena = "",
+                    KorisnikId = 3,
+                    DatumVrijeme = new DateTime(2021, 6, 2, 15, 0, 0),
+                });
+                //#26 Princeza na zrnu graska 16/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 8,
+                    PozoristeId = 4,
+                    Napomena = "",
+                    KorisnikId = 3,
+                    DatumVrijeme = new DateTime(2021, 6, 16, 15, 0, 0),
+                });
+
+                //#27 Zaljubljeni krokodil 3/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 9,
+                    PozoristeId = 4,
+                    Napomena = "",
+                    KorisnikId = 3,
+                    DatumVrijeme = new DateTime(2021, 6, 3, 15, 0, 0),
+                });
+                //#28 Zaljubljeni krokodil 17/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 9,
+                    PozoristeId = 4,
+                    Napomena = "",
+                    KorisnikId = 3,
+                    DatumVrijeme = new DateTime(2021, 6, 17, 15, 0, 0),
+                });
+                //#29 Patkica Blatkica 4/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 10,
+                    PozoristeId = 4,
+                    Napomena = "",
+                    KorisnikId = 3,
+                    DatumVrijeme = new DateTime(2021, 6, 4, 14, 0, 0),
+                });
+                //#30 Patkica Blatkica 18/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 10,
+                    PozoristeId = 4,
+                    Napomena = "",
+                    KorisnikId = 3,
+                    DatumVrijeme = new DateTime(2021, 6, 18, 14, 0, 0),
+                });
+
+                //#31 Okovani prometej 5/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 11,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 5, 20, 0, 0),
+                });
+                //#32 Okovani prometej 19/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 11,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 19, 20, 0, 0),
+                });
+
+                //#33 Palcica 12/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 12,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 12, 18, 0, 0),
+                });
+                //#34 Palcica 26/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 12,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 26, 18, 0, 0),
+                });
+
+                //#35 Uspavana ljepotica 12/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 13,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 12, 21, 0, 0),
+                });
+                //#36 Uspavana ljepotica 26/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 13,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 26, 21, 0, 0),
+                });
+
+                //#37 La Traviata 6/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 14,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 6, 21, 0, 0),
+                });
+
+                //#38 Don Giovanni 13/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 15,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 13, 21, 0, 0),
+                });
+
+                //#39 Rigoletto 20/6/21
+                context.Izvodjenja.Add(new Izvodjenja()
+                {
+                    PredstavaId = 16,
+                    PozoristeId = 2,
+                    Napomena = "",
+                    KorisnikId = 2,
+                    DatumVrijeme = new DateTime(2021, 6, 20, 21, 0, 0),
+                });
+
+            }
+
+            context.SaveChanges(); //trebaju idevi za ostale tabele
+
+            if (!context.IzvodjenjaZone.Any(x=>x.IzvodjenjeId==1))
+            {
+                //# Helverova noc
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone() 
+                {
+                    IzvodjenjeId=1,
+                    ZonaId=1,
+                    Cijena=20,
+                    Popust=null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 1,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 1,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 2,
+                    ZonaId = 1,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 2,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 2,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 3,
+                    ZonaId = 1,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 3,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 3,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 4,
+                    ZonaId = 1,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 4,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 4,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 5,
+                    ZonaId = 1,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 5,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 5,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                //# Mirna Bosna
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 6,
+                    ZonaId = 1,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 6,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 6,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 7,
+                    ZonaId = 1,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 7,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 7,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 8,
+                    ZonaId = 1,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 8,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 8,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 9,
+                    ZonaId = 1,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 9,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 9,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                //# Knjiga mojih zivota
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 10,
+                    ZonaId = 1,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 10,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 10,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 11,
+                    ZonaId = 1,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 11,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 11,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 12,
+                    ZonaId = 1,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 12,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 12,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 13,
+                    ZonaId = 1,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 13,
+                    ZonaId = 2,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 13,
+                    ZonaId = 3,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                //Tajna dzema od malina
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 14,
+                    ZonaId = 8,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 14,
+                    ZonaId = 9,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 14,
+                    ZonaId = 10,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 15,
+                    ZonaId = 8,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 15,
+                    ZonaId = 9,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 15,
+                    ZonaId = 10,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 16,
+                    ZonaId = 8,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 16,
+                    ZonaId = 9,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 16,
+                    ZonaId = 10,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 17,
+                    ZonaId = 8,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 17,
+                    ZonaId = 9,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 17,
+                    ZonaId = 10,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                //Ay Carmela
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 18,
+                    ZonaId = 8,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 18,
+                    ZonaId = 9,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 18,
+                    ZonaId = 10,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                //Dogville
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 19,
+                    ZonaId = 4,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 19,
+                    ZonaId = 5,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 19,
+                    ZonaId = 6,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 19,
+                    ZonaId = 7,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 20,
+                    ZonaId = 4,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 20,
+                    ZonaId = 5,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 20,
+                    ZonaId = 6,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 20,
+                    ZonaId = 7,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 21,
+                    ZonaId = 4,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 21,
+                    ZonaId = 5,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 21,
+                    ZonaId = 6,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 21,
+                    ZonaId = 7,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                //Snijeg 
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 22,
+                    ZonaId = 4,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 22,
+                    ZonaId = 5,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 22,
+                    ZonaId = 6,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 22,
+                    ZonaId = 7,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 23,
+                    ZonaId = 4,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 23,
+                    ZonaId = 5,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 23,
+                    ZonaId = 6,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 23,
+                    ZonaId = 7,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 24,
+                    ZonaId = 4,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 24,
+                    ZonaId = 5,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 24,
+                    ZonaId = 6,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 24,
+                    ZonaId = 7,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                //Princeza na zrnu graska 
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 25,
+                    ZonaId = 11,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 25,
+                    ZonaId = 12,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 25,
+                    ZonaId = 13,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 26,
+                    ZonaId = 11,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 26,
+                    ZonaId = 12,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 26,
+                    ZonaId = 13,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                //Zaljubljeni krokodil
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 27,
+                    ZonaId = 11,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 27,
+                    ZonaId = 12,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 27,
+                    ZonaId = 13,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 28,
+                    ZonaId = 11,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 28,
+                    ZonaId = 12,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 28,
+                    ZonaId = 13,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                //Patkica Blatkica
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 29,
+                    ZonaId = 11,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 29,
+                    ZonaId = 12,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 29,
+                    ZonaId = 13,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 30,
+                    ZonaId = 11,
+                    Cijena = 15,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 30,
+                    ZonaId = 12,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 30,
+                    ZonaId = 13,
+                    Cijena = 5,
+                    Popust = null,
+                });
+
+                //Okovani prometej
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 31,
+                    ZonaId = 4,
+                    Cijena = 40,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 31,
+                    ZonaId = 5,
+                    Cijena = 30,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 31,
+                    ZonaId = 6,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 32,
+                    ZonaId = 7,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 31,
+                    ZonaId = 4,
+                    Cijena = 40,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 32,
+                    ZonaId = 5,
+                    Cijena = 30,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 32,
+                    ZonaId = 6,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 32,
+                    ZonaId = 7,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                //Palcica
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 33,
+                    ZonaId = 4,
+                    Cijena = 40,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 33,
+                    ZonaId = 5,
+                    Cijena = 30,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 33,
+                    ZonaId = 6,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 33,
+                    ZonaId = 7,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 34,
+                    ZonaId = 4,
+                    Cijena = 40,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 34,
+                    ZonaId = 5,
+                    Cijena = 30,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 34,
+                    ZonaId = 6,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 34,
+                    ZonaId = 7,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                //Uspavana ljepotica
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 35,
+                    ZonaId = 4,
+                    Cijena = 40,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 35,
+                    ZonaId = 5,
+                    Cijena = 30,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 35,
+                    ZonaId = 6,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 35,
+                    ZonaId = 7,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 36,
+                    ZonaId = 4,
+                    Cijena = 40,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 36,
+                    ZonaId = 5,
+                    Cijena = 30,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 36,
+                    ZonaId = 6,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 36,
+                    ZonaId = 7,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                //La Traviata
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 37,
+                    ZonaId = 4,
+                    Cijena = 40,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 37,
+                    ZonaId = 5,
+                    Cijena = 30,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 37,
+                    ZonaId = 6,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 37,
+                    ZonaId = 7,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                //Don Giovanni
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 38,
+                    ZonaId = 4,
+                    Cijena = 40,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 38,
+                    ZonaId = 5,
+                    Cijena = 30,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 38,
+                    ZonaId = 6,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 38,
+                    ZonaId = 7,
+                    Cijena = 10,
+                    Popust = null,
+                });
+
+                //Rigoletto
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 39,
+                    ZonaId = 4,
+                    Cijena = 40,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 39,
+                    ZonaId = 5,
+                    Cijena = 30,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 39,
+                    ZonaId = 6,
+                    Cijena = 20,
+                    Popust = null,
+                });
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 39,
+                    ZonaId = 7,
+                    Cijena = 10,
+                    Popust = null,
                 });
             }
 
