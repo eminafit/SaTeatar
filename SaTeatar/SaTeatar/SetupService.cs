@@ -2589,7 +2589,96 @@ namespace SaTeatar.WebAPI
                 context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 10, IzvodjenjeZonaId = 6, Placeno = false, Sifra = "k0130" });
             }
 
-            context.SaveChanges();
+            context.SaveChanges(); //trebaju idevi za ostale tabele
+
+            if (!context.Ocjene.Any(x=>x.PredstavaId==1))
+            {
+                //#1 Kupac - Predstave 1, 2, 4, 5, 9
+                context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 1,  Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 2,  Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 4,  Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 5,  Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 9,  Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
+
+                //#2 Kupac - Predstave 1, 3, 5, 8, 13
+                context.Ocjene.Add(new Ocjene() { KupacId = 2, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 2, PredstavaId = 3, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 2, PredstavaId = 5, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 2, PredstavaId = 8, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 2, PredstavaId = 13, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
+
+                //#3 Kupac - Predstave 2, 6, 7, 8, 10, 13
+                context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 2, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 6, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 7, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 8, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 10, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 13, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 6) });
+
+                //#4 Kupac - Predstave 1, 7, 11
+                context.Ocjene.Add(new Ocjene() { KupacId = 4, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 4, PredstavaId = 7, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 4, PredstavaId = 11, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 6) });
+
+                //#5 Kupac - Predstave 1, 2, 4, 12, 16
+                context.Ocjene.Add(new Ocjene() { KupacId = 5, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 5, PredstavaId = 2, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 5, PredstavaId = 4, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 5, PredstavaId = 12, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 5, PredstavaId = 16, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
+
+                //#6 Kupac - Predstave 3, 8, 10, 15, 16
+                context.Ocjene.Add(new Ocjene() { KupacId = 6, PredstavaId = 3, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 6, PredstavaId = 8, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 6, PredstavaId = 10, Ocjena = 1, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 6, PredstavaId = 15, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 6, PredstavaId = 16, Ocjena = 1, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
+
+                //#7 Kupac - Predstave 1, 4, 5, 6, 7, 14
+                context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 4, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 5, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 6, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 7, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 14, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 6) });
+
+                //#8 Kupac - Predstave 1, 3, 5, 11, 12, 15
+                context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 3, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 5, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 11, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 12, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 14, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 6) });
+
+                //#9 Kupac - Predstave 1, 2, 4, 5, 9, 11, 12, 13, 14, 15, 16
+                context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 2, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 4, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 5, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 9, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 11, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 6) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 12, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 7) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 13, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 8) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 14, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 9) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 15, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 10) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 16, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 11) });
+
+                //#10 Kupac - Predstave 1, 3, 6, 9, 10, 11, 12, 13, 14, 16
+                context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 3, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 6, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 9, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 10, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 11, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 6) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 12, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 7) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 13, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 8) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 14, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 9) });
+                context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 16, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 11) });
+
+            }
+
+            context.SaveChanges(); 
+
         }
     }
 }
