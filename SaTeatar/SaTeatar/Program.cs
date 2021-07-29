@@ -21,7 +21,7 @@ namespace SaTeatar
             using (var scope=host.Services.CreateScope())
             {
                 var database = scope.ServiceProvider.GetService<SaTeatarDbContext>();
-                //new SetupService().Init(database);
+                new SetupService().Init(database);
             }
             host.Run();
         }
