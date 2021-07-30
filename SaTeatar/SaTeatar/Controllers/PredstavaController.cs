@@ -6,6 +6,8 @@ using SaTeatar.Model.Models;
 using SaTeatar.Model.Requests;
 using SaTeatar.Database;
 using SaTeatar.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SaTeatar.WebAPI.Controllers
 {
@@ -14,6 +16,13 @@ namespace SaTeatar.WebAPI.Controllers
         public PredstavaController(IPredstavaService service)
             : base(service)
         {
+        }
+
+        [AllowAnonymous]
+        [HttpGet("Recommend/{id}")]
+        public List<mPredstave> Recommend(int id)
+        {
+            return (_service as IPredstavaService).Recommend(id);
         }
     }
 }

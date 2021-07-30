@@ -10,5 +10,6 @@ namespace SaTeatar.WebAPI.Services
 {
     public interface IPredstavaService : ICRUDService<mPredstave, rPredstavaSearch, rPredstavaInsert, rPredstavaUpdate>
     {
+        List<mPredstave> Recommend(int KupacId);
     }
 }
