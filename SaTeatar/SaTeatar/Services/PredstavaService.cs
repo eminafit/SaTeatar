@@ -11,6 +11,7 @@ using System.IO;
 using Microsoft.ML.Trainers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.ML.Data;
+using Microsoft.Data.SqlClient;
 
 namespace SaTeatar.WebAPI.Services
 {
@@ -45,9 +46,6 @@ namespace SaTeatar.WebAPI.Services
 
             return result;
         }
-
-        private static MLContext mlContext = null;
-        private static ITransformer model = null;
 
         public List<mPredstave> Recommend(int KupacId)
         {
@@ -86,7 +84,15 @@ namespace SaTeatar.WebAPI.Services
 
             }
 
-            //DatabaseLoader loader = mlContext.Data.CreateDatabaseLoader<PredstaveRating>();
+           // DatabaseLoader loader = mLContext.Data.CreateDatabaseLoader<PredstaveRating>();
+
+            //string connectionString = @"Data Source = localhost; Initial Catalog = SaTeatarSaSeedom; Integrated Security = True;";
+
+            //string sqlCommand = "SELECT KupacId, PredstavaId, Ocjena FROM House";
+
+            //DatabaseSource dbSource = new DatabaseSource(SqlClientFactory.Instance, connectionString, sqlCommand);
+
+            //IDataView traindata = loader.Load(dbSource);
 
             var data = new List<PredstaveRating>();
 
@@ -94,13 +100,12 @@ namespace SaTeatar.WebAPI.Services
             {
                 data.Add(new PredstaveRating() { KupacId = o.KupacId, PredstavaId = o.PredstavaId, Label = o.Ocjena });
             }
-            //IDataView traindata = loader.Load();
-            IDataView traindata = mlContext.Data.LoadFromEnumerable<PredstaveRating>(data);
-           // var traindata = mlContext.Data.LoadFromEnumerable(data);
 
-            ITransformer model = BuildAndTrainModel(mlContext, traindata);
+            IDataView traindata = mLContext.Data.LoadFromEnumerable(data);
 
-            var preporucenePredstave = UseModelForPrediction(mlContext, model, KupacId, predstave);
+            ITransformer model = BuildAndTrainModel(mLContext, traindata);
+
+            var preporucenePredstave = UseModelForPrediction(mLContext, model, KupacId, predstave);
 
             return _mapper.Map<List<mPredstave>>(preporucenePredstave);
 
@@ -139,7 +144,7 @@ namespace SaTeatar.WebAPI.Services
         //git https://github.com/dotnet/samples/tree/main/machine-learning/tutorials/MovieRecommendation
         //ovo ispod je sa csv fajlovima kako je navedeno u tutorialu.. nek stoji za svaki slucaj
 
-        public void RecommenderPokusaj()
+        public List<mPredstave> RecommenderSaCSVfajlovima(int KupacId)
         {
             MLContext mLContext = new MLContext();
 
@@ -149,10 +154,45 @@ namespace SaTeatar.WebAPI.Services
 
             EvaluateModel(mLContext, testDataView, model);
 
+            ///
+            var karteIzvodjenja = _context.Karte.Include(y => y.Izvodjenje).Where(x => x.KupacId == KupacId).Select(x => x.Izvodjenje.PredstavaId).ToList();
+            var pregledanePredstaveIds = karteIzvodjenja.Distinct().ToList();
+            var sveAktivnePredstave = _context.Predstave.Where(x => x.Status == true).AsQueryable();
+            var sveAktivnePredstaveIds = sveAktivnePredstave.Select(x => x.PredstavaId).ToList();
+            var nepregledanePredstaveIds = sveAktivnePredstaveIds.Except(pregledanePredstaveIds).ToList();
+
+            var predstave = new List<Predstave>();
+
+            foreach (var p in sveAktivnePredstave)
+            {
+                foreach (var id in nepregledanePredstaveIds)
+                {
+                    if (id == p.PredstavaId)
+                    {
+                        predstave.Add(new Predstave()
+                        {
+                            PredstavaId = p.PredstavaId,
+                            Naziv = p.Naziv,
+                            Opis = p.Opis,
+                            Slika = p.Slika,
+                            Status = p.Status,
+                            TipPredstaveId = p.TipPredstaveId
+                        });
+                    }
+                }
+
+            }
+
+            var preporucenePredstave = UseModelForPrediction(mLContext, model, KupacId, predstave);
+
+
+            ///
+
             UseModelForSinglePrediction(mLContext, model);
 
             SaveModel(mLContext, trainingDataView.Schema, model);
 
+            return _mapper.Map<List<mPredstave>>(preporucenePredstave);
         }
 
         /*public*/

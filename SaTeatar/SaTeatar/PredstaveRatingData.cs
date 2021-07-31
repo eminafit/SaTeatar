@@ -19,12 +19,12 @@ namespace SaTeatar
             public int PredstavaId { get; set; }
             //Label
             [LoadColumn(2)]
-            public int Label { get; set; } //?float
+            public float Label { get; set; } //?float
         }
 
         public class PredstaveRatingPrediction
         {
-            public int Label; //?float
+            public float Label; //?float
             public float Score;
         }
     //}
