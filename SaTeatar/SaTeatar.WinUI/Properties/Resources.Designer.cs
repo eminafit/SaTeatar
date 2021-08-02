@@ -61,7 +61,16 @@ namespace SaTeatar.WinUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mandatorno polje.
+        ///   Looks up a localized string similar to Trebate unijeti najmanje 3 karaktera!.
+        /// </summary>
+        internal static string Validation_MinLength {
+            get {
+                return ResourceManager.GetString("Validation_MinLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obavezno polje!.
         /// </summary>
         internal static string Validation_RequiredField {
             get {

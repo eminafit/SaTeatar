@@ -29,6 +29,7 @@ namespace SaTeatar.WinUI.Djelatnici
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtIme = new System.Windows.Forms.TextBox();
             this.txtPrezime = new System.Windows.Forms.TextBox();
@@ -44,7 +45,9 @@ namespace SaTeatar.WinUI.Djelatnici
             this.label5 = new System.Windows.Forms.Label();
             this.chStatus = new System.Windows.Forms.CheckBox();
             this.txtSacuvaj = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -62,6 +65,7 @@ namespace SaTeatar.WinUI.Djelatnici
             this.txtIme.Name = "txtIme";
             this.txtIme.Size = new System.Drawing.Size(197, 22);
             this.txtIme.TabIndex = 1;
+            this.txtIme.Validating += new System.ComponentModel.CancelEventHandler(this.txtIme_Validating);
             // 
             // txtPrezime
             // 
@@ -69,6 +73,7 @@ namespace SaTeatar.WinUI.Djelatnici
             this.txtPrezime.Name = "txtPrezime";
             this.txtPrezime.Size = new System.Drawing.Size(197, 22);
             this.txtPrezime.TabIndex = 3;
+            this.txtPrezime.Validating += new System.ComponentModel.CancelEventHandler(this.txtPrezime_Validating);
             // 
             // label2
             // 
@@ -135,6 +140,7 @@ namespace SaTeatar.WinUI.Djelatnici
             this.cmbVrsteDjelatnika.Size = new System.Drawing.Size(197, 24);
             this.cmbVrsteDjelatnika.TabIndex = 9;
             this.cmbVrsteDjelatnika.SelectedIndexChanged += new System.EventHandler(this.cmbVrsteDjelatnika_SelectedIndexChanged);
+            this.cmbVrsteDjelatnika.Validating += new System.ComponentModel.CancelEventHandler(this.cmbVrsteDjelatnika_Validating);
             // 
             // label4
             // 
@@ -174,6 +180,10 @@ namespace SaTeatar.WinUI.Djelatnici
             this.txtSacuvaj.UseVisualStyleBackColor = true;
             this.txtSacuvaj.Click += new System.EventHandler(this.txtSacuvaj_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // frmDjelatniciDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -194,9 +204,10 @@ namespace SaTeatar.WinUI.Djelatnici
             this.Controls.Add(this.txtIme);
             this.Controls.Add(this.label1);
             this.Name = "frmDjelatniciDetalji";
-            this.Text = "frmDjelatniciDetalji";
+            this.Text = "Djelatnik";
             this.Load += new System.EventHandler(this.frmDjelatniciDetalji_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +230,6 @@ namespace SaTeatar.WinUI.Djelatnici
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chStatus;
         private System.Windows.Forms.Button txtSacuvaj;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

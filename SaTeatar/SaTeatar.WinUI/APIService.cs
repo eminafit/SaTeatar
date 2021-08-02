@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Flurl;
 using Flurl.Http;
 using SaTeatar.Model;
+using SaTeatar.Model.Models;
 
 namespace SaTeatar.WinUI
 {
@@ -16,10 +17,36 @@ namespace SaTeatar.WinUI
 
         public static string Username { get; set; }
         public static string Password { get; set; }
+
+        public static mKorisnici TrenutniKorisnik { get; set; }
+
         public APIService(string route) //Korisnici, predstave..
         {
             _route = route;
         }
+
+        //
+        //public async Task<T> Auth<T>()
+        //{
+        //    var url = $"{Properties.Settings.Default.APIUrl}/{_route}";
+
+        //    return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+
+        //    //try
+        //    //{
+        //    //    return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+        //    //}
+        //    //catch (FlurlHttpException ex)
+        //    //{
+        //    //    if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+        //    //    {
+        //    //        MessageBox.Show("Pogrešan username ili password");
+        //    //    }
+        //    //    throw;
+        //    //}
+        //}
+
+        //
 
         public async Task<T> Get<T>(object search)
         {

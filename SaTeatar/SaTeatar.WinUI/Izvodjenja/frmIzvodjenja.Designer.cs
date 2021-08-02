@@ -121,7 +121,7 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dgvIzvodjenja);
             this.Name = "frmIzvodjenja";
-            this.Text = "a";
+            this.Text = "Izvodjenja";
             this.Load += new System.EventHandler(this.frmIzvodjenja_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIzvodjenja)).EndInit();
             this.ResumeLayout(false);

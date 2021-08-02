@@ -22,6 +22,8 @@ namespace SaTeatar.WinUI.Djelatnici
         {
             InitializeComponent();
             _id = idDjelatnika;
+            AutoValidate = AutoValidate.Disable;
+
         }
 
         private rDjelatniciInsert inrequest = new rDjelatniciInsert();
@@ -71,41 +73,43 @@ namespace SaTeatar.WinUI.Djelatnici
 
         private async void txtSacuvaj_Click(object sender, EventArgs e)
         {
-            if (!_id.HasValue)
+            if (this.ValidateChildren())
             {
-                inrequest.Ime = txtIme.Text;
-                inrequest.Prezime = txtPrezime.Text;
-                inrequest.Biografija = txtBiografija.Text;
-                inrequest.Status = chStatus.Checked;
-                if (dodanaSlika==false)
+                if (!_id.HasValue)
                 {
-                    inrequest.Slika = null;
+                    inrequest.Ime = txtIme.Text;
+                    inrequest.Prezime = txtPrezime.Text;
+                    inrequest.Biografija = txtBiografija.Text;
+                    inrequest.Status = chStatus.Checked;
+                    if (dodanaSlika == false)
+                    {
+                        inrequest.Slika = null;
+                    }
+
+                    await _djelatnici.Insert<mDjelatnici>(inrequest);
+
+                    MessageBox.Show("Uspjesno dodan djelatnik!");
+                    this.Close();
                 }
-
-                await _djelatnici.Insert<mDjelatnici>(inrequest);
-
-                MessageBox.Show("Uspjesno dodan djelatnik!");
-                this.Close();
-            }
-            else
-            {
-
-                uprequest.Biografija = txtBiografija.Text;
-                uprequest.Ime = txtIme.Text;
-                uprequest.Prezime = txtPrezime.Text;
-                uprequest.Status = chStatus.Checked;
-
-                if (dodanaSlika == false)
+                else
                 {
-                    uprequest.Slika = djelatnik.Slika; 
+
+                    uprequest.Biografija = txtBiografija.Text;
+                    uprequest.Ime = txtIme.Text;
+                    uprequest.Prezime = txtPrezime.Text;
+                    uprequest.Status = chStatus.Checked;
+
+                    if (dodanaSlika == false)
+                    {
+                        uprequest.Slika = djelatnik.Slika;
+                    }
+
+                    await _djelatnici.Update<mDjelatnici>(_id, uprequest);
+
+                    MessageBox.Show("Uspjesno izmijenjen djelatnik!");
+                    this.Close();
                 }
-
-                await _djelatnici.Update<mDjelatnici>(_id, uprequest);
-
-                MessageBox.Show("Uspjesno izmijenjen djelatnik!");
-                this.Close();
             }
-
         }
 
         private void btnDodajSliku_Click(object sender, EventArgs e)
@@ -149,6 +153,55 @@ namespace SaTeatar.WinUI.Djelatnici
                     }
                 }
             }
+        }
+
+        private void txtIme_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtIme.Text))
+            {
+                errorProvider.SetError(txtIme, Properties.Resources.Validation_RequiredField);
+                e.Cancel=true;
+            }
+            else
+            {
+                if (txtIme.Text.Length<3)
+                {
+                    errorProvider.SetError(txtIme, Properties.Resources.Validation_MinLength);
+                }
+                errorProvider.SetError(txtIme, null);
+            }
+
+        }
+
+        private void txtPrezime_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPrezime.Text))
+            {
+                errorProvider.SetError(txtPrezime, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                if (txtPrezime.Text.Length < 3)
+                {
+                    errorProvider.SetError(txtPrezime, Properties.Resources.Validation_MinLength);
+                }
+                errorProvider.SetError(txtPrezime, null);
+            }
+        }
+
+        private void cmbVrsteDjelatnika_Validating(object sender, CancelEventArgs e)
+        {
+            if (int.Parse(cmbVrsteDjelatnika.SelectedValue.ToString())==0)
+            {
+                errorProvider.SetError(cmbVrsteDjelatnika, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(cmbVrsteDjelatnika, null);
+            }
+
         }
     }
 }

@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Validation_MinLength" xml:space="preserve">
+    <value>Trebate unijeti najmanje 3 karaktera!</value>
+  </data>
   <data name="Validation_RequiredField" xml:space="preserve">
-    <value>Mandatorno polje</value>
+    <value>Obavezno polje!</value>
   </data>
 </root>

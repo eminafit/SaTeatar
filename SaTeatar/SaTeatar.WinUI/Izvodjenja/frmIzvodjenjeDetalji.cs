@@ -17,12 +17,15 @@ namespace SaTeatar.WinUI.Izvodjenja
         APIService _izvodjenjaService = new APIService("izvodjenja");
         APIService _predstaveService = new APIService("predstava");
         APIService _pozoristaService = new APIService("pozorista");
+        APIService _korisniciService = new APIService("korisnici");
         private int? _id = null;
         
         public frmIzvodjenjeDetalji(int? izvodjenjeId=null)
         {
             InitializeComponent();
             _id = izvodjenjeId;
+            AutoValidate = AutoValidate.Disable;
+
         }
 
         rIzvodjenjaInsert inrequest = new rIzvodjenjaInsert();
@@ -35,14 +38,27 @@ namespace SaTeatar.WinUI.Izvodjenja
             await LoadPozorista();
             await LoadPredstave();
 
+            txtKorisnik.Enabled = false;
+            dtpDatumVrijeme.Format = DateTimePickerFormat.Time;
+           // dtpDatumVrijeme.ShowUpDown = true;
+
             if (_id.HasValue)
             {
+                
                 izvodjenje = await _izvodjenjaService.GetById<mIzvodjenja>(_id);
-                txtKorisnik.Text = "sredi ovo";
+
+                mKorisnici user = await _korisniciService.GetById<mKorisnici>(izvodjenje.KorisnikId);
+                
+                txtKorisnik.Text = user.KorisnickoIme;
                 txtNapomena.Text = izvodjenje.Napomena;
                 cmbPredstave.SelectedValue = izvodjenje.PredstavaId;
                 cmbPozoriste.SelectedValue = izvodjenje.PozoristeId;
                 dtpDatumVrijeme.Value = izvodjenje.DatumVrijeme;
+            }
+            else
+            {
+                txtKorisnik.Text = APIService.TrenutniKorisnik.KorisnickoIme;
+
             }
         }
 
@@ -66,59 +82,102 @@ namespace SaTeatar.WinUI.Izvodjenja
 
         private async void btnSacuvaj_Click(object sender, EventArgs e)
         {
-            var idobj = cmbPredstave.SelectedValue;
-            if (int.TryParse(idobj.ToString(), out int idpredstave))
+            if (this.ValidateChildren())
             {
-                if (idpredstave != 0)
+                var idobj = cmbPredstave.SelectedValue;
+                if (int.TryParse(idobj.ToString(), out int idpredstave))
                 {
-                    if (_id.HasValue)
+                    if (idpredstave != 0)
                     {
-                        uprequest.PredstavaId = idpredstave;
-                    }
-                    else
-                    {
-                        inrequest.PredstavaId = idpredstave;
+                        if (_id.HasValue)
+                        {
+                            uprequest.PredstavaId = idpredstave;
+                        }
+                        else
+                        {
+                            inrequest.PredstavaId = idpredstave;
+                        }
                     }
                 }
-            }
 
-            var idPoz = cmbPozoriste.SelectedValue;
-            if (int.TryParse(idPoz.ToString(), out int idpozorista))
-            {
-                if (idpozorista != 0)
+                var idPoz = cmbPozoriste.SelectedValue;
+                if (int.TryParse(idPoz.ToString(), out int idpozorista))
                 {
-                    if (_id.HasValue)
+                    if (idpozorista != 0)
                     {
-                        uprequest.PozoristeId = idpozorista;
-                    }
-                    else
-                    {
-                        inrequest.PozoristeId = idpozorista;
+                        if (_id.HasValue)
+                        {
+                            uprequest.PozoristeId = idpozorista;
+                        }
+                        else
+                        {
+                            inrequest.PozoristeId = idpozorista;
+                        }
                     }
                 }
-            }
 
-            if (_id.HasValue)
+                if (_id.HasValue)
+                {
+                    uprequest.Napomena = txtNapomena.Text;
+                    // uprequest.KorisnikId= 
+                    uprequest.KorisnikId = izvodjenje.KorisnikId; ////////sredi
+                    uprequest.DatumVrijeme = dtpDatumVrijeme.Value;
+
+                    await _izvodjenjaService.Update<mIzvodjenja>(_id, uprequest);
+                    MessageBox.Show("Izvodjenje uspjesno izmijenjeno!");
+                    this.Close();
+                }
+                else
+                {
+                    inrequest.KorisnikId = APIService.TrenutniKorisnik.KorisnikId;
+                    //int.Parse(txtKorisnik.Text);  ///////sredi
+                    inrequest.DatumVrijeme = dtpDatumVrijeme.Value;
+                    inrequest.Napomena = txtNapomena.Text;
+
+                    await _izvodjenjaService.Insert<mIzvodjenja>(inrequest);
+                    MessageBox.Show("Izvodjenje uspjesno dodato!");
+                    this.Close();
+                }
+            }        
+        }
+
+        private void cmbPredstave_Validating(object sender, CancelEventArgs e)
+        {
+            if (int.Parse(cmbPredstave.SelectedValue.ToString())==0)
             {
-                uprequest.Napomena = txtNapomena.Text;
-                uprequest.KorisnikId = izvodjenje.KorisnikId; ////////sredi
-                uprequest.DatumVrijeme = dtpDatumVrijeme.Value;
-
-                await _izvodjenjaService.Update<mIzvodjenja>(_id, uprequest);
-                MessageBox.Show("Izvodjenje uspjesno izmijenjeno!");
-                this.Close();
+                errorProvider.SetError(cmbPredstave, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
             }
             else
             {
-                inrequest.KorisnikId = int.Parse(txtKorisnik.Text);  ///////sredi
-                inrequest.DatumVrijeme = dtpDatumVrijeme.Value;
-                inrequest.Napomena = txtNapomena.Text;
-
-                await _izvodjenjaService.Insert<mIzvodjenja>(inrequest);
-                MessageBox.Show("Izvodjenje uspjesno dodato!");
-                this.Close();
+                errorProvider.SetError(cmbPredstave, null);
             }
+        }
 
+        private void cmbPozoriste_Validating(object sender, CancelEventArgs e)
+        {
+            if (int.Parse(cmbPozoriste.SelectedValue.ToString()) == 0)
+            {
+                errorProvider.SetError(cmbPozoriste, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(cmbPozoriste, null);
+            }
+        }
+
+        private void dtpDatumVrijeme_Validating(object sender, CancelEventArgs e)
+        {
+            if (dtpDatumVrijeme.Value.Date<DateTime.Today)
+            {
+                errorProvider.SetError(dtpDatumVrijeme, "Pogresan datum!");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(dtpDatumVrijeme, null);
+            }
         }
 
         //private void cmbPredstave_SelectedIndexChanged(object sender, EventArgs e)

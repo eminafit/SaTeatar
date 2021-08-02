@@ -29,6 +29,7 @@ namespace SaTeatar.WinUI.Pozorista
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,7 +43,9 @@ namespace SaTeatar.WinUI.Pozorista
             this.lbZone = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPrikaziZone = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -60,6 +63,7 @@ namespace SaTeatar.WinUI.Pozorista
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(231, 22);
             this.txtNaziv.TabIndex = 1;
+            this.txtNaziv.Validating += new System.ComponentModel.CancelEventHandler(this.txtNaziv_Validating);
             // 
             // label2
             // 
@@ -72,6 +76,7 @@ namespace SaTeatar.WinUI.Pozorista
             // 
             // pbSlika
             // 
+            this.pbSlika.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbSlika.Location = new System.Drawing.Point(363, 52);
             this.pbSlika.Name = "pbSlika";
             this.pbSlika.Size = new System.Drawing.Size(197, 184);
@@ -86,6 +91,7 @@ namespace SaTeatar.WinUI.Pozorista
             this.txtAdresa.Size = new System.Drawing.Size(231, 88);
             this.txtAdresa.TabIndex = 5;
             this.txtAdresa.Text = "";
+            this.txtAdresa.Validating += new System.ComponentModel.CancelEventHandler(this.txtAdresa_Validating);
             // 
             // txtSlikaInput
             // 
@@ -156,6 +162,10 @@ namespace SaTeatar.WinUI.Pozorista
             this.txtPrikaziZone.UseVisualStyleBackColor = true;
             this.txtPrikaziZone.Click += new System.EventHandler(this.txtPrikaziZone_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // frmPozoristeDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -174,9 +184,10 @@ namespace SaTeatar.WinUI.Pozorista
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.label1);
             this.Name = "frmPozoristeDetalji";
-            this.Text = "frmPozoristeDetalji";
+            this.Text = "Pozoriste";
             this.Load += new System.EventHandler(this.frmPozoristeDetalji_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,5 +208,6 @@ namespace SaTeatar.WinUI.Pozorista
         private System.Windows.Forms.ListBox lbZone;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button txtPrikaziZone;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

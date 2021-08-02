@@ -1,4 +1,5 @@
 ﻿using SaTeatar.Model.Models;
+using SaTeatar.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,22 +18,58 @@ namespace SaTeatar.WinUI.Korisnici
         public frmLogin()
         {
             InitializeComponent();
+            AutoValidate = AutoValidate.Disable;
+
         }
 
         private async void btnPrijava_Click(object sender, EventArgs e)
         {
-            APIService.Username = txtKorisnickoIme.Text;
-            APIService.Password = txtLozinka.Text;
+            if (this.ValidateChildren())
+            {
+                APIService.Username = txtKorisnickoIme.Text;
+                APIService.Password = txtLozinka.Text;
 
-            try
-            {
-                var result = await _api.Get<List<mKorisnici>>(null);
-                frmIndex frm = new frmIndex(); //?
-                frm.Show();
+                try
+                {
+                    var result = await _api.Get<List<mKorisnici>>(null);
+                    frmIndex frm = new frmIndex(); //?
+
+                    var search = new rKorisniciSearch() { KorisnickoIme = APIService.Username };
+                    List<mKorisnici> lista = await _api.Get<List<mKorisnici>>(search);
+                    APIService.TrenutniKorisnik = lista[0];
+                    Hide();
+                    frm.Show();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Pogresno korisnicko ime ili lozinka!");
+                }
             }
-            catch (Exception)
+        }
+
+        private void txtKorisnickoIme_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtKorisnickoIme.Text))
             {
-                MessageBox.Show("Pogresno korisnicko ime ili lozinka!");
+                errorProvider.SetError(txtKorisnickoIme, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtKorisnickoIme, null);
+            }
+        }
+
+        private void txtLozinka_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtLozinka.Text))
+            {
+                errorProvider.SetError(txtLozinka, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtLozinka, null);
             }
         }
     }

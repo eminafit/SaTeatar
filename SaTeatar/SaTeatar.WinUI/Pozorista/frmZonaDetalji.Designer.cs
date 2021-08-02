@@ -29,6 +29,7 @@ namespace SaTeatar.WinUI.Pozorista
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtPozoriste = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -36,6 +37,8 @@ namespace SaTeatar.WinUI.Pozorista
             this.label3 = new System.Windows.Forms.Label();
             this.txtUkupanBrojSjedista = new System.Windows.Forms.TextBox();
             this.btnSacuvaj = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // txtPozoriste
@@ -69,6 +72,7 @@ namespace SaTeatar.WinUI.Pozorista
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(236, 22);
             this.txtNaziv.TabIndex = 3;
+            this.txtNaziv.Validating += new System.ComponentModel.CancelEventHandler(this.txtNaziv_Validating);
             // 
             // label3
             // 
@@ -85,6 +89,7 @@ namespace SaTeatar.WinUI.Pozorista
             this.txtUkupanBrojSjedista.Name = "txtUkupanBrojSjedista";
             this.txtUkupanBrojSjedista.Size = new System.Drawing.Size(160, 22);
             this.txtUkupanBrojSjedista.TabIndex = 5;
+            this.txtUkupanBrojSjedista.Validating += new System.ComponentModel.CancelEventHandler(this.txtUkupanBrojSjedista_Validating);
             // 
             // btnSacuvaj
             // 
@@ -95,6 +100,10 @@ namespace SaTeatar.WinUI.Pozorista
             this.btnSacuvaj.Text = "Sacuvaj";
             this.btnSacuvaj.UseVisualStyleBackColor = true;
             this.btnSacuvaj.Click += new System.EventHandler(this.btnSacuvaj_Click);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // frmZonaDetalji
             // 
@@ -109,8 +118,9 @@ namespace SaTeatar.WinUI.Pozorista
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPozoriste);
             this.Name = "frmZonaDetalji";
-            this.Text = "frmZonaDetalji";
+            this.Text = "Zona";
             this.Load += new System.EventHandler(this.frmZonaDetalji_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,5 +135,6 @@ namespace SaTeatar.WinUI.Pozorista
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtUkupanBrojSjedista;
         private System.Windows.Forms.Button btnSacuvaj;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

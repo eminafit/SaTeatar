@@ -25,6 +25,8 @@ namespace SaTeatar.WinUI.Predstave
         {
             InitializeComponent();
             _id = predstavaId;
+            AutoValidate = AutoValidate.Disable;
+
         }
 
         rPredstavaInsert inrequest = new rPredstavaInsert(); //zbog slike
@@ -124,107 +126,110 @@ namespace SaTeatar.WinUI.Predstave
 
         private async void btnSacuvaj_Click(object sender, EventArgs e)
         {
-            
-            var idTPObj = cmbTipPredstave.SelectedValue;
-
-            if (int.TryParse(idTPObj.ToString(), out int tipid))
+            if (this.ValidateChildren())
             {
-                inrequest.TipPredstaveId = tipid;
-            }
+                var idTPObj = cmbTipPredstave.SelectedValue;
 
-            inrequest.Naziv = txtNaziv.Text;
-            inrequest.Opis = txtOpis.Text;
-            inrequest.Status = chbStatus.Checked;
-            inrequest.Slika = null;
-
-            var listGlumciIdCB = lbGlumci.SelectedItems.Cast<mDjelatnici>().Select(x => x.DjelatnikId).ToList();
-
-            if (!_id.HasValue)
-            {
-                var insertPredstave = await _predstaveService.Insert<mPredstave>(inrequest);
-
-                for (int i = 0; i < listGlumciIdCB.Count; i++)
+                if (int.TryParse(idTPObj.ToString(), out int tipid))
                 {
-                    var pd = new rPredstaveDjelatniciUpsert()
-                    {
-                        DjelatnikId = listGlumciIdCB[i],
-                        PredstavaId = insertPredstave.PredstavaId
-                    };
-                    await _predstaveDjelatnici.Insert<mPredstaveDjelatnici>(pd);
+                    inrequest.TipPredstaveId = tipid;
                 }
 
-                var idRObj = cmbRezija.SelectedValue;
+                inrequest.Naziv = txtNaziv.Text;
+                inrequest.Opis = txtOpis.Text;
+                inrequest.Status = chbStatus.Checked;
+                inrequest.Slika = null;
 
-                if (int.TryParse(idRObj.ToString(), out int rid))
+                var listGlumciIdCB = lbGlumci.SelectedItems.Cast<mDjelatnici>().Select(x => x.DjelatnikId).ToList();
+
+                if (!_id.HasValue)
                 {
-                    if (rid != 0)
+                    var insertPredstave = await _predstaveService.Insert<mPredstave>(inrequest);
+
+                    for (int i = 0; i < listGlumciIdCB.Count; i++)
                     {
                         var pd = new rPredstaveDjelatniciUpsert()
                         {
-                            DjelatnikId = rid,
+                            DjelatnikId = listGlumciIdCB[i],
                             PredstavaId = insertPredstave.PredstavaId
                         };
                         await _predstaveDjelatnici.Insert<mPredstaveDjelatnici>(pd);
                     }
-                }
 
-                MessageBox.Show("Uspjesno dodana predstava!");
-                this.Close();
-            }
-            else
-            {
-                predstavaDjelatnici = await _predstaveDjelatnici.Get<List<mPredstaveDjelatnici>>(new rPredstaveDjelatnicSearch() { PredstavaId = (int)_id });
+                    var idRObj = cmbRezija.SelectedValue;
 
-                for (int i = 0; i < predstavaDjelatnici.Count; i++)
-                {
-                     await _predstaveDjelatnici.Delete<mPredstaveDjelatnici>(predstavaDjelatnici[i].PredstavaDjelatnikId);
-                }
-
-                for (int i = 0; i < listGlumciIdCB.Count; i++)
-                {
-                    var pd = new rPredstaveDjelatniciUpsert()
+                    if (int.TryParse(idRObj.ToString(), out int rid))
                     {
-                        DjelatnikId = listGlumciIdCB[i],
-                        PredstavaId = (int)_id
-                    };
-                    await _predstaveDjelatnici.Insert<mPredstaveDjelatnici>(pd);
+                        if (rid != 0)
+                        {
+                            var pd = new rPredstaveDjelatniciUpsert()
+                            {
+                                DjelatnikId = rid,
+                                PredstavaId = insertPredstave.PredstavaId
+                            };
+                            await _predstaveDjelatnici.Insert<mPredstaveDjelatnici>(pd);
+                        }
+                    }
+
+                    MessageBox.Show("Uspjesno dodana predstava!");
+                    this.Close();
                 }
-
-                var idRObj = cmbRezija.SelectedValue;
-
-                if (int.TryParse(idRObj.ToString(), out int rid))
+                else
                 {
-                    if (rid != 0)
+                    predstavaDjelatnici = await _predstaveDjelatnici.Get<List<mPredstaveDjelatnici>>(new rPredstaveDjelatnicSearch() { PredstavaId = (int)_id });
+
+                    for (int i = 0; i < predstavaDjelatnici.Count; i++)
+                    {
+                        await _predstaveDjelatnici.Delete<mPredstaveDjelatnici>(predstavaDjelatnici[i].PredstavaDjelatnikId);
+                    }
+
+                    for (int i = 0; i < listGlumciIdCB.Count; i++)
                     {
                         var pd = new rPredstaveDjelatniciUpsert()
                         {
-                            DjelatnikId = rid,
+                            DjelatnikId = listGlumciIdCB[i],
                             PredstavaId = (int)_id
                         };
                         await _predstaveDjelatnici.Insert<mPredstaveDjelatnici>(pd);
                     }
+
+                    var idRObj = cmbRezija.SelectedValue;
+
+                    if (int.TryParse(idRObj.ToString(), out int rid))
+                    {
+                        if (rid != 0)
+                        {
+                            var pd = new rPredstaveDjelatniciUpsert()
+                            {
+                                DjelatnikId = rid,
+                                PredstavaId = (int)_id
+                            };
+                            await _predstaveDjelatnici.Insert<mPredstaveDjelatnici>(pd);
+                        }
+                    }
+
+
+                    uprequest.Naziv = txtNaziv.Text;
+                    uprequest.Opis = txtOpis.Text;
+                    uprequest.Status = chbStatus.Checked;
+                    var idTPObjpu = cmbTipPredstave.SelectedValue;
+
+                    if (int.TryParse(idTPObjpu.ToString(), out int tipidpu))
+                    {
+                        uprequest.TipPredstaveId = tipidpu;
+                    }
+                    if (!dodanaSlika)
+                    {
+                        uprequest.Slika = predstava.Slika;
+
+                    }
+
+                    var updatePredstave = await _predstaveService.Update<mPredstave>(_id, uprequest);
+
+                    MessageBox.Show("Uspjesno izmijenjena predstava!");
+                    this.Close();
                 }
 
-
-                uprequest.Naziv = txtNaziv.Text;
-                uprequest.Opis = txtOpis.Text;
-                uprequest.Status = chbStatus.Checked;
-                var idTPObjpu = cmbTipPredstave.SelectedValue;
-
-                if (int.TryParse(idTPObjpu.ToString(), out int tipidpu))
-                {
-                    uprequest.TipPredstaveId = tipidpu;
-                }
-                if (!dodanaSlika)
-                {
-                    uprequest.Slika = predstava.Slika;
-
-                }
-
-                var updatePredstave = await _predstaveService.Update<mPredstave>(_id, uprequest);
-
-                MessageBox.Show("Uspjesno izmijenjena predstava!");
-                this.Close();
             }
 
         }
@@ -255,5 +260,60 @@ namespace SaTeatar.WinUI.Predstave
             }
         }
 
+        private void txtNaziv_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNaziv.Text))
+            {
+                errorProvider.SetError(txtNaziv, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                if (txtNaziv.Text.Length < 3)
+                {
+                    errorProvider.SetError(txtNaziv, Properties.Resources.Validation_MinLength);
+                }
+                errorProvider.SetError(txtNaziv, null);
+            }
+        }
+
+        private void cmbTipPredstave_Validating(object sender, CancelEventArgs e)
+        {
+            if (int.Parse(cmbTipPredstave.SelectedValue.ToString())==0)
+            {
+                errorProvider.SetError(cmbTipPredstave, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(cmbTipPredstave, null);
+            }
+        }
+
+        private void cmbRezija_Validating(object sender, CancelEventArgs e)
+        {
+            if (int.Parse(cmbRezija.SelectedValue.ToString()) == 0)
+            {
+                errorProvider.SetError(cmbRezija, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(cmbRezija, null);
+            }
+        }
+
+        private void lbGlumci_Validating(object sender, CancelEventArgs e)
+        {
+            if (lbGlumci.SelectedItems.Count==0)
+            {
+                errorProvider.SetError(lbGlumci, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(lbGlumci, null);
+            }
+        }
     }
 }

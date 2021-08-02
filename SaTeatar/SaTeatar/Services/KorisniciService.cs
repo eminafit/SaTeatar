@@ -8,9 +8,10 @@ using SaTeatar.Database;
 using AutoMapper;
 using System.Security.Cryptography;
 using System.Text;
-using SaTeatar.WebAPI.Filters;
+using SaTeatar.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SaTeatar.Exceptions;
 
 namespace SaTeatar.WebAPI.Services
 {
@@ -43,14 +44,22 @@ namespace SaTeatar.WebAPI.Services
             return Convert.ToBase64String(inArray);
         }
 
+        static mKorisnici TrenutniKorisnik = null;
+
         public override mKorisnici Insert(rKorisniciInsert request)
         {
-            var entity = _mapper.Map<Korisnici>(request);
+            var listaUsernamea = _context.Korisnici.Select(x => x.KorisnickoIme).ToList();
+            if (listaUsernamea.Contains( request.KorisnickoIme))
+            {
+                throw new UserException("Korisnicko ime vec postoji!");
+            }
 
             if (request.Lozinka != request.LozinkaPotvrda)
             {
                 throw new UserException("Lozinka nije ispravna");
             }
+
+            var entity = _mapper.Map<Korisnici>(request);
 
             entity.LozinkaSalt = GenerateSalt();
             entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Lozinka); 
@@ -87,6 +96,11 @@ namespace SaTeatar.WebAPI.Services
                 query = query.Where(x => x.Prezime == search.Prezime);
             }
 
+            if (!string.IsNullOrWhiteSpace(search?.KorisnickoIme))
+            {
+                query = query.Where(x => x.KorisnickoIme == search.KorisnickoIme);
+            }
+
             var entities = query.ToList();
 
             var result = _mapper.Map<IList<mKorisnici>>(entities);
@@ -112,8 +126,23 @@ namespace SaTeatar.WebAPI.Services
                 throw new UserException("Pogresan username ili password");
             }
 
+        //    TrenutniKorisnik = _mapper.Map<mKorisnici>(entity);
+        //      setovan u basicauthandleru
+
             return _mapper.Map<mKorisnici>(entity);
 
+        }
+
+        public mKorisnici GetTrenutniKorisnik()
+        {
+            return TrenutniKorisnik;
+            //throw new NotImplementedException();
+        }
+
+        public void SetTrenutniKorisnik(mKorisnici korisnik)
+        {
+            TrenutniKorisnik = korisnik;
+            //throw new NotImplementedException();
         }
     }
 }

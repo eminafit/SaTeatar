@@ -30,11 +30,11 @@ namespace SaTeatar.WinUI.Predstave
         private void InitializeComponent()
         {
             this.dgvPredstave = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbTipoviPredstave = new System.Windows.Forms.ComboBox();
             this.PredstavaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Naziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbTipoviPredstave = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPredstave)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,24 +55,6 @@ namespace SaTeatar.WinUI.Predstave
             this.dgvPredstave.Size = new System.Drawing.Size(726, 279);
             this.dgvPredstave.TabIndex = 0;
             this.dgvPredstave.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvPredstave_MouseDoubleClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Tip predstave: ";
-            // 
-            // cmbTipoviPredstave
-            // 
-            this.cmbTipoviPredstave.FormattingEnabled = true;
-            this.cmbTipoviPredstave.Location = new System.Drawing.Point(150, 41);
-            this.cmbTipoviPredstave.Name = "cmbTipoviPredstave";
-            this.cmbTipoviPredstave.Size = new System.Drawing.Size(284, 24);
-            this.cmbTipoviPredstave.TabIndex = 2;
-            this.cmbTipoviPredstave.SelectedIndexChanged += new System.EventHandler(this.cmbTipoviPredstave_SelectedIndexChanged);
             // 
             // PredstavaId
             // 
@@ -103,6 +85,24 @@ namespace SaTeatar.WinUI.Predstave
             this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Status.Width = 125;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(40, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Tip predstave: ";
+            // 
+            // cmbTipoviPredstave
+            // 
+            this.cmbTipoviPredstave.FormattingEnabled = true;
+            this.cmbTipoviPredstave.Location = new System.Drawing.Point(150, 41);
+            this.cmbTipoviPredstave.Name = "cmbTipoviPredstave";
+            this.cmbTipoviPredstave.Size = new System.Drawing.Size(284, 24);
+            this.cmbTipoviPredstave.TabIndex = 2;
+            this.cmbTipoviPredstave.SelectedIndexChanged += new System.EventHandler(this.cmbTipoviPredstave_SelectedIndexChanged);
+            // 
             // frmPredstave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -112,7 +112,7 @@ namespace SaTeatar.WinUI.Predstave
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvPredstave);
             this.Name = "frmPredstave";
-            this.Text = "frmPredstave";
+            this.Text = "Predstave";
             this.Load += new System.EventHandler(this.frmPredstave_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPredstave)).EndInit();
             this.ResumeLayout(false);

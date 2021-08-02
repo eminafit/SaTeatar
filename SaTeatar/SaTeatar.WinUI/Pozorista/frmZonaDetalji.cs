@@ -28,28 +28,57 @@ namespace SaTeatar.WinUI.Pozorista
                 _nazivPozorista = nazivPozorista;
             }
             InitializeComponent();
+            AutoValidate = AutoValidate.Disable;
+
         }
 
         private void frmZonaDetalji_Load(object sender, EventArgs e)
         {
             txtPozoriste.Text = _nazivPozorista;
             txtPozoriste.Enabled = false;   
-           // txtPozoriste.Enabled = false;
         }
 
         private async void btnSacuvaj_Click(object sender, EventArgs e)
         {
-            rZoneInsert zahtjev = new rZoneInsert()
+            if (this.ValidateChildren())
             {
-                Naziv = txtNaziv.Text,
-                PozoristeId = _pozoristeid,
-                UkupanBrojSjedista = int.Parse(txtUkupanBrojSjedista.Text)
-            };
+                rZoneInsert zahtjev = new rZoneInsert()
+                {
+                    Naziv = txtNaziv.Text,
+                    PozoristeId = _pozoristeid,
+                    UkupanBrojSjedista = int.Parse(txtUkupanBrojSjedista.Text)
+                };
 
-            await _zoneService.Insert<mZone>(zahtjev);
-            MessageBox.Show("Zona uspjesno dodata!");
-            this.Close();
-            //this.Parent.Refresh();
+                await _zoneService.Insert<mZone>(zahtjev);
+                MessageBox.Show("Zona uspjesno dodata!");
+                this.Close();
+            }
+        }
+
+        private void txtNaziv_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNaziv.Text))
+            {
+                errorProvider.SetError(txtNaziv, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtNaziv, null);
+            }
+        }
+
+        private void txtUkupanBrojSjedista_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtUkupanBrojSjedista.Text))
+            {
+                errorProvider.SetError(txtUkupanBrojSjedista, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtUkupanBrojSjedista, null);
+            }
         }
     }
 }

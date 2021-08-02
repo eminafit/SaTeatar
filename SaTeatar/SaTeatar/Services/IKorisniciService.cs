@@ -11,5 +11,9 @@ namespace SaTeatar.WebAPI.Services
     public interface IKorisniciService : ICRUDService<mKorisnici, rKorisniciSearch, rKorisniciInsert, rKorisniciUpdate>
     {
         Task<mKorisnici> Login(string username, string password);
+
+        mKorisnici GetTrenutniKorisnik();
+
+        void SetTrenutniKorisnik(mKorisnici korisnik);
     }
 }

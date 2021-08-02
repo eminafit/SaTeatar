@@ -24,6 +24,8 @@ namespace SaTeatar.WinUI.Pozorista
         {
             InitializeComponent();
             _id = pozoristeId;
+            AutoValidate = AutoValidate.Disable;
+
         }
 
         rPozoristaInsert inrequest = new rPozoristaInsert();
@@ -58,27 +60,29 @@ namespace SaTeatar.WinUI.Pozorista
 
         private async void btnSacuvaj_Click(object sender, EventArgs e)
         {
-            if (_id.HasValue)
+            if (this.ValidateChildren())
             {
-                uprequest.Naziv = txtNaziv.Text;
-                uprequest.Adresa = txtAdresa.Text;
-                if (!dodanaSlika)
+                if (_id.HasValue)
                 {
-                    uprequest.Logo = pozoriste.Logo;
+                    uprequest.Naziv = txtNaziv.Text;
+                    uprequest.Adresa = txtAdresa.Text;
+                    if (!dodanaSlika)
+                    {
+                        uprequest.Logo = pozoriste.Logo;
+                    }
+                    await _pozoristaService.Update<mPozorista>(_id, uprequest);
+                    MessageBox.Show("Pozoriste uspjesno izmijenjeno!");
+
                 }
-                await _pozoristaService.Update<mPozorista>(_id, uprequest);
-                MessageBox.Show("Pozoriste uspjesno izmijenjeno!");
+                else
+                {
+                    inrequest.Naziv = txtNaziv.Text;
+                    inrequest.Adresa = txtAdresa.Text;
 
+                    pozoriste = await _pozoristaService.Insert<mPozorista>(inrequest);
+                    MessageBox.Show("Pozoriste uspjesno dodato!");
+                }
             }
-            else
-            {
-                inrequest.Naziv = txtNaziv.Text;
-                inrequest.Adresa = txtAdresa.Text;
-
-                pozoriste = await _pozoristaService.Insert<mPozorista>(inrequest);
-                MessageBox.Show("Pozoriste uspjesno dodato!");
-            }
-
         }
 
         private void btnDodajZone_Click(object sender, EventArgs e)
@@ -132,6 +136,40 @@ namespace SaTeatar.WinUI.Pozorista
             else
             {
                 MessageBox.Show("Zone nisu dodate!");
+            }
+        }
+
+        private void txtNaziv_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNaziv.Text))
+            {
+                errorProvider.SetError(txtNaziv, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                if (txtNaziv.Text.Length < 3)
+                {
+                    errorProvider.SetError(txtNaziv, Properties.Resources.Validation_MinLength);
+                }
+                errorProvider.SetError(txtNaziv, null);
+            }
+        }
+
+        private void txtAdresa_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtAdresa.Text))
+            {
+                errorProvider.SetError(txtAdresa, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                if (txtAdresa.Text.Length < 15)
+                {
+                    errorProvider.SetError(txtAdresa, "Adresa mora sadrzavati bar 15 karaktera!");
+                }
+                errorProvider.SetError(txtAdresa, null);
             }
         }
     }

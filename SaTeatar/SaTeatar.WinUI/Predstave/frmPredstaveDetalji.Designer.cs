@@ -29,6 +29,7 @@ namespace SaTeatar.WinUI.Predstave
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.Rezija = new System.Windows.Forms.Label();
@@ -47,7 +48,9 @@ namespace SaTeatar.WinUI.Predstave
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lbGlumci = new System.Windows.Forms.ListBox();
             this.cmbRezija = new System.Windows.Forms.ComboBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -65,6 +68,7 @@ namespace SaTeatar.WinUI.Predstave
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(272, 22);
             this.txtNaziv.TabIndex = 1;
+            this.txtNaziv.Validating += new System.ComponentModel.CancelEventHandler(this.txtNaziv_Validating);
             // 
             // Rezija
             // 
@@ -86,6 +90,7 @@ namespace SaTeatar.WinUI.Predstave
             // 
             // pbSlika
             // 
+            this.pbSlika.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbSlika.Location = new System.Drawing.Point(418, 28);
             this.pbSlika.Name = "pbSlika";
             this.pbSlika.Size = new System.Drawing.Size(201, 261);
@@ -126,6 +131,7 @@ namespace SaTeatar.WinUI.Predstave
             this.cmbTipPredstave.Name = "cmbTipPredstave";
             this.cmbTipPredstave.Size = new System.Drawing.Size(272, 24);
             this.cmbTipPredstave.TabIndex = 11;
+            this.cmbTipPredstave.Validating += new System.ComponentModel.CancelEventHandler(this.cmbTipPredstave_Validating);
             // 
             // label5
             // 
@@ -195,6 +201,7 @@ namespace SaTeatar.WinUI.Predstave
             this.lbGlumci.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.lbGlumci.Size = new System.Drawing.Size(365, 292);
             this.lbGlumci.TabIndex = 18;
+            this.lbGlumci.Validating += new System.ComponentModel.CancelEventHandler(this.lbGlumci_Validating);
             // 
             // cmbRezija
             // 
@@ -203,6 +210,11 @@ namespace SaTeatar.WinUI.Predstave
             this.cmbRezija.Name = "cmbRezija";
             this.cmbRezija.Size = new System.Drawing.Size(272, 24);
             this.cmbRezija.TabIndex = 19;
+            this.cmbRezija.Validating += new System.ComponentModel.CancelEventHandler(this.cmbRezija_Validating);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // frmPredstaveDetalji
             // 
@@ -227,9 +239,10 @@ namespace SaTeatar.WinUI.Predstave
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.label1);
             this.Name = "frmPredstaveDetalji";
-            this.Text = "Dodaj predstavu";
+            this.Text = "Predstava";
             this.Load += new System.EventHandler(this.frmPredstaveDetalji_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbSlika)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,5 +268,6 @@ namespace SaTeatar.WinUI.Predstave
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ListBox lbGlumci;
         private System.Windows.Forms.ComboBox cmbRezija;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

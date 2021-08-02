@@ -29,11 +29,14 @@ namespace SaTeatar.WinUI.Korisnici
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtKorisnickoIme = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtLozinka = new System.Windows.Forms.TextBox();
             this.btnPrijava = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -51,6 +54,7 @@ namespace SaTeatar.WinUI.Korisnici
             this.txtKorisnickoIme.Name = "txtKorisnickoIme";
             this.txtKorisnickoIme.Size = new System.Drawing.Size(217, 22);
             this.txtKorisnickoIme.TabIndex = 1;
+            this.txtKorisnickoIme.Validating += new System.ComponentModel.CancelEventHandler(this.txtKorisnickoIme_Validating);
             // 
             // label2
             // 
@@ -68,6 +72,7 @@ namespace SaTeatar.WinUI.Korisnici
             this.txtLozinka.PasswordChar = '*';
             this.txtLozinka.Size = new System.Drawing.Size(217, 22);
             this.txtLozinka.TabIndex = 3;
+            this.txtLozinka.Validating += new System.ComponentModel.CancelEventHandler(this.txtLozinka_Validating);
             // 
             // btnPrijava
             // 
@@ -78,6 +83,10 @@ namespace SaTeatar.WinUI.Korisnici
             this.btnPrijava.Text = "Prijavite se";
             this.btnPrijava.UseVisualStyleBackColor = true;
             this.btnPrijava.Click += new System.EventHandler(this.btnPrijava_Click);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // frmLogin
             // 
@@ -90,7 +99,8 @@ namespace SaTeatar.WinUI.Korisnici
             this.Controls.Add(this.txtKorisnickoIme);
             this.Controls.Add(this.label1);
             this.Name = "frmLogin";
-            this.Text = "frmLogin";
+            this.Text = "Prijava";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,5 +113,6 @@ namespace SaTeatar.WinUI.Korisnici
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtLozinka;
         private System.Windows.Forms.Button btnPrijava;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

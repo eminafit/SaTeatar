@@ -42,7 +42,7 @@ namespace SaTeatar.WebAPI.Security
 
                 user = await _korisniciService.Login(username, password);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return AuthenticateResult.Fail("Incorrect password or username");
             }
@@ -51,6 +51,8 @@ namespace SaTeatar.WebAPI.Security
             {
                 return AuthenticateResult.Fail("Incorrect password or username");
             }
+
+            _korisniciService.SetTrenutniKorisnik(user);
 
             var claims = new List<Claim> {
                 new Claim(ClaimTypes.NameIdentifier, user.KorisnickoIme),

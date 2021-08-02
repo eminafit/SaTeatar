@@ -37,7 +37,7 @@ namespace SaTeatar.Model
                 {
                     return ToKeyValue(JObject.FromObject(metaToken, JsonSerializerSettings));
                 }
-                catch (System.ArgumentException ex)
+                catch (System.ArgumentException )
                 {
                     var dict = new Dictionary<string, string>();
                     dict.Add("id", metaToken.ToString());

@@ -128,6 +128,7 @@ namespace SaTeatar.WinUI.Korisnici
             // 
             this.txtLozinka.Location = new System.Drawing.Point(30, 290);
             this.txtLozinka.Name = "txtLozinka";
+            this.txtLozinka.PasswordChar = '*';
             this.txtLozinka.Size = new System.Drawing.Size(147, 22);
             this.txtLozinka.TabIndex = 8;
             this.txtLozinka.Validating += new System.ComponentModel.CancelEventHandler(this.txtLozinka_Validating);
@@ -145,6 +146,7 @@ namespace SaTeatar.WinUI.Korisnici
             // 
             this.txtPotvrdaLozinke.Location = new System.Drawing.Point(212, 290);
             this.txtPotvrdaLozinke.Name = "txtPotvrdaLozinke";
+            this.txtPotvrdaLozinke.PasswordChar = '*';
             this.txtPotvrdaLozinke.Size = new System.Drawing.Size(147, 22);
             this.txtPotvrdaLozinke.TabIndex = 10;
             this.txtPotvrdaLozinke.Validating += new System.ComponentModel.CancelEventHandler(this.txtPotvrdaLozinke_Validating);
@@ -182,7 +184,7 @@ namespace SaTeatar.WinUI.Korisnici
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtIme);
             this.Name = "frmKorisniciDetalji";
-            this.Text = "frmKorisniciDetalji";
+            this.Text = "Korisnik";
             this.Load += new System.EventHandler(this.frmKorisniciDetalji_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
