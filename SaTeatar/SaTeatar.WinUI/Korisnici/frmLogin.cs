@@ -19,7 +19,6 @@ namespace SaTeatar.WinUI.Korisnici
         {
             InitializeComponent();
             AutoValidate = AutoValidate.Disable;
-
         }
 
         private async void btnPrijava_Click(object sender, EventArgs e)
@@ -31,18 +30,25 @@ namespace SaTeatar.WinUI.Korisnici
 
                 try
                 {
-                    var result = await _api.Get<List<mKorisnici>>(null);
-                    frmIndex frm = new frmIndex(); //?
+                    btnPrijava.Enabled = false;
 
+                    var result = await _api.Get<List<mKorisnici>>(null);
+                    frmIndex frm = new frmIndex(); 
                     var search = new rKorisniciSearch() { KorisnickoIme = APIService.Username };
                     List<mKorisnici> lista = await _api.Get<List<mKorisnici>>(search);
                     APIService.TrenutniKorisnik = lista[0];
-                    Hide();
+                    //  Hide();
+                    txtLozinka.Clear();
+                    this.Visible = false;
                     frm.Show();
+
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Pogresno korisnicko ime ili lozinka!");
+                    txtLozinka.Clear();
+                    txtKorisnickoIme.Clear();
+                    btnPrijava.Enabled = true;
                 }
             }
         }

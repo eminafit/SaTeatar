@@ -56,6 +56,17 @@ namespace SaTeatar.WinUI
 
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
+            List<Form> openForms = new List<Form>();
+
+            foreach (Form f in Application.OpenForms)
+                openForms.Add(f);
+
+            foreach (Form f in openForms)
+            {
+        //        if (f.Name != "Menu")
+                    f.Close();
+            }
+
             this.Close();
         }
 
@@ -177,6 +188,30 @@ namespace SaTeatar.WinUI
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+        }
+
+        private bool bClosing;
+
+        private void frmIndex_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!bClosing)
+            {
+                bClosing = true;
+
+                if (MessageBox.Show("Da li ste sigurni da zelite zatvoriti aplikaciju?", "Zatvoriti aplikaciju?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                    bClosing=false;
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
+            else
+            {
+                bClosing = false;
+            }
         }
     }
 }

@@ -272,14 +272,16 @@ namespace SaTeatar.WinUI.Predstave
                 if (txtNaziv.Text.Length < 3)
                 {
                     errorProvider.SetError(txtNaziv, Properties.Resources.Validation_MinLength);
-                }
+                    e.Cancel = true;
+                } 
+                else
                 errorProvider.SetError(txtNaziv, null);
             }
         }
 
         private void cmbTipPredstave_Validating(object sender, CancelEventArgs e)
         {
-            if (int.Parse(cmbTipPredstave.SelectedValue.ToString())==0)
+            if (cmbTipPredstave.SelectedValue==null || int.Parse(cmbTipPredstave.SelectedValue.ToString()) == 0)
             {
                 errorProvider.SetError(cmbTipPredstave, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
@@ -292,7 +294,7 @@ namespace SaTeatar.WinUI.Predstave
 
         private void cmbRezija_Validating(object sender, CancelEventArgs e)
         {
-            if (int.Parse(cmbRezija.SelectedValue.ToString()) == 0)
+            if (cmbRezija.SelectedValue==null || int.Parse(cmbRezija.SelectedValue.ToString()) == 0)
             {
                 errorProvider.SetError(cmbRezija, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;

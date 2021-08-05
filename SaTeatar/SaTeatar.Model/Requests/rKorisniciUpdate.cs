@@ -7,26 +7,31 @@ namespace SaTeatar.Model.Requests
 {
     public class rKorisniciUpdate
     {
+
         [Required(AllowEmptyStrings = false)]
+        [MinLength(3)]
         public string Ime { get; set; }
 
         [Required(AllowEmptyStrings = false)]
+        [MinLength(3)]
         public string Prezime { get; set; }
 
+        [DataType(DataType.EmailAddress)]
         [Required(AllowEmptyStrings = false)]
         [EmailAddress()]
         public string Email { get; set; }
 
         [Required(AllowEmptyStrings = false)]
-        [MinLength(4)]
+        [MinLength(3)]
         public string KorisnickoIme { get; set; }
 
-        [Required(AllowEmptyStrings = false)]
-        [MinLength(4)]
+        //[RegularExpression(@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
+        //     ErrorMessage = "Lozinka treba imati bar 8 karaktera, sadrzavati bar jedan broj, jedno malo slovo, jedno veliko slovo i jedan specijalni karakter!")]
+        [DataType(DataType.Password)]
         public string Lozinka { get; set; }
 
         [Required(AllowEmptyStrings = false)]
-        [MinLength(4)]
+        [Compare("Lozinka", ErrorMessage = "Lozinke se ne podudaraju!")]
         public string LozinkaPotvrda { get; set; }
 
         public bool? Status { get; set; }

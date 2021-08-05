@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels"
+             x:Class="SaTeatar.Mobile.Views.Login">
+    <ContentPage.BindingContext>
+        <viewModels:LoginVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="10" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+            <Label Text="Korisnicko ime:"/>
+            <Entry Text="{Binding KorisnickoIme}"></Entry>
+            <Label Text="Lozinka:"/>
+            <Entry Text="{Binding Lozinka}"></Entry>
+            <Button Command="{Binding LoginCommand}" Text="Prijavite se"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

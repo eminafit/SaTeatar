@@ -25,28 +25,6 @@ namespace SaTeatar.WinUI
             _route = route;
         }
 
-        //
-        //public async Task<T> Auth<T>()
-        //{
-        //    var url = $"{Properties.Settings.Default.APIUrl}/{_route}";
-
-        //    return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
-
-        //    //try
-        //    //{
-        //    //    return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
-        //    //}
-        //    //catch (FlurlHttpException ex)
-        //    //{
-        //    //    if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
-        //    //    {
-        //    //        MessageBox.Show("Pogrešan username ili password");
-        //    //    }
-        //    //    throw;
-        //    //}
-        //}
-
-        //
 
         public async Task<T> Get<T>(object search)
         {
@@ -70,16 +48,49 @@ namespace SaTeatar.WinUI
 
         public async Task<T> Insert <T>(object request)
         {
-            var url = $"{Properties.Settings.Default.APIUrl}/{_route}";
+            try
+            {
+                var url = $"{Properties.Settings.Default.APIUrl}/{_route}";
 
-            return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<T>();
+                return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return default(T);
+            }
         }
 
         public async Task<T> Update<T>(object id, object request)
         {
-            var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
+            try
+            {
+                var url = $"{Properties.Settings.Default.APIUrl}/{_route}/{id}";
 
-            return await url.WithBasicAuth(Username, Password).PutJsonAsync(request).ReceiveJson<T>();
+                return await url.WithBasicAuth(Username, Password).PutJsonAsync(request).ReceiveJson<T>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                var stringBuilder = new StringBuilder();
+                foreach (var error in errors)
+                {
+                    stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                }
+
+                MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return default(T);
+            }
         }
 
         public async Task<T> Delete<T>(object id)

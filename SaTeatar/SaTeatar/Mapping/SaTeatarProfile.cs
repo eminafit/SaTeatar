@@ -18,6 +18,8 @@ namespace SaTeatar.WebAPI.Mapping
             CreateMap<Korisnici, mKorisnici>();
             CreateMap<Uloge, mUloge>();
             CreateMap<KorisniciUloge, mKorisniciUloge>();
+            CreateMap<rKorisniciUlogeUpsert, KorisniciUloge>();
+
             CreateMap<rKorisniciInsert, Korisnici>();
             CreateMap<rKorisniciUpdate, Korisnici>();
 

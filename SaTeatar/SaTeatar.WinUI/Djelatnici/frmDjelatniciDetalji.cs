@@ -167,7 +167,9 @@ namespace SaTeatar.WinUI.Djelatnici
                 if (txtIme.Text.Length<3)
                 {
                     errorProvider.SetError(txtIme, Properties.Resources.Validation_MinLength);
+                    e.Cancel = true;
                 }
+                else
                 errorProvider.SetError(txtIme, null);
             }
 
@@ -185,14 +187,16 @@ namespace SaTeatar.WinUI.Djelatnici
                 if (txtPrezime.Text.Length < 3)
                 {
                     errorProvider.SetError(txtPrezime, Properties.Resources.Validation_MinLength);
+                    e.Cancel = true;
                 }
+                else
                 errorProvider.SetError(txtPrezime, null);
             }
         }
 
         private void cmbVrsteDjelatnika_Validating(object sender, CancelEventArgs e)
         {
-            if (int.Parse(cmbVrsteDjelatnika.SelectedValue.ToString())==0)
+            if (cmbVrsteDjelatnika.SelectedValue == null || int.Parse(cmbVrsteDjelatnika.SelectedValue.ToString())==0)
             {
                 errorProvider.SetError(cmbVrsteDjelatnika, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;

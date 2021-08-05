@@ -40,7 +40,6 @@ namespace SaTeatar.WinUI.Izvodjenja
 
             txtKorisnik.Enabled = false;
             dtpDatumVrijeme.Format = DateTimePickerFormat.Time;
-           // dtpDatumVrijeme.ShowUpDown = true;
 
             if (_id.HasValue)
             {
@@ -119,8 +118,7 @@ namespace SaTeatar.WinUI.Izvodjenja
                 if (_id.HasValue)
                 {
                     uprequest.Napomena = txtNapomena.Text;
-                    // uprequest.KorisnikId= 
-                    uprequest.KorisnikId = izvodjenje.KorisnikId; ////////sredi
+                    uprequest.KorisnikId = izvodjenje.KorisnikId; 
                     uprequest.DatumVrijeme = dtpDatumVrijeme.Value;
 
                     await _izvodjenjaService.Update<mIzvodjenja>(_id, uprequest);
@@ -130,7 +128,6 @@ namespace SaTeatar.WinUI.Izvodjenja
                 else
                 {
                     inrequest.KorisnikId = APIService.TrenutniKorisnik.KorisnikId;
-                    //int.Parse(txtKorisnik.Text);  ///////sredi
                     inrequest.DatumVrijeme = dtpDatumVrijeme.Value;
                     inrequest.Napomena = txtNapomena.Text;
 
@@ -143,7 +140,7 @@ namespace SaTeatar.WinUI.Izvodjenja
 
         private void cmbPredstave_Validating(object sender, CancelEventArgs e)
         {
-            if (int.Parse(cmbPredstave.SelectedValue.ToString())==0)
+            if (cmbPredstave.SelectedValue == null || int.Parse(cmbPredstave.SelectedValue.ToString())==0 )
             {
                 errorProvider.SetError(cmbPredstave, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
@@ -156,7 +153,7 @@ namespace SaTeatar.WinUI.Izvodjenja
 
         private void cmbPozoriste_Validating(object sender, CancelEventArgs e)
         {
-            if (int.Parse(cmbPozoriste.SelectedValue.ToString()) == 0)
+            if (cmbPozoriste.SelectedValue == null || int.Parse(cmbPredstave.SelectedValue.ToString()) == 0)
             {
                 errorProvider.SetError(cmbPozoriste, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
@@ -180,42 +177,5 @@ namespace SaTeatar.WinUI.Izvodjenja
             }
         }
 
-        //private void cmbPredstave_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    var idobj = cmbPredstave.SelectedValue;
-        //    if (int.TryParse(idobj.ToString(),out int idpredstave))
-        //    {
-        //        if (idpredstave!=0)
-        //        {
-        //            if (_id.HasValue)
-        //            {
-        //                uprequest.PredstavaId = idpredstave;
-        //            }
-        //            else
-        //            {
-        //                inrequest.PredstavaId = idpredstave;
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private void cmbPozoriste_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    var idobj = cmbPozoriste.SelectedValue;
-        //    if (int.TryParse(idobj.ToString(), out int idpozorista))
-        //    {
-        //        if (idpozorista != 0)
-        //        {
-        //            if (_id.HasValue)
-        //            {
-        //                uprequest.PozoristeId = idpozorista;
-        //            }
-        //            else
-        //            {
-        //                inrequest.PozoristeId = idpozorista;
-        //            }
-        //        }
-        //    }
-        //}
     }
 }

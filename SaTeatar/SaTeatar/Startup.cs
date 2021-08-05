@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SaTeatar.Database;
 using SaTeatar.Filters;
+using SaTeatar.Services;
 using SaTeatar.WebAPI.Security;
 using SaTeatar.WebAPI.Services;
 using System;
@@ -65,6 +66,9 @@ namespace SaTeatar
             services.AddDbContext<SaTeatarDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddAuthentication("BasicAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
             services.AddScoped<IKorisniciService, KorisniciService>();
             services.AddScoped<IPozoristaService, PozoristaService>();
             services.AddScoped<IPredstavaService, PredstavaService>();
@@ -75,9 +79,9 @@ namespace SaTeatar
             services.AddScoped<IZoneService, ZoneService>();
             services.AddScoped<IIzvodjenjaZoneService, IzvodjenjaZoneService>();
             services.AddScoped<IVrsteDjelatnikaService, VrsteDjelatnikaService>();
+            services.AddScoped<IUlogeService, UlogeService>();
+            services.AddScoped<IKorisniciUlogeService, KorisniciUlogeService>();
 
-            services.AddAuthentication("BasicAuthentication")
-                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

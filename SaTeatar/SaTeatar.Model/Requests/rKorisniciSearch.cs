@@ -10,5 +10,7 @@ namespace SaTeatar.Model.Requests
         public string Prezime { get; set; }
 
         public string KorisnickoIme { get; set; }
+
+        //public int KorisnikId { get; set; }
     }
 }

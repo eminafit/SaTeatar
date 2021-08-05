@@ -44,21 +44,24 @@ namespace SaTeatar.WinUI.Korisnici
             this.txtPotvrdaLozinke = new System.Windows.Forms.TextBox();
             this.btnSacuvaj = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.chbStatus = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lbUloge = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // txtIme
             // 
-            this.txtIme.Location = new System.Drawing.Point(30, 48);
+            this.txtIme.Location = new System.Drawing.Point(64, 53);
             this.txtIme.Name = "txtIme";
-            this.txtIme.Size = new System.Drawing.Size(329, 22);
+            this.txtIme.Size = new System.Drawing.Size(147, 22);
             this.txtIme.TabIndex = 0;
             this.txtIme.Validating += new System.ComponentModel.CancelEventHandler(this.txtIme_Validating);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 25);
+            this.label1.Location = new System.Drawing.Point(64, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 17);
             this.label1.TabIndex = 1;
@@ -67,7 +70,7 @@ namespace SaTeatar.WinUI.Korisnici
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 85);
+            this.label2.Location = new System.Drawing.Point(246, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 17);
             this.label2.TabIndex = 3;
@@ -75,16 +78,16 @@ namespace SaTeatar.WinUI.Korisnici
             // 
             // txtPrezime
             // 
-            this.txtPrezime.Location = new System.Drawing.Point(30, 108);
+            this.txtPrezime.Location = new System.Drawing.Point(246, 53);
             this.txtPrezime.Name = "txtPrezime";
-            this.txtPrezime.Size = new System.Drawing.Size(329, 22);
+            this.txtPrezime.Size = new System.Drawing.Size(147, 22);
             this.txtPrezime.TabIndex = 2;
             this.txtPrezime.Validating += new System.ComponentModel.CancelEventHandler(this.txtPrezime_Validating);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 146);
+            this.label3.Location = new System.Drawing.Point(61, 149);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 17);
             this.label3.TabIndex = 5;
@@ -92,7 +95,7 @@ namespace SaTeatar.WinUI.Korisnici
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(30, 169);
+            this.txtEmail.Location = new System.Drawing.Point(61, 172);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(329, 22);
             this.txtEmail.TabIndex = 4;
@@ -101,7 +104,7 @@ namespace SaTeatar.WinUI.Korisnici
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(30, 208);
+            this.label4.Location = new System.Drawing.Point(61, 89);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 17);
             this.label4.TabIndex = 7;
@@ -109,7 +112,7 @@ namespace SaTeatar.WinUI.Korisnici
             // 
             // txtKorisnickoIme
             // 
-            this.txtKorisnickoIme.Location = new System.Drawing.Point(30, 231);
+            this.txtKorisnickoIme.Location = new System.Drawing.Point(61, 112);
             this.txtKorisnickoIme.Name = "txtKorisnickoIme";
             this.txtKorisnickoIme.Size = new System.Drawing.Size(329, 22);
             this.txtKorisnickoIme.TabIndex = 6;
@@ -118,7 +121,7 @@ namespace SaTeatar.WinUI.Korisnici
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(30, 267);
+            this.label5.Location = new System.Drawing.Point(61, 213);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 17);
             this.label5.TabIndex = 9;
@@ -126,7 +129,7 @@ namespace SaTeatar.WinUI.Korisnici
             // 
             // txtLozinka
             // 
-            this.txtLozinka.Location = new System.Drawing.Point(30, 290);
+            this.txtLozinka.Location = new System.Drawing.Point(61, 236);
             this.txtLozinka.Name = "txtLozinka";
             this.txtLozinka.PasswordChar = '*';
             this.txtLozinka.Size = new System.Drawing.Size(147, 22);
@@ -136,7 +139,7 @@ namespace SaTeatar.WinUI.Korisnici
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(212, 267);
+            this.label6.Location = new System.Drawing.Point(243, 213);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(105, 17);
             this.label6.TabIndex = 11;
@@ -144,7 +147,7 @@ namespace SaTeatar.WinUI.Korisnici
             // 
             // txtPotvrdaLozinke
             // 
-            this.txtPotvrdaLozinke.Location = new System.Drawing.Point(212, 290);
+            this.txtPotvrdaLozinke.Location = new System.Drawing.Point(243, 236);
             this.txtPotvrdaLozinke.Name = "txtPotvrdaLozinke";
             this.txtPotvrdaLozinke.PasswordChar = '*';
             this.txtPotvrdaLozinke.Size = new System.Drawing.Size(147, 22);
@@ -153,7 +156,7 @@ namespace SaTeatar.WinUI.Korisnici
             // 
             // btnSacuvaj
             // 
-            this.btnSacuvaj.Location = new System.Drawing.Point(284, 352);
+            this.btnSacuvaj.Location = new System.Drawing.Point(284, 345);
             this.btnSacuvaj.Name = "btnSacuvaj";
             this.btnSacuvaj.Size = new System.Drawing.Size(75, 23);
             this.btnSacuvaj.TabIndex = 12;
@@ -165,11 +168,43 @@ namespace SaTeatar.WinUI.Korisnici
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // chbStatus
+            // 
+            this.chbStatus.AutoSize = true;
+            this.chbStatus.Location = new System.Drawing.Point(243, 298);
+            this.chbStatus.Name = "chbStatus";
+            this.chbStatus.Size = new System.Drawing.Size(70, 21);
+            this.chbStatus.TabIndex = 13;
+            this.chbStatus.Text = "Status";
+            this.chbStatus.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(64, 278);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 17);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Uloge";
+            // 
+            // lbUloge
+            // 
+            this.lbUloge.FormattingEnabled = true;
+            this.lbUloge.ItemHeight = 16;
+            this.lbUloge.Location = new System.Drawing.Point(61, 298);
+            this.lbUloge.Name = "lbUloge";
+            this.lbUloge.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.lbUloge.Size = new System.Drawing.Size(147, 52);
+            this.lbUloge.TabIndex = 15;
+            // 
             // frmKorisniciDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 425);
+            this.ClientSize = new System.Drawing.Size(459, 425);
+            this.Controls.Add(this.lbUloge);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.chbStatus);
             this.Controls.Add(this.btnSacuvaj);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtPotvrdaLozinke);
@@ -208,5 +243,8 @@ namespace SaTeatar.WinUI.Korisnici
         private System.Windows.Forms.TextBox txtPotvrdaLozinke;
         private System.Windows.Forms.Button btnSacuvaj;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.CheckBox chbStatus;
+        private System.Windows.Forms.ListBox lbUloge;
+        private System.Windows.Forms.Label label7;
     }
 }

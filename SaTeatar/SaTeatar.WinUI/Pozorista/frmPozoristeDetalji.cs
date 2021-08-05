@@ -151,7 +151,9 @@ namespace SaTeatar.WinUI.Pozorista
                 if (txtNaziv.Text.Length < 3)
                 {
                     errorProvider.SetError(txtNaziv, Properties.Resources.Validation_MinLength);
+                    e.Cancel = true;
                 }
+                else
                 errorProvider.SetError(txtNaziv, null);
             }
         }
@@ -168,7 +170,9 @@ namespace SaTeatar.WinUI.Pozorista
                 if (txtAdresa.Text.Length < 15)
                 {
                     errorProvider.SetError(txtAdresa, "Adresa mora sadrzavati bar 15 karaktera!");
+                    e.Cancel = true;
                 }
+                else
                 errorProvider.SetError(txtAdresa, null);
             }
         }

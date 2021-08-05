@@ -17,7 +17,12 @@ namespace SaTeatar.WinUI.Korisnici
     public partial class frmKorisniciDetalji : Form
     {
         private readonly APIService _korisniciService = new APIService("korisnici");
+        private readonly APIService _ulogeService = new APIService("uloge");
+        private readonly APIService _korisniciUlogeService = new APIService("korisniciuloge");
         private int? _id = null;
+        List<mUloge> sveuloge =  new List<mUloge>();
+
+
         public frmKorisniciDetalji(int? korisnikId = null)
         {
             InitializeComponent();
@@ -27,14 +32,36 @@ namespace SaTeatar.WinUI.Korisnici
 
         private async void frmKorisniciDetalji_Load(object sender, EventArgs e)
         {
+            var sveulogem = await _ulogeService.Get<List<mUloge>>(null);
+            //YourList.GroupBy(i => i.Id).Select(i => i.FirstOrDefault()).ToList();
+            IEnumerable<mUloge> sve = sveulogem.GroupBy(i => i.UlogaId).Select(i => i.FirstOrDefault()).ToList();
+            sveuloge = sve.ToList();
+            lbUloge.DisplayMember = "Naziv";
+            lbUloge.ValueMember = "UlogaId";
+            lbUloge.DataSource = sveuloge;
+            lbUloge.SetSelected(0, false);
+
             if (_id.HasValue)
             {
                 var korisnik = await _korisniciService.GetById<mKorisnici>(_id);
-
                 txtIme.Text = korisnik.Ime;
                 txtPrezime.Text = korisnik.Prezime;
                 txtEmail.Text = korisnik.Email;
                 txtKorisnickoIme.Text = korisnik.KorisnickoIme;
+                chbStatus.Checked = korisnik.Status;
+                var search = new rUlogeSearch() { KorisnikId = (int)_id };
+                var korisnikUloge = await _ulogeService.Get<List<mUloge>>(search);
+
+                for (int i = 0; i < korisnikUloge.Count; i++)
+                {
+                    for (int j = 0; j < sveuloge.Count; j++)
+                    {
+                        if (korisnikUloge[i].UlogaId==sveuloge[j].UlogaId)
+                        {
+                            lbUloge.SetSelected(j, true);
+                        }
+                    }
+                }
             }
         }
 
@@ -42,6 +69,7 @@ namespace SaTeatar.WinUI.Korisnici
         {
             if (this.ValidateChildren())
             {
+
                 if (_id.HasValue)
                 {
                     var request = new rKorisniciUpdate()
@@ -51,9 +79,31 @@ namespace SaTeatar.WinUI.Korisnici
                         Email = txtEmail.Text,
                         KorisnickoIme = txtKorisnickoIme.Text,
                         Lozinka = txtLozinka.Text,
-                        LozinkaPotvrda = txtPotvrdaLozinke.Text
+                        LozinkaPotvrda = txtPotvrdaLozinke.Text,
+                        Status = chbStatus.Checked
                     };
+
                     await _korisniciService.Update<mKorisnici>(_id, request);
+
+
+                    //brisanje postojecih uloga ukoliko je trenutni korisnik admin
+                    var search = new rKorisniciUlogeSearch() { KorisnikId = (int)_id };
+                        List<mKorisniciUloge> ulogekorisnika = await _korisniciUlogeService.Get<List<mKorisniciUloge>>(search);
+                        foreach (var uk in ulogekorisnika)
+                        {
+                            await _korisniciUlogeService.Delete<mKorisniciUloge>(uk.KorisnikUlogaId);
+                        }
+
+                        //dodaj nove
+                        foreach (mUloge uloga in lbUloge.SelectedItems)
+                        {
+                            await _korisniciUlogeService.Insert<mKorisniciUloge>(new mKorisniciUloge() { UlogaId = uloga.UlogaId, KorisnikId = (int)_id, DatumIzmjene = DateTime.Now });
+                        }
+                    
+
+                    MessageBox.Show("Uspjesno izmijenjen korisnik!");
+                    this.Close();
+
                 }
                 else
                 {
@@ -64,13 +114,22 @@ namespace SaTeatar.WinUI.Korisnici
                         Email = txtEmail.Text,
                         KorisnickoIme = txtKorisnickoIme.Text,
                         Lozinka = txtLozinka.Text,
-                        LozinkaPotvrda = txtPotvrdaLozinke.Text
+                        LozinkaPotvrda = txtPotvrdaLozinke.Text,
+                        Status = chbStatus.Checked
                     };
 
-                    await _korisniciService.Insert<mKorisnici>(request);
+                    var korisnik = await _korisniciService.Insert<mKorisnici>(request);
 
+
+                    foreach (mUloge uloga in lbUloge.SelectedItems)
+                        {
+                            await _korisniciUlogeService.Insert<mKorisniciUloge>(new mKorisniciUloge() { UlogaId = uloga.UlogaId, KorisnikId = korisnik.KorisnikId, DatumIzmjene = DateTime.Now });
+                        }
+                    
+
+                    MessageBox.Show("Uspjesno dodan korisnik!");
+                    this.Close();
                 }
-                MessageBox.Show("Operacija uspjesna!");
             }
 
         }
@@ -83,10 +142,10 @@ namespace SaTeatar.WinUI.Korisnici
                 e.Cancel = true;
             }
             else if (txtIme.Text.Length < 3)
-                {
-                    errorProvider.SetError(txtIme, Properties.Resources.Validation_MinLength);
-                    e.Cancel = true;
-                }
+            {
+                errorProvider.SetError(txtIme, Properties.Resources.Validation_MinLength);
+                e.Cancel = true;
+            }
             else
             {
                 errorProvider.SetError(txtIme, null);
@@ -102,16 +161,14 @@ namespace SaTeatar.WinUI.Korisnici
                 e.Cancel = true;
             }
             else if (txtPrezime.Text.Length < 3)
-                {
-                    errorProvider.SetError(txtPrezime, Properties.Resources.Validation_MinLength);
-                    e.Cancel = true;
-
-                }
-                else
-                {
-                    errorProvider.SetError(txtPrezime, null);
-
-                }
+            {
+                errorProvider.SetError(txtPrezime, Properties.Resources.Validation_MinLength);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtPrezime, null);
+            }
             
         }
 
@@ -123,14 +180,14 @@ namespace SaTeatar.WinUI.Korisnici
                 e.Cancel = true;
             }
             else if (!Regex.IsMatch(txtEmail.Text, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
-                {
-                    errorProvider.SetError(txtEmail, "Pogresan email format!");
-                }
-                else
-                {
-                    errorProvider.SetError(txtEmail, null);
-
-                }
+            {
+                errorProvider.SetError(txtEmail, "Pogresan email format!");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(txtEmail, null);
+            }
             
         }
 
@@ -142,10 +199,12 @@ namespace SaTeatar.WinUI.Korisnici
                 e.Cancel = true;
             }
             else if (txtKorisnickoIme.Text.Length < 3)
-                {
-                    errorProvider.SetError(txtKorisnickoIme, Properties.Resources.Validation_MinLength);
-                }
-                else
+            {
+                errorProvider.SetError(txtKorisnickoIme, Properties.Resources.Validation_MinLength);
+            }
+            else
+            {
+                if (!_id.HasValue)
                 {
                     rKorisniciSearch search = new rKorisniciSearch() { KorisnickoIme = txtKorisnickoIme.Text };
                     List<mKorisnici> korisnici = await _korisniciService.Get<List<mKorisnici>>(search);
@@ -158,6 +217,11 @@ namespace SaTeatar.WinUI.Korisnici
                     {
                         errorProvider.SetError(txtKorisnickoIme, null);
                     }
+                }
+                else
+                {
+                    errorProvider.SetError(txtKorisnickoIme, null);
+                }
             }
         }
 
@@ -170,43 +234,51 @@ namespace SaTeatar.WinUI.Korisnici
             }
             else
             {
-                var hasNumber = new Regex(@"[0-9]+");
-                var hasUpperChar = new Regex(@"[A-Z]+");
-                var hasLowerChar = new Regex(@"[a-z]+");
-                var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
+                if (!_id.HasValue)
+                {
+                    var hasNumber = new Regex(@"[0-9]+");
+                    var hasUpperChar = new Regex(@"[A-Z]+");
+                    var hasLowerChar = new Regex(@"[a-z]+");
+                    var hasSymbols = new Regex(@"[!@#$%^&*()_+=\[{\]};:<>|./?,-]");
 
-                if (!hasLowerChar.IsMatch(txtLozinka.Text))
-                {
-                    errorProvider.SetError(txtLozinka, "Lozinka treba sadrzavati bar jedno malo slovo!");
-                    e.Cancel = true;
-                }
-                else if (!hasUpperChar.IsMatch(txtLozinka.Text))
-                {
-                    errorProvider.SetError(txtLozinka, "Lozinka treba sadrzavati bar jedno veliko slovo!");
-                    e.Cancel = true;
-                }
-                else if (txtLozinka.Text.Length<8)
-                {
-                    errorProvider.SetError(txtLozinka, "Lozinka treba sadrzavati bar 8 karaktera!");
-                    e.Cancel = true;
+                    if (!hasLowerChar.IsMatch(txtLozinka.Text))
+                    {
+                        errorProvider.SetError(txtLozinka, "Lozinka treba sadrzavati bar jedno malo slovo!");
+                        e.Cancel = true;
+                    }
+                    else if (!hasUpperChar.IsMatch(txtLozinka.Text))
+                    {
+                        errorProvider.SetError(txtLozinka, "Lozinka treba sadrzavati bar jedno veliko slovo!");
+                        e.Cancel = true;
+                    }
+                    else if (txtLozinka.Text.Length < 8)
+                    {
+                        errorProvider.SetError(txtLozinka, "Lozinka treba sadrzavati bar 8 karaktera!");
+                        e.Cancel = true;
 
-                }
-                else if (!hasNumber.IsMatch(txtLozinka.Text))
-                {
-                    errorProvider.SetError(txtLozinka, "Lozinka treba sadrzavati bar jedan broj!");
-                    e.Cancel = true;
-                   
-                }
+                    }
+                    else if (!hasNumber.IsMatch(txtLozinka.Text))
+                    {
+                        errorProvider.SetError(txtLozinka, "Lozinka treba sadrzavati bar jedan broj!");
+                        e.Cancel = true;
 
-                else if (!hasSymbols.IsMatch(txtLozinka.Text))
-                {
-                    errorProvider.SetError(txtLozinka, "Lozinka treba sadrzavati bar jedan simbol ili specijalni karakter!");
-                    e.Cancel = true;
+                    }
+
+                    else if (!hasSymbols.IsMatch(txtLozinka.Text))
+                    {
+                        errorProvider.SetError(txtLozinka, "Lozinka treba sadrzavati bar jedan simbol ili specijalni karakter!");
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        errorProvider.SetError(txtLozinka, null);
+                    }
                 }
                 else
                 {
                     errorProvider.SetError(txtLozinka, null);
                 }
+
             }
         }
 
@@ -231,23 +303,28 @@ namespace SaTeatar.WinUI.Korisnici
             }
         }
 
-        private bool ValidateData(object data)
-        {
-            ValidationContext context = new ValidationContext(data, null, null);
-            IList<ValidationResult> errors = new List<ValidationResult>();
+        //private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        //{
 
-            if (!Validator.TryValidateObject(data, context, errors, true))
-            {
-                foreach (ValidationResult result in errors)
-                    MessageBox.Show(result.ErrorMessage);
+        //}
 
-                return false;
-            }
-            else
-            {
-                MessageBox.Show("Success!!!");
-                return true;
-            }
-        }
+        //private bool ValidateData(object data)
+        //{
+        //    ValidationContext context = new ValidationContext(data, null, null);
+        //    IList<ValidationResult> errors = new List<ValidationResult>();
+
+        //    if (!Validator.TryValidateObject(data, context, errors, true))
+        //    {
+        //        foreach (ValidationResult result in errors)
+        //            MessageBox.Show(result.ErrorMessage);
+
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Success!!!");
+        //        return true;
+        //    }
+        //}
     }
 }
