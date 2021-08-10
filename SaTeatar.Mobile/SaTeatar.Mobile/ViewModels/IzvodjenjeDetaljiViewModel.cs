@@ -37,13 +37,21 @@ namespace SaTeatar.Mobile.ViewModels
         public mIzvodjenja Izvodjenje { get; set; }
         public mIzvodjenjaZone IzvodjenjeZone { get; set; }
         public mZone Zone { get; set; }
+        public ObservableCollection<mZone> ZoneList { get; set; } = new ObservableCollection<mZone>();
 
-        static int Kljuc = 1; //Guid.NewGuid();
-        //public static int Kljuc
-        //{
-        //    get { return _kljuc; }
-        //    set { SetProperty(ref _kljuc, value); }
-        //}
+        mZone _selectedZona = null;
+        public mZone SelectedZona
+        {
+            get { return _selectedZona; }
+            set
+            {
+                SetProperty(ref _selectedZona, value);
+                if (value != null)
+                {
+                    InitCommand.Execute(null);
+                }
+            }
+        }
 
         string _kljuc;
 
@@ -75,22 +83,6 @@ namespace SaTeatar.Mobile.ViewModels
             set { SetProperty(ref _ukupnaCijena, value); }
         }
 
-        public ObservableCollection<mZone> ZoneList { get; set; } = new ObservableCollection<mZone>();
-       // public ObservableCollection<mIzvodjenjaZone> IzvodjenjaZoneList { get; set; } = new ObservableCollection<mIzvodjenjaZone>();
-
-        mZone _selectedZona = null;
-        public mZone SelectedZona
-        {
-            get { return _selectedZona; }
-            set
-            {
-                SetProperty(ref _selectedZona, value);
-                if (value != null)
-                {
-                    InitCommand.Execute(null);
-                }
-            }
-        }
 
         public ICommand PovecajKolicinuCommand { get; set; }
         public ICommand SmanjiKolicinuCommand { get; set; }
@@ -100,76 +92,17 @@ namespace SaTeatar.Mobile.ViewModels
 
         private void Naruci()
         {
-            //_kljuc = $"{Izvodjenje.IzvodjenjeId}_{IzvodjenjeZone.IzvodjenjeZonaId}";
-            //CartService.Cart.
-            //if (CartService.Cart.ContainsKey(Izvodjenje.IzvodjenjeId))
-            //{
-
-            //    CartService.Cart.Remove(Izvodjenje.IzvodjenjeId);
-            //}
-
-            //CartService.Cart.Add(Izvodjenje.IzvodjenjeId, this);
-            //Kljuc += 1;
             if (CartService.Cart.ContainsKey(_kljuc))
             {
-                //CartService.Cart.
                 CartService.Cart.Remove(_kljuc);
             }
 
             CartService.Cart.Add(_kljuc, this);
-            Kljuc += 1;
         }
 
-        //public async void PromjenaZone()
-        //{
-        //    if (SelectedZona != null)
-        //    {
-        //        //IzvodjenjeZone = new mIzvodjenjaZone();
-        //        //Cijena = 0;
-        //        //Popust = 0;
-        //        Kolicina = 0;
-        //        UkupnaCijena = 0;
-        //        var search = new rIzvodjenjaZoneSearch();
-        //        search.ZonaId = SelectedZona.ZonaId;
-        //        search.IzvodjenjeId = Izvodjenje.IzvodjenjeId;
-
-        //        var ilist = await _izvodjenjaZoneService.Get<List<mIzvodjenjaZone>>(search); //dobicu samo 1 obj
-
-        //        IzvodjenjeZone = new mIzvodjenjaZone()
-        //        {
-        //            IzvodjenjeZonaId =  ilist[0].IzvodjenjeZonaId,
-        //            ZonaId = ilist[0].ZonaId,
-        //            Cijena = ilist[0].Cijena,
-        //            IzvodjenjeId = ilist[0].IzvodjenjeId,
-        //            Popust = ilist[0].Popust
-        //        };
-
-        //        // IzvodjenjaZoneList.Clear(); //pozivace se vise puta?
-
-        //        if (IzvodjenjeZone.Popust != null)
-        //        {
-        //            Popust = (decimal)IzvodjenjeZone.Popust;
-        //            Cijena = IzvodjenjeZone.Cijena * Popust / 100; ////sredi popust
-        //        }
-        //        else
-        //        {
-        //            Cijena = IzvodjenjeZone.Cijena;
-        //        }
-
-        //    }
-        //    else
-        //    {
-        //        Cijena = 0;
-        //        Popust = 0;
-        //        Kolicina = 0;
-        //        UkupnaCijena = 0;
-        //    }
-        //}
 
         public async Task Init()
         {
-
-
             if (ZoneList.Count == 0)
             {
                 var search = new rZoneSearch() { PozoristeId = Izvodjenje.PozoristeId };
@@ -183,10 +116,6 @@ namespace SaTeatar.Mobile.ViewModels
 
             if (SelectedZona != null)
             {
-                //IzvodjenjeZone = new mIzvodjenjaZone();
-                //Cijena = 0;
-                //Popust = 0;
-
                 foreach (var item in CartService.Cart.Values)
                 {
                     if (item.Izvodjenje.IzvodjenjeId==Izvodjenje.IzvodjenjeId && item.IzvodjenjeZone.ZonaId==SelectedZona.ZonaId)
@@ -201,14 +130,11 @@ namespace SaTeatar.Mobile.ViewModels
                     }
                 }
 
-                //Kolicina = 0;
-                //UkupnaCijena = 0;
                 var search = new rIzvodjenjaZoneSearch();
                 search.ZonaId = SelectedZona.ZonaId;
                 search.IzvodjenjeId = Izvodjenje.IzvodjenjeId;
 
                 var ilist = await _izvodjenjaZoneService.Get<List<mIzvodjenjaZone>>(search); //dobicu samo 1 obj
-
 
                 IzvodjenjeZone = new mIzvodjenjaZone()
                 {
@@ -219,9 +145,7 @@ namespace SaTeatar.Mobile.ViewModels
                     Popust = ilist[0].Popust
                 };
 
-                // IzvodjenjaZoneList.Clear(); //pozivace se vise puta?
                 _kljuc = $"{Izvodjenje.IzvodjenjeId}_{IzvodjenjeZone.ZonaId}";
-
 
                 if (IzvodjenjeZone.Popust != null)
                 {
@@ -234,13 +158,13 @@ namespace SaTeatar.Mobile.ViewModels
                 }
 
             }
-            else
-            {
-                Cijena = 0;
-                Popust = 0;
-                Kolicina = 0;
-                UkupnaCijena = 0;
-            }
+            //else
+            //{
+            //    Cijena = 0;
+            //    Popust = 0;
+            //    Kolicina = 0;
+            //    UkupnaCijena = 0;
+            //}
 
 
         }

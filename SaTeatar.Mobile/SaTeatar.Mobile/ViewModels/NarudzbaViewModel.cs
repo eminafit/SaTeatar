@@ -76,6 +76,9 @@ namespace SaTeatar.Mobile.ViewModels
                     await _karteService.Insert<mKarta>(karta);
                 }
             }
+
+            CartService.Cart.Clear();
+
         }
 
 

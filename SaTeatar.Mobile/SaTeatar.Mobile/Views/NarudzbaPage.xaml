@@ -75,7 +75,7 @@
                 </Label>
                 <Button Text="NASTAVI KUPOVINU" Clicked="Button_Clicked_2"></Button>
 
-                <Button Text="REZERVISI KARTE" Command="{Binding RezervisiCommand}"></Button>
+                <Button Text="REZERVISI KARTE" Command="{Binding RezervisiCommand}" Clicked="Button_Clicked_3"></Button>
             </StackLayout>
             
         </StackLayout>

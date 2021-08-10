@@ -42,5 +42,10 @@ namespace SaTeatar.Mobile.Views
         {
             Navigation.PushAsync(new IzvodjenjaPage());
         }
+
+        private void Button_Clicked_3(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new IzvodjenjaPage());
+        }
     }
 }
