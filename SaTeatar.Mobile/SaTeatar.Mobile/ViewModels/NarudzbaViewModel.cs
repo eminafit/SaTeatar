@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SaTeatar.Model.Models;
+using SaTeatar.Model.Requests;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -10,6 +12,9 @@ namespace SaTeatar.Mobile.ViewModels
 {
     class NarudzbaViewModel : BaseViewModel
     {
+        private readonly APIService _karteService = new APIService("karte");
+        private readonly APIService _kupciService = new APIService("kupci");
+
         public ObservableCollection<IzvodjenjeDetaljiViewModel> NarudzbaList { get; set; } = new ObservableCollection<IzvodjenjeDetaljiViewModel>();
 
         public NarudzbaViewModel()
@@ -51,6 +56,26 @@ namespace SaTeatar.Mobile.ViewModels
         async Task Rezervisi()
         {
             //dodaj karte
+            var searchId = new rKupciSearch { KorisnickoIme = APIService.Username };
+            var kupci = await _kupciService.Get<List<mKupci>>(searchId);
+            var idKupca = kupci[0].KupacId;
+
+
+            foreach (var cartValue in CartService.Cart.Values)
+            {
+                for (int i = 0; i < cartValue.Kolicina; i++)
+                {
+                    var karta = new rKartaInsert()
+                    {
+                        KupacId=idKupca,
+                        IzvodjenjeId=cartValue.Izvodjenje.IzvodjenjeId,
+                        IzvodjenjeZonaId=cartValue.IzvodjenjeZone.IzvodjenjeZonaId,
+                        Placeno=false,
+                        Sifra="xyc"                   
+                    };
+                    await _karteService.Insert<mKarta>(karta);
+                }
+            }
         }
 
 

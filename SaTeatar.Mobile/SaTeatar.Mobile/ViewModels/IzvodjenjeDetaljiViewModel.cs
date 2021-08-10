@@ -38,6 +38,15 @@ namespace SaTeatar.Mobile.ViewModels
         public mIzvodjenjaZone IzvodjenjeZone { get; set; }
         public mZone Zone { get; set; }
 
+        static int Kljuc = 1; //Guid.NewGuid();
+        //public static int Kljuc
+        //{
+        //    get { return _kljuc; }
+        //    set { SetProperty(ref _kljuc, value); }
+        //}
+
+        string _kljuc;
+
         int _kolicina = 0;
         public int Kolicina
         {
@@ -67,7 +76,7 @@ namespace SaTeatar.Mobile.ViewModels
         }
 
         public ObservableCollection<mZone> ZoneList { get; set; } = new ObservableCollection<mZone>();
-        public ObservableCollection<mIzvodjenjaZone> IzvodjenjaZoneList { get; set; } = new ObservableCollection<mIzvodjenjaZone>();
+       // public ObservableCollection<mIzvodjenjaZone> IzvodjenjaZoneList { get; set; } = new ObservableCollection<mIzvodjenjaZone>();
 
         mZone _selectedZona = null;
         public mZone SelectedZona
@@ -91,16 +100,76 @@ namespace SaTeatar.Mobile.ViewModels
 
         private void Naruci()
         {
-            if (CartService.Cart.ContainsKey(Izvodjenje.IzvodjenjeId))
+            //_kljuc = $"{Izvodjenje.IzvodjenjeId}_{IzvodjenjeZone.IzvodjenjeZonaId}";
+            //CartService.Cart.
+            //if (CartService.Cart.ContainsKey(Izvodjenje.IzvodjenjeId))
+            //{
+
+            //    CartService.Cart.Remove(Izvodjenje.IzvodjenjeId);
+            //}
+
+            //CartService.Cart.Add(Izvodjenje.IzvodjenjeId, this);
+            //Kljuc += 1;
+            if (CartService.Cart.ContainsKey(_kljuc))
             {
-                CartService.Cart.Remove(Izvodjenje.IzvodjenjeId);
+                //CartService.Cart.
+                CartService.Cart.Remove(_kljuc);
             }
 
-            CartService.Cart.Add(Izvodjenje.IzvodjenjeId, this);            
+            CartService.Cart.Add(_kljuc, this);
+            Kljuc += 1;
         }
+
+        //public async void PromjenaZone()
+        //{
+        //    if (SelectedZona != null)
+        //    {
+        //        //IzvodjenjeZone = new mIzvodjenjaZone();
+        //        //Cijena = 0;
+        //        //Popust = 0;
+        //        Kolicina = 0;
+        //        UkupnaCijena = 0;
+        //        var search = new rIzvodjenjaZoneSearch();
+        //        search.ZonaId = SelectedZona.ZonaId;
+        //        search.IzvodjenjeId = Izvodjenje.IzvodjenjeId;
+
+        //        var ilist = await _izvodjenjaZoneService.Get<List<mIzvodjenjaZone>>(search); //dobicu samo 1 obj
+
+        //        IzvodjenjeZone = new mIzvodjenjaZone()
+        //        {
+        //            IzvodjenjeZonaId =  ilist[0].IzvodjenjeZonaId,
+        //            ZonaId = ilist[0].ZonaId,
+        //            Cijena = ilist[0].Cijena,
+        //            IzvodjenjeId = ilist[0].IzvodjenjeId,
+        //            Popust = ilist[0].Popust
+        //        };
+
+        //        // IzvodjenjaZoneList.Clear(); //pozivace se vise puta?
+
+        //        if (IzvodjenjeZone.Popust != null)
+        //        {
+        //            Popust = (decimal)IzvodjenjeZone.Popust;
+        //            Cijena = IzvodjenjeZone.Cijena * Popust / 100; ////sredi popust
+        //        }
+        //        else
+        //        {
+        //            Cijena = IzvodjenjeZone.Cijena;
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        Cijena = 0;
+        //        Popust = 0;
+        //        Kolicina = 0;
+        //        UkupnaCijena = 0;
+        //    }
+        //}
 
         public async Task Init()
         {
+
+
             if (ZoneList.Count == 0)
             {
                 var search = new rZoneSearch() { PozoristeId = Izvodjenje.PozoristeId };
@@ -114,30 +183,66 @@ namespace SaTeatar.Mobile.ViewModels
 
             if (SelectedZona != null)
             {
+                //IzvodjenjeZone = new mIzvodjenjaZone();
+                //Cijena = 0;
+                //Popust = 0;
+
+                foreach (var item in CartService.Cart.Values)
+                {
+                    if (item.Izvodjenje.IzvodjenjeId==Izvodjenje.IzvodjenjeId && item.IzvodjenjeZone.ZonaId==SelectedZona.ZonaId)
+                    {
+                        Kolicina = item.Kolicina;
+                        UkupnaCijena = item.UkupnaCijena;
+                    }
+                    else
+                    {
+                        Kolicina = 0;
+                        UkupnaCijena = 0;
+                    }
+                }
+
+                //Kolicina = 0;
+                //UkupnaCijena = 0;
                 var search = new rIzvodjenjaZoneSearch();
                 search.ZonaId = SelectedZona.ZonaId;
                 search.IzvodjenjeId = Izvodjenje.IzvodjenjeId;
 
-                var ilist = await _izvodjenjaZoneService.Get<IEnumerable<mIzvodjenjaZone>>(search);
+                var ilist = await _izvodjenjaZoneService.Get<List<mIzvodjenjaZone>>(search); //dobicu samo 1 obj
 
-                IzvodjenjaZoneList.Clear(); //pozivace se vise puta?
-                Cijena = 0;
-                Popust = 0;
-                foreach (var i in ilist)
+
+                IzvodjenjeZone = new mIzvodjenjaZone()
                 {
-                    IzvodjenjaZoneList.Add(i);
-                }
-                if (IzvodjenjaZoneList[0].Popust!=null)
+                    IzvodjenjeZonaId = ilist[0].IzvodjenjeZonaId,
+                    ZonaId = ilist[0].ZonaId,
+                    Cijena = ilist[0].Cijena,
+                    IzvodjenjeId = ilist[0].IzvodjenjeId,
+                    Popust = ilist[0].Popust
+                };
+
+                // IzvodjenjaZoneList.Clear(); //pozivace se vise puta?
+                _kljuc = $"{Izvodjenje.IzvodjenjeId}_{IzvodjenjeZone.ZonaId}";
+
+
+                if (IzvodjenjeZone.Popust != null)
                 {
-                    Popust = (decimal)IzvodjenjaZoneList[0].Popust;
-                    Cijena = IzvodjenjaZoneList[0].Cijena * Popust/100; ////sredi popust
+                    Popust = (decimal)IzvodjenjeZone.Popust;
+                    Cijena = IzvodjenjeZone.Cijena * Popust / 100; ////sredi popust
                 }
                 else
                 {
-                    Cijena = IzvodjenjaZoneList[0].Cijena;
+                    Cijena = IzvodjenjeZone.Cijena;
                 }
 
             }
+            else
+            {
+                Cijena = 0;
+                Popust = 0;
+                Kolicina = 0;
+                UkupnaCijena = 0;
+            }
+
+
         }
 
     }

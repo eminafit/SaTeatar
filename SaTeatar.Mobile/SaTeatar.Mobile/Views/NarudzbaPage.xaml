@@ -33,6 +33,12 @@
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemTextStyle}"
                                        FontSize="16"/>
+                                    
+                                    <Label Text="IzvodjenjeZonaId"></Label>
+                                    <Label Text="{Binding IzvodjenjeZone.IzvodjenjeZonaId}"></Label>
+
+                                    <Label Text="{Binding IzvodjenjeZone.Cijena}"></Label>
+                                    
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="Kolicina: "></Label>
                                         <Button Text="-" Command="{Binding SmanjiKolicinuCommand}" Clicked="Button_Clicked_1"></Button>
@@ -67,8 +73,9 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+                <Button Text="NASTAVI KUPOVINU" Clicked="Button_Clicked_2"></Button>
 
-                <Button Text="REZERVISI KARTE"></Button>
+                <Button Text="REZERVISI KARTE" Command="{Binding RezervisiCommand}"></Button>
             </StackLayout>
             
         </StackLayout>

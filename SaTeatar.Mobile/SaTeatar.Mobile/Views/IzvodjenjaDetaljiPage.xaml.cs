@@ -15,6 +15,7 @@ namespace SaTeatar.Mobile.Views
     public partial class IzvodjenjaDetaljiPage : ContentPage
     {
         private IzvodjenjeDetaljiViewModel model = null;
+        private mIzvodjenja _izvodjenje = null;
         public IzvodjenjaDetaljiPage(mIzvodjenja izvodjenje)
         {
             InitializeComponent();
@@ -22,6 +23,7 @@ namespace SaTeatar.Mobile.Views
             {
                 Izvodjenje = izvodjenje
             };
+            _izvodjenje = izvodjenje;
         }
 
         protected async override void OnAppearing()
@@ -30,5 +32,35 @@ namespace SaTeatar.Mobile.Views
             await model.Init();
 
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new NarudzbaPage());
+        }
+
+        //private void Picker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        //{
+        //}
+
+        //private async void Picker_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    var novimodel = new IzvodjenjeDetaljiViewModel()
+        //    {
+        //        Izvodjenje = new mIzvodjenja()
+        //        {
+        //            IzvodjenjeId = _izvodjenje.IzvodjenjeId,
+        //            PozoristeId = _izvodjenje.PozoristeId,
+        //            PredstavaId = _izvodjenje.PredstavaId,
+        //            PozoristeNaziv = _izvodjenje.PozoristeNaziv,
+        //            PredstavaNaziv = _izvodjenje.PredstavaNaziv
+        //        },
+        //        IzvodjenjeZone = new mIzvodjenjaZone()
+
+        //    };
+        //    await novimodel.Init();
+
+        //    novimodel.PromjenaZone();
+
+        //}
     }
 }

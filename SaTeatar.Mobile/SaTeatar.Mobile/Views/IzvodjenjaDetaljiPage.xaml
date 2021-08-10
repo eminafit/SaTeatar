@@ -22,7 +22,8 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Zona: "></Label>
-                    <Picker ItemsSource="{Binding ZoneList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedZona}"></Picker>
+                    <Picker ItemsSource="{Binding ZoneList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedZona}" ></Picker>
+                    <!--SelectedIndexChanged="Picker_SelectedIndexChanged-->
                 </StackLayout>
 
                 <Label>
@@ -55,7 +56,7 @@
 
             </StackLayout>
             <StackLayout Grid.Row="2" Grid.Column="0">
-                <Button Command="{Binding NaruciCommand}" Text="DODAJ U KORPU"></Button>
+                <Button Command="{Binding NaruciCommand}" Text="DODAJ U KORPU" Clicked="Button_Clicked"></Button>
             </StackLayout>
 
             <!--<StackLayout Grid.Row="1" Grid.Column="0">

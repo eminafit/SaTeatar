@@ -7,6 +7,6 @@ namespace SaTeatar.Mobile
 {
     public static class CartService
     {
-        public static Dictionary<int, IzvodjenjeDetaljiViewModel> Cart { get; set; } = new Dictionary<int, IzvodjenjeDetaljiViewModel>(); 
+        public static Dictionary<string, IzvodjenjeDetaljiViewModel> Cart { get; set; } = new Dictionary<string, IzvodjenjeDetaljiViewModel>(); 
     }
 }

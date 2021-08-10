@@ -14,6 +14,9 @@ namespace SaTeatar.WebAPI.Mapping
         public SaTeatarProfile()
         {
             //CreateMap<izvor, destinacija>
+            CreateMap<Karte, mKarta>();
+            CreateMap<rKartaInsert, Karte>();
+            CreateMap<rKartaUpdate, Karte>();
 
             CreateMap<Korisnici, mKorisnici>();
             CreateMap<Uloge, mUloge>();
