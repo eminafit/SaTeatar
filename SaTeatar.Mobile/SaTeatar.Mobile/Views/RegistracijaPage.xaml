@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels" 
+             x:Class="SaTeatar.Mobile.Views.RegistracijaPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:KupciViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Registracija korisnika"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <!--<ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>-->
+            <StackLayout Orientation="Vertical">
+                <Label Text="Ime:" />
+                <Entry Text="{Binding KupacInsert.Ime}"></Entry>
+                <Label Text="Prezime: "/>
+                <Entry Text="{Binding KupacInsert.Prezime}"></Entry>
+                <Label Text="Email:"/>
+                <Entry Text="{Binding KupacInsert.Email}"></Entry>
+                <Label Text="Korisnicko ime:"/>
+                <Entry Text="{Binding KupacInsert.KorisnickoIme}"></Entry>
+                <Label Text="Lozinka:"/>
+                <Entry Text="{Binding KupacInsert.Lozinka}"></Entry>
+                <Label Text="Potvrda lozinke:"/>
+                <Entry Text="{Binding KupacInsert.LozinkaPotvrda}"></Entry>
+                <Button Command="{Binding RegistrujSeCommand}" Text="Registrujte se"></Button>
+                <Label IsVisible="{Binding IsBusy}" Text="Registracija u toku, pricekajte..."></Label>
+            </StackLayout>
+                        <!--</ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+            
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

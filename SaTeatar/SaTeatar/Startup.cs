@@ -81,6 +81,7 @@ namespace SaTeatar
             services.AddScoped<IVrsteDjelatnikaService, VrsteDjelatnikaService>();
             services.AddScoped<IUlogeService, UlogeService>();
             services.AddScoped<IKorisniciUlogeService, KorisniciUlogeService>();
+            services.AddScoped<IKupciService, KupciService>();
 
         }
 
@@ -102,7 +103,7 @@ namespace SaTeatar
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

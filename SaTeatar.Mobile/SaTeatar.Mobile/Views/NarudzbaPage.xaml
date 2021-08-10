@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels"
+             x:Class="SaTeatar.Mobile.Views.NarudzbaPage">
+    <ContentPage.BindingContext>
+        <viewModels:NarudzbaViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Narudzba!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding NarudzbaList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Izvodjenje.IzvodjenjeId}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
+                                    <Label Text="{Binding Izvodjenje.PredstavaNaziv}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
+                                    <Label Text="{Binding Izvodjenje.PozoristeNaziv}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
+                                    <Label Text="{Binding Izvodjenje.DatumVrijeme}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Kolicina: "></Label>
+                                        <Button Text="-" Command="{Binding SmanjiKolicinuCommand}" Clicked="Button_Clicked_1"></Button>
+                                        <Label Text="{Binding Kolicina}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
+                                        <Button Text="+" Command="{Binding PovecajKolicinuCommand}" Clicked="Button_Clicked"></Button>
+                                    </StackLayout>
+
+                                    
+                                    <Label Text="{Binding UkupnaCijena}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <StackLayout>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Ukupan iznos: "></Span>
+                            <Span Text="{Binding UkupniIznos}"></Span>
+                            <Span Text=" KM"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Button Text="REZERVISI KARTE"></Button>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

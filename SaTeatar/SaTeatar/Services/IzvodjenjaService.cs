@@ -31,5 +31,60 @@ namespace SaTeatar.WebAPI.Services
         //    return rez;
         //    // return base.Get(search);    
         //}
+
+        public override IList<mIzvodjenja> Get(rIzvodjenjaSearch search)
+        {
+            if (search.naziviZaXamarin) 
+            {
+
+                var upit = _context.Izvodjenja.AsQueryable();
+
+                //if (search.NaDan!=default(DateTime))
+                //{
+                //    upit = upit.Where(x => x.DatumVrijeme.Date == search.NaDan.Date);
+                //}
+
+                if (search.TipPredstaveId != 0)
+                {
+                    upit = upit.Where(x => x.Predstava.TipPredstaveId == search.TipPredstaveId);
+                }
+                var izvodjenja = upit.ToList();
+                var mizvodjenja = _mapper.Map<List<mIzvodjenja>>(izvodjenja);
+                var predstave = _context.Predstave.ToList();
+                var pozoriste = _context.Pozorista.ToList();
+
+                //imam problem sa json deserijalizacijom ako radim klasicni query nad bazom sa includanjem pozorista i predstave
+
+                foreach (var mi in mizvodjenja)
+                {
+                    foreach (var p in predstave)
+                    {
+                        if (mi.PredstavaId == p.PredstavaId)
+                        {
+                            mi.PredstavaNaziv = p.Naziv;
+                            mi.PredstavaSlika = p.Slika;
+                        }
+                    }
+                }
+
+                foreach (var mi in mizvodjenja)
+                {
+                    foreach (var p in pozoriste)
+                    {
+                        if (mi.PozoristeId == p.PozoristeId)
+                        {
+                            mi.PozoristeNaziv = p.Naziv;
+                        }
+                    }
+                }
+
+
+
+                return mizvodjenja;
+            }
+
+            return base.Get(search);
+
+        }
     }
 }

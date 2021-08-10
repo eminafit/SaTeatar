@@ -16,10 +16,12 @@ namespace SaTeatar.Model.Models
         public int IzvodjenjeId { get; set; }
         public int PredstavaId { get; set; }
         public string PredstavaNaziv { get; set; }
-        //public string PredstavaNaziv => $"{Predstava.Naziv}";
+     //   public string SetPredstavaNaziv => $"{Predstava.Naziv}";
         public int PozoristeId { get; set; }
         public string PozoristeNaziv { get; set; }
-        //public string PozoristeNaziv => $"{Pozoriste.Naziv}";
+        //  public string SetPozoristeNaziv => $"{Pozoriste.Naziv}";
+        public byte[] PredstavaSlika { get; set; }
+
         public int KorisnikId { get; set; }
         public string KorisnikKorisnickoIme { get; set; }
         //public string KorisnikImePrezime => $"{Korisnik.Ime}+ ' ' + {Korisnik.Prezime";

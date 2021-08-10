@@ -25,7 +25,7 @@ namespace SaTeatar.WinUI.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:5001")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:54698")]
         public string APIUrl {
             get {
                 return ((string)(this["APIUrl"]));

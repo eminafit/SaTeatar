@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels"
+             x:Class="SaTeatar.Mobile.Views.IzvodjenjaDetaljiPage">
+    <ContentPage.BindingContext>
+        <viewModels:IzvodjenjeDetaljiViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Row="0" Grid.Column="0">
+                <Label Text="{Binding Izvodjenje.PredstavaNaziv}"></Label>
+                <Label Text="{Binding Izvodjenje.PozoristeNaziv}"></Label>
+                <Label Text="{Binding Izvodjenje.DatumVrijeme}"></Label>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Zona: "></Label>
+                    <Picker ItemsSource="{Binding ZoneList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedZona}"></Picker>
+                </StackLayout>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Cijena: "/>
+                            <Span Text="{Binding Cijena}"/>
+                            <Span Text=" KM"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Kolicina: "></Label>
+                    <Button Text="-" Command="{Binding SmanjiKolicinuCommand}"></Button>
+                    <Entry Text="{Binding Kolicina}" Keyboard="Numeric"></Entry>
+                    <Button Text="+" Command="{Binding PovecajKolicinuCommand}"></Button>
+                </StackLayout>
+               
+                    <Label Padding="10">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Ukupno: "/>
+                                <Span Text="{Binding UkupnaCijena}"/>
+                                <Span Text=" KM"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+
+            </StackLayout>
+            <StackLayout Grid.Row="2" Grid.Column="0">
+                <Button Command="{Binding NaruciCommand}" Text="DODAJ U KORPU"></Button>
+            </StackLayout>
+
+            <!--<StackLayout Grid.Row="1" Grid.Column="0">
+                <Image Source="cart.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NaruciCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>-->
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

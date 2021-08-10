@@ -17,7 +17,9 @@ namespace SaTeatar.Mobile
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//LoginPage");
+            await Navigation.PushAsync(new Login());
+            //await Shell.Current.GoToAsync("//LoginPage");
+            //await Shell.Current.GoToAsync("//Login");
         }
     }
 }

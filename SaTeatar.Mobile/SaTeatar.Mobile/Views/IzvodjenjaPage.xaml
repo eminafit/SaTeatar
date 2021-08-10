@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels" 
+             xmlns:local="clr-namespace:SaTeatar.Mobile.Converters"
+             x:Class="SaTeatar.Mobile.Views.IzvodjenjaPage">
+    <ContentPage.BindingContext>
+        <viewModels:IzvodjenjaViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Izvodjenja"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Picker ItemsSource="{Binding TipoviPredstavaList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedTipProizvoda}"></Picker>
+            <ListView ItemsSource="{Binding IzvodjenjaList}" ItemSelected="ListView_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <StackLayout>
+                                    <Image Source="{Binding PredstavaSlika, Converter={StaticResource imgConv}} "></Image>
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding IzvodjenjeId}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
+                                    <Label Text="{Binding PredstavaId}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
+                                    <Label Text="{Binding PozoristeId}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
+                                    <Label Text="{Binding PredstavaNaziv}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
+                                    <Label Text="{Binding PozoristeNaziv}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
+                                    <Label Text="{Binding DatumVrijeme}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16"/>
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

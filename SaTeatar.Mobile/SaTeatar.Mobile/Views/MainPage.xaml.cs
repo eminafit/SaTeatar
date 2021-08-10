@@ -10,13 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace SaTeatar.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Login : ContentPage
+    public partial class MainPage : ContentPage
     {
-        public Login()
+        public MainPage()
         {
             InitializeComponent();
         }
-    }
 
-    
+    }
 }

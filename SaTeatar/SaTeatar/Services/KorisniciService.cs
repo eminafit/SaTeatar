@@ -12,6 +12,7 @@ using SaTeatar.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SaTeatar.Exceptions;
+using SaTeatar.Security;
 
 namespace SaTeatar.WebAPI.Services
 {
@@ -24,32 +25,33 @@ namespace SaTeatar.WebAPI.Services
         {
         }
 
-        public static string GenerateSalt()
-        {
-            var buf = new byte[16];
-            (new RNGCryptoServiceProvider()).GetBytes(buf);
-            return Convert.ToBase64String(buf);
-        }
-        public static string GenerateHash(string salt, string password)
-        {
-            byte[] src = Convert.FromBase64String(salt);
-            byte[] bytes = Encoding.Unicode.GetBytes(password);
-            byte[] dst = new byte[src.Length + bytes.Length];
+        //public static string GenerateSalt()
+        //{
+        //    var buf = new byte[16];
+        //    (new RNGCryptoServiceProvider()).GetBytes(buf);
+        //    return Convert.ToBase64String(buf);
+        //}
+        //public static string GenerateHash(string salt, string password)
+        //{
+        //    byte[] src = Convert.FromBase64String(salt);
+        //    byte[] bytes = Encoding.Unicode.GetBytes(password);
+        //    byte[] dst = new byte[src.Length + bytes.Length];
 
-            System.Buffer.BlockCopy(src, 0, dst, 0, src.Length);
-            System.Buffer.BlockCopy(bytes, 0, dst, src.Length, bytes.Length);
+        //    System.Buffer.BlockCopy(src, 0, dst, 0, src.Length);
+        //    System.Buffer.BlockCopy(bytes, 0, dst, src.Length, bytes.Length);
 
-            HashAlgorithm algorithm = HashAlgorithm.Create("SHA1");
-            byte[] inArray = algorithm.ComputeHash(dst);
-            return Convert.ToBase64String(inArray);
-        }
+        //    HashAlgorithm algorithm = HashAlgorithm.Create("SHA1");
+        //    byte[] inArray = algorithm.ComputeHash(dst);
+        //    return Convert.ToBase64String(inArray);
+        //}
 
         static mKorisnici TrenutniKorisnik = null;
 
         public override mKorisnici Insert(rKorisniciInsert request)
         {
-            var listaUsernamea = _context.Korisnici.Select(x => x.KorisnickoIme).ToList();
-            if (listaUsernamea.Contains( request.KorisnickoIme))
+            var listaUsernameaKorisnika = _context.Korisnici.Select(x => x.KorisnickoIme).ToList();
+            var listaUsernameaKupaca = _context.Kupci.Select(x => x.KorisnickoIme).ToList();
+            if (listaUsernameaKorisnika.Contains( request.KorisnickoIme) || listaUsernameaKupaca.Contains(request.KorisnickoIme))
             {
                 throw new UserException("Korisnicko ime vec postoji!");
             }
@@ -61,8 +63,8 @@ namespace SaTeatar.WebAPI.Services
 
             var entity = _mapper.Map<Korisnici>(request);
 
-            entity.LozinkaSalt = GenerateSalt();
-            entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Lozinka); 
+            entity.LozinkaSalt = GenerateSaltHash.GenerateSalt();
+            entity.LozinkaHash = GenerateSaltHash.GenerateHash(entity.LozinkaSalt, request.Lozinka); 
             
             _context.Korisnici.Add(entity);
             _context.SaveChanges();
@@ -115,19 +117,22 @@ namespace SaTeatar.WebAPI.Services
         {
             var entity = await _context.Korisnici.Include("KorisniciUloges.Uloga").FirstOrDefaultAsync(x => x.KorisnickoIme == username);
 
-            if (entity==null)
+            //if (entity==null)
+            //{
+            //    throw new UserException("Pogresan username ili password");
+            //}
+            if (entity!=null)
             {
-                throw new UserException("Pogresan username ili password");
+                var hash = GenerateSaltHash.GenerateHash(entity.LozinkaSalt, password);
+                if (hash != entity.LozinkaHash)
+                {
+                    throw new UserException("Pogresan username ili password");
+                }
             }
 
-            var hash = GenerateHash(entity.LozinkaSalt, password);
-            if (hash!=entity.LozinkaHash)
-            {
-                throw new UserException("Pogresan username ili password");
-            }
 
-        //    TrenutniKorisnik = _mapper.Map<mKorisnici>(entity);
-        //      setovan u basicauthandleru
+            //    TrenutniKorisnik = _mapper.Map<mKorisnici>(entity);
+            //      setovan u basicauthandleru
 
             return _mapper.Map<mKorisnici>(entity);
 

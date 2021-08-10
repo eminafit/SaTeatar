@@ -6,5 +6,7 @@ namespace SaTeatar.Model.Requests
 {
     public class rIzvodjenjaZoneSearch
     {
+        public int IzvodjenjeId { get; set; }
+        public int ZonaId { get; set; }
     }
 }

@@ -84,7 +84,18 @@
     <FlyoutItem Title="Browse" Icon="icon_feed.png">
         <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </FlyoutItem>
-
+    <FlyoutItem Title="Login">
+        <ShellContent Route="Login" ContentTemplate="{DataTemplate local:Login}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Registracija">
+        <ShellContent Route="RegistracijaPage" ContentTemplate="{DataTemplate local:RegistracijaPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Izvodjenja">
+        <ShellContent Route="IzvodjenjaPage" ContentTemplate="{DataTemplate local:IzvodjenjaPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Narudzba">
+        <ShellContent Route="NarudzbaPage" ContentTemplate="{DataTemplate local:NarudzbaPage}" />
+    </FlyoutItem>
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>
@@ -97,7 +108,8 @@
         await Shell.Current.GoToAsync("//LoginPage");
     -->
     <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+        <!--<ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />-->
+        <ShellContent Route="Login" ContentTemplate="{DataTemplate local:Login}" />
     </TabBar>
 
     <!-- Optional Templates 
