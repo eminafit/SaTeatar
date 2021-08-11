@@ -9,5 +9,7 @@ namespace SaTeatar.Model.Requests
         public string Naziv { get; set; }
         public int TipPredstaveId { get; set; }
 
+        public int KupacId { get; set; }
+
     }
 }

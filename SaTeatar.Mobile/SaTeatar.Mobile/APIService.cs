@@ -67,6 +67,13 @@ namespace SaTeatar.Mobile
             return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
         }
 
+        public async Task<T> Recommend<T>(object id)
+        {
+            var url = $"{_apiUrl}/{_route}/Recommend/{id}";
+
+            return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
+        }
+
         public async Task<T> Insert<T>(object request)
         {
             try

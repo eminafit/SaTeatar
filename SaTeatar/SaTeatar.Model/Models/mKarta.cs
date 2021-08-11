@@ -13,8 +13,16 @@ namespace SaTeatar.Model.Models
         public bool Placeno { get; set; }
         public int IzvodjenjeZonaId { get; set; }
 
-        public virtual mIzvodjenja Izvodjenje { get; set; }
-        public virtual mIzvodjenjaZone IzvodjenjeZona { get; set; }
-        public virtual mKupci Kupac { get; set; }
+        public string PredstavaNaziv { get; set; }
+        public int PredstavaId { get; set; }
+        public string PozoristeNaziv { get; set; }
+        public int PozoristeId { get; set; }
+
+        public string ZonaNaziv { get; set; }
+        public decimal Cijena { get; set; }
+
+        //public virtual mIzvodjenja Izvodjenje { get; set; }
+        //public virtual mIzvodjenjaZone IzvodjenjeZona { get; set; }
+        //public virtual mKupci Kupac { get; set; }
     }
 }

@@ -13,6 +13,10 @@ namespace SaTeatar.WebAPI.Mapping
     {
         public SaTeatarProfile()
         {
+            CreateMap<Ocjene, mOcjene>();
+            CreateMap<rOcjeneUpdate, Ocjene>();
+            CreateMap<rOcjeneInsert, Ocjene>();
+
             //CreateMap<izvor, destinacija>
             CreateMap<Karte, mKarta>();
             CreateMap<rKartaInsert, Karte>();

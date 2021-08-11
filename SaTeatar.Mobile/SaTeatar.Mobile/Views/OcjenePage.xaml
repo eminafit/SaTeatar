@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels"
+             x:Class="SaTeatar.Mobile.Views.OcjenePage">
+    <ContentPage.BindingContext>
+        <viewModels:OcjeneViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Odaberite predstavu koju zelite ocijeniti:"/>
+            <Picker ItemsSource="{Binding pregledanePredstaveList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedPredstava}"></Picker> <!--SelectedIndexChanged="Picker_SelectedIndexChanged"></Picker>-->
+
+            <StackLayout Orientation="Horizontal">
+            <Label Text="Unesite ocjenu:"/>
+            <Entry Text="{Binding Ocjena}"></Entry>
+                <Button Text="Ocijeni" Command="{Binding OcijeniCommand}"></Button>   
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical">
+                <Label Text="Dodajte opis:"/>
+                <Entry Text="{Binding OpisOcjene}"></Entry>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
