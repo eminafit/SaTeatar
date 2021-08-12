@@ -21,11 +21,17 @@ namespace SaTeatar.Services
         public override IList<mOcjene> Get(rOcjeneSearch search)
         {
             var upit = _context.Ocjene.AsQueryable();
+
             if (search!=null)
             {
-                if (search.PredstavaId!=0 && search.KupacId!=0 )
+                if (search.PredstavaId != 0)
                 {
-                    upit = upit.Where(x=>x.KupacId==search.KupacId && x.PredstavaId == search.PredstavaId );
+                    upit = upit.Where(x => x.PredstavaId == search.PredstavaId);
+                }
+
+                if (search.KupacId!=0)
+                {
+                    upit = upit.Where(x=>x.KupacId==search.KupacId);
                 }
             }
 

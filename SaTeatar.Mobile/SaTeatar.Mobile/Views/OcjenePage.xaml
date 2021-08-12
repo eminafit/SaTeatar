@@ -15,13 +15,14 @@
             <StackLayout Orientation="Horizontal">
             <Label Text="Unesite ocjenu:"/>
             <Entry Text="{Binding Ocjena}"></Entry>
-                <Button Text="Ocijeni" Command="{Binding OcijeniCommand}"></Button>   
             </StackLayout>
 
             <StackLayout Orientation="Vertical">
                 <Label Text="Dodajte opis:"/>
                 <Entry Text="{Binding OpisOcjene}"></Entry>
             </StackLayout>
+            <Button Text="Ocijeni" Command="{Binding OcijeniCommand}"></Button>
+
 
         </StackLayout>
     </ContentPage.Content>

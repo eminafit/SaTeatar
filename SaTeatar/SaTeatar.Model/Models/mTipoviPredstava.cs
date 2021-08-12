@@ -15,6 +15,8 @@ namespace SaTeatar.Model.Models
         public int TipPredstaveId { get; set; }
         public string Naziv { get; set; }
 
+        public bool Checkirano { get; set; } = false;
+
         //public virtual ICollection<PostavkeObavijesti> PostavkeObavijestis { get; set; }
         //public virtual ICollection<Predstave> Predstaves { get; set; }
     }

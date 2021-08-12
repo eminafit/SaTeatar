@@ -11,6 +11,9 @@ using Xamarin.Forms;
 
 namespace SaTeatar.Mobile.ViewModels
 {
+    //kupac treba
+    //imati mogucnost da ocijeni samo onu predstavu koju je gledao (kupio kartu)
+    //imati mogucnost da izmijeni postojecu ocjenu
     public class OcjeneViewModel : BaseViewModel
     {
         private readonly APIService _predstaveService = new APIService("predstava");
@@ -18,17 +21,14 @@ namespace SaTeatar.Mobile.ViewModels
         private readonly APIService _kupciService = new APIService("kupci");
         private readonly APIService _karteService = new APIService("karte");
         static int _idKupca { get; set; } = 0;
+        static int _idOcjene { get; set; } = 0;
+        bool _ocjenjeno = false;
+
         public OcjeneViewModel()
         {
             OcijeniCommand = new Command(async () => await Ocijeni());
             InitCommand = new Command(async () => await Init());
         }
-
-        //kupac treba izabrati predstavu koju je gledao (kupio kartu)
-        //imati mogucnost da je ocijeni
-        //imati mogucnost da izmijeni postojecu ocjenu
-
-        //ocjene inace treba dodati u pregled predstava.. za sad imam izvodjenja i preporucene predstave..
 
         public ObservableCollection<mPredstave> pregledanePredstaveList { get; set; } = new ObservableCollection<mPredstave>();
 
@@ -64,25 +64,40 @@ namespace SaTeatar.Mobile.ViewModels
 
         private async Task Ocijeni()
         {
-            var ocjena = new rOcjeneInsert();
-            if (SelectedPredstava!=null && Ocjena!=0) 
+            if (!_ocjenjeno)
             {
-                ocjena.KupacId = _idKupca;
-                ocjena.PredstavaId = SelectedPredstava.PredstavaId;
-                ocjena.Ocjena = Ocjena;
-                ocjena.Opis = OpisOcjene;
-                ocjena.Datum = DateTime.Now;
+                var ocjena = new rOcjeneInsert();
+                if (SelectedPredstava != null && Ocjena != 0)
+                {
+                    ocjena.KupacId = _idKupca;
+                    ocjena.PredstavaId = SelectedPredstava.PredstavaId;
+                    ocjena.Ocjena = Ocjena;
+                    ocjena.Opis = OpisOcjene;
+                    ocjena.Datum = DateTime.Now;
+                }
+
+                await _ocjeneService.Insert<mOcjene>(ocjena);
             }
+            else
+            {
+                var ocjena = new rOcjeneUpdate();
+                if (SelectedPredstava != null && Ocjena != 0)
+                {
+                    ocjena.OcjenaId = _idOcjene;
+                    ocjena.KupacId = _idKupca;
+                    ocjena.PredstavaId = SelectedPredstava.PredstavaId;
+                    ocjena.Ocjena = Ocjena;
+                    ocjena.Opis = OpisOcjene;
+                    ocjena.Datum = DateTime.Now;
+                }
 
-            await _ocjeneService.Insert<mOcjene>(ocjena);
-
-            ////////////// nisi zavrsila, treba editovati ako vec ima ocjenu
+                await _ocjeneService.Update<mOcjene>(_idOcjene, ocjena);
+            }
         }
 
         public async Task Init()
         {
-
-            //kupac
+            //kupac.. nesretno rjesenje..
             if (_idKupca==0)
             {
                 var search = new rKupciSearch() { KorisnickoIme = APIService.Username };
@@ -115,19 +130,18 @@ namespace SaTeatar.Mobile.ViewModels
                 if (ocjene.Count>0)
                 {
                     Ocjena = ocjene[0].Ocjena;
+                    _ocjenjeno = true;
+                    _idOcjene = ocjene[0].OcjenaId;
                     OpisOcjene = ocjene[0].Opis;
                 }
                 else
                 {
                     Ocjena = 0;
                     OpisOcjene = string.Empty;
+                    _ocjenjeno = false;
+                    _idOcjene = 0;
                 }
-
             }   
-            //var k = pregledanePredstaveList.Count;
-
-            //var search = new rPredstavaSearch() { }
         }
-
     }
 }

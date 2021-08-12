@@ -84,6 +84,7 @@ namespace SaTeatar
             services.AddScoped<IKupciService, KupciService>();
             services.AddScoped<IKarteService, KarteService>();
             services.AddScoped<IOcjeneService, OcjeneService>();
+            services.AddScoped<IPostavkeObavijestiService, PostavkeObavijestiService>();
 
         }
 

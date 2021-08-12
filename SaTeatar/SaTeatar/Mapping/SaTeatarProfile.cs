@@ -13,6 +13,9 @@ namespace SaTeatar.WebAPI.Mapping
     {
         public SaTeatarProfile()
         {
+            CreateMap<PostavkeObavijesti, mPostavkeObavijesti>();
+            CreateMap<rPostavkaObavijestiUpsert, PostavkeObavijesti>();
+
             CreateMap<Ocjene, mOcjene>();
             CreateMap<rOcjeneUpdate, Ocjene>();
             CreateMap<rOcjeneInsert, Ocjene>();

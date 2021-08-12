@@ -3,6 +3,7 @@ using SaTeatar.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,6 +15,7 @@ namespace SaTeatar.Mobile.ViewModels
     {
         private readonly APIService _zoneService = new APIService("zone");
         private readonly APIService _izvodjenjaZoneService = new APIService("izvodjenjaZone");
+        private readonly APIService _ocjeneService = new APIService("ocjene");
 
         public IzvodjenjeDetaljiViewModel()
         {
@@ -83,6 +85,12 @@ namespace SaTeatar.Mobile.ViewModels
             set { SetProperty(ref _ukupnaCijena, value); }
         }
 
+        double _ocjena = 0;
+        public double ProsjecnaOcjena
+        {
+            get { return _ocjena; }
+            set { SetProperty(ref _ocjena, value); }
+        }
 
         public ICommand PovecajKolicinuCommand { get; set; }
         public ICommand SmanjiKolicinuCommand { get; set; }
@@ -96,13 +104,18 @@ namespace SaTeatar.Mobile.ViewModels
             {
                 CartService.Cart.Remove(_kljuc);
             }
-
             CartService.Cart.Add(_kljuc, this);
         }
 
-
         public async Task Init()
         {
+            //ocjene predstave
+            var searchOcjene = new rOcjeneSearch { PredstavaId = Izvodjenje.PredstavaId };
+            var ocjene = await _ocjeneService.Get<List<mOcjene>>(searchOcjene);
+            ProsjecnaOcjena = ocjene.Select(x => x.Ocjena).Average();
+            ProsjecnaOcjena = Math.Round(ProsjecnaOcjena, 2, MidpointRounding.AwayFromZero);
+
+
             if (ZoneList.Count == 0)
             {
                 var search = new rZoneSearch() { PozoristeId = Izvodjenje.PozoristeId };

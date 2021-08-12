@@ -24,14 +24,13 @@ namespace SaTeatar.Mobile.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-
         public async Task Init()
         {
+
             var search = new rKupciSearch() { KorisnickoIme = APIService.Username };
             var kupci = await _kupciService.Get<List<mKupci>>(search);
             var idkupca = kupci[0].KupacId;
 
-           // var searchp = new rPredstavaSearch() { KupacId = idkupca };
             List<mPredstave> predstave = await _predstaveService.Recommend<List<mPredstave>>(idkupca);
 
             foreach (var item in predstave)
