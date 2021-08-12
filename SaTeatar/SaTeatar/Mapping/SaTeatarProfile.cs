@@ -16,6 +16,11 @@ namespace SaTeatar.WebAPI.Mapping
             CreateMap<PostavkeObavijesti, mPostavkeObavijesti>();
             CreateMap<rPostavkaObavijestiUpsert, PostavkeObavijesti>();
 
+            CreateMap<PoslaneObavijesti, mPoslaneObavijesti>();
+            CreateMap<rPoslaneObavijestiUpdate, PoslaneObavijesti>();
+            CreateMap<rPoslaneObavijestiInsert, PoslaneObavijesti>();
+
+
             CreateMap<Ocjene, mOcjene>();
             CreateMap<rOcjeneUpdate, Ocjene>();
             CreateMap<rOcjeneInsert, Ocjene>();
@@ -41,20 +46,18 @@ namespace SaTeatar.WebAPI.Mapping
             CreateMap<Pozorista, mPozorista>();
             CreateMap<Zone, mZone>();
             CreateMap<Izvodjenja, mIzvodjenja>();
-                //.ForMember(x => x.PozoristeNaziv, y => y.MapFrom(z => z.Pozoriste.Naziv))
-                //.ForMember(x => x.PredstavaNaziv, y => y.MapFrom(z => z.Predstava.Naziv));
 
-            //           CreateMap<Azmoon, AzmoonViewModel>()
-            //           .ForMember(d => d.CreatorUserName, m => m.MapFrom(s =>
-            //s.CreatedBy.UserName))
 
             CreateMap<rPozoristaInsert, Pozorista>();
             CreateMap<rPozoristaUpdate, Pozorista>();
 
             CreateMap<Predstave, mPredstave>();
-            CreateMap<TipoviPredstava, mTipoviPredstava>().ReverseMap();
             CreateMap<rPredstavaInsert, Predstave>();
             CreateMap<rPredstavaUpdate, Predstave>();
+
+            CreateMap<TipoviPredstava, mTipoviPredstava>().ReverseMap();
+            CreateMap<rTipoviPredstavaInsert, TipoviPredstava>();
+            CreateMap<rTipoviPredstavaUpdate, TipoviPredstava>();
 
             CreateMap<Djelatnici, mDjelatnici>();
             CreateMap<rDjelatniciInsert, Djelatnici>();

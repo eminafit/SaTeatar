@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels"
              x:Class="SaTeatar.Mobile.Views.PostavkeObavijestiStartPage">
+    <ContentPage.BindingContext>
+        <viewModels:PostavkaObavijestiViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
             <!--<Label Text="Welcome to Xamarin.Forms!"
@@ -9,6 +13,7 @@
                 HorizontalOptions="CenterAndExpand" />-->
             <Label Text="{Binding UvodniText}"></Label>
             <Button Text="Postavka obavijesti"  Clicked="Button_Clicked" />
+            <Button Text="Ukloni sve obavijesti"  Command="{Binding UkloniSveObavijestiCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

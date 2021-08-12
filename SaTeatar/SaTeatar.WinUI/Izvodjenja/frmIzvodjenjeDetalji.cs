@@ -16,6 +16,8 @@ namespace SaTeatar.WinUI.Izvodjenja
     {
         APIService _izvodjenjaService = new APIService("izvodjenja");
         APIService _predstaveService = new APIService("predstava");
+        APIService _poslaneObavijestiService = new APIService("poslaneObavijesti");
+        APIService _postavkeObavijestiService = new APIService("postavkeObavijesti");
         APIService _pozoristaService = new APIService("pozorista");
         APIService _korisniciService = new APIService("korisnici");
         private int? _id = null;
@@ -30,7 +32,7 @@ namespace SaTeatar.WinUI.Izvodjenja
 
         rIzvodjenjaInsert inrequest = new rIzvodjenjaInsert();
         rIzvodjenjaUpdate uprequest = new rIzvodjenjaUpdate();
-        mIzvodjenja izvodjenje = new mIzvodjenja();
+        mIzvodjenja _izvodjenje = new mIzvodjenja();
 
 
         private async void frmIzvodjenjeDetalji_Load(object sender, EventArgs e)
@@ -44,15 +46,15 @@ namespace SaTeatar.WinUI.Izvodjenja
             if (_id.HasValue)
             {
                 
-                izvodjenje = await _izvodjenjaService.GetById<mIzvodjenja>(_id);
+                _izvodjenje = await _izvodjenjaService.GetById<mIzvodjenja>(_id);
 
-                mKorisnici user = await _korisniciService.GetById<mKorisnici>(izvodjenje.KorisnikId);
+                mKorisnici user = await _korisniciService.GetById<mKorisnici>(_izvodjenje.KorisnikId);
                 
                 txtKorisnik.Text = user.KorisnickoIme;
-                txtNapomena.Text = izvodjenje.Napomena;
-                cmbPredstave.SelectedValue = izvodjenje.PredstavaId;
-                cmbPozoriste.SelectedValue = izvodjenje.PozoristeId;
-                dtpDatumVrijeme.Value = izvodjenje.DatumVrijeme;
+                txtNapomena.Text = _izvodjenje.Napomena;
+                cmbPredstave.SelectedValue = _izvodjenje.PredstavaId;
+                cmbPozoriste.SelectedValue = _izvodjenje.PozoristeId;
+                dtpDatumVrijeme.Value = _izvodjenje.DatumVrijeme;
             }
             else
             {
@@ -118,12 +120,11 @@ namespace SaTeatar.WinUI.Izvodjenja
                 if (_id.HasValue)
                 {
                     uprequest.Napomena = txtNapomena.Text;
-                    uprequest.KorisnikId = izvodjenje.KorisnikId; 
+                    uprequest.KorisnikId = _izvodjenje.KorisnikId; 
                     uprequest.DatumVrijeme = dtpDatumVrijeme.Value;
 
-                    await _izvodjenjaService.Update<mIzvodjenja>(_id, uprequest);
+                    _izvodjenje = await _izvodjenjaService.Update<mIzvodjenja>(_id, uprequest);
                     MessageBox.Show("Izvodjenje uspjesno izmijenjeno!");
-                    this.Close();
                 }
                 else
                 {
@@ -131,11 +132,49 @@ namespace SaTeatar.WinUI.Izvodjenja
                     inrequest.DatumVrijeme = dtpDatumVrijeme.Value;
                     inrequest.Napomena = txtNapomena.Text;
 
-                    await _izvodjenjaService.Insert<mIzvodjenja>(inrequest);
+                    _izvodjenje = await _izvodjenjaService.Insert<mIzvodjenja>(inrequest);
                     MessageBox.Show("Izvodjenje uspjesno dodato!");
-                    this.Close();
                 }
+
+                PosaljiObavijest();
+                this.Close();
             }        
+        }
+
+        private async void PosaljiObavijest()
+        {
+
+            //kad se napravi/izmijeni izvodjenje, poslati obavijest
+            //provjeriti koji je tip predstave u izvodjenju
+            //pogledati u postavke obavijesti koji kupci zele primati obavijesti za taj tip predstave
+            //staviti datum vazenja do dana izvodjenja predstave
+            //polje procitano oznaciti sa false
+            //poslati obavijest
+
+            mPredstave predstava = await _predstaveService.GetById<mPredstave>(_izvodjenje.PredstavaId);
+            mPozorista pozoriste = await _pozoristaService.GetById<mPozorista>(_izvodjenje.PozoristeId);
+            var search = new rPostavkaObavijestiSearch() { TipPredstaveId = predstava.TipPredstaveId };
+            List<mPostavkeObavijesti> kupci = await _postavkeObavijestiService.Get<List<mPostavkeObavijesti>>(search);
+
+            foreach (var kupac in kupci)
+            {
+                var request = new rPoslaneObavijestiInsert()
+                {
+                    KupacId = kupac.KupacId,
+                    DatumVazenja = _izvodjenje.DatumVrijeme,
+                    VrijemeSlanja = DateTime.Now,
+                    PrestavaId = _izvodjenje.PredstavaId,
+                    Procitano = false,
+                    Poruka = $"Dana {_izvodjenje.DatumVrijeme.Date.ToShortDateString()} u { _izvodjenje.DatumVrijeme.ToShortTimeString()} se izvodi predstava \"{predstava.Naziv}\" u pozoristu \"{pozoriste.Naziv}\"."
+                };
+                await _poslaneObavijestiService.Insert<mPoslaneObavijesti>(request);
+            }
+
+
+            //sa korisnicke strane
+            //kod logina kupca provjeriti da li ima obavijesti koje vaze do tog dana i koje su neprocitane
+            //ako ima onda ga obavijesti o tome
+            //kad otvori obavijest, oznaciti je kao procitanu
         }
 
         private void cmbPredstave_Validating(object sender, CancelEventArgs e)

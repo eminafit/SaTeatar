@@ -28,6 +28,12 @@ namespace SaTeatar.Services
                 {
                     upit = upit.Where(x => x.KupacId == search.KupacId);
                 }
+
+                if (search.TipPredstaveId!=0)
+                {
+                    upit = upit.Where(x => x.TipPredstaveId == search.TipPredstaveId);
+
+                }
             }
             var list = upit.ToList();
             return _mapper.Map<List<mPostavkeObavijesti>>(list);

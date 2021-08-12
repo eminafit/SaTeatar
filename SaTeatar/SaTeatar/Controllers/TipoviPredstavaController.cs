@@ -8,7 +8,7 @@ using SaTeatar.WebAPI.Services;
 
 namespace SaTeatar.WebAPI.Controllers
 {
-    public class TipoviPredstavaController : BaseCRUDController<mTipoviPredstava, object, rTipoviPredstavaInsertUpdate, rTipoviPredstavaInsertUpdate>
+    public class TipoviPredstavaController : BaseCRUDController<mTipoviPredstava, rTipoviPredstavaSearch, rTipoviPredstavaInsert, rTipoviPredstavaUpdate>
     {
         public TipoviPredstavaController(ITipoviPredstavaService service) : base(service)
         {

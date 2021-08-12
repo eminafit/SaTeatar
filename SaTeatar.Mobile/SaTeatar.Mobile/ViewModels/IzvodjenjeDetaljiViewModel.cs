@@ -129,6 +129,8 @@ namespace SaTeatar.Mobile.ViewModels
 
             if (SelectedZona != null)
             {
+                Kolicina = 0;
+                UkupnaCijena = 0;
                 foreach (var item in CartService.Cart.Values)
                 {
                     if (item.Izvodjenje.IzvodjenjeId==Izvodjenje.IzvodjenjeId && item.IzvodjenjeZone.ZonaId==SelectedZona.ZonaId)
@@ -173,8 +175,8 @@ namespace SaTeatar.Mobile.ViewModels
             }
             //else
             //{
-            //    Cijena = 0;
-            //    Popust = 0;
+            //    //Cijena = 0;
+            //    //Popust = 0;
             //    Kolicina = 0;
             //    UkupnaCijena = 0;
             //}

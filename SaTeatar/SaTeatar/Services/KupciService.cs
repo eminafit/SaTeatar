@@ -25,10 +25,13 @@ namespace SaTeatar.Services
         public override IList<mKupci> Get(rKupciSearch search)
         {
             var upit = _context.Kupci.AsQueryable();
+
             if (!string.IsNullOrWhiteSpace( search.KorisnickoIme))
             {
                 upit = upit.Where(x => x.KorisnickoIme == search.KorisnickoIme);
             }
+
+
             var lista = upit.ToList();
             return _mapper.Map<List<mKupci>>(lista);
            // return base.Get(search);

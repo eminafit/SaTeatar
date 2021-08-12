@@ -9,7 +9,7 @@ using SaTeatar.Database;
 
 namespace SaTeatar.WebAPI.Services
 {
-    public class TipoviPredstavaService : BaseCRUDService<mTipoviPredstava, TipoviPredstava, object, rTipoviPredstavaInsertUpdate, rTipoviPredstavaInsertUpdate>
+    public class TipoviPredstavaService : BaseCRUDService<mTipoviPredstava, TipoviPredstava, rTipoviPredstavaSearch, rTipoviPredstavaInsert, rTipoviPredstavaUpdate>
         , ITipoviPredstavaService
     {
         public TipoviPredstavaService(SaTeatarDbContext context, IMapper mapper) : base(context, mapper)

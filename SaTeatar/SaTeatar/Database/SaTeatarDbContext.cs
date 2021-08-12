@@ -39,7 +39,6 @@ namespace SaTeatar.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
-
             }
         }
 
@@ -52,6 +51,8 @@ namespace SaTeatar.Database
                 entity.HasKey(e => e.DjelatnikId);
 
                 entity.ToTable("Djelatnici");
+
+                entity.HasIndex(e => e.VrstaDjelatnikaId, "IX_Djelatnici_VrstaDjelatnikaID");
 
                 entity.Property(e => e.DjelatnikId).HasColumnName("DjelatnikID");
 
@@ -77,6 +78,12 @@ namespace SaTeatar.Database
                 entity.HasKey(e => e.IzvodjenjeId);
 
                 entity.ToTable("Izvodjenja");
+
+                entity.HasIndex(e => e.KorisnikId, "IX_Izvodjenja_KorisnikID");
+
+                entity.HasIndex(e => e.PozoristeId, "IX_Izvodjenja_PozoristeID");
+
+                entity.HasIndex(e => e.PredstavaId, "IX_Izvodjenja_PredstavaID");
 
                 entity.Property(e => e.IzvodjenjeId).HasColumnName("IzvodjenjeID");
 
@@ -113,6 +120,10 @@ namespace SaTeatar.Database
 
                 entity.ToTable("IzvodjenjaZone");
 
+                entity.HasIndex(e => e.IzvodjenjeId, "IX_IzvodjenjaZone_IzvodjenjeID");
+
+                entity.HasIndex(e => e.ZonaId, "IX_IzvodjenjaZone_ZonaID");
+
                 entity.Property(e => e.IzvodjenjeZonaId).HasColumnName("IzvodjenjeZonaID");
 
                 entity.Property(e => e.Cijena).HasColumnType("decimal(18, 2)");
@@ -141,6 +152,12 @@ namespace SaTeatar.Database
                 entity.HasKey(e => e.KartaId);
 
                 entity.ToTable("Karte");
+
+                entity.HasIndex(e => e.IzvodjenjeId, "IX_Karte_IzvodjenjeID");
+
+                entity.HasIndex(e => e.IzvodjenjeZonaId, "IX_Karte_IzvodjenjeZonaID");
+
+                entity.HasIndex(e => e.KupacId, "IX_Karte_KupacID");
 
                 entity.Property(e => e.KartaId).HasColumnName("KartaID");
 
@@ -212,6 +229,10 @@ namespace SaTeatar.Database
 
                 entity.ToTable("KorisniciUloge");
 
+                entity.HasIndex(e => e.KorisnikId, "IX_KorisniciUloge_KorisnikID");
+
+                entity.HasIndex(e => e.UlogaId, "IX_KorisniciUloge_UlogaID");
+
                 entity.Property(e => e.KorisnikUlogaId).HasColumnName("KorisnikUlogaID");
 
                 entity.Property(e => e.DatumIzmjene).HasColumnType("datetime");
@@ -274,6 +295,10 @@ namespace SaTeatar.Database
 
                 entity.ToTable("Ocjene");
 
+                entity.HasIndex(e => e.KupacId, "IX_Ocjene_KupacID");
+
+                entity.HasIndex(e => e.PredstavaId, "IX_Ocjene_PredstavaID");
+
                 entity.Property(e => e.OcjenaId).HasColumnName("OcjenaID");
 
                 entity.Property(e => e.Datum).HasColumnType("datetime");
@@ -301,9 +326,19 @@ namespace SaTeatar.Database
 
                 entity.ToTable("PoslaneObavijesti");
 
+                entity.HasIndex(e => e.KupacId, "IX_PoslaneObavijesti_KupacID");
+
+                entity.HasIndex(e => e.PrestavaId, "IX_PoslaneObavijesti_PrestavaID");
+
                 entity.Property(e => e.PoslanaObavijestId).HasColumnName("PoslanaObavijestID");
 
+                entity.Property(e => e.DatumVazenja).HasColumnType("datetime");
+
                 entity.Property(e => e.KupacId).HasColumnName("KupacID");
+
+                entity.Property(e => e.Poruka)
+                    .IsRequired()
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PrestavaId).HasColumnName("PrestavaID");
 
@@ -327,6 +362,10 @@ namespace SaTeatar.Database
                 entity.HasKey(e => e.PostavkaObavijestiId);
 
                 entity.ToTable("PostavkeObavijesti");
+
+                entity.HasIndex(e => e.KupacId, "IX_PostavkeObavijesti_KupacID");
+
+                entity.HasIndex(e => e.TipPredstaveId, "IX_PostavkeObavijesti_TipPredstaveID");
 
                 entity.Property(e => e.PostavkaObavijestiId).HasColumnName("PostavkaObavijestiID");
 
@@ -368,6 +407,8 @@ namespace SaTeatar.Database
 
                 entity.ToTable("Predstave");
 
+                entity.HasIndex(e => e.TipPredstaveId, "IX_Predstave_TipPredstaveID");
+
                 entity.Property(e => e.PredstavaId).HasColumnName("PredstavaID");
 
                 entity.Property(e => e.Naziv)
@@ -390,6 +431,10 @@ namespace SaTeatar.Database
                 entity.HasKey(e => e.PredstavaDjelatnikId);
 
                 entity.ToTable("PredstaveDjelatnici");
+
+                entity.HasIndex(e => e.DjelatnikId, "IX_PredstaveDjelatnici_DjelatnikID");
+
+                entity.HasIndex(e => e.PredstavaId, "IX_PredstaveDjelatnici_PredstavaID");
 
                 entity.Property(e => e.PredstavaDjelatnikId).HasColumnName("PredstavaDjelatnikID");
 
@@ -456,6 +501,8 @@ namespace SaTeatar.Database
                 entity.HasKey(e => e.ZonaId);
 
                 entity.ToTable("Zone");
+
+                entity.HasIndex(e => e.PozoristeId, "IX_Zone_PozoristeID");
 
                 entity.Property(e => e.ZonaId).HasColumnName("ZonaID");
 

@@ -11,13 +11,13 @@ using Xamarin.Forms.Xaml;
 namespace SaTeatar.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PostavkeObavijestiStartPage : ContentPage
+    public partial class ObavijestiPage : ContentPage
     {
-        private PostavkaObavijestiViewModel model = null;
-        public PostavkeObavijestiStartPage()
+        private ObavijestiViewModel model = null;
+        public ObavijestiPage()
         {
             InitializeComponent();
-            BindingContext = model = new PostavkaObavijestiViewModel();
+            BindingContext = model = new ObavijestiViewModel();
         }
 
         protected async override void OnAppearing()
@@ -25,11 +25,5 @@ namespace SaTeatar.Mobile.Views
             await model.Init();
             base.OnAppearing();
         }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new PostavkaObavijestiPage());
-        }
-
     }
 }

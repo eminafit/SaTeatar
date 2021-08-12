@@ -7,7 +7,7 @@ using SaTeatar.Model.Requests;
 
 namespace SaTeatar.WebAPI.Services
 {
-    public interface ITipoviPredstavaService : ICRUDService<mTipoviPredstava,object,rTipoviPredstavaInsertUpdate,rTipoviPredstavaInsertUpdate>
+    public interface ITipoviPredstavaService : ICRUDService<mTipoviPredstava,rTipoviPredstavaSearch,rTipoviPredstavaInsert,rTipoviPredstavaUpdate>
     {
     }
 }
