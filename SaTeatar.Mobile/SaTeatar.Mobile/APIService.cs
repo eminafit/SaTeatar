@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using SaTeatar.Mobile.Views;
+using SaTeatar.Model.Requests;
 
 namespace SaTeatar.Mobile
 {
@@ -143,6 +144,19 @@ namespace SaTeatar.Mobile
                 await Application.Current.MainPage.DisplayAlert("Greska", stringBuilder.ToString(), "OK");
                 //MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return default(T);
+            }
+        }
+
+        public async Task<mKupci> Authenticate(rKupciAuth request)
+        {
+            try
+            {
+                var url = $"{_apiUrl}/User/Authenticate";
+                return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<mKupci>();
+            }
+            catch (FlurlHttpException)
+            {
+                return default;
             }
         }
     }

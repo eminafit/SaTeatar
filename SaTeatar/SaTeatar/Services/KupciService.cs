@@ -10,6 +10,7 @@ using AutoMapper;
 using SaTeatar.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using SaTeatar.Security;
+using Microsoft.EntityFrameworkCore;
 
 namespace SaTeatar.Services
 {
@@ -20,6 +21,22 @@ namespace SaTeatar.Services
             : base(context, mapper)
         {
 
+        }
+
+        public async Task<mKupci> Authenticate(rKupciAuth request)
+        {
+            Kupci user = await _context.Kupci.FirstOrDefaultAsync(i => i.KorisnickoIme == request.KorisnickoIme);
+
+            if (user != null)
+            {
+                var newHash =GenerateSaltHash.GenerateHash(user.LozinkaSalt, request.Lozinka);
+
+                if (newHash == user.LozinkaHash)
+                {
+                    return _mapper.Map<mKupci>(user);
+                }
+            }
+            return null;
         }
 
         public override IList<mKupci> Get(rKupciSearch search)
@@ -79,13 +96,16 @@ namespace SaTeatar.Services
                 {
                     throw new UserException("Pogresan username ili password");
                 }
+                else
+                    return _mapper.Map<mKupci>(entity);
             }
+            return null;
 
 
             //    TrenutniKorisnik = _mapper.Map<mKorisnici>(entity);
             //      setovan u basicauthandleru
 
-            return _mapper.Map<mKupci>(entity);
+            //return _mapper.Map<mKupci>(entity);
 
         }
     }

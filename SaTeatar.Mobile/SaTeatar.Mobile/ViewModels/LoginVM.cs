@@ -1,5 +1,7 @@
-﻿using SaTeatar.Mobile.Views;
+﻿using SaTeatar.Mobile.Helpers;
+using SaTeatar.Mobile.Views;
 using SaTeatar.Model.Models;
+using SaTeatar.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -40,20 +42,24 @@ namespace SaTeatar.Mobile.ViewModels
             APIService.Username = KorisnickoIme;
             APIService.Password = Lozinka;
 
-            try
+            var zahtjev = new rKupciAuth()
             {
-                await _kupciService.Get<List<mKorisnici>>(null);
-             //   await _korisniciService.Get<List<mKorisnici>>(null);
-                // Application.Current.MainPage = new MainPage();
-                //await Shell.Current.GoToAsync("//AppShell");
+                KorisnickoIme = APIService.Username,
+                Lozinka = APIService.Password
+            };
+
+            var kupac = await _kupciService.Authenticate(zahtjev);
+
+            if (kupac!=null)
+            {
+                PrijavljeniKupac.Kupac = kupac;
                 await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
-
             }
-            catch (Exception)
+            else
             {
-
-                throw;
+                await Application.Current.MainPage.DisplayAlert("Greska", "Pogresno korisnicko ime ili lozinka", "OK");
             }
+
         }
     }
 }

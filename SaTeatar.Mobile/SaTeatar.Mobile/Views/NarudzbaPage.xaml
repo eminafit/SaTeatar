@@ -73,9 +73,11 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Button Text="NASTAVI KUPOVINU" Clicked="Button_Clicked_2"></Button>
+                <Button Text="NASTAVITE KUPOVINU" Clicked="Button_Clicked_2"></Button>
 
-                <Button Text="REZERVISI KARTE" Command="{Binding RezervisiCommand}" Clicked="Button_Clicked_3"></Button>
+                <Button Text="REZERVISITE KARTE" Command="{Binding RezervisiCommand}" Clicked="Button_Clicked_3"></Button>
+
+                <Button Text="IZVRSITE PLACANJE" Clicked="Button_Clicked_4"></Button>
             </StackLayout>
             
         </StackLayout>

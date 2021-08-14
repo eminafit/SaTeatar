@@ -11,6 +11,7 @@ namespace SaTeatar.Services
     public interface IKupciService : ICRUDService<mKupci,rKupciSearch, rKupciInsert, rKupciUpdate>
     {
         Task<mKupci> Login(string username, string password);
+        Task<mKupci> Authenticate(rKupciAuth request);
 
     }
 

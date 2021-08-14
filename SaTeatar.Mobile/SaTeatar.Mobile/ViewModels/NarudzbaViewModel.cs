@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace SaTeatar.Mobile.ViewModels
 {
-    class NarudzbaViewModel : BaseViewModel
+    public class NarudzbaViewModel : BaseViewModel
     {
         private readonly APIService _karteService = new APIService("karte");
         private readonly APIService _kupciService = new APIService("kupci");

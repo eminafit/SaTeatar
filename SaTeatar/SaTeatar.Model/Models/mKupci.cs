@@ -13,5 +13,6 @@ namespace SaTeatar.Model.Models
         public string KorisnickoIme { get; set; }
         public DateTime DatumRegistracije { get; set; }
         public bool Status { get; set; }
+
     }
 }
