@@ -20,6 +20,13 @@ namespace SaTeatar.WebAPI.Mapping
             CreateMap<rPoslaneObavijestiUpdate, PoslaneObavijesti>();
             CreateMap<rPoslaneObavijestiInsert, PoslaneObavijesti>();
 
+            CreateMap<Narudzba, mNarudzba>();
+            CreateMap<rNarudzbaUpdate, Narudzba>();
+            CreateMap<rNarudzbaInsert, Narudzba>();
+
+            CreateMap<NarudzbaStavke, mNarudzbaStavke>();
+            CreateMap<rNarudzbaStavkeUpdate, NarudzbaStavke>();
+            CreateMap<rNarudzbaStavkeInsert, NarudzbaStavke>();
 
             CreateMap<Ocjene, mOcjene>();
             CreateMap<rOcjeneUpdate, Ocjene>();

@@ -68,16 +68,16 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Ukupan iznos: "></Span>
-                            <Span Text="{Binding UkupniIznos}"></Span>
+                            <Span x:Name="UkupniIznos" Text="{Binding UkupniIznos}" ></Span>
                             <Span Text=" KM"></Span>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
                 <Button Text="NASTAVITE KUPOVINU" Clicked="Button_Clicked_2"></Button>
 
-                <Button Text="REZERVISITE KARTE" Command="{Binding RezervisiCommand}" Clicked="Button_Clicked_3"></Button>
+                <Button x:Name="Btn_Rezervacija" Text="REZERVISITE KARTE" Command="{Binding RezervisiCommand}" Clicked="Button_Clicked_3"></Button>
 
-                <Button Text="IZVRSITE PLACANJE" Clicked="Button_Clicked_4"></Button>
+                <Button x:Name="Btn_Placanje" Text="IZVRSITE PLACANJE"  Clicked="Button_Clicked_4"></Button>
             </StackLayout>
             
         </StackLayout>

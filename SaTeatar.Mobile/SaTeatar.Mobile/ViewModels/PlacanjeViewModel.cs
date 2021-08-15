@@ -1,10 +1,12 @@
-﻿using SaTeatar.Mobile.Helpers;
+﻿using Acr.UserDialogs;
+using SaTeatar.Mobile.Helpers;
 using SaTeatar.Mobile.Models;
 using SaTeatar.Model.Models;
 using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -13,8 +15,13 @@ namespace SaTeatar.Mobile.ViewModels
 {
     class PlacanjeViewModel : BaseViewModel
     {
-        private readonly APIService buyCourseService = new APIService("BuyCourse");
-        private readonly APIService transactionService = new APIService("Transaction");
+        private readonly APIService _narudzbaService = new APIService("narudzba");
+        private readonly APIService _karteService = new APIService("karte");
+        //public PlacanjeViewModel (INavigation nav)
+        //{
+        //    this.Navigation = nav;
+        //}
+
         bool IsDigitsOnly(string str)
         {
             foreach (char c in str)
@@ -28,20 +35,18 @@ namespace SaTeatar.Mobile.ViewModels
 
         public NarudzbaViewModel Narudzba { get; set; }
 
-        public PlacanjeViewModel ()
+        public PlacanjeViewModel()
         {
+            SubmitCommand = new Command(async () => await Plati());
 
-        }
-        public PlacanjeViewModel (INavigation nav)
-        {
-            this.Navigation = nav;
-  //          SubmitCommand = new Command(async () => await BuyCourse());
         }
 
         private readonly INavigation Navigation;
+        public ICommand SubmitCommand { get; set; }
+
      //   public MCourse Course { get; set; }
 
-        private string StripeTestApiKey = "pk_test_51ITsWFJhqfSL3GBcw3lQq0WwQqPGbri16hs24aIootbfGr4U2bHqzpNCc5oexs9hOf7wxVusWxr70YDc06xvlDdL00CejvATXy";
+        private string StripeTestApiKey = "sk_test_51JNyRxCGG4akAYELQXXMQayAg3wwgEIH9srID9neI67oAexoag3TEfdoKUTanTc7s0rFfHdZnmjRWAcaH6LAeBAS00pTPF3fGM";
 
         private CreditCard _creditCardModel;
         private TokenService Tokenservice;
@@ -95,7 +100,6 @@ namespace SaTeatar.Mobile.ViewModels
             get { return _creditCardModel; }
             set { SetProperty(ref _creditCardModel, value); }
         }
-        public ICommand SubmitCommand { get; set; }
         private async Task<string> CreateTokenAsync()
         {
             try
@@ -139,126 +143,107 @@ namespace SaTeatar.Mobile.ViewModels
 
                 var options = new ChargeCreateOptions();
 
-                options.Amount = 0;// Convert.ToInt64(Course.Price) * 100;
+                options.Amount = Convert.ToInt64(Narudzba.Narudzba.Iznos) * 100; // Convert.ToInt64(Course.Price) * 100;
                 options.Currency = "usd";
-                options.Description = "";// Course.Name;
+                options.Description = "opis";// Course.Name;
                 options.Source = stripeToken.Id;
                 options.StatementDescriptor = "Custom descriptor";
                 options.Capture = true;
                 options.ReceiptEmail = user.Email.ToString();
                 var service = new ChargeService();
                 Charge charge = service.Create(options);
-                //UserDialogs.Instance.Alert("Purchase was successful!");
-                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Success","Purchase was successful!","OK");
-                    //.Instance.Alert("Purchase was successful!");
+                Narudzba.Narudzba.PaymentId = charge.id;
+                await _narudzbaService.Update<mNarudzba>(Narudzba.Narudzba.NarudzbaId, Narudzba.Narudzba);
+                UserDialogs.Instance.Alert("Purchase was successful!");
                 return true;
             }
             catch (Exception ex)
             {
-                Console.Write(/*Course.Name*/" " + " (CreateCharge)" + ex.Message);
+                Console.Write(/*Course.Name*/"narudzba" + " (CreateCharge)" + ex.Message);
                 throw ex;
             }
         }
 
-        //public async Task BuyCourse()
-        //{
-        //    var courses = await buyCourseService.Get<List<MBuyCourse>>(null);
-        //    bool have = false;
-        //    foreach (var x in courses)
-        //        if (x.UserID == user.UserID && Course.CourseID == x.CourseID)
-        //            have = true;
+        public async Task Plati()
+        {
+            var nar = await _narudzbaService.GetById<mNarudzba>(Narudzba.Narudzba.NarudzbaId);
+            if (nar.PaymentId!=string.Empty)
+            {
+                await App.Current.MainPage.DisplayAlert("Information", "You already bought this!", "OK");
+            }
+            else
+            {
+                if (ExpMonth == null || ExpMonth == "" || ExpYear == null || ExpYear == "" || Number == null || Number == "" || Cvc == null || Cvc == "")
+                {
+                    UserDialogs.Instance.Alert("You have to fill all fields!", "Payment failed", "OK");
+                    return;
+                }
+                if (ExpMonth != null || ExpMonth != "" || ExpYear != null || ExpYear != "" || Number != null || Number != "" || Cvc != null || Cvc != "")
+                {
+                    if (!IsDigitsOnly(ExpMonth) || !IsDigitsOnly(ExpMonth) || !IsDigitsOnly(Number) || !IsDigitsOnly(Cvc))
+                    {
+                        UserDialogs.Instance.Alert("You can't use letters!", "Payment failed", "OK");
+                        return;
+                    }
+                }
+                CreditCardModel = new CreditCard();
+                CreditCardModel.ExpMonth = Convert.ToInt64(ExpMonth);
+                CreditCardModel.ExpYear = Convert.ToInt64(ExpYear);
+                CreditCardModel.Number = Number;
+                CreditCardModel.Cvc = Cvc;
+                CancellationTokenSource tokenSource = new CancellationTokenSource();
+                CancellationToken token = tokenSource.Token;
+                try
+                {
+                    UserDialogs.Instance.ShowLoading("Payment processing ...");
+                    //await Task.Run(async () =>
+                    //{
+                        var Token = CreateTokenAsync();
+                        Console.Write(Narudzba.Narudzba.BrojNarudzbe + "Token :" + Token);
+                        if (Token.ToString() != null)
+                        {
+                            IsTransectionSuccess = await MakePaymentAsync(Token.Result);
+                        }
+                        else
+                        {
+                            UserDialogs.Instance.Alert("Bad card credentials", null, "OK");
+                        }
+                    //});
+                }
+                catch (Exception ex)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.Alert(ex.Message, null, "OK");
+                    Console.Write(Narudzba.Narudzba.BrojNarudzbe + ex.Message);
+                }
+                finally
+                {
+                    if (IsTransectionSuccess)
+                    {
+                       // Narudzba.Narudzba.PaymentId = "pribavi";
 
-        //    if (have == true)
-        //    {
-        //        await App.Current.MainPage.DisplayAlert("Information", "You already bought this course!", "OK");
-        //    }
-        //    else
-        //    {
-        //        if (ExpMonth == null || ExpMonth == "" || ExpYear == null || ExpYear == "" || Number == null || Number == "" || Cvc == null || Cvc == "")
-        //        {
-        //            UserDialogs.Instance.Alert("You have to fill all fields!", "Payment failed", "OK");
-        //            return;
-        //        }
-        //        if (ExpMonth != null || ExpMonth != "" || ExpYear != null || ExpYear != "" || Number != null || Number != "" || Cvc != null || Cvc != "")
-        //        {
-        //            if (!IsDigitsOnly(ExpMonth) || !IsDigitsOnly(ExpMonth) || !IsDigitsOnly(Number) || !IsDigitsOnly(Cvc))
-        //            {
-        //                UserDialogs.Instance.Alert("You can't use letters!", "Payment failed", "OK");
-        //                return;
-        //            }
-        //        }
-        //        CreditCardModel = new CreditCard();
-        //        CreditCardModel.ExpMonth = Convert.ToInt64(ExpMonth);
-        //        CreditCardModel.ExpYear = Convert.ToInt64(ExpYear);
-        //        CreditCardModel.Number = Number;
-        //        CreditCardModel.Cvc = Cvc;
-        //        CancellationTokenSource tokenSource = new CancellationTokenSource();
-        //        CancellationToken token = tokenSource.Token;
-        //        try
-        //        {
-        //            UserDialogs.Instance.ShowLoading("Payment processing ...");
-        //            await Task.Run(async () =>
-        //            {
-        //                var Token = CreateTokenAsync();
-        //                Console.Write(Course.Name + "Token :" + Token);
-        //                if (Token.ToString() != null)
-        //                {
-        //                    IsTransectionSuccess = await MakePaymentAsync(Token.Result);
-        //                }
-        //                else
-        //                {
-        //                    UserDialogs.Instance.Alert("Bad card credentials", null, "OK");
-        //                }
-        //            });
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            UserDialogs.Instance.HideLoading();
-        //            UserDialogs.Instance.Alert(ex.Message, null, "OK");
-        //            Console.Write(Course.Name + ex.Message);
-        //        }
-        //        finally
-        //        {
-        //            if (IsTransectionSuccess)
-        //            {
-        //                var request = new BuyCourseRequest()
-        //                {
-        //                    DateOfBuying = DateTime.Now,
-        //                    CourseID = Course.CourseID,
-        //                    UserID = user.UserID,
-        //                    Price = Course.Price,
-        //                    Username = user.Username,
-        //                    CourseName = Course.Name
-        //                };
+                        await _narudzbaService.Update<mNarudzba>(Narudzba.Narudzba.NarudzbaId, Narudzba.Narudzba);
 
-        //                var TransReq = new TransactionUpsertRequest
-        //                {
-        //                    CourseID = Course.CourseID,
-        //                    UserID = user.UserID,
-        //                    Price = Course.Price,
-        //                    TransactionDate = DateTime.Now,
-        //                    CourseName = Course.Name,
-        //                    UserFullName = user.FirstName + " " + user.LastName
+                        foreach (var karta in  Narudzba.KarteList)
+                        {
+                            karta.Placeno = true;
+                            await _karteService.Update<mKarta>(karta.KartaId, karta);
+                        }
 
+                        Console.Write(Narudzba.Narudzba.NarudzbaId + "Payment Successful");
 
-        //                };
-        //                await transactionService.Insert<MTransaction>(TransReq);
-        //                await buyCourseService.Insert<MBuyCourse>(request);
-        //                await Navigation.PushAsync(new CoursesPage(user));
-        //                Console.Write(Course.Name + "Payment Successful");
+                        UserDialogs.Instance.HideLoading();
 
-        //                UserDialogs.Instance.HideLoading();
-
-        //            }
-        //            else
-        //            {
-        //                UserDialogs.Instance.HideLoading();
-        //                //UserDialogs.Instance.Alert("Oops, something went wrong", "Payment failed", "OK");
-        //                Console.Write(Course.Name + "Payment Failure ");
-        //            }
-        //        }
-        //    }
-        //}
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        UserDialogs.Instance.Alert("Oops, something went wrong", "Payment failed", "OK");
+                        Console.Write(Narudzba.Narudzba.NarudzbaId + "Payment Failure ");
+                    }
+                }
+            }
+        }
     }
 }
 

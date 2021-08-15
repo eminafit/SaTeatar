@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace SaTeatar.Database
 {
-    public class Pozorista
+    public partial class Pozorista
     {
         public Pozorista()
         {

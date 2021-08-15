@@ -38,7 +38,7 @@ namespace SaTeatar.Mobile.Views
         //        Course = course
         //    };
         //}
-
+        private NarudzbaViewModel _narudzba = null;
         public PlacanjePage(NarudzbaViewModel narudzba)
         {
             InitializeComponent();
@@ -47,6 +47,7 @@ namespace SaTeatar.Mobile.Views
             {
                 Narudzba = narudzba
             };
+            _narudzba = narudzba;
         }
         protected override void OnAppearing()
         {

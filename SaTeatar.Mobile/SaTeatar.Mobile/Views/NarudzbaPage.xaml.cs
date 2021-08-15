@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,6 +27,16 @@ namespace SaTeatar.Mobile.Views
         {
             base.OnAppearing();
             model.Init();
+
+            if (model!=null & model.UkupniIznos==0)
+                if (model != null)
+                {
+                    if (model.UkupniIznos == 0)
+                    {
+                        Btn_Placanje.IsVisible = false;
+                        Btn_Rezervacija.IsVisible = false;
+                    }
+                }
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -53,5 +64,6 @@ namespace SaTeatar.Mobile.Views
             Navigation.PushAsync(new PlacanjePage(model));
 
         }
+
     }
 }

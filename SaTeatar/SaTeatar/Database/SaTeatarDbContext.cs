@@ -24,6 +24,8 @@ namespace SaTeatar.Database
         public virtual DbSet<Korisnici> Korisnici { get; set; }
         public virtual DbSet<KorisniciUloge> KorisniciUloge { get; set; }
         public virtual DbSet<Kupci> Kupci { get; set; }
+        public virtual DbSet<Narudzba> Narudzba { get; set; }
+        public virtual DbSet<NarudzbaStavke> NarudzbaStavke { get; set; }
         public virtual DbSet<Ocjene> Ocjene { get; set; }
         public virtual DbSet<PoslaneObavijesti> PoslaneObavijesti { get; set; }
         public virtual DbSet<PostavkeObavijesti> PostavkeObavijesti { get; set; }
@@ -287,6 +289,57 @@ namespace SaTeatar.Database
                 entity.Property(e => e.Prezime)
                     .IsRequired()
                     .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Narudzba>(entity =>
+            {
+                entity.ToTable("Narudzba");
+
+                entity.Property(e => e.NarudzbaId).HasColumnName("NarudzbaID");
+
+                entity.Property(e => e.BrojNarudzbe)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.Datum).HasColumnType("date");
+
+                entity.Property(e => e.Iznos).HasColumnType("decimal(18, 2)");
+
+                entity.Property(e => e.KupacId).HasColumnName("KupacID");
+
+                entity.Property(e => e.PaymentId)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("PaymentID");
+
+                entity.HasOne(d => d.Kupac)
+                    .WithMany(p => p.Narudzbas)
+                    .HasForeignKey(d => d.KupacId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Narudzba_Kupci");
+            });
+
+            modelBuilder.Entity<NarudzbaStavke>(entity =>
+            {
+                entity.ToTable("NarudzbaStavke");
+
+                entity.Property(e => e.NarudzbaStavkeId).HasColumnName("NarudzbaStavkeID");
+
+                entity.Property(e => e.KartaId).HasColumnName("KartaID");
+
+                entity.Property(e => e.NarudzbaId).HasColumnName("NarudzbaID");
+
+                entity.HasOne(d => d.Karta)
+                    .WithMany(p => p.NarudzbaStavkes)
+                    .HasForeignKey(d => d.KartaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NarudzbaStavke_Karte");
+
+                entity.HasOne(d => d.Narudzba)
+                    .WithMany(p => p.NarudzbaStavkes)
+                    .HasForeignKey(d => d.NarudzbaId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_NarudzbaStavke_Narudzba");
             });
 
             modelBuilder.Entity<Ocjene>(entity =>

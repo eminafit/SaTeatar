@@ -10,6 +10,7 @@ namespace SaTeatar.Database
         public Kupci()
         {
             Kartes = new HashSet<Karte>();
+            Narudzbas = new HashSet<Narudzba>();
             Ocjenes = new HashSet<Ocjene>();
             PoslaneObavijestis = new HashSet<PoslaneObavijesti>();
             PostavkeObavijestis = new HashSet<PostavkeObavijesti>();
@@ -26,6 +27,7 @@ namespace SaTeatar.Database
         public bool Status { get; set; }
 
         public virtual ICollection<Karte> Kartes { get; set; }
+        public virtual ICollection<Narudzba> Narudzbas { get; set; }
         public virtual ICollection<Ocjene> Ocjenes { get; set; }
         public virtual ICollection<PoslaneObavijesti> PoslaneObavijestis { get; set; }
         public virtual ICollection<PostavkeObavijesti> PostavkeObavijestis { get; set; }

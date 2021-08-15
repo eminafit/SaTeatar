@@ -151,7 +151,7 @@ namespace SaTeatar.Mobile
         {
             try
             {
-                var url = $"{_apiUrl}/User/Authenticate";
+                var url = $"{_apiUrl}/kupci/Authenticate";
                 return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<mKupci>();
             }
             catch (FlurlHttpException)
