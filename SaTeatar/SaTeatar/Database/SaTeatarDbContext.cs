@@ -41,6 +41,7 @@ namespace SaTeatar.Database
         {
             if (!optionsBuilder.IsConfigured)
             {
+
             }
         }
 
@@ -168,6 +169,8 @@ namespace SaTeatar.Database
                 entity.Property(e => e.IzvodjenjeZonaId).HasColumnName("IzvodjenjeZonaID");
 
                 entity.Property(e => e.KupacId).HasColumnName("KupacID");
+
+                entity.Property(e => e.Qrcode).HasColumnName("QRCode");
 
                 entity.Property(e => e.Sifra)
                     .IsRequired()

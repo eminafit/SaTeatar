@@ -18,6 +18,7 @@ namespace SaTeatar.Database
         public string Sifra { get; set; }
         public bool Placeno { get; set; }
         public int IzvodjenjeZonaId { get; set; }
+        public byte[] Qrcode { get; set; }
 
         public virtual Izvodjenja Izvodjenje { get; set; }
         public virtual IzvodjenjaZone IzvodjenjeZona { get; set; }

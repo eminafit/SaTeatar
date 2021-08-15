@@ -152,7 +152,7 @@ namespace SaTeatar.Mobile.ViewModels
                 options.ReceiptEmail = user.Email.ToString();
                 var service = new ChargeService();
                 Charge charge = service.Create(options);
-                Narudzba.Narudzba.PaymentId = charge.id;
+                Narudzba.Narudzba.PaymentId = charge.Id;
                 await _narudzbaService.Update<mNarudzba>(Narudzba.Narudzba.NarudzbaId, Narudzba.Narudzba);
                 UserDialogs.Instance.Alert("Purchase was successful!");
                 return true;

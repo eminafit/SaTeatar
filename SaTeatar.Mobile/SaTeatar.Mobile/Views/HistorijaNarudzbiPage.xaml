@@ -1,37 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels"
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels" 
+             xmlns:local="clr-namespace:SaTeatar.Mobile.Converters"
              x:Class="SaTeatar.Mobile.Views.HistorijaNarudzbiPage">
 
     <ContentPage.BindingContext>
         <viewModels:HistorijaNarudzbiViewModel/>
     </ContentPage.BindingContext>
-    
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Historija narudzbi!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <ListView ItemsSource="{Binding ListaKarata}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="-------------------------"/>
-                                <Label Text="{Binding Sifra}"/>
-                                <Label Text="{Binding PredstavaNaziv}"/>
-                                <Label Text="{Binding PozoristeNaziv}"/>
-                                <Label Text="{Binding ZonaNaziv}"/>
-                                <Label Text="{Binding Cijena}"/>
-                                <!--<Label Text="{Binding KupacId}"/>-->
-                                <Label Text="-------------------------"/>
+
+
+
+            <!--<ListView ItemsSource="{Binding KarteVMQCodeLista}">-->
+                <ListView ItemsSource="{Binding ListaKarata}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+
+                            <StackLayout Padding="10" Orientation="Horizontal">
+
+                                <StackLayout Orientation="Vertical">
+                                    <Image HeightRequest ="200" WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding Qrcode, Converter={StaticResource imgConv}} "></Image>
+
+                                    <!--<Image  HeightRequest ="200" WidthRequest="200" Source="{Binding QrCodeImage }" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Sifra}"/>
+                                    <Label Text="{Binding PredstavaNaziv}"/>
+                                    <Label Text="{Binding PozoristeNaziv}"/>
+                                    <Label Text="{Binding ZonaNaziv}"/>
+                                    <Label Text="{Binding Cijena}"/>
+
+                                </StackLayout>
                             </StackLayout>
+
                         </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-            
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
     </ContentPage.Content>
 </ContentPage>

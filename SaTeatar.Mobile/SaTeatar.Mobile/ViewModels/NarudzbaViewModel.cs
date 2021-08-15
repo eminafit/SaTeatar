@@ -1,4 +1,5 @@
-﻿using SaTeatar.Mobile.Helpers;
+﻿using QRCoder;
+using SaTeatar.Mobile.Helpers;
 using SaTeatar.Model.Models;
 using SaTeatar.Model.Requests;
 using System;
@@ -62,6 +63,16 @@ namespace SaTeatar.Mobile.ViewModels
                 UkupniIznos += cartValue.UkupnaCijena;
             }
         }
+        byte[] GenerisiQrCode(string InputText)
+        {
+            if (string.IsNullOrEmpty(InputText))
+                InputText = "";
+
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(InputText, QRCodeGenerator.ECCLevel.M);
+            PngByteQRCode qRCode = new PngByteQRCode(qrCodeData);
+            return qRCode.GetGraphic(20);
+        }
 
         async Task Rezervisi()
         {
@@ -99,6 +110,7 @@ namespace SaTeatar.Mobile.ViewModels
                             Placeno = false,
                             Sifra = "xyc"
                         };
+                        karta.Qrcode = GenerisiQrCode(karta.Sifra);
                         var mkarta = await _karteService.Insert<mKarta>(karta);
                         KarteList.Add(mkarta);
 
