@@ -23,6 +23,7 @@ namespace SaTeatar.Mobile.Views
         protected async override void OnAppearing()
         {
             await model.Init();
+
             base.OnAppearing();
         }
     }

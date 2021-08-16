@@ -6,6 +6,7 @@ using AutoMapper;
 using SaTeatar.Model.Models;
 using SaTeatar.Model.Requests;
 using SaTeatar.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace SaTeatar.WebAPI.Services
 {
@@ -18,11 +19,16 @@ namespace SaTeatar.WebAPI.Services
 
         public override IList<mIzvodjenjaZone> Get(rIzvodjenjaZoneSearch search)
         {
-            var upit = _context.IzvodjenjaZone.AsQueryable();
-            if (search.ZonaId!=0 && search.IzvodjenjeId!=0)
+            var upit = _context.IzvodjenjaZone.Include(x=>x.Zona).AsQueryable();
+            if (search.ZonaId!=0 )
             {
-                upit = upit.Where(x => x.IzvodjenjeId == search.IzvodjenjeId && x.ZonaId == search.ZonaId);
+                upit = upit.Where(x => x.ZonaId == search.ZonaId);
             }
+            if (search.IzvodjenjeId != 0)
+            {
+                upit = upit.Where(x => x.IzvodjenjeId == search.IzvodjenjeId);
+            }
+
             var list = upit.ToList();
             return _mapper.Map<List<mIzvodjenjaZone>>(list); //vratiti ce samo jedan obj zapravo
         }

@@ -26,7 +26,21 @@ namespace SaTeatar.Services
             {
                 upit = upit.Where(x => x.KupacId == search.KupacId);
             }
+
+            if (search.IzvodjenjeZonaId!=0)
+            {
+                upit = upit.Where(x => x.IzvodjenjeZonaId == search.IzvodjenjeZonaId);
+            }
+
+            if (search.PredstavaId != 0)
+            {
+                upit = upit.Where(x => x.Izvodjenje.PredstavaId == search.PredstavaId);
+            }
+
+
+            upit = upit.Where(x => x.Placeno == search.Placeno);
             
+
             var lista = upit.ToList();
             var mlista= _mapper.Map<List<mKarta>>(lista);
 

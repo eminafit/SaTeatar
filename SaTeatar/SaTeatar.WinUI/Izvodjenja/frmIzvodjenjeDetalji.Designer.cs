@@ -42,7 +42,14 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.txtNapomena = new System.Windows.Forms.RichTextBox();
             this.btnSacuvaj = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dgvZone = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnSacuvajCijeneZona = new System.Windows.Forms.Button();
+            this.ZonaNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IzvodjenjeZonaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvZone)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -145,11 +152,76 @@ namespace SaTeatar.WinUI.Izvodjenja
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // dgvZone
+            // 
+            this.dgvZone.AllowUserToAddRows = false;
+            this.dgvZone.AllowUserToDeleteRows = false;
+            this.dgvZone.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvZone.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ZonaNaziv,
+            this.IzvodjenjeZonaId,
+            this.Cijena});
+            this.dgvZone.Location = new System.Drawing.Point(453, 86);
+            this.dgvZone.Name = "dgvZone";
+            this.dgvZone.RowHeadersWidth = 51;
+            this.dgvZone.RowTemplate.Height = 24;
+            this.dgvZone.Size = new System.Drawing.Size(303, 150);
+            this.dgvZone.TabIndex = 16;
+            this.dgvZone.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvZone_DataError);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(450, 48);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(197, 17);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Dodajte cijene za svaku zonu:";
+            // 
+            // btnSacuvajCijeneZona
+            // 
+            this.btnSacuvajCijeneZona.Location = new System.Drawing.Point(605, 256);
+            this.btnSacuvajCijeneZona.Name = "btnSacuvajCijeneZona";
+            this.btnSacuvajCijeneZona.Size = new System.Drawing.Size(151, 23);
+            this.btnSacuvajCijeneZona.TabIndex = 17;
+            this.btnSacuvajCijeneZona.Text = "Sacuvaj cijene zona";
+            this.btnSacuvajCijeneZona.UseVisualStyleBackColor = true;
+            this.btnSacuvajCijeneZona.Click += new System.EventHandler(this.btnSacuvajCijeneZona_Click);
+            // 
+            // ZonaNaziv
+            // 
+            this.ZonaNaziv.DataPropertyName = "ZonaNaziv";
+            this.ZonaNaziv.HeaderText = "Zona";
+            this.ZonaNaziv.MinimumWidth = 6;
+            this.ZonaNaziv.Name = "ZonaNaziv";
+            this.ZonaNaziv.Width = 125;
+            // 
+            // IzvodjenjeZonaId
+            // 
+            this.IzvodjenjeZonaId.DataPropertyName = "IzvodjenjeZonaId";
+            this.IzvodjenjeZonaId.HeaderText = "IzvodjenjeZonaId";
+            this.IzvodjenjeZonaId.MinimumWidth = 6;
+            this.IzvodjenjeZonaId.Name = "IzvodjenjeZonaId";
+            this.IzvodjenjeZonaId.ReadOnly = true;
+            this.IzvodjenjeZonaId.Visible = false;
+            this.IzvodjenjeZonaId.Width = 125;
+            // 
+            // Cijena
+            // 
+            this.Cijena.DataPropertyName = "Cijena";
+            this.Cijena.HeaderText = "Cijena";
+            this.Cijena.MinimumWidth = 6;
+            this.Cijena.Name = "Cijena";
+            this.Cijena.Width = 125;
+            // 
             // frmIzvodjenjeDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 450);
+            this.ClientSize = new System.Drawing.Size(892, 450);
+            this.Controls.Add(this.btnSacuvajCijeneZona);
+            this.Controls.Add(this.dgvZone);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnSacuvaj);
             this.Controls.Add(this.txtNapomena);
             this.Controls.Add(this.label5);
@@ -165,6 +237,7 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.Text = "Izvodjenje";
             this.Load += new System.EventHandler(this.frmIzvodjenjeDetalji_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvZone)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,5 +257,11 @@ namespace SaTeatar.WinUI.Izvodjenja
         private System.Windows.Forms.RichTextBox txtNapomena;
         private System.Windows.Forms.Button btnSacuvaj;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.DataGridView dgvZone;
+        private System.Windows.Forms.Button btnSacuvajCijeneZona;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ZonaNaziv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IzvodjenjeZonaId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cijena;
     }
 }

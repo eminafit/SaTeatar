@@ -38,6 +38,24 @@
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
+                            <Span Text="Ukupan broj sjedista u zoni: "/>
+                            <Span Text="{Binding BrSjedistaUZoni}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Broj slobodnih sjedista: "/>
+                            <Span Text="{Binding BrSlobodnihSjedistaUZoni}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
                             <Span Text="Cijena: "/>
                             <Span Text="{Binding Cijena}"/>
                             <Span Text=" KM"/>

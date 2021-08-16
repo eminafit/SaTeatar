@@ -198,7 +198,7 @@ namespace SaTeatar.WinUI
             {
                 bClosing = true;
 
-                if (MessageBox.Show("Da li ste sigurni da zelite zatvoriti aplikaciju?", "Zatvoriti aplikaciju?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                if (MessageBox.Show("Da li ste sigurni da zelite zatvoriti aplikaciju?", "Izlaz", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 {
                     e.Cancel = true;
                     bClosing=false;

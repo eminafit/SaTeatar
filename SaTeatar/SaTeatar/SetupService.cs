@@ -325,9 +325,9 @@ namespace SaTeatar.WebAPI
                 //#4 Pozoriste mladih Sarajevo
                 context.Zone.Add(new Zone() { Naziv = "Zona A", PozoristeId = 4, UkupanBrojSjedista = 20 });
                 context.SaveChanges();
-                context.Zone.Add(new Zone() { Naziv = "Zona A", PozoristeId = 4, UkupanBrojSjedista = 40 });
+                context.Zone.Add(new Zone() { Naziv = "Zona B", PozoristeId = 4, UkupanBrojSjedista = 40 });
                 context.SaveChanges();
-                context.Zone.Add(new Zone() { Naziv = "Zona A", PozoristeId = 4, UkupanBrojSjedista = 120 });
+                context.Zone.Add(new Zone() { Naziv = "Zona C", PozoristeId = 4, UkupanBrojSjedista = 120 });
                 context.SaveChanges();
 
             }

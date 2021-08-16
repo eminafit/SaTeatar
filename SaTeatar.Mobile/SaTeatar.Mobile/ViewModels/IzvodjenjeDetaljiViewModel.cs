@@ -16,6 +16,7 @@ namespace SaTeatar.Mobile.ViewModels
         private readonly APIService _zoneService = new APIService("zone");
         private readonly APIService _izvodjenjaZoneService = new APIService("izvodjenjaZone");
         private readonly APIService _ocjeneService = new APIService("ocjene");
+        private readonly APIService _karteService = new APIService("karte");
 
         public IzvodjenjeDetaljiViewModel()
         {
@@ -56,6 +57,21 @@ namespace SaTeatar.Mobile.ViewModels
         }
 
         string _kljuc;
+
+        int _brojSlobodnihSjedistaUZoni = 0;
+        public int BrSlobodnihSjedistaUZoni
+        {
+            get { return _brojSlobodnihSjedistaUZoni; }
+            set { SetProperty(ref _brojSlobodnihSjedistaUZoni, value); }
+        }
+
+
+        int _brojSjedistaUZoni = 0;
+        public int BrSjedistaUZoni
+        {
+            get { return _brojSjedistaUZoni; }
+            set { SetProperty(ref _brojSjedistaUZoni, value); }
+        }
 
         int _kolicina = 0;
         public int Kolicina
@@ -159,6 +175,22 @@ namespace SaTeatar.Mobile.ViewModels
                     IzvodjenjeId = ilist[0].IzvodjenjeId,
                     Popust = ilist[0].Popust
                 };
+                ///
+
+                var zona = await _zoneService.GetById<mZone>(IzvodjenjeZone.ZonaId);
+                var searchiz = new rKartaSearch() { IzvodjenjeZonaId = IzvodjenjeZone.IzvodjenjeZonaId };
+                var karte = await _karteService.Get<List<mKarta>>(searchiz);
+                int brojac = 0;
+                var datumVazenjaRezervacije = Izvodjenje.DatumVrijeme.AddDays(-7);
+                foreach (var k in karte)
+                {
+                    if (k.Placeno || DateTime.Compare(DateTime.Now, datumVazenjaRezervacije)<=0)
+                    {
+                        brojac++;
+                    }
+                }
+                BrSjedistaUZoni = zona.UkupanBrojSjedista;
+                BrSlobodnihSjedistaUZoni = zona.UkupanBrojSjedista - brojac;
 
                 _kljuc = $"{Izvodjenje.IzvodjenjeId}_{IzvodjenjeZone.ZonaId}";
 
@@ -183,6 +215,7 @@ namespace SaTeatar.Mobile.ViewModels
 
 
         }
+
 
     }
 }

@@ -9,6 +9,7 @@ namespace SaTeatar.Model.Requests
     {
         public int IzvodjenjeId { get; set; }
         public int ZonaId { get; set; }
+        public string ZonaNaziv { get; set; }
 
         [Required(AllowEmptyStrings = false)]
         public decimal Cijena { get; set; }
