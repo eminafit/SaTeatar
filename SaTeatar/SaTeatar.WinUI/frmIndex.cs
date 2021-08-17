@@ -213,5 +213,15 @@ namespace SaTeatar.WinUI
                 bClosing = false;
             }
         }
+
+        private void topPosjetiteljiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPostavkeZaIzvjestaje frm = new frmPostavkeZaIzvjestaje();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+
     }
 }

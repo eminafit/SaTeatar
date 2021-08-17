@@ -8,6 +8,8 @@ namespace SaTeatar.Model.Models
     {
         public int KartaId { get; set; }
         public int KupacId { get; set; }
+        public string KupacIme { get; set; }
+        public string KupacPrezime { get; set; }
         public int IzvodjenjeId { get; set; }
         public string Sifra { get; set; }
         public byte[] Qrcode { get; set; }

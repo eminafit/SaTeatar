@@ -13,6 +13,7 @@ namespace SaTeatar.Model.Requests
         public bool Placeno { get; set; }
         public byte[] Qrcode { get; set; }
         public int PredstavaId { get; set; }
+        public int PozoristeId { get; set; }
 
         public int IzvodjenjeZonaId { get; set; }
 

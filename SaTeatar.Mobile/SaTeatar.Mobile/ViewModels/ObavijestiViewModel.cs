@@ -46,7 +46,7 @@ namespace SaTeatar.Mobile.ViewModels
                 item.Procitano = true;
                 await _poslaneObavijestiService.Update<mPoslaneObavijesti>(item.PoslanaObavijestId, item);
             }
-            PopuniListe();
+            await PopuniListe();
         }
 
         private async Task PopuniListe()
@@ -87,7 +87,7 @@ namespace SaTeatar.Mobile.ViewModels
             //var searchKupac = new rKupciSearch() { KorisnickoIme = APIService.Username };
             //var kupci = await _kupciService.Get<List<mKupci>>(searchKupac);
             //_idKupca = kupci[0].KupacId;
-            PopuniListe();
+            await PopuniListe();
         }
     }
 }

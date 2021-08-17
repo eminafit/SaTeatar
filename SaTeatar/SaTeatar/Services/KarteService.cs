@@ -20,7 +20,7 @@ namespace SaTeatar.Services
 
         public override IList<mKarta> Get(rKartaSearch search)
         {
-            var upit = _context.Karte.Include(x=>x.Izvodjenje.Predstava).Include(x => x.Izvodjenje.Pozoriste).Include(y=>y.IzvodjenjeZona.Zona).AsQueryable();
+            var upit = _context.Karte.Include(x=>x.Izvodjenje.Predstava).Include(x => x.Izvodjenje.Pozoriste).Include(y=>y.IzvodjenjeZona.Zona).Include(x=>x.Kupac).AsQueryable();
             
             if (search.KupacId!=0)
             {
@@ -37,6 +37,10 @@ namespace SaTeatar.Services
                 upit = upit.Where(x => x.Izvodjenje.PredstavaId == search.PredstavaId);
             }
 
+            if (search.PozoristeId != 0)
+            {
+                upit = upit.Where(x => x.Izvodjenje.PozoristeId == search.PozoristeId);
+            }
 
             upit = upit.Where(x => x.Placeno == search.Placeno);
             
