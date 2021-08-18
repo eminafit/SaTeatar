@@ -78,22 +78,55 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem Title="About" Icon="icon_about.png">
+    <!--<FlyoutItem Title="About" Icon="icon_about.png">
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Browse" Icon="icon_feed.png">
         <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Login">
+    </FlyoutItem>-->
+    <!--<FlyoutItem Title="Login">
         <ShellContent Route="Login" ContentTemplate="{DataTemplate local:Login}" />
     </FlyoutItem>
     <FlyoutItem Title="Registracija">
         <ShellContent Route="RegistracijaPage" ContentTemplate="{DataTemplate local:RegistracijaPage}" />
+    </FlyoutItem>-->
+
+    <FlyoutItem Title="Preporucene predstave" >
+        <ShellContent Route="PreporucenePredstavePage" ContentTemplate="{DataTemplate local:PreporucenePredstavePage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Izvodjenja">
+
+    <FlyoutItem Title="Repertoar">
         <ShellContent Route="IzvodjenjaPage" ContentTemplate="{DataTemplate local:IzvodjenjaPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Narudzba">
+
+    <FlyoutItem Title="Obavijesti">
+        <Tab>
+            <ShellContent Title="Pregled" Route="ObavijestiPage" ContentTemplate="{DataTemplate local:ObavijestiPage}" />
+            <ShellContent Title="Postavke" Route="PostavkeObavijestiStartPage" ContentTemplate="{DataTemplate local:PostavkeObavijestiStartPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Narudzbe">
+        <Tab>
+            <ShellContent Title="Narudzba" Route="NarudzbaPage" ContentTemplate="{DataTemplate local:NarudzbaPage}" />
+            <ShellContent Title="Historija narudzbi" Route="HistorijaNarudzbiPage" ContentTemplate="{DataTemplate local:HistorijaNarudzbiPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Ocjene">
+        <Tab>
+            <!--<ShellContent Title="Pregled" Route="OcjenePage" ContentTemplate="{DataTemplate local:OcjenePage}" />-->
+            <ShellContent Title="Ocijenite pregledane predstave" Route="OcjenePage" ContentTemplate="{DataTemplate local:OcjenePage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="MojProfil">
+        <Tab>
+            <ShellContent Title="Osnovni podaci" Route="RegistracijaPage" ContentTemplate="{DataTemplate local:RegistracijaPage}" />
+        </Tab>
+    </FlyoutItem>
+
+    <!--<FlyoutItem Title="Narudzba">
         <ShellContent Route="NarudzbaPage" ContentTemplate="{DataTemplate local:NarudzbaPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Historija narudzbi">
@@ -117,7 +150,7 @@
 
     <FlyoutItem Title="Placanje">
         <ShellContent Route="PlacanjePage" ContentTemplate="{DataTemplate local:PlacanjePage}" />
-    </FlyoutItem>
+    </FlyoutItem>-->
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
@@ -132,7 +165,7 @@
     -->
     <TabBar>
         <!--<ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />-->
-        <ShellContent Route="Login" ContentTemplate="{DataTemplate local:Login}" />
+        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
     </TabBar>
 
     <!-- Optional Templates 

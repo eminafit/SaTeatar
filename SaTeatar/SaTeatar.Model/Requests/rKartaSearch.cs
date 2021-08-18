@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Text;
 
 namespace SaTeatar.Model.Requests
@@ -14,6 +15,9 @@ namespace SaTeatar.Model.Requests
         public byte[] Qrcode { get; set; }
         public int PredstavaId { get; set; }
         public int PozoristeId { get; set; }
+
+        public DateTime DatumOd { get; set; } //= DateTime.MinValue;
+        public DateTime DatumDo { get; set; } //= DateTime.MinValue;
 
         public int IzvodjenjeZonaId { get; set; }
 

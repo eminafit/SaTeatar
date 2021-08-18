@@ -28,9 +28,11 @@ namespace SaTeatar.WinUI
             public DateTime DatumOd { get; set; }
             public DateTime DatumDo { get; set; }
             public List<dtoKupac> Kupci { get; set; }
+            public int BrojKupaca { get; set; }
 
             public class dtoKupac
             {
+                public int RedBr { get; set; }
                 public int KupacId { get; set; }
                 public string KupacImePrezime { get; set; }
                 public int BrKarti { get; set; }
@@ -65,8 +67,9 @@ namespace SaTeatar.WinUI
                 obj.PozoristeNaziv = pozoriste.Naziv;
                 obj.DatumOd = dtpDatumOd.Value;
                 obj.DatumDo = dtpDatumDo.Value;
+                obj.BrojKupaca = int.Parse(txtBrPosjetitelja.Text);
 
-                var search = new rKartaSearch() { PozoristeId = pozoristeId , Placeno = true };
+                var search = new rKartaSearch() { PozoristeId = pozoristeId , Placeno = true, DatumDo=obj.DatumDo, DatumOd=obj.DatumOd };
                 var karte = await _karteService.Get<List<mKarta>>(search);
 
                 //foreach (var item in karte)
@@ -78,11 +81,12 @@ namespace SaTeatar.WinUI
                   var kupci_ids = karte.Select(x => x.KupacId).Distinct();
 
                 foreach (var id in kupci_ids)
-                {                   
+                {
                     obj.Kupci.Add(new dtoTopPosjetioci.dtoKupac()
                     {
+                        RedBr = 0,
                         KupacId = id,
-                        KupacImePrezime="...",
+                        KupacImePrezime = "...",
                         BrKarti = 0
                     }) ;
                 }
@@ -108,6 +112,16 @@ namespace SaTeatar.WinUI
 
                 // obj.Kupci.OrderBy(x => x.BrKarti);
                 obj.Kupci.Sort((y, x) => x.BrKarti.CompareTo(y.BrKarti));
+                //public void RemoveRange (int index, int count); //skida i index
+                int range = obj.Kupci.Count - obj.BrojKupaca;
+                if (range>0)
+                {
+                    obj.Kupci.RemoveRange(obj.BrojKupaca, range);
+                }
+                for (int i = 0; i < obj.Kupci.Count; i++)
+                {
+                    obj.Kupci[i].RedBr = i + 1;
+                }
             }
 
             frmTopPosjetiteljiIzvjestaj frm = new frmTopPosjetiteljiIzvjestaj(obj);

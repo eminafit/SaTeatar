@@ -26,8 +26,10 @@ namespace SaTeatar.WinUI
         {
             var rpc = new ReportParameterCollection();
             rpc.Add(new ReportParameter( "Pozoriste", _objTP.PozoristeNaziv));
-            rpc.Add(new ReportParameter( "DatumOd", _objTP.DatumOd.ToShortDateString()));
-            rpc.Add(new ReportParameter( "DatumDo", _objTP.DatumDo.ToShortDateString()));
+            rpc.Add(new ReportParameter( "DatumOd", _objTP.DatumOd.ToString("dd.MM.yyyy.")));
+            rpc.Add(new ReportParameter( "DatumDo", _objTP.DatumDo.ToString("dd.MM.yyyy.")));
+            rpc.Add(new ReportParameter( "DatumOdStr", _objTP.DatumOd.ToString("dd.MM.yyyy.")));
+            rpc.Add(new ReportParameter( "DatumDoStr", _objTP.DatumDo.ToString("dd.MM.yyyy.")));
 
             var tblPosjetitelji = new dsSaTeatar.PosjetiteljiDataTable();
             var tblPosjetiteljiNovi = new dsSaTeatar.PosjetiteljiDataTable();
@@ -36,7 +38,7 @@ namespace SaTeatar.WinUI
             for (int i = 0; i < 5; i++)
             {
                 var red = tblPosjetitelji.NewPosjetiteljiRow();
-                red.Id = i + 1;
+                red.RedBr = i + 1;
                 red.ImePrezime = $"Ime Prezime {i + 1}";
                 red.BrKupljenihKarti = i + 3;
                 tblPosjetitelji.Rows.Add(red);
@@ -60,7 +62,7 @@ namespace SaTeatar.WinUI
             for (int i = 0; i < _objTP.Kupci.Count; i++)
             {
                 var red = tblPosjetiteljiNovi.NewPosjetiteljiRow();
-                red.Id = _objTP.Kupci[i].KupacId;
+                red.RedBr = _objTP.Kupci[i].RedBr;
                 red.ImePrezime = _objTP.Kupci[i].KupacImePrezime;
                 red.BrKupljenihKarti = _objTP.Kupci[i].BrKarti;
                 tblPosjetiteljiNovi.Rows.Add(red);

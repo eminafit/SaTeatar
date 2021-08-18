@@ -279,7 +279,7 @@ namespace SaTeatar.WinUI {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class PosjetiteljiDataTable : global::System.Data.TypedTableBase<PosjetiteljiRow> {
             
-            private global::System.Data.DataColumn columnId;
+            private global::System.Data.DataColumn columnRedBr;
             
             private global::System.Data.DataColumn columnImePrezime;
             
@@ -320,9 +320,9 @@ namespace SaTeatar.WinUI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn IdColumn {
+            public global::System.Data.DataColumn RedBrColumn {
                 get {
-                    return this.columnId;
+                    return this.columnRedBr;
                 }
             }
             
@@ -379,10 +379,10 @@ namespace SaTeatar.WinUI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public PosjetiteljiRow AddPosjetiteljiRow(long Id, string ImePrezime, long BrKupljenihKarti) {
+            public PosjetiteljiRow AddPosjetiteljiRow(long RedBr, string ImePrezime, long BrKupljenihKarti) {
                 PosjetiteljiRow rowPosjetiteljiRow = ((PosjetiteljiRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Id,
+                        RedBr,
                         ImePrezime,
                         BrKupljenihKarti};
                 rowPosjetiteljiRow.ItemArray = columnValuesArray;
@@ -407,7 +407,7 @@ namespace SaTeatar.WinUI {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnId = base.Columns["Id"];
+                this.columnRedBr = base.Columns["RedBr"];
                 this.columnImePrezime = base.Columns["ImePrezime"];
                 this.columnBrKupljenihKarti = base.Columns["BrKupljenihKarti"];
             }
@@ -415,8 +415,8 @@ namespace SaTeatar.WinUI {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnId = new global::System.Data.DataColumn("Id", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId);
+                this.columnRedBr = new global::System.Data.DataColumn("RedBr", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRedBr);
                 this.columnImePrezime = new global::System.Data.DataColumn("ImePrezime", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnImePrezime);
                 this.columnBrKupljenihKarti = new global::System.Data.DataColumn("BrKupljenihKarti", typeof(long), null, global::System.Data.MappingType.Element);
@@ -563,17 +563,17 @@ namespace SaTeatar.WinUI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public long Id {
+            public long RedBr {
                 get {
                     try {
-                        return ((long)(this[this.tablePosjetitelji.IdColumn]));
+                        return ((long)(this[this.tablePosjetitelji.RedBrColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Id\' in table \'Posjetitelji\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RedBr\' in table \'Posjetitelji\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePosjetitelji.IdColumn] = value;
+                    this[this.tablePosjetitelji.RedBrColumn] = value;
                 }
             }
             
@@ -611,14 +611,14 @@ namespace SaTeatar.WinUI {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsIdNull() {
-                return this.IsNull(this.tablePosjetitelji.IdColumn);
+            public bool IsRedBrNull() {
+                return this.IsNull(this.tablePosjetitelji.RedBrColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetIdNull() {
-                this[this.tablePosjetitelji.IdColumn] = global::System.Convert.DBNull;
+            public void SetRedBrNull() {
+                this[this.tablePosjetitelji.RedBrColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

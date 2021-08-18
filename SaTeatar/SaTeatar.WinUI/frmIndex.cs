@@ -218,7 +218,6 @@ namespace SaTeatar.WinUI
         {
             frmPostavkeZaIzvjestaje frm = new frmPostavkeZaIzvjestaje();
             frm.MdiParent = this;
-            frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
 

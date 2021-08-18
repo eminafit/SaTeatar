@@ -38,7 +38,7 @@ namespace SaTeatar.Mobile.ViewModels
 
                 //await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
 
-                await Shell.Current.Navigation.PushAsync(new Login());
+                await Shell.Current.Navigation.PushAsync(new LoginPage());
 
             }
             catch (Exception)

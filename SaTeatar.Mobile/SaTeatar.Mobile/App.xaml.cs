@@ -14,8 +14,8 @@ namespace SaTeatar.Mobile
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            //MainPage = new Login();
-            MainPage = new AppShell();
+            MainPage = new LoginPage();
+            //MainPage = new AppShell();
         }
 
         protected override void OnStart()

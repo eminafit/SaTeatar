@@ -1,14 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="SaTeatar.Mobile.Views.LoginPage"
-             Shell.NavBarIsVisible="False">
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels"
+             NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="SaTeatar.Mobile.Views.LoginPage">
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+        <StackLayout Padding="10" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+            <Label Text="Korisnicko ime:"/>
+            <Entry Text="{Binding KorisnickoIme}"></Entry>
+            <Label Text="Lozinka:"/>
+            <Entry Text="{Binding Lozinka}" IsPassword="True"></Entry>
+            <Button Command="{Binding LoginCommand}" Text="Prijavite se"></Button>
+            <Label IsVisible="{Binding IsBusy}" Text="Prijava u toku, pricekajte..."></Label>
+            <Label Text="Nemate korisnički račun ?" HorizontalOptions="Center"/>
+            <Button Command="{Binding RegisterCommand}" Text="Registrujte se"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

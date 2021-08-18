@@ -6,6 +6,7 @@ using SaTeatar.Model.Requests;
 using SaTeatar.WebAPI.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -40,6 +41,11 @@ namespace SaTeatar.Services
             if (search.PozoristeId != 0)
             {
                 upit = upit.Where(x => x.Izvodjenje.PozoristeId == search.PozoristeId);
+            }
+
+            if (search.DatumOd.CompareTo(DateTime.MinValue.AddHours(1)) > 0 && search.DatumDo.CompareTo(DateTime.MinValue.AddHours(1)) > 0)
+            {
+                upit = upit.Where(x => x.Izvodjenje.DatumVrijeme.CompareTo(search.DatumOd) >= 0 && x.Izvodjenje.DatumVrijeme.CompareTo(search.DatumDo) <= 0);
             }
 
             upit = upit.Where(x => x.Placeno == search.Placeno);
