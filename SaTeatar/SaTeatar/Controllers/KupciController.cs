@@ -27,6 +27,13 @@ namespace SaTeatar.Controllers
             return await _service.Authenticate(request);
         }
 
+        [AllowAnonymous]
+        [HttpPost("Registracija")]
+        public async Task<mKupci> Registracija(rKupciInsert request)
+        {
+            return await _service.Registracija(request);
+        }
+
         [HttpPost("Login")]
         public async Task<mKupci> Login(string username, string password )
         {

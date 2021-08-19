@@ -40,12 +40,21 @@ namespace SaTeatar.Mobile.ViewModels
 
         void Register()
         {
-            Application.Current.MainPage = new RegistracijaPage();
+             Application.Current.MainPage = new RegistracijaPage();
+
         }
 
-        async Task Prijava()
+        bool _RegVisible = true;
+        public bool RegVisible
+        {
+            get { return _RegVisible; }
+            set { SetProperty(ref _RegVisible, value); }
+        }
+
+        public async Task Prijava()
         {
             IsBusy = true;
+            RegVisible = false;
             APIService.Username = KorisnickoIme;
             APIService.Password = Lozinka;
 
@@ -59,14 +68,20 @@ namespace SaTeatar.Mobile.ViewModels
 
             if (kupac!=null)
             {
+                IsBusy = false;
+
                 PrijavljeniKupac.Kupac = kupac;
                 Application.Current.MainPage = new AppShell();
-               // await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
             }
             else
             {
+                IsBusy = false;
                 await Application.Current.MainPage.DisplayAlert("Greska", "Pogresno korisnicko ime ili lozinka", "OK");
+
             }
+            KorisnickoIme = string.Empty;
+            Lozinka = string.Empty;
+            RegVisible = true;
 
         }
     }

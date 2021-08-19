@@ -39,6 +39,35 @@ namespace SaTeatar.Services
             return null;
         }
 
+        [AllowAnonymous]
+        public async Task<mKupci> Registracija(rKupciInsert request)
+        {
+            var listaUsernameaKorisnika = _context.Korisnici.Select(x => x.KorisnickoIme).ToList();
+            var listaUsernameaKupaca = _context.Kupci.Select(x => x.KorisnickoIme).ToList();
+            if (listaUsernameaKorisnika.Contains(request.KorisnickoIme) || listaUsernameaKupaca.Contains(request.KorisnickoIme))
+            {
+                //throw new UserException("Korisnicko ime vec postoji!");
+                return null;
+            }
+
+            //if (request.Lozinka != request.LozinkaPotvrda)
+            //{
+            //    throw new UserException("Lozinka nije ispravna");
+            //}
+
+
+            var entitet = _mapper.Map<Kupci>(request);
+
+            entitet.LozinkaSalt = GenerateSaltHash.GenerateSalt();
+            entitet.LozinkaHash = GenerateSaltHash.GenerateHash(entitet.LozinkaSalt, request.Lozinka);
+
+            _context.Kupci.Add(entitet);
+            _context.SaveChanges();
+
+            return _mapper.Map<mKupci>(entitet);
+        }
+
+
         public override IList<mKupci> Get(rKupciSearch search)
         {
             var upit = _context.Kupci.AsQueryable();
@@ -81,9 +110,29 @@ namespace SaTeatar.Services
         
         }
 
+        public override mKupci Update(int id, rKupciUpdate request)
+        {
+            var kupac = _context.Kupci.AsNoTracking().Where(x => x.KupacId == request.KupacId).FirstOrDefault();
+
+            var entitet = _mapper.Map<Kupci>(request);
+
+            var hash = GenerateSaltHash.GenerateHash(kupac.LozinkaSalt, request.Lozinka);
+            if (hash != kupac.LozinkaHash)
+            {
+                return null;
+            }
+            entitet.LozinkaSalt = kupac.LozinkaSalt;
+            entitet.LozinkaHash = kupac.LozinkaHash;
+
+            _context.Kupci.Update(entitet);
+            _context.SaveChanges();
+
+            return _mapper.Map<mKupci>(entitet);
+        }
+
         public async Task<mKupci> Login(string username, string password)
         {
-            var entity = _context.Kupci.Where(x => x.KorisnickoIme == username).FirstOrDefault();
+            var entity = _context.Kupci.AsNoTracking().Where(x => x.KorisnickoIme == username).FirstOrDefault();
 
             //if (entity == null)
             //{

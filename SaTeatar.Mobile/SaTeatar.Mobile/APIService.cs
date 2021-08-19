@@ -159,5 +159,18 @@ namespace SaTeatar.Mobile
                 return default;
             }
         }
+
+        public async Task<mKupci> Registracija(rKupciInsert request)
+        {
+            try
+            {
+                var url = $"{_apiUrl}/kupci/Registracija";
+                return await url.PostJsonAsync(request).ReceiveJson<mKupci>();
+            }
+            catch (FlurlHttpException)
+            {
+                return default;
+            }
+        }
     }
 }

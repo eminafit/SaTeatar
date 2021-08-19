@@ -24,19 +24,44 @@ namespace SaTeatar.Mobile.ViewModels
 
         public ICommand InitCommand { get; set; }
 
+
+        bool _nemaPredstava = false;
+        public bool NemaPredstava
+        {
+            get { return _nemaPredstava; }
+            set { SetProperty(ref _nemaPredstava, value); }
+        }
+
+        string _poruka = string.Empty;
+        public string Poruka
+        {
+            get { return _poruka; }
+            set { SetProperty(ref _poruka, value); }
+        }
+
         public async Task Init()
         {
-
+            NemaPredstava = true;
             var search = new rKupciSearch() { KorisnickoIme = APIService.Username };
             var kupci = await _kupciService.Get<List<mKupci>>(search);
             var idkupca = kupci[0].KupacId;
 
             List<mPredstave> predstave = await _predstaveService.Recommend<List<mPredstave>>(idkupca);
 
-            foreach (var item in predstave)
+            if (predstave.Count>0)
             {
-                PreporucenePredstave.Add(item);
+                NemaPredstava = false;
+                foreach (var item in predstave)
+                {
+                    PreporucenePredstave.Add(item);
+                }
             }
+            else
+            {
+                Poruka = "Niste ocijenili dovoljno predstava da bi vam mogli dati preporuke koje predstave da pogledate.";
+            }
+
+
 
         }
 

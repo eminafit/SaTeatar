@@ -13,6 +13,7 @@
             <Label Text="Preporucene Predstave!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Label IsVisible="{Binding NemaPredstava}" Text="{Binding Poruka}" TextColor="Gray" HorizontalOptions="Center"/>
 
             <ListView ItemsSource="{Binding PreporucenePredstave}">
                 <ListView.ItemTemplate>

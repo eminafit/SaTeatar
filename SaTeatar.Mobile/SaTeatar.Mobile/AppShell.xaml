@@ -86,8 +86,8 @@
     </FlyoutItem>-->
     <!--<FlyoutItem Title="Login">
         <ShellContent Route="Login" ContentTemplate="{DataTemplate local:Login}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Registracija">
+    </FlyoutItem>-->
+    <!--<FlyoutItem Title="Registracija" >
         <ShellContent Route="RegistracijaPage" ContentTemplate="{DataTemplate local:RegistracijaPage}" />
     </FlyoutItem>-->
 
@@ -120,9 +120,9 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="MojProfil">
+    <FlyoutItem Title="Moj profil">
         <Tab>
-            <ShellContent Title="Osnovni podaci" Route="RegistracijaPage" ContentTemplate="{DataTemplate local:RegistracijaPage}" />
+            <ShellContent Title="Licni podaci" Route="EditProfilaPage" ContentTemplate="{DataTemplate local:EditProfilaPage}" />
         </Tab>
     </FlyoutItem>
 

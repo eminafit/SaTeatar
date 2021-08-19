@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels" 
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="True"
              x:Class="SaTeatar.Mobile.Views.RegistracijaPage">
 
     <ContentPage.BindingContext>
@@ -10,34 +12,27 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Registracija korisnika"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <!--<ListView>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>-->
-            <StackLayout Orientation="Vertical">
+            <StackLayout Padding="20" Orientation="Vertical">
+                <Label Text="Registracija korisnika" HorizontalOptions="Center" />
                 <Label Text="Ime:" />
-                <Entry Text="{Binding KupacInsert.Ime}"></Entry>
+                <Entry x:Name="FirstName" Text="{Binding KupacInsert.Ime}"></Entry>
                 <Label Text="Prezime: "/>
-                <Entry Text="{Binding KupacInsert.Prezime}"></Entry>
+                <Entry x:Name="LastName" Text="{Binding KupacInsert.Prezime}"></Entry>
                 <Label Text="Email:"/>
-                <Entry Text="{Binding KupacInsert.Email}"></Entry>
+                <Entry x:Name="Email" Text="{Binding KupacInsert.Email}"></Entry>
                 <Label Text="Korisnicko ime:"/>
-                <Entry Text="{Binding KupacInsert.KorisnickoIme}"></Entry>
+                <Entry x:Name="Username" Text="{Binding KupacInsert.KorisnickoIme}"></Entry>
                 <Label Text="Lozinka:"/>
-                <Entry Text="{Binding KupacInsert.Lozinka}"></Entry>
+                <Entry x:Name="Password" Text="{Binding KupacInsert.Lozinka}" IsPassword="True"></Entry>
                 <Label Text="Potvrda lozinke:"/>
-                <Entry Text="{Binding KupacInsert.LozinkaPotvrda}"></Entry>
-                <Button Command="{Binding RegistrujSeCommand}" Text="Registrujte se"></Button>
-                <Label IsVisible="{Binding IsBusy}" Text="Registracija u toku, pricekajte..."></Label>
+                <Entry x:Name="PasswordConfirm" Text="{Binding KupacInsert.LozinkaPotvrda}" IsPassword="True"></Entry>
+                <Button Text="Registrujte se" Clicked="Button_Clicked"></Button>
+                <Label IsVisible="{Binding IsBusy}" Text="Registracija u toku, pricekajte..." HorizontalOptions="Center" TextColor="Gray"></Label>
             </StackLayout>
-                        <!--</ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
-            
+            <StackLayout>
+                <Button Text="&lt;&lt;" Command="{Binding PovratakNaLoginCommand}" BackgroundColor="White" TextColor="Gray" HorizontalOptions="Center"></Button>
+
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
     

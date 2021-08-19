@@ -9,15 +9,27 @@
         <viewModels:LoginViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="10" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
-            <Label Text="Korisnicko ime:"/>
-            <Entry Text="{Binding KorisnickoIme}"></Entry>
-            <Label Text="Lozinka:"/>
-            <Entry Text="{Binding Lozinka}" IsPassword="True"></Entry>
-            <Button Command="{Binding LoginCommand}" Text="Prijavite se"></Button>
-            <Label IsVisible="{Binding IsBusy}" Text="Prijava u toku, pricekajte..."></Label>
-            <Label Text="Nemate korisnički račun ?" HorizontalOptions="Center"/>
-            <Button Command="{Binding RegisterCommand}" Text="Registrujte se"></Button>
+        <StackLayout>
+            <StackLayout Padding="20" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout>
+                <Label Text="Korisnicko ime:"/>
+                <Entry x:Name="KorisnickoIme" Text="{Binding KorisnickoIme}"></Entry>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Lozinka:"/>
+                <Entry x:Name="Lozinka" Text="{Binding Lozinka}" IsPassword="True"></Entry>
+            </StackLayout>
+            <StackLayout>
+                <!--<Button Command="{Binding LoginCommand}" Text="Prijavite se" Clicked="Button_Clicked"></Button>-->
+                    <Button Text="Prijavite se" Clicked="Button_Clicked"></Button>
+                    <Label IsVisible="{Binding IsBusy}" Text="Prijava u toku, pricekajte..." TextColor="Gray" HorizontalOptions="Center"></Label>
+            </StackLayout>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding RegVisible}" Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
+                <Label  Text="Nemate korisnički račun?" HorizontalOptions="Center"  TextColor="Gray"/>
+                <Button Command="{Binding RegisterCommand}" Text="Registrujte se" BackgroundColor="Gray" ></Button>
+            </StackLayout>
         </StackLayout>
+       
     </ContentPage.Content>
 </ContentPage>

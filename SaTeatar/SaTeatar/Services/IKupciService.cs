@@ -12,6 +12,8 @@ namespace SaTeatar.Services
     {
         Task<mKupci> Login(string username, string password);
         Task<mKupci> Authenticate(rKupciAuth request);
+        Task<mKupci> Registracija(rKupciInsert request);
+
 
     }
 
