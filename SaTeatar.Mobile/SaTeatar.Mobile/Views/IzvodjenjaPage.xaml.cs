@@ -33,5 +33,11 @@ namespace SaTeatar.Mobile.Views
             var item = e.SelectedItem as mIzvodjenja;
            await Navigation.PushAsync(new IzvodjenjaDetaljiPage(item));
         }
+
+        private async void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            model.SelectedDan = e.NewDate;
+            await model.Init();
+        }
     }
 }

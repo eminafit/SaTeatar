@@ -12,11 +12,11 @@
         <StackLayout>
             <StackLayout Padding="20" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
             <StackLayout>
-                <Label Text="Korisnicko ime:"/>
+                <Label Text="Korisnicko ime:" TextColor="Gray"/>
                 <Entry x:Name="KorisnickoIme" Text="{Binding KorisnickoIme}"></Entry>
             </StackLayout>
             <StackLayout>
-                <Label Text="Lozinka:"/>
+                <Label Text="Lozinka:" TextColor="Gray"/>
                 <Entry x:Name="Lozinka" Text="{Binding Lozinka}" IsPassword="True"></Entry>
             </StackLayout>
             <StackLayout>

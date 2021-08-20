@@ -15,53 +15,52 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Izvodjenja"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="20">
+            <Label Text="Repertoar" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20"/>
+            <Label Text="Pretraga po tipu predstave:"/>
             <Picker ItemsSource="{Binding TipoviPredstavaList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedTipProizvoda}"></Picker>
+
+            <Label Text="Pretraga po predstavi:"/>
+            <Picker ItemsSource="{Binding PredstavaList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedPredstava}"></Picker>
+
+            <Label Text="Pretraga po datumu:"/>
+            <DatePicker DateSelected="DatePicker_DateSelected"/>
+
+            <Label Text="Trenutno nema izvodjenja za zadanu pretragu." IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" Padding="30" TextColor="Gray"/>
+
             <ListView ItemsSource="{Binding IzvodjenjaList}" ItemSelected="ListView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10" Orientation="Horizontal">
                                 <StackLayout>
-                                    <Image Source="{Binding PredstavaSlika, Converter={StaticResource imgConv}} "></Image>
+                                    <Image HeightRequest ="100" WidthRequest="100" Source="{Binding PredstavaSlika, Converter={StaticResource imgConv}} "></Image>
                                 </StackLayout>
-
                                 <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding IzvodjenjeId}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
-                                    <Label Text="{Binding PredstavaId}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
-                                    <Label Text="{Binding PozoristeId}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
                                     <Label Text="{Binding PredstavaNaziv}"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemTextStyle}"
                                        FontSize="16"/>
                                     <Label Text="{Binding PozoristeNaziv}"
                                        LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
-                                    <Label Text="{Binding DatumVrijeme}"
+                                       FontSize="14"/>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Datum}"
                                        LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
-                                </StackLayout>
+                                       FontSize="14"/>
+                                        <Label Text="u"/>
+                                        <Label Text="{Binding Vrijeme}"
+                                       LineBreakMode="NoWrap"
+                                       FontSize="14"/>
+                                    </StackLayout>
 
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
-
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
