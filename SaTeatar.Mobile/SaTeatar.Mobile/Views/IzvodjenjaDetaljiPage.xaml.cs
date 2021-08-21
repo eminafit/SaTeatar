@@ -33,34 +33,11 @@ namespace SaTeatar.Mobile.Views
 
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new NarudzbaPage());
+            await Navigation.PushAsync(new NarudzbaPage());
+
         }
 
-        //private void Picker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //}
-
-        //private async void Picker_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    var novimodel = new IzvodjenjeDetaljiViewModel()
-        //    {
-        //        Izvodjenje = new mIzvodjenja()
-        //        {
-        //            IzvodjenjeId = _izvodjenje.IzvodjenjeId,
-        //            PozoristeId = _izvodjenje.PozoristeId,
-        //            PredstavaId = _izvodjenje.PredstavaId,
-        //            PozoristeNaziv = _izvodjenje.PozoristeNaziv,
-        //            PredstavaNaziv = _izvodjenje.PredstavaNaziv
-        //        },
-        //        IzvodjenjeZone = new mIzvodjenjaZone()
-
-        //    };
-        //    await novimodel.Init();
-
-        //    novimodel.PromjenaZone();
-
-        //}
     }
 }

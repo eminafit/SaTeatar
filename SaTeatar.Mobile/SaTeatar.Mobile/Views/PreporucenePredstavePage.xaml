@@ -23,7 +23,7 @@
                    Padding="20"/>
             <Label IsVisible="{Binding NemaPredstava}" Text="{Binding Poruka}" TextColor="Gray" HorizontalOptions="Center"/>
 
-            <ListView ItemsSource="{Binding PreporucenePredstave}">
+            <ListView ItemsSource="{Binding PreporucenePredstave}" ItemSelected="ListView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

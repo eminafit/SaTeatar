@@ -15,10 +15,12 @@ namespace SaTeatar.Mobile.Views
     public partial class IzvodjenjaPage : ContentPage
     {
         private IzvodjenjaViewModel model = null;
+
         public IzvodjenjaPage()
         {
             InitializeComponent();
             BindingContext = model = new IzvodjenjaViewModel();
+
         }
 
         protected async override void OnAppearing()
@@ -26,11 +28,12 @@ namespace SaTeatar.Mobile.Views
 
             base.OnAppearing();
             await model.Init();
+               
         }
 
         private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as mIzvodjenja;
+           var item = e.SelectedItem as mIzvodjenja;
            await Navigation.PushAsync(new IzvodjenjaDetaljiPage(item));
         }
 

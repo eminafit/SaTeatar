@@ -13,6 +13,5 @@ namespace SaTeatar.Model.Requests
 
         [Required(AllowEmptyStrings = false)]
         public decimal Cijena { get; set; }
-        public decimal? Popust { get; set; }
     }
 }

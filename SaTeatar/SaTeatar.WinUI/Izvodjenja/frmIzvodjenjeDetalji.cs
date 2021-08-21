@@ -208,7 +208,6 @@ namespace SaTeatar.WinUI.Izvodjenja
                     ZonaId = item.ZonaId,
                     ZonaNaziv = item.Naziv,
                     Cijena = 0,
-                    Popust = 0,
                 });
             }
 
@@ -230,7 +229,6 @@ namespace SaTeatar.WinUI.Izvodjenja
                     Cijena = item.Cijena,
                     ZonaId = item.ZonaId,
                     ZonaNaziv = item.ZonaNaziv,
-                    Popust = item.Popust,
 
                 });
             }

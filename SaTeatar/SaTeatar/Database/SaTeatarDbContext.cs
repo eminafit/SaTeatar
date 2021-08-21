@@ -133,8 +133,6 @@ namespace SaTeatar.Database
 
                 entity.Property(e => e.IzvodjenjeId).HasColumnName("IzvodjenjeID");
 
-                entity.Property(e => e.Popust).HasColumnType("decimal(5, 2)");
-
                 entity.Property(e => e.ZonaId).HasColumnName("ZonaID");
 
                 entity.HasOne(d => d.Izvodjenje)

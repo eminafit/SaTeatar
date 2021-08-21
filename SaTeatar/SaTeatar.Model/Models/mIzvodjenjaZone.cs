@@ -11,6 +11,5 @@ namespace SaTeatar.Model.Models
         public int ZonaId { get; set; }
         public string ZonaNaziv { get; set; }
         public decimal Cijena { get; set; }
-        public decimal? Popust { get; set; }
     }
 }

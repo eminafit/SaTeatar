@@ -26,6 +26,8 @@ namespace SaTeatar.Mobile.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            NavigationPage.SetHasNavigationBar(this, false); //get your navbar back
+            NavigationPage.SetHasBackButton(this, false); //get your back button bac
             model.Init();
 
             if (model!=null & model.UkupniIznos==0)
@@ -49,9 +51,12 @@ namespace SaTeatar.Mobile.Views
             model.PromijenjenaKolicina();
         }
 
-        private void Button_Clicked_2(object sender, EventArgs e)
+        private async void Button_Clicked_2(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new IzvodjenjaPage());
+            await Navigation.PushAsync(new IzvodjenjaPage());
+
+            //await Navigation.PushModalAsync(new IzvodjenjaPage());
+
         }
 
         private void Button_Clicked_3(object sender, EventArgs e)

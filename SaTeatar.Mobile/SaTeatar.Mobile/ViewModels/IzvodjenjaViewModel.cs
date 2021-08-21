@@ -79,7 +79,7 @@ namespace SaTeatar.Mobile.ViewModels
 
         public ICommand InitCommand { get; set; }
 
-        private async void Pretrazi(rIzvodjenjaSearch search)
+        private async Task Pretrazi(rIzvodjenjaSearch search)
         {
             List<mIzvodjenja> ilist = await _izvodjenjaService.Get<List<mIzvodjenja>>(search);
             ilist.Sort((x, y) => x.DatumVrijeme.CompareTo(y.DatumVrijeme));
@@ -94,6 +94,20 @@ namespace SaTeatar.Mobile.ViewModels
                 i.Datum = i.DatumVrijeme.ToString("dd.MM.yyyy.");
                 i.Vrijeme = i.DatumVrijeme.ToString("HH:mm") + "h";
                 IzvodjenjaList.Add(i);
+            }
+        }
+
+        public async Task PPPretraga()
+        {
+            if (SelectedPredstava != null)
+            {
+                IzvodjenjaList.Clear();
+                var search = new rIzvodjenjaSearch();
+                search.PredstavaId = SelectedPredstava.PredstavaId;
+                search.DatumVrijeme = DateTime.Now;
+
+                await Pretrazi(search);
+
             }
         }
 
@@ -130,7 +144,7 @@ namespace SaTeatar.Mobile.ViewModels
                 search.TipPredstaveId = SelectedTipProizvoda.TipPredstaveId;
                 search.DatumVrijeme = DateTime.Now;
 
-                Pretrazi(search);
+                await Pretrazi(search);
             }
 
             if (SelectedPredstava != null)
@@ -140,7 +154,7 @@ namespace SaTeatar.Mobile.ViewModels
                 search.PredstavaId = SelectedPredstava.PredstavaId;
                 search.DatumVrijeme = DateTime.Now;
 
-                Pretrazi(search);
+                await Pretrazi(search);
             }
 
             if (SelectedDan.CompareTo(DateTime.MinValue)>0)
@@ -149,7 +163,7 @@ namespace SaTeatar.Mobile.ViewModels
                 var search = new rIzvodjenjaSearch();
                 search.NaDatum = SelectedDan;
 
-                Pretrazi(search);
+                await Pretrazi(search);
             }
         }
     }

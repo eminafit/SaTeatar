@@ -35,6 +35,13 @@ namespace SaTeatar.Mobile.ViewModels
             set { SetProperty(ref _lozinka, value); }
         }
 
+        bool _log = true;
+        public bool Log
+        {
+            get { return _log; }
+            set { SetProperty(ref _log, value); }
+        }
+
         public ICommand LoginCommand { get; set; }
         public ICommand RegisterCommand { get; set; }
 
@@ -55,6 +62,7 @@ namespace SaTeatar.Mobile.ViewModels
         {
             IsBusy = true;
             RegVisible = false;
+            Log = false;
             APIService.Username = KorisnickoIme;
             APIService.Password = Lozinka;
 
@@ -82,6 +90,7 @@ namespace SaTeatar.Mobile.ViewModels
             KorisnickoIme = string.Empty;
             Lozinka = string.Empty;
             RegVisible = true;
+            Log = true;
 
         }
     }

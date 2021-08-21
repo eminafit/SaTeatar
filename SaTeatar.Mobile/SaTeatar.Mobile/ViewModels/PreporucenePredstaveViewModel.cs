@@ -106,7 +106,7 @@ namespace SaTeatar.Mobile.ViewModels
             }
             else
             {
-                Poruka = "Niste ocijenili dovoljno predstava da bi vam mogli dati preporuke koje predstave da pogledate.";
+                Poruka = "Nismo u mogucnosti da preporucimo predstave.";
             }
 
 

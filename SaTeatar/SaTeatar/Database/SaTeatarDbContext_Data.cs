@@ -1398,7 +1398,7 @@
 //            //                IzvodjenjeId = 1,
 //            //                ZonaId = 1,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1407,7 +1407,7 @@
 //            //                IzvodjenjeId = 1,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1416,7 +1416,7 @@
 //            //                IzvodjenjeId = 1,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1425,7 +1425,7 @@
 //            //                IzvodjenjeId = 2,
 //            //                ZonaId = 1,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1434,7 +1434,7 @@
 //            //                IzvodjenjeId = 2,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1443,7 +1443,7 @@
 //            //                IzvodjenjeId = 2,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1452,7 +1452,7 @@
 //            //                IzvodjenjeId = 3,
 //            //                ZonaId = 1,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1461,7 +1461,7 @@
 //            //                IzvodjenjeId = 3,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1470,7 +1470,7 @@
 //            //                IzvodjenjeId = 3,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1479,7 +1479,7 @@
 //            //                IzvodjenjeId = 4,
 //            //                ZonaId = 1,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1488,7 +1488,7 @@
 //            //                IzvodjenjeId = 4,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1497,7 +1497,7 @@
 //            //                IzvodjenjeId = 4,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1506,7 +1506,7 @@
 //            //                IzvodjenjeId = 5,
 //            //                ZonaId = 1,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1515,7 +1515,7 @@
 //            //                IzvodjenjeId = 5,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1524,7 +1524,7 @@
 //            //                IzvodjenjeId = 5,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //# Mirna Bosna
@@ -1534,7 +1534,7 @@
 //            //                IzvodjenjeId = 6,
 //            //                ZonaId = 1,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1543,7 +1543,7 @@
 //            //                IzvodjenjeId = 6,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1552,7 +1552,7 @@
 //            //                IzvodjenjeId = 6,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1561,7 +1561,7 @@
 //            //                IzvodjenjeId = 7,
 //            //                ZonaId = 1,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1570,7 +1570,7 @@
 //            //                IzvodjenjeId = 7,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1579,7 +1579,7 @@
 //            //                IzvodjenjeId = 7,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1588,7 +1588,7 @@
 //            //                IzvodjenjeId = 8,
 //            //                ZonaId = 1,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1597,7 +1597,7 @@
 //            //                IzvodjenjeId = 8,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1606,7 +1606,7 @@
 //            //                IzvodjenjeId = 8,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1615,7 +1615,7 @@
 //            //                IzvodjenjeId = 9,
 //            //                ZonaId = 1,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1624,7 +1624,7 @@
 //            //                IzvodjenjeId = 9,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1633,7 +1633,7 @@
 //            //                IzvodjenjeId = 9,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //# Knjiga mojih zivota
@@ -1643,7 +1643,7 @@
 //            //                IzvodjenjeId = 10,
 //            //                ZonaId = 1,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1652,7 +1652,7 @@
 //            //                IzvodjenjeId = 10,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1661,7 +1661,7 @@
 //            //                IzvodjenjeId = 10,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1670,7 +1670,7 @@
 //            //                IzvodjenjeId = 11,
 //            //                ZonaId = 1,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1679,7 +1679,7 @@
 //            //                IzvodjenjeId = 11,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1688,7 +1688,7 @@
 //            //                IzvodjenjeId = 11,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1697,7 +1697,7 @@
 //            //                IzvodjenjeId = 12,
 //            //                ZonaId = 1,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1706,7 +1706,7 @@
 //            //                IzvodjenjeId = 12,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1715,7 +1715,7 @@
 //            //                IzvodjenjeId = 12,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1724,7 +1724,7 @@
 //            //                IzvodjenjeId = 13,
 //            //                ZonaId = 1,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1733,7 +1733,7 @@
 //            //                IzvodjenjeId = 13,
 //            //                ZonaId = 2,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1742,7 +1742,7 @@
 //            //                IzvodjenjeId = 13,
 //            //                ZonaId = 3,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //Tajna dzema od malina
@@ -1752,7 +1752,7 @@
 //            //                IzvodjenjeId = 14,
 //            //                ZonaId = 8,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1761,7 +1761,7 @@
 //            //                IzvodjenjeId = 14,
 //            //                ZonaId = 9,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1770,7 +1770,7 @@
 //            //                IzvodjenjeId = 14,
 //            //                ZonaId = 10,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1779,7 +1779,7 @@
 //            //                IzvodjenjeId = 15,
 //            //                ZonaId = 8,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1788,7 +1788,7 @@
 //            //                IzvodjenjeId = 15,
 //            //                ZonaId = 9,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1797,7 +1797,7 @@
 //            //                IzvodjenjeId = 15,
 //            //                ZonaId = 10,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1806,7 +1806,7 @@
 //            //                IzvodjenjeId = 16,
 //            //                ZonaId = 8,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1815,7 +1815,7 @@
 //            //                IzvodjenjeId = 16,
 //            //                ZonaId = 9,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1824,7 +1824,7 @@
 //            //                IzvodjenjeId = 16,
 //            //                ZonaId = 10,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1833,7 +1833,7 @@
 //            //                IzvodjenjeId = 17,
 //            //                ZonaId = 8,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1842,7 +1842,7 @@
 //            //                IzvodjenjeId = 17,
 //            //                ZonaId = 9,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1851,7 +1851,7 @@
 //            //                IzvodjenjeId = 17,
 //            //                ZonaId = 10,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //Ay Carmela
@@ -1861,7 +1861,7 @@
 //            //                IzvodjenjeId = 18,
 //            //                ZonaId = 8,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1870,7 +1870,7 @@
 //            //                IzvodjenjeId = 18,
 //            //                ZonaId = 9,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1879,7 +1879,7 @@
 //            //                IzvodjenjeId = 18,
 //            //                ZonaId = 10,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //Dogville
@@ -1889,7 +1889,7 @@
 //            //                IzvodjenjeId = 19,
 //            //                ZonaId = 4,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1898,7 +1898,7 @@
 //            //                IzvodjenjeId = 19,
 //            //                ZonaId = 5,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1907,7 +1907,7 @@
 //            //                IzvodjenjeId = 19,
 //            //                ZonaId = 6,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1916,7 +1916,7 @@
 //            //                IzvodjenjeId = 19,
 //            //                ZonaId = 7,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1925,7 +1925,7 @@
 //            //                IzvodjenjeId = 20,
 //            //                ZonaId = 4,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1934,7 +1934,7 @@
 //            //                IzvodjenjeId = 20,
 //            //                ZonaId = 5,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1943,7 +1943,7 @@
 //            //                IzvodjenjeId = 20,
 //            //                ZonaId = 6,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1952,7 +1952,7 @@
 //            //                IzvodjenjeId = 20,
 //            //                ZonaId = 7,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1961,7 +1961,7 @@
 //            //                IzvodjenjeId = 21,
 //            //                ZonaId = 4,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1970,7 +1970,7 @@
 //            //                IzvodjenjeId = 21,
 //            //                ZonaId = 5,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1979,7 +1979,7 @@
 //            //                IzvodjenjeId = 21,
 //            //                ZonaId = 6,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -1988,7 +1988,7 @@
 //            //                IzvodjenjeId = 21,
 //            //                ZonaId = 7,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //Snijeg 
@@ -1998,7 +1998,7 @@
 //            //                IzvodjenjeId = 22,
 //            //                ZonaId = 4,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2007,7 +2007,7 @@
 //            //                IzvodjenjeId = 22,
 //            //                ZonaId = 5,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2016,7 +2016,7 @@
 //            //                IzvodjenjeId = 22,
 //            //                ZonaId = 6,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2025,7 +2025,7 @@
 //            //                IzvodjenjeId = 22,
 //            //                ZonaId = 7,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2034,7 +2034,7 @@
 //            //                IzvodjenjeId = 23,
 //            //                ZonaId = 4,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2043,7 +2043,7 @@
 //            //                IzvodjenjeId = 23,
 //            //                ZonaId = 5,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2052,7 +2052,7 @@
 //            //                IzvodjenjeId = 23,
 //            //                ZonaId = 6,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2061,7 +2061,7 @@
 //            //                IzvodjenjeId = 23,
 //            //                ZonaId = 7,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2070,7 +2070,7 @@
 //            //                IzvodjenjeId = 24,
 //            //                ZonaId = 4,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2079,7 +2079,7 @@
 //            //                IzvodjenjeId = 24,
 //            //                ZonaId = 5,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2088,7 +2088,7 @@
 //            //                IzvodjenjeId = 24,
 //            //                ZonaId = 6,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2097,7 +2097,7 @@
 //            //                IzvodjenjeId = 24,
 //            //                ZonaId = 7,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //Princeza na zrnu graska 
@@ -2107,7 +2107,7 @@
 //            //                IzvodjenjeId = 25,
 //            //                ZonaId = 11,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2116,7 +2116,7 @@
 //            //                IzvodjenjeId = 25,
 //            //                ZonaId = 12,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2125,7 +2125,7 @@
 //            //                IzvodjenjeId = 25,
 //            //                ZonaId = 13,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2134,7 +2134,7 @@
 //            //                IzvodjenjeId = 26,
 //            //                ZonaId = 11,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2143,7 +2143,7 @@
 //            //                IzvodjenjeId = 26,
 //            //                ZonaId = 12,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2152,7 +2152,7 @@
 //            //                IzvodjenjeId = 26,
 //            //                ZonaId = 13,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //Zaljubljeni krokodil
@@ -2162,7 +2162,7 @@
 //            //                IzvodjenjeId = 27,
 //            //                ZonaId = 11,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2171,7 +2171,7 @@
 //            //                IzvodjenjeId = 27,
 //            //                ZonaId = 12,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2180,7 +2180,7 @@
 //            //                IzvodjenjeId = 27,
 //            //                ZonaId = 13,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2189,7 +2189,7 @@
 //            //                IzvodjenjeId = 28,
 //            //                ZonaId = 11,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2198,7 +2198,7 @@
 //            //                IzvodjenjeId = 28,
 //            //                ZonaId = 12,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2207,7 +2207,7 @@
 //            //                IzvodjenjeId = 28,
 //            //                ZonaId = 13,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //Patkica Blatkica
@@ -2217,7 +2217,7 @@
 //            //                IzvodjenjeId = 29,
 //            //                ZonaId = 11,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2226,7 +2226,7 @@
 //            //                IzvodjenjeId = 29,
 //            //                ZonaId = 12,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2235,7 +2235,7 @@
 //            //                IzvodjenjeId = 29,
 //            //                ZonaId = 13,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2244,7 +2244,7 @@
 //            //                IzvodjenjeId = 30,
 //            //                ZonaId = 11,
 //            //                Cijena = 15,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2253,7 +2253,7 @@
 //            //                IzvodjenjeId = 30,
 //            //                ZonaId = 12,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2262,7 +2262,7 @@
 //            //                IzvodjenjeId = 30,
 //            //                ZonaId = 13,
 //            //                Cijena = 5,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //Okovani prometej
@@ -2272,7 +2272,7 @@
 //            //                IzvodjenjeId = 31,
 //            //                ZonaId = 4,
 //            //                Cijena = 40,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2281,7 +2281,7 @@
 //            //                IzvodjenjeId = 31,
 //            //                ZonaId = 5,
 //            //                Cijena = 30,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2290,7 +2290,7 @@
 //            //                IzvodjenjeId = 31,
 //            //                ZonaId = 6,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2299,7 +2299,7 @@
 //            //                IzvodjenjeId = 32,
 //            //                ZonaId = 7,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2308,7 +2308,7 @@
 //            //                IzvodjenjeId = 31,
 //            //                ZonaId = 4,
 //            //                Cijena = 40,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2317,7 +2317,7 @@
 //            //                IzvodjenjeId = 32,
 //            //                ZonaId = 5,
 //            //                Cijena = 30,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2326,7 +2326,7 @@
 //            //                IzvodjenjeId = 32,
 //            //                ZonaId = 6,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2335,7 +2335,7 @@
 //            //                IzvodjenjeId = 32,
 //            //                ZonaId = 7,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //Palcica
@@ -2345,7 +2345,7 @@
 //            //                IzvodjenjeId = 33,
 //            //                ZonaId = 4,
 //            //                Cijena = 40,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2354,7 +2354,7 @@
 //            //                IzvodjenjeId = 33,
 //            //                ZonaId = 5,
 //            //                Cijena = 30,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2363,7 +2363,7 @@
 //            //                IzvodjenjeId = 33,
 //            //                ZonaId = 6,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2372,7 +2372,7 @@
 //            //                IzvodjenjeId = 33,
 //            //                ZonaId = 7,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2381,7 +2381,7 @@
 //            //                IzvodjenjeId = 34,
 //            //                ZonaId = 4,
 //            //                Cijena = 40,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2390,7 +2390,7 @@
 //            //                IzvodjenjeId = 34,
 //            //                ZonaId = 5,
 //            //                Cijena = 30,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2399,7 +2399,7 @@
 //            //                IzvodjenjeId = 34,
 //            //                ZonaId = 6,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2408,7 +2408,7 @@
 //            //                IzvodjenjeId = 34,
 //            //                ZonaId = 7,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //Uspavana ljepotica
@@ -2418,7 +2418,7 @@
 //            //                IzvodjenjeId = 35,
 //            //                ZonaId = 4,
 //            //                Cijena = 40,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2427,7 +2427,7 @@
 //            //                IzvodjenjeId = 35,
 //            //                ZonaId = 5,
 //            //                Cijena = 30,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2436,7 +2436,7 @@
 //            //                IzvodjenjeId = 35,
 //            //                ZonaId = 6,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2445,7 +2445,7 @@
 //            //                IzvodjenjeId = 35,
 //            //                ZonaId = 7,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2454,7 +2454,7 @@
 //            //                IzvodjenjeId = 36,
 //            //                ZonaId = 4,
 //            //                Cijena = 40,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2463,7 +2463,7 @@
 //            //                IzvodjenjeId = 36,
 //            //                ZonaId = 5,
 //            //                Cijena = 30,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2472,7 +2472,7 @@
 //            //                IzvodjenjeId = 36,
 //            //                ZonaId = 6,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2481,7 +2481,7 @@
 //            //                IzvodjenjeId = 36,
 //            //                ZonaId = 7,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //La Traviata
@@ -2491,7 +2491,7 @@
 //            //                IzvodjenjeId = 37,
 //            //                ZonaId = 4,
 //            //                Cijena = 40,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2500,7 +2500,7 @@
 //            //                IzvodjenjeId = 37,
 //            //                ZonaId = 5,
 //            //                Cijena = 30,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2509,7 +2509,7 @@
 //            //                IzvodjenjeId = 37,
 //            //                ZonaId = 6,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2518,7 +2518,7 @@
 //            //                IzvodjenjeId = 37,
 //            //                ZonaId = 7,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //Don Giovanni
@@ -2528,7 +2528,7 @@
 //            //                IzvodjenjeId = 38,
 //            //                ZonaId = 4,
 //            //                Cijena = 40,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2537,7 +2537,7 @@
 //            //                IzvodjenjeId = 38,
 //            //                ZonaId = 5,
 //            //                Cijena = 30,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2546,7 +2546,7 @@
 //            //                IzvodjenjeId = 38,
 //            //                ZonaId = 6,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2555,7 +2555,7 @@
 //            //                IzvodjenjeId = 38,
 //            //                ZonaId = 7,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            //Rigoletto
@@ -2565,7 +2565,7 @@
 //            //                IzvodjenjeId = 39,
 //            //                ZonaId = 4,
 //            //                Cijena = 40,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2574,7 +2574,7 @@
 //            //                IzvodjenjeId = 39,
 //            //                ZonaId = 5,
 //            //                Cijena = 30,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2583,7 +2583,7 @@
 //            //                IzvodjenjeId = 39,
 //            //                ZonaId = 6,
 //            //                Cijena = 20,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<IzvodjenjaZone>().HasData(new IzvodjenjaZone()
@@ -2592,7 +2592,7 @@
 //            //                IzvodjenjeId = 39,
 //            //                ZonaId = 7,
 //            //                Cijena = 10,
-//            //                Popust = null,
+//            //                 
 //            //            });
 
 //            //            modelBuilder.Entity<Karte>().HasData(new Karte() { KartaId = 1, IzvodjenjeId = 1, KupacId = 1, IzvodjenjeZonaId = 1, Placeno = false, Sifra = "k0001" });

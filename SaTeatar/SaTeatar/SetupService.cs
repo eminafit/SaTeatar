@@ -1487,7 +1487,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 1,
                     ZonaId = 1,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1496,7 +1496,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 1,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1505,7 +1505,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 1,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1514,7 +1514,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 2,
                     ZonaId = 1,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1523,7 +1523,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 2,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1532,7 +1532,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 2,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1541,7 +1541,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 3,
                     ZonaId = 1,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1550,7 +1550,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 3,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1559,7 +1559,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 3,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1568,7 +1568,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 4,
                     ZonaId = 1,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1577,7 +1577,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 4,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1586,7 +1586,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 4,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1595,7 +1595,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 5,
                     ZonaId = 1,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1604,7 +1604,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 5,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1613,7 +1613,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 5,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1623,7 +1623,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 6,
                     ZonaId = 1,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1632,7 +1632,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 6,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1641,7 +1641,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 6,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1650,7 +1650,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 7,
                     ZonaId = 1,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1659,7 +1659,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 7,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1668,7 +1668,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 7,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1677,7 +1677,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 8,
                     ZonaId = 1,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1686,7 +1686,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 8,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1695,7 +1695,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 8,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1704,7 +1704,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 9,
                     ZonaId = 1,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1713,7 +1713,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 9,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1722,7 +1722,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 9,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1732,7 +1732,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 10,
                     ZonaId = 1,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1741,7 +1741,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 10,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1750,7 +1750,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 10,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1759,7 +1759,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 11,
                     ZonaId = 1,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1768,7 +1768,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 11,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1777,7 +1777,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 11,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1786,7 +1786,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 12,
                     ZonaId = 1,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1795,7 +1795,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 12,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1804,7 +1804,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 12,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1813,7 +1813,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 13,
                     ZonaId = 1,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1822,7 +1822,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 13,
                     ZonaId = 2,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1831,7 +1831,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 13,
                     ZonaId = 3,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1841,7 +1841,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 14,
                     ZonaId = 8,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1850,7 +1850,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 14,
                     ZonaId = 9,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1859,7 +1859,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 14,
                     ZonaId = 10,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1868,7 +1868,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 15,
                     ZonaId = 8,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1877,7 +1877,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 15,
                     ZonaId = 9,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1886,7 +1886,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 15,
                     ZonaId = 10,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1895,7 +1895,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 16,
                     ZonaId = 8,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1904,7 +1904,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 16,
                     ZonaId = 9,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1913,7 +1913,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 16,
                     ZonaId = 10,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1922,7 +1922,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 17,
                     ZonaId = 8,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1931,7 +1931,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 17,
                     ZonaId = 9,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1940,7 +1940,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 17,
                     ZonaId = 10,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1950,7 +1950,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 18,
                     ZonaId = 8,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1959,7 +1959,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 18,
                     ZonaId = 9,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1968,7 +1968,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 18,
                     ZonaId = 10,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1978,7 +1978,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 19,
                     ZonaId = 4,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1987,7 +1987,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 19,
                     ZonaId = 5,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -1996,7 +1996,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 19,
                     ZonaId = 6,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2005,7 +2005,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 19,
                     ZonaId = 7,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2014,7 +2014,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 20,
                     ZonaId = 4,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2023,7 +2023,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 20,
                     ZonaId = 5,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2032,7 +2032,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 20,
                     ZonaId = 6,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2041,7 +2041,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 20,
                     ZonaId = 7,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2050,7 +2050,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 21,
                     ZonaId = 4,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2059,7 +2059,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 21,
                     ZonaId = 5,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2068,7 +2068,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 21,
                     ZonaId = 6,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2077,7 +2077,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 21,
                     ZonaId = 7,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2087,7 +2087,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 22,
                     ZonaId = 4,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2096,7 +2096,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 22,
                     ZonaId = 5,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2105,7 +2105,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 22,
                     ZonaId = 6,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2114,7 +2114,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 22,
                     ZonaId = 7,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2123,7 +2123,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 23,
                     ZonaId = 4,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2132,7 +2132,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 23,
                     ZonaId = 5,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2141,7 +2141,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 23,
                     ZonaId = 6,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2150,7 +2150,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 23,
                     ZonaId = 7,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2159,7 +2159,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 24,
                     ZonaId = 4,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2168,7 +2168,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 24,
                     ZonaId = 5,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2177,7 +2177,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 24,
                     ZonaId = 6,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2186,7 +2186,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 24,
                     ZonaId = 7,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2196,7 +2196,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 25,
                     ZonaId = 11,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2205,7 +2205,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 25,
                     ZonaId = 12,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2214,7 +2214,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 25,
                     ZonaId = 13,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2223,7 +2223,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 26,
                     ZonaId = 11,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2232,7 +2232,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 26,
                     ZonaId = 12,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2241,7 +2241,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 26,
                     ZonaId = 13,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2251,7 +2251,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 27,
                     ZonaId = 11,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2260,7 +2260,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 27,
                     ZonaId = 12,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2269,7 +2269,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 27,
                     ZonaId = 13,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2278,7 +2278,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 28,
                     ZonaId = 11,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2287,7 +2287,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 28,
                     ZonaId = 12,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2296,7 +2296,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 28,
                     ZonaId = 13,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2306,7 +2306,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 29,
                     ZonaId = 11,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2315,7 +2315,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 29,
                     ZonaId = 12,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2324,7 +2324,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 29,
                     ZonaId = 13,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2333,7 +2333,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 30,
                     ZonaId = 11,
                     Cijena = 15,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2342,7 +2342,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 30,
                     ZonaId = 12,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2351,7 +2351,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 30,
                     ZonaId = 13,
                     Cijena = 5,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2361,7 +2361,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 31,
                     ZonaId = 4,
                     Cijena = 40,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2370,7 +2370,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 31,
                     ZonaId = 5,
                     Cijena = 30,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2379,7 +2379,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 31,
                     ZonaId = 6,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2388,7 +2388,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 32,
                     ZonaId = 7,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2397,7 +2397,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 31,
                     ZonaId = 4,
                     Cijena = 40,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2406,7 +2406,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 32,
                     ZonaId = 5,
                     Cijena = 30,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2415,7 +2415,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 32,
                     ZonaId = 6,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2424,7 +2424,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 32,
                     ZonaId = 7,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2434,7 +2434,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 33,
                     ZonaId = 4,
                     Cijena = 40,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2443,7 +2443,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 33,
                     ZonaId = 5,
                     Cijena = 30,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2452,7 +2452,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 33,
                     ZonaId = 6,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2461,7 +2461,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 33,
                     ZonaId = 7,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2470,7 +2470,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 34,
                     ZonaId = 4,
                     Cijena = 40,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2479,7 +2479,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 34,
                     ZonaId = 5,
                     Cijena = 30,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2488,7 +2488,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 34,
                     ZonaId = 6,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2497,7 +2497,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 34,
                     ZonaId = 7,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2507,7 +2507,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 35,
                     ZonaId = 4,
                     Cijena = 40,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2516,7 +2516,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 35,
                     ZonaId = 5,
                     Cijena = 30,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2525,7 +2525,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 35,
                     ZonaId = 6,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2534,7 +2534,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 35,
                     ZonaId = 7,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2543,7 +2543,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 36,
                     ZonaId = 4,
                     Cijena = 40,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2552,7 +2552,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 36,
                     ZonaId = 5,
                     Cijena = 30,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2561,7 +2561,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 36,
                     ZonaId = 6,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2570,7 +2570,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 36,
                     ZonaId = 7,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2580,7 +2580,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 37,
                     ZonaId = 4,
                     Cijena = 40,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2589,7 +2589,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 37,
                     ZonaId = 5,
                     Cijena = 30,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2598,7 +2598,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 37,
                     ZonaId = 6,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2607,7 +2607,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 37,
                     ZonaId = 7,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2617,7 +2617,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 38,
                     ZonaId = 4,
                     Cijena = 40,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2626,7 +2626,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 38,
                     ZonaId = 5,
                     Cijena = 30,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2635,7 +2635,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 38,
                     ZonaId = 6,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2644,7 +2644,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 38,
                     ZonaId = 7,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2654,7 +2654,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 39,
                     ZonaId = 4,
                     Cijena = 40,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2663,7 +2663,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 39,
                     ZonaId = 5,
                     Cijena = 30,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2672,7 +2672,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 39,
                     ZonaId = 6,
                     Cijena = 20,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
 
@@ -2681,7 +2681,7 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 39,
                     ZonaId = 7,
                     Cijena = 10,
-                    Popust = null,
+                     
                 });
                 context.SaveChanges();
             }

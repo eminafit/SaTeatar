@@ -21,7 +21,7 @@
             </StackLayout>
             <StackLayout>
                 <!--<Button Command="{Binding LoginCommand}" Text="Prijavite se" Clicked="Button_Clicked"></Button>-->
-                    <Button Text="Prijavite se" Clicked="Button_Clicked"></Button>
+                    <Button Text="Prijavite se" Clicked="Button_Clicked" IsEnabled="{Binding Log}"></Button>
                     <Label IsVisible="{Binding IsBusy}" Text="Prijava u toku, pricekajte..." TextColor="Gray" HorizontalOptions="Center"></Label>
             </StackLayout>
             </StackLayout>
