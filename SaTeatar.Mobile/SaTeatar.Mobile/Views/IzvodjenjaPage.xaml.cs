@@ -25,7 +25,7 @@ namespace SaTeatar.Mobile.Views
 
         protected async override void OnAppearing()
         {
-
+           // NavigationPage.SetHasBackButton(this, false);
             base.OnAppearing();
             await model.Init();
                

@@ -16,13 +16,15 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-
+        <ScrollView HorizontalOptions="CenterAndExpand">
         <StackLayout Padding="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Label Text="{Binding Izvodjenje.PredstavaNaziv}"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemTextStyle}"
                                        FontSize="18"
                                        HorizontalOptions="Center"/>
+            
+            <Label HorizontalOptions="Center" Text="{Binding PreDetalji.Tip}" TextColor="Gray" FontSize="8"/>
 
             <Label HorizontalOptions="Center">
                 <Label.FormattedText>
@@ -40,41 +42,30 @@
             <StackLayout>
                 <Image Source="{Binding Izvodjenje.PredstavaSlika, Converter={StaticResource imgConv}} "></Image>
             </StackLayout>
-
-
-
             <Label HorizontalOptions="Center" Text="{Binding Izvodjenje.PozoristeNaziv}" FontSize="14" FontAttributes="Bold"/>
             <Label Text="{Binding DatumStr}" HorizontalOptions="Center" FontSize="12"></Label>
 
-                <Label Text="ODABERITE ZONU " FontSize="10" HorizontalOptions="Center"></Label>
-                <Picker ItemsSource="{Binding ZoneList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedZona}"  HorizontalTextAlignment="Center"></Picker>
+            <Label HorizontalOptions="Center" Text="REZIJA: " TextColor="Gray" FontSize="8"/>
+            <Label HorizontalOptions="Center" Text="{Binding PreDetalji.Rezija}" FontSize="10" />
+            <Label HorizontalOptions="Center" Text="OPIS: " TextColor="Gray" FontSize="8"/>
+            <Label HorizontalOptions="Center" Text="{Binding PreDetalji.Opis}" FontSize="10"/>
+            <Label HorizontalOptions="Center" Text="POSTAVA: " TextColor="Gray" FontSize="8"/>
+            <Label HorizontalOptions="Center" Text="{Binding PreDetalji.GlumciStr}" FontSize="10"/>
+
+
+
+                <Label Text="ODABERITE ZONU: " FontSize="8" HorizontalOptions="Center" TextColor="Gray"></Label>
+                <Picker ItemsSource="{Binding ZoneList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedZona}"  HorizontalTextAlignment="Center" TextColor="Red" FontSize="12" FontAttributes="Bold"></Picker>
 
             <StackLayout>
-            <!--<Label>
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Ukupan broj sjedista u zoni: "/>
-                        <Span Text="{Binding BrSjedistaUZoni}"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-
-            <Label>
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Broj slobodnih sjedista: "/>
-                        <Span Text="{Binding BrSlobodnihSjedistaUZoni}" TextColor="Green"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>-->
 
             <Label HorizontalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="SJEDISTA SLOBODNO " FontSize="12"/>
-                        <Span Text="{Binding BrSlobodnihSjedistaUZoni}" TextColor="DarkGreen" FontSize="12" FontAttributes="Bold"/>
-                        <Span Text=" OD " FontSize="12"/>
-                        <Span Text="{Binding BrSjedistaUZoni}" FontSize="12" FontAttributes="Bold"/>
+                        <Span Text="SJEDISTA SLOBODNO " FontSize="10"/>
+                        <Span Text="{Binding BrSlobodnihSjedistaUZoni}" TextColor="DarkGreen" FontSize="10" FontAttributes="Bold"/>
+                        <Span Text=" OD " FontSize="10"/>
+                        <Span Text="{Binding BrSjedistaUZoni}" FontSize="10" FontAttributes="Bold"/>
 
                     </FormattedString>
                 </Label.FormattedText>
@@ -83,35 +74,37 @@
             <Label HorizontalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="CIJENA KARTE: " FontSize="12"/>
-                        <Span Text="{Binding Cijena}" FontSize="12" FontAttributes="Bold"/>
-                        <Span Text=" KM" FontSize="12"/>
+                        <Span Text="CIJENA KARTE: " FontSize="10"/>
+                        <Span Text="{Binding Cijena}" FontSize="10"  TextColor="Red"/>
+                        <Span Text=" KM" FontSize="10"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
+                    <Label/>
 
-                <Label Text="ODABERITE KOLICINU " FontSize="10" HorizontalOptions="Center"></Label>
+                    <Label Text="ODABERITE KOLICINU: " FontSize="8" HorizontalOptions="Center" TextColor="Gray" ></Label>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Text="-" Command="{Binding SmanjiKolicinuCommand}"></Button>
-                <Entry Text="{Binding Kolicina}" Keyboard="Numeric" FontSize="12" HorizontalTextAlignment="Center"></Entry>
-                <Button Text="+" Command="{Binding PovecajKolicinuCommand}"></Button>
+                <Button Text="-" Command="{Binding SmanjiKolicinuCommand}" FontSize="10"></Button>
+                <Entry Text="{Binding Kolicina}" Keyboard="Numeric" FontSize="10" HorizontalTextAlignment="Center"></Entry>
+                <Button Text="+" Command="{Binding PovecajKolicinuCommand}" FontSize="10"></Button>
             </StackLayout>
 
-            <Label Padding="10">
+            <Label Padding="10" HorizontalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Ukupan iznos za platiti: " FontSize="12"/>
-                        <Span Text="{Binding UkupnaCijena}" FontAttributes="Bold"/>
-                        <Span Text=" KM"/>
+                        <Span Text="Ukupan iznos za platiti: " FontSize="10"/>
+                        <Span Text="{Binding UkupnaCijena}" FontAttributes="Bold" FontSize="10"/>
+                        <Span Text=" KM" FontSize="10"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
 
 
             <StackLayout >
-                <Button Command="{Binding NaruciCommand}" Text="DODAJ U KORPU" Clicked="Button_Clicked" IsEnabled="{Binding UKbool}"></Button>
+                <Button Command="{Binding NaruciCommand}" Text="DODAJ U KORPU" Clicked="Button_Clicked" IsEnabled="{Binding UKbool}" FontSize="10"></Button>
             </StackLayout>
             </StackLayout>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

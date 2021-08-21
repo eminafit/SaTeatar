@@ -34,7 +34,7 @@ namespace SaTeatar.Mobile.Views
             var item = e.SelectedItem as PreporucenePredstaveViewModel.PreporucenePredstaveClass;
             mPredstave predstava =  await _predstavaService.GetById<mPredstave>(item.PredstavaId);
 
-            await Navigation.PushAsync(new IzvodjenjaPreporucenoPage(predstava));
+            await Navigation.PushAsync(new  IzvodjenjaPreporucenoPage(predstava));
 
         }
     }

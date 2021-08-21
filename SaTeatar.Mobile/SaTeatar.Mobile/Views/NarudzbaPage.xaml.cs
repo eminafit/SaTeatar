@@ -14,11 +14,11 @@ namespace SaTeatar.Mobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NarudzbaPage : ContentPage
     {
-        private NarudzbaViewModel model = null;
+        private KorpaViewModel model = null;
         public NarudzbaPage()
         {
             InitializeComponent();
-            BindingContext = model = new NarudzbaViewModel();
+            BindingContext = model = new KorpaViewModel();
 
            // model.Init();
         }
@@ -35,7 +35,7 @@ namespace SaTeatar.Mobile.Views
                 {
                     if (model.UkupniIznos == 0)
                     {
-                        Btn_Placanje.IsVisible = false;
+                        Btn_Isprazni.IsVisible = false;
                         Btn_Rezervacija.IsVisible = false;
                     }
                 }
@@ -53,19 +53,20 @@ namespace SaTeatar.Mobile.Views
 
         private async void Button_Clicked_2(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new IzvodjenjaPage());
-
-            //await Navigation.PushModalAsync(new IzvodjenjaPage());
+            //nastavi kupovinu
+            await Navigation.PopToRootAsync();
 
         }
 
         private void Button_Clicked_3(object sender, EventArgs e)
         {
+            //potvrdi narudzbu??
             Navigation.PushAsync(new IzvodjenjaPage());
         }
 
         private void Button_Clicked_4(object sender, EventArgs e)
         {
+            //ispraznite korpu
             Navigation.PushAsync(new PlacanjePage(model));
 
         }

@@ -1,61 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels"
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels" 
+             xmlns:local="clr-namespace:SaTeatar.Mobile.Converters"
              NavigationPage.HasNavigationBar="True"
              NavigationPage.HasBackButton="True"
              x:Class="SaTeatar.Mobile.Views.NarudzbaPage">
     <ContentPage.BindingContext>
-        <viewModels:NarudzbaViewModel/>
+        <viewModels:KorpaViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Narudzba!"
+        <StackLayout Padding="20" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Label Text="Korpa"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <ListView ItemsSource="{Binding NarudzbaList}">
+
+            <Label IsVisible="{Binding PraznaKorpa}" Text="Trenutno nemate nista u korpi!" HorizontalOptions="CenterAndExpand" TextColor="Gray"/>
+
+            <StackLayout IsVisible="{Binding IsBusy}">
+            <ListView ItemsSource="{Binding KorpaList}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10" Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" >
+                                <StackLayout>
+                                    <Image HeightRequest ="160" WidthRequest="160" Source="{Binding Izvodjenje.PredstavaSlika, Converter={StaticResource imgConv}} "></Image>
+                                </StackLayout>
                                 <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding Izvodjenje.IzvodjenjeId}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
                                     <Label Text="{Binding Izvodjenje.PredstavaNaziv}"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
+                                       FontSize="12"/>
                                     <Label Text="{Binding Izvodjenje.PozoristeNaziv}"
                                        LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
-                                    <Label Text="{Binding Izvodjenje.DatumVrijeme}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
-                                    
-                                    <Label Text="IzvodjenjeZonaId"></Label>
-                                    <Label Text="{Binding IzvodjenjeZone.IzvodjenjeZonaId}"></Label>
+                                       FontSize="10"/>
 
-                                    <Label Text="{Binding IzvodjenjeZone.Cijena}"></Label>
-                                    
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="Kolicina: "></Label>
-                                        <Button Text="-" Command="{Binding SmanjiKolicinuCommand}" Clicked="Button_Clicked_1"></Button>
-                                        <Label Text="{Binding Kolicina}"
+                                    <Label Text="{Binding Izvodjenje.Datum}"
                                        LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
-                                        <Button Text="+" Command="{Binding PovecajKolicinuCommand}" Clicked="Button_Clicked"></Button>
+                                       FontSize="10"/>
+                                        <Label Text="u" FontSize="10"/>
+                                    <Label Text="{Binding Izvodjenje.Vrijeme}"
+                                       LineBreakMode="NoWrap"
+                                       FontSize="10"/>
                                     </StackLayout>
 
+                                    <StackLayout Orientation="Horizontal">
+
+                                        <StackLayout Orientation="Vertical" VerticalOptions="Start">
+
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="Zona: " FontSize="10" TextColor="Gray"></Label>
+                                                <Label Text="{Binding IzvodjenjeZone.ZonaNaziv}" TextColor="Red" FontAttributes="Bold" FontSize="10"></Label>
+                                            </StackLayout>
+
+                                            <Label >
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Cijena: " TextColor="Gray" FontSize="10"/>
+                                                        <Span Text="{Binding IzvodjenjeZone.Cijena}" FontSize="10"  TextColor="Red"/>
+                                                        <Span Text=" KM" FontSize="10"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            
+                                        </StackLayout>
+
+
+                                        <StackLayout  VerticalOptions="End">
+                                            <Label Text="Kolicina: " TextColor="Gray" FontSize="10" HorizontalOptions="Center"></Label>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                                <Button Text="-" FontSize="10" Command="{Binding SmanjiKolicinuCommand}" Clicked="Button_Clicked_1"></Button>
+                                                <Entry Text="{Binding Kolicina}" FontSize="10"/>
+                                                <Button Text="+" FontSize="10" Command="{Binding PovecajKolicinuCommand}" Clicked="Button_Clicked"></Button>
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+
+                                    <Label >
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="UKUPNO: " FontSize="10"/>
+                                                <Span Text="{Binding UkupnaCijena}" FontAttributes="Bold" FontSize="10"/>
+                                                <Span Text=" KM" FontSize="10"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
                                     
-                                    <Label Text="{Binding UkupnaCijena}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
                                 </StackLayout>
 
                             </StackLayout>
@@ -65,23 +103,22 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Ukupan iznos: "></Span>
-                            <Span x:Name="UkupniIznos" Text="{Binding UkupniIznos}" ></Span>
-                            <Span Text=" KM"></Span>
+                            <Span FontSize="10" Text="UKUPAN IZNOS: "></Span>
+                            <Span FontSize="10" x:Name="UkupniIznos" Text="{Binding UkupniIznos}" FontAttributes="Bold"></Span>
+                            <Span FontSize="10" Text=" KM"></Span>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Button Text="NASTAVITE KUPOVINU" Clicked="Button_Clicked_2"></Button>
-
-                <Button x:Name="Btn_Rezervacija" Text="REZERVISITE KARTE" Command="{Binding RezervisiCommand}" Clicked="Button_Clicked_3"></Button>
-
-                <Button x:Name="Btn_Placanje" Text="IZVRSITE PLACANJE"  Clicked="Button_Clicked_4"></Button>
+                <Button FontSize="10" Text="NASTAVITE KUPOVINU" Clicked="Button_Clicked_2"></Button>
+                <Button FontSize="10" x:Name="Btn_Rezervacija" Text="POTVRDITE NARUDZBU" Command="{Binding RezervisiCommand}" Clicked="Button_Clicked_3"></Button>
+                <Button FontSize="10" x:Name="Btn_Isprazni" Text="ISPRAZNITE KORPU" Command="{Binding IsprazniKorpuCommand}" BackgroundColor="Gray"/>
+                <!--Clicked="Button_Clicked_4"></Button>-->
             </StackLayout>
-            
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -20,6 +20,11 @@ namespace SaTeatar.Mobile.ViewModels
         private readonly APIService _ocjeneService = new APIService("ocjene");
         private readonly APIService _karteService = new APIService("karte");
 
+        private readonly APIService _tipovipredstavaService = new APIService("tipoviPredstava");
+        private readonly APIService _predstaveDjelatniciService = new APIService("PredstaveDjelatnici");
+        private readonly APIService _vrstedjelatnikaService = new APIService("vrsteDjelatnika");
+        private readonly APIService _predstaveService = new APIService("predstava");
+
         public IzvodjenjeDetaljiViewModel()
         {
             PovecajKolicinuCommand = new Command(() => 
@@ -60,6 +65,27 @@ namespace SaTeatar.Mobile.ViewModels
         public mIzvodjenja Izvodjenje { get; set; }
         public mIzvodjenjaZone IzvodjenjeZone { get; set; }
         public mZone Zone { get; set; }
+
+        public class PredstavaDetalji
+        {
+            public int PredstavaId { get; set; }
+            public string Naziv { get; set; }
+            public int TipId { get; set; }
+            public string Tip { get; set; }
+            public string Opis { get; set; }
+            public byte[] Slika { get; set; }
+            public string GlumciStr { get; set; }
+            public string Rezija { get; set; }
+
+        }
+
+        PredstavaDetalji _predstavaDetalji = null;
+        public PredstavaDetalji PreDetalji
+        {
+            get { return _predstavaDetalji; }
+            set { SetProperty(ref _predstavaDetalji, value); NotifyPropertyChanged(); }
+        }
+
         public ObservableCollection<mZone> ZoneList { get; set; } = new ObservableCollection<mZone>();
 
         public event PropertyChangedEventHandler PropertyChangedEH;
@@ -201,6 +227,40 @@ namespace SaTeatar.Mobile.ViewModels
             DatumStr += " u ";
             DatumStr += Izvodjenje.DatumVrijeme.ToString("HH:mm") + "h";
 
+            //detalji
+            var predstavadetalji = await _predstaveService.GetById<mPredstave>(Izvodjenje.PredstavaId);
+            var tip = await _tipovipredstavaService.GetById<mTipoviPredstava>(predstavadetalji.TipPredstaveId);
+
+            var searchg = new rPredstaveDjelatnicSearch() { PredstavaId = predstavadetalji.PredstavaId };
+            var listaglumaca = await _predstaveDjelatniciService.Get<List<mPredstaveDjelatnici>>(searchg);
+            string lgstr = "";
+            string rezija = "";
+            foreach (var g in listaglumaca)
+            {
+                if (g.Djelatnik.VrstaDjelatnikaId == 2)
+                {
+                    lgstr += $"{g.DjelatnikIme} {g.DjelatnikPrezime}\n";
+                }
+                else
+                {
+                    rezija = $"{g.DjelatnikIme} {g.DjelatnikPrezime}";
+                }
+            }
+
+            var pd = new PredstavaDetalji()
+            {
+                PredstavaId = predstavadetalji.PredstavaId,
+                Naziv = predstavadetalji.Naziv,
+                GlumciStr = lgstr,
+                Rezija = rezija,
+                TipId = predstavadetalji.TipPredstaveId,
+                Tip = tip.Naziv.ToUpper(),
+                Slika = predstavadetalji.Slika,
+                Opis=predstavadetalji.Opis,
+            };
+
+            PreDetalji = pd;
+
             if (ZoneList.Count == 0)
             {
                 var search = new rZoneSearch() { PozoristeId = Izvodjenje.PozoristeId };
@@ -247,6 +307,7 @@ namespace SaTeatar.Mobile.ViewModels
                     ZonaId = ilist[0].ZonaId,
                     Cijena = ilist[0].Cijena,
                     IzvodjenjeId = ilist[0].IzvodjenjeId,
+                    ZonaNaziv=ilist[0].ZonaNaziv
                 };
                 ///
 

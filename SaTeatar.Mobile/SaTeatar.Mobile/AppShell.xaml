@@ -91,6 +91,10 @@
         <ShellContent Route="RegistracijaPage" ContentTemplate="{DataTemplate local:RegistracijaPage}" />
     </FlyoutItem>-->
 
+    <!--<ShellItem>
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}"/>
+    </ShellItem>-->
+        
     <FlyoutItem Title="Preporucene predstave" >
         <ShellContent Route="PreporucenePredstavePage" ContentTemplate="{DataTemplate local:PreporucenePredstavePage}" />
     </FlyoutItem>
@@ -98,6 +102,8 @@
     <FlyoutItem Title="Repertoar">
         <ShellContent Route="IzvodjenjaPage" ContentTemplate="{DataTemplate local:IzvodjenjaPage}" />
     </FlyoutItem>
+    
+
 
     <FlyoutItem Title="Obavijesti">
         <Tab>
@@ -106,11 +112,9 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="Narudzbe">
-        <Tab>
-            <ShellContent Title="Narudzba" Route="NarudzbaPage" ContentTemplate="{DataTemplate local:NarudzbaPage}" />
-            <ShellContent Title="Historija narudzbi" Route="HistorijaNarudzbiPage" ContentTemplate="{DataTemplate local:HistorijaNarudzbiPage}" />
-        </Tab>
+    <FlyoutItem Title="Korpa">
+            <ShellContent Title="Korpa" Route="NarudzbaPage" ContentTemplate="{DataTemplate local:NarudzbaPage}" />
+            <!--<ShellContent Title="Historija narudzbi" Route="HistorijaNarudzbiPage" ContentTemplate="{DataTemplate local:HistorijaNarudzbiPage}" />-->
     </FlyoutItem>
 
     <FlyoutItem Title="Ocjene">

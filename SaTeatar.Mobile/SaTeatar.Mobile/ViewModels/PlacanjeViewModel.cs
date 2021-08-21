@@ -33,7 +33,7 @@ namespace SaTeatar.Mobile.ViewModels
             return true;
         }
 
-        public NarudzbaViewModel Narudzba { get; set; }
+        public KorpaViewModel Narudzba { get; set; }
 
         public PlacanjeViewModel()
         {

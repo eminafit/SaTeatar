@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace SaTeatar.Mobile.ViewModels
 {
-    public class NarudzbaViewModel : BaseViewModel
+    public class KorpaViewModel : BaseViewModel
     {
         private readonly APIService _karteService = new APIService("karte");
         private readonly APIService _kupciService = new APIService("kupci");
@@ -20,15 +20,21 @@ namespace SaTeatar.Mobile.ViewModels
         private readonly APIService _narudzbaStavkeService = new APIService("narudzbaStavke");
         private readonly int _idKupca = PrijavljeniKupac.Kupac.KupacId;
 
-        public ObservableCollection<IzvodjenjeDetaljiViewModel> NarudzbaList { get; set; } = new ObservableCollection<IzvodjenjeDetaljiViewModel>();
 
-        public NarudzbaViewModel()
+        public KorpaViewModel()
         {
             //PromijenjenaKolicnaCommand = new Command(() => PromijenjenaKolicina());
             RezervisiCommand = new Command(async () => await Rezervisi());
-         //   PlatiCommand = new Command(async () => await Rezervisi()) ;
-            
+            IsprazniKorpuCommand = new Command(() =>
+            {
+                KorpaList.Clear();
+                CartService.Cart.Clear();
+                IsBusy = false;
+                PraznaKorpa = true;
+            });
         }
+        public ObservableCollection<IzvodjenjeDetaljiViewModel> KorpaList { get; set; } = new ObservableCollection<IzvodjenjeDetaljiViewModel>();
+       
         public mNarudzba Narudzba = new mNarudzba();
         public List<mNarudzbaStavke> NarudzbaStavkeList = new List<mNarudzbaStavke>();
         public List<mKarta> KarteList = new List<mKarta>();
@@ -39,21 +45,38 @@ namespace SaTeatar.Mobile.ViewModels
             get { return _ukupniIznos; }
             set { SetProperty(ref _ukupniIznos, value); }
         }
+        public ICommand PromijenjenaKolicnaCommand { get; set; }
+        public ICommand RezervisiCommand { get; set; }
+
+        public ICommand IsprazniKorpuCommand { get; set; }
+
+        bool _praznaKorpa = false;
+        public bool PraznaKorpa
+        {
+            get { return _praznaKorpa; }
+            set { SetProperty(ref _praznaKorpa, value); }
+        }
 
         public void Init()
         {
-            NarudzbaList.Clear();
-
-            foreach (var cartValue in CartService.Cart.Values)
+            KorpaList.Clear();
+            if (CartService.Cart.Count>0)
             {
-                NarudzbaList.Add(cartValue);
-                UkupniIznos += cartValue.UkupnaCijena;
+                IsBusy = true;
+                PraznaKorpa = false;
+                foreach (var cartValue in CartService.Cart.Values)
+                {
+                    KorpaList.Add(cartValue);
+                    UkupniIznos += cartValue.UkupnaCijena;
+                }
+
+            }
+            else
+            {
+                IsBusy = false;
+                PraznaKorpa = true;
             }
         }
-
-        public ICommand PromijenjenaKolicnaCommand { get; set; }
-        public ICommand RezervisiCommand { get; set; }
-        //public ICommand PlatiCommand { get; set; }
 
         public void PromijenjenaKolicina()
         {
