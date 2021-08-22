@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels" 
              xmlns:local="clr-namespace:SaTeatar.Mobile.Converters"
-             NavigationPage.HasNavigationBar="True"
-             NavigationPage.HasBackButton="True"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False"
              x:Class="SaTeatar.Mobile.Views.NarudzbaPage">
     <ContentPage.BindingContext>
         <viewModels:KorpaViewModel/>

@@ -19,15 +19,16 @@ namespace SaTeatar.Mobile.Views
         {
             InitializeComponent();
             BindingContext = model = new KorpaViewModel();
-
-           // model.Init();
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
             NavigationPage.SetHasNavigationBar(this, false); //get your navbar back
             NavigationPage.SetHasBackButton(this, false); //get your back button bac
+                                                          // model.Init();
+        }
+
+        protected override async void OnAppearing()
+        {
+            //await Navigation.PopToRootAsync();
+            //NavigationPage.SetHasNavigationBar(this, false); //get your navbar back
+            //NavigationPage.SetHasBackButton(this, false); //get your back button bac
             model.Init();
 
             if (model!=null & model.UkupniIznos==0)
@@ -54,7 +55,8 @@ namespace SaTeatar.Mobile.Views
         private async void Button_Clicked_2(object sender, EventArgs e)
         {
             //nastavi kupovinu
-            await Navigation.PopToRootAsync();
+            //await Navigation.PopToRootAsync();
+            await Navigation.PushAsync(new IzvodjenjaPage());
 
         }
 

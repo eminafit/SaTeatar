@@ -29,6 +29,7 @@ namespace SaTeatar.Mobile.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            await Navigation.PopToRootAsync();
             await model.Init();
 
         }
@@ -36,6 +37,7 @@ namespace SaTeatar.Mobile.Views
         private async void Button_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NarudzbaPage());
+            //NavigationPage.SetHasBackButton(this, false);
 
         }
 

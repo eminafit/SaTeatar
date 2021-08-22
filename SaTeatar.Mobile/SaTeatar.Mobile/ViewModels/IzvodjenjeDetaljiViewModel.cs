@@ -27,38 +27,8 @@ namespace SaTeatar.Mobile.ViewModels
 
         public IzvodjenjeDetaljiViewModel()
         {
-            PovecajKolicinuCommand = new Command(() => 
-            {
-                if (BrSlobodnihSjedistaUZoni>0)
-                {
-                    Kolicina += 1; 
-                    UkupnaCijena = Cijena * Kolicina; 
-                    BrSlobodnihSjedistaUZoni -= 1; 
-
-                }
-                if (UkupnaCijena!=0)
-                    UKbool = true;
-                else
-                    UKbool = false;
-            });
-            SmanjiKolicinuCommand = new Command(() =>
-            {
-                if (Kolicina>0)
-                {
-                    Kolicina -= 1;
-                    UkupnaCijena = Cijena * Kolicina;
-                    BrSlobodnihSjedistaUZoni += 1;
-                }
-                else
-                {
-                    Kolicina = 0;
-                    UkupnaCijena = 0;
-                }
-                if (UkupnaCijena != 0)
-                    UKbool = true;
-                else
-                    UKbool = false;
-            });
+            PovecajKolicinuCommand = new Command(() => Povecaj());
+            SmanjiKolicinuCommand = new Command(() => Smanji());
             NaruciCommand = new Command(() => Naruci());
             InitCommand = new Command(async() => await Init());
         }
@@ -190,6 +160,41 @@ namespace SaTeatar.Mobile.ViewModels
         public ICommand NaruciCommand { get; set; }
         public ICommand InitCommand { get; set; }
 
+
+        private void Povecaj()
+        {
+            if (BrSlobodnihSjedistaUZoni > 0)
+            {
+                Kolicina += 1;
+                UkupnaCijena = Cijena * Kolicina;
+                BrSlobodnihSjedistaUZoni -= 1;
+
+            }
+            if (UkupnaCijena != 0)
+                UKbool = true;
+            else
+                UKbool = false;
+        }
+
+        private void Smanji()
+        {
+            if (Kolicina > 0)
+            {
+                Kolicina -= 1;
+                UkupnaCijena = Cijena * Kolicina;
+                BrSlobodnihSjedistaUZoni += 1;
+            }
+            else
+            {
+                Kolicina = 0;
+                UkupnaCijena = 0;
+            }
+            if (UkupnaCijena != 0)
+                UKbool = true;
+            else
+                UKbool = false;
+        }
+
         private async void Naruci()
         {
             if (UkupnaCijena==0)
@@ -274,30 +279,10 @@ namespace SaTeatar.Mobile.ViewModels
 
             if (SelectedZona != null)
             {
-                Kolicina = 0;
-                UkupnaCijena = 0;
-                foreach (var item in CartService.Cart.Values)
-                {
-                    if (item.Izvodjenje.IzvodjenjeId==Izvodjenje.IzvodjenjeId && item.IzvodjenjeZone.ZonaId==SelectedZona.ZonaId)
-                    {
-                        Kolicina = item.Kolicina;
-                        UkupnaCijena = item.UkupnaCijena;
-                        if (UkupnaCijena!=0)
-                        {
-                            UKbool = true;
-                        }
-
-                    }
-                    else
-                    {
-                        Kolicina = 0;
-                        UkupnaCijena = 0;
-                    }
-                }
-
                 var search = new rIzvodjenjaZoneSearch();
                 search.ZonaId = SelectedZona.ZonaId;
                 search.IzvodjenjeId = Izvodjenje.IzvodjenjeId;
+
 
                 var ilist = await _izvodjenjaZoneService.Get<List<mIzvodjenjaZone>>(search); //dobicu samo 1 obj
 
@@ -309,6 +294,37 @@ namespace SaTeatar.Mobile.ViewModels
                     IzvodjenjeId = ilist[0].IzvodjenjeId,
                     ZonaNaziv=ilist[0].ZonaNaziv
                 };
+
+                _kljuc = $"{Izvodjenje.IzvodjenjeId}_{IzvodjenjeZone.ZonaId}";
+                //Kolicina = 0;
+                //UkupnaCijena = 0;
+                bool imavec = false;
+                foreach (var item in CartService.Cart.Values)
+                {
+                    if(item._kljuc==_kljuc)
+                    //if (item.Izvodjenje.IzvodjenjeId==Izvodjenje.IzvodjenjeId && item.IzvodjenjeZone.ZonaId==SelectedZona.ZonaId)
+                    {
+                        imavec = true;
+                        Kolicina = item.Kolicina;
+                        UkupnaCijena = item.UkupnaCijena;
+                        if (UkupnaCijena!=0)
+                        {
+                            UKbool = true;
+                        }
+
+                    }
+
+                }
+
+                if (!imavec)
+                {
+                                                          
+                        Kolicina = 0;
+                        UkupnaCijena = 0;
+                    
+                }
+
+
                 ///
 
                 var zona = await _zoneService.GetById<mZone>(IzvodjenjeZone.ZonaId);
@@ -327,7 +343,6 @@ namespace SaTeatar.Mobile.ViewModels
                 BrSlobodnihSjedistaUZoni = zona.UkupanBrojSjedista - brojac - Kolicina;
                 Cijena = IzvodjenjeZone.Cijena;
 
-                _kljuc = $"{Izvodjenje.IzvodjenjeId}_{IzvodjenjeZone.ZonaId}";
           
             }
         }
