@@ -50,13 +50,15 @@ namespace SaTeatar.Mobile.Views
             };
             _narudzba = narudzba;
         }
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
             ErrorLabel_CardNumber.IsVisible = false;
             ErrorLabel_Cvv.IsVisible = false;
             ErrorLabel_Month.IsVisible = false;
             ErrorLabel_Year.IsVisible = false;
+            await Navigation.PopToRootAsync();
+
         }
         private void Number_changed(object sender, TextChangedEventArgs e)
         {

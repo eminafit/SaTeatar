@@ -19,19 +19,26 @@ namespace SaTeatar.Mobile.Views
         {
             InitializeComponent();
             BindingContext = model = new KarteViewModel();
-             Navigation.PopToRootAsync();
 
         }
 
-        protected override  void OnAppearing()
+        protected override void OnAppearing()
         {
-            model.Init();
             base.OnAppearing();
+            model.Init();
+
         }
 
-        protected override async void OnDisappearing()
-        {
-            base.OnDisappearing();
-        }
+        //protected override async void OnDisappearing()
+        //{
+        //    base.OnDisappearing();
+        //}
+
+        //protected override async bool OnBackButtonPressed()
+        //{
+        //     await Navigation.PopToRootAsync();
+        //    return true;
+        //    //return base.OnBackButtonPressed();
+        //}
     }
 }
