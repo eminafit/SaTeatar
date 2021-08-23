@@ -302,7 +302,7 @@ namespace SaTeatar.Database
                     .IsRequired()
                     .HasMaxLength(20);
 
-                entity.Property(e => e.Datum).HasColumnType("date");
+                entity.Property(e => e.Datum).HasColumnType("datetime");
 
                 entity.Property(e => e.Iznos).HasColumnType("decimal(18, 2)");
 

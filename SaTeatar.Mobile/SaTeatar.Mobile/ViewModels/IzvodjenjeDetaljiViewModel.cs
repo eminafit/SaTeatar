@@ -328,13 +328,23 @@ namespace SaTeatar.Mobile.ViewModels
                 ///
 
                 var zona = await _zoneService.GetById<mZone>(IzvodjenjeZone.ZonaId);
-                var searchiz = new rKartaSearch() { IzvodjenjeZonaId = IzvodjenjeZone.IzvodjenjeZonaId };
+                var searchiz = new rKartaSearch() { IzvodjenjeZonaId = IzvodjenjeZone.IzvodjenjeZonaId, Placeno=true };
                 var karte = await _karteService.Get<List<mKarta>>(searchiz);
                 int brojac = 0;
                 var datumVazenjaRezervacije = Izvodjenje.DatumVrijeme.AddDays(-7);
                 foreach (var k in karte)
                 {
-                    if (k.Placeno || DateTime.Compare(DateTime.Now, datumVazenjaRezervacije)<=0)
+                    if (k.Placeno)
+                    {
+                        brojac++;
+                    }
+                }
+
+                var searchizf = new rKartaSearch() { IzvodjenjeZonaId = IzvodjenjeZone.IzvodjenjeZonaId, Placeno = false };
+                var kartef = await _karteService.Get<List<mKarta>>(searchizf);
+                foreach (var k in kartef)
+                {
+                    if (!k.Placeno && DateTime.Compare(DateTime.Now, datumVazenjaRezervacije) <= 0)
                     {
                         brojac++;
                     }

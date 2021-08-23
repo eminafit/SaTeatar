@@ -1,4 +1,5 @@
-﻿using SaTeatar.Mobile.Services;
+﻿using SaTeatar.Mobile.Helpers;
+using SaTeatar.Mobile.Services;
 using SaTeatar.Mobile.Views;
 using System;
 using Xamarin.Forms;
@@ -15,7 +16,8 @@ namespace SaTeatar.Mobile
 
             DependencyService.Register<MockDataStore>();
             MainPage = new LoginPage();
-           // MainPage = new AppShell();
+            //NavigationDispatcher.Instance.Initialize(MainPage.Navigation);
+            // MainPage = new AppShell();
         }
 
         protected override void OnStart()

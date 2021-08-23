@@ -65,24 +65,24 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <StackLayout Grid.Row="0" Grid.ColumnSpan="2">
-                    <Entry x:Name="Number" Placeholder="Enter Card Number" TextChanged="Number_changed" Unfocused="Number_unfocused" Text="{Binding Number}" Keyboard="Keyboard.Numeric"/>
+                    <Entry x:Name="Number" Placeholder="Unesite broj kartice" TextChanged="Number_changed" Unfocused="Number_unfocused" Text="{Binding Number}" Keyboard="Keyboard.Numeric"/>
                     <Label x:Name="ErrorLabel_CardNumber"  IsVisible="{Binding IsError_CardNumber}" TextColor="Red" FontSize="13" />
                 </StackLayout>
                 <StackLayout  Grid.Row="1" Grid.Column="0">
-                    <Entry x:Name="Month" Placeholder="MM" Text="{Binding ExpMonth}" TextChanged="Month_changed" Unfocused="Month_unfocused" ReturnType="Next" Keyboard="Keyboard.Numeric"/>
+                    <Entry x:Name="Month" Placeholder="mm" Text="{Binding ExpMonth}" TextChanged="Month_changed" Unfocused="Month_unfocused" ReturnType="Next" Keyboard="Keyboard.Numeric"/>
                     <Label x:Name="ErrorLabel_Month"  IsVisible="{Binding IsError_Month}"  TextColor="Red" FontSize="13"/>
                 </StackLayout>
                 <StackLayout  Grid.Row="1" Grid.Column="1">
-                    <Entry x:Name="Year" Placeholder="YY" Text="{Binding ExpYear}" TextChanged="Year_changed" Unfocused="Year_unfocused" ReturnType="Next" Keyboard="Keyboard.Numeric"/>
+                    <Entry x:Name="Year" Placeholder="gg" Text="{Binding ExpYear}" TextChanged="Year_changed" Unfocused="Year_unfocused" ReturnType="Next" Keyboard="Keyboard.Numeric"/>
                     <Label x:Name="ErrorLabel_Year" IsVisible="{Binding IsError_Year}" TextColor="Red" FontSize="13"/>
                 </StackLayout>
                 <StackLayout Grid.Row="2" Grid.ColumnSpan="2">
-                    <Entry x:Name="Cvv" Placeholder="Cvv code" Text="{Binding Cvc}" TextChanged="Cvv_changed" Unfocused="Cvv_unfocused" ReturnType="Next" Keyboard="Keyboard.Numeric" IsPassword="True"/>
+                    <Entry x:Name="Cvv" Placeholder="Cvv kod" Text="{Binding Cvc}" TextChanged="Cvv_changed" Unfocused="Cvv_unfocused" ReturnType="Next" Keyboard="Keyboard.Numeric" IsPassword="True"/>
                     <Label x:Name="ErrorLabel_Cvv" IsVisible="{Binding IsError_Cvv}" TextColor="Red" FontSize="13" />
                 </StackLayout>
             </Grid>
 
-            <Label Text="{Binding Course.Price, StringFormat='Price: ${0:F2}'}"
+            <Label Text="{Binding Course.Price, StringFormat='Cijena: ${0:F2}'}"
                    LineBreakMode="NoWrap"
                    Padding="0, 0, 0, 0"
                    FontAttributes="bold"
@@ -90,7 +90,7 @@
                    Margin="0,-45,0,0"/>
             
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="End" >
-                <Button x:Name="Submit_Button" Text="Submit" Command="{Binding SubmitCommand}" />
+                <Button x:Name="Submit_Button" Text="Potvrdi" Command="{Binding SubmitCommand}" />
             </StackLayout>
         </StackLayout>
     </ContentView>

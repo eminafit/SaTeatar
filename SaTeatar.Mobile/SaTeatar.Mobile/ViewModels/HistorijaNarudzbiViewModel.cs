@@ -1,111 +1,92 @@
-﻿using QRCoder;
+﻿using SaTeatar.Mobile.Helpers;
 using SaTeatar.Model.Models;
 using SaTeatar.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Text;
-using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace SaTeatar.Mobile.ViewModels
 {
     public class HistorijaNarudzbiViewModel : BaseViewModel
     {
-        private readonly APIService _karteService = new APIService("karte");
-        private readonly APIService _kupciService = new APIService("kupci");
+        private readonly APIService _narudzbaService = new APIService("narudzba");
 
-        public ObservableCollection<mKarta> ListaKarata { get; set; } = new ObservableCollection<mKarta>();
-
-        public class KarteVMQCode
+        public HistorijaNarudzbiViewModel()
         {
-            public string Sifra { get; set; }
 
-          //  public bool Placeno { get; set; }
-            public string PredstavaNaziv { get; set; }
-            public string PozoristeNaziv { get; set; }
-            public string ZonaNaziv { get; set; }
-            public decimal Cijena { get; set; }
-            public ImageSource QrCodeImage { get; set; }
         }
 
-        public ObservableCollection<KarteVMQCode> KarteVMQCodeLista { get; set; } = new ObservableCollection<KarteVMQCode>();
+        public class XNaruzba
+        {
+            public int NarudzbaId { get; set; }
+            public int KupacId { get; set; }
+            public string BrojNarudzbe { get; set; }
+            public DateTime Datum { get; set; }
+            public string DatumStr { get; set; }
+            public decimal Iznos { get; set; }
+            public string PaymentId { get; set; }
+            public string PlacenoText { get; set; } = "IZVRSITE PLACANJE";
+            public bool PlacenoTF { get; set; } = true;
 
+        }
 
-        //ImageSource _qrCodeImage;
-        //public ImageSource QrCodeImage
+        public ObservableCollection<XNaruzba> ListaNarudzbi { get; set; } = new ObservableCollection<XNaruzba>();
+
+        //bool isBusy = false;
+        //public bool IsBusy
         //{
-        //    get => _qrCodeImage;
-        //    set => SetProperty(ref _qrCodeImage, value);
+        //    get { return isBusy; }
+        //    set { SetProperty(ref isBusy, value); }
         //}
-        //public ObservableCollection<QRKod> QRCodeLista { get; set; } = new ObservableCollection<QRKod>();
+
+        string _placeno = string.Empty;
+        public string Placeno
+        {
+            get { return _placeno; }
+            set { SetProperty(ref _placeno, value); }
+        }
+
 
         public async void Init()
         {
-            var searchkupac = new rKupciSearch() { KorisnickoIme = APIService.Username };
-            List<mKupci> kupci = await _kupciService.Get<List<mKupci>>(searchkupac);
-            var kupacId = kupci[0].KupacId;
+            var kupac = PrijavljeniKupac.Kupac;
+            var search = new rNarudzbaSearch() { KupacId = kupac.KupacId };
 
-            var searchkarte = new rKartaSearch() { KupacId = kupacId };
-            var karte = await _karteService.Get<List<mKarta>>(searchkarte);
+            var lnar = await _narudzbaService.Get<List<mNarudzba>>(null);
+            lnar.Sort(( y,x) => x.Datum.CompareTo(y.Datum));
 
 
-            foreach (var item in karte)
+            ListaNarudzbi.Clear();
+            if (lnar.Count>0)
             {
-                 ListaKarata.Add(item);
-                // QRCodeLista.Add(new QRKod() { QrCodeImage = Convert(item.Sifra) });
-               
-                KarteVMQCodeLista.Add(new KarteVMQCode()
+                foreach (var item in lnar)
                 {
-                    Sifra = item.Sifra,
-                    Cijena=item.Cijena,
-                    PozoristeNaziv=item.PozoristeNaziv,
-                    PredstavaNaziv=item.PredstavaNaziv,
-                    ZonaNaziv=item.ZonaNaziv,
-                    QrCodeImage= ImageSource.FromStream(() => new MemoryStream(item.Qrcode))
-                });
+                    ListaNarudzbi.Add(new XNaruzba()
+                    {
+                        NarudzbaId = item.NarudzbaId,
+                        KupacId = item.KupacId,
+                        BrojNarudzbe = item.BrojNarudzbe,
+                        Datum = item.Datum,
+                        DatumStr = item.Datum.ToString("dd.MM.yyyy.") + " u " + item.Datum.ToString("HH:mm"),
+                        Iznos=item.Iznos,
+                        PaymentId=item.PaymentId,
+                    });
 
+
+                }
+
+                foreach (var item in ListaNarudzbi)
+                {
+                    if (!string.IsNullOrWhiteSpace(item.PaymentId))
+                    {
+                        item.PlacenoTF = false;
+                        item.PlacenoText = "PLACENO";
+                    }
+                }
             }
-
-            //var karte = await _karteService.Get<List<mKarta>>(null);
-
-            //foreach (var item in karte)
-            //{
-            //    item.Qrcode = popuni(item.Sifra);
-            //    await _karteService.Update<mKarta>(item.KartaId, item);
-            //}
-
         }
 
-
-        //byte[] popuni (string InputText)
-        //{
-        //    if (string.IsNullOrEmpty(InputText))
-        //        InputText = "";
-
-        //    QRCodeGenerator qrGenerator = new QRCodeGenerator();
-        //    QRCodeData qrCodeData = qrGenerator.CreateQrCode(InputText, QRCodeGenerator.ECCLevel.M);
-        //    PngByteQRCode qRCode = new PngByteQRCode(qrCodeData);
-        //    //byte[] qrCodeBytes = qRCode.GetGraphic(20);
-        //    return qRCode.GetGraphic(20);
-        //    //QrCodeImage = ImageSource.FromStream(() => new MemoryStream(qrCodeBytes));
-        //    //return ImageSource.FromStream(() => new MemoryStream(qrCodeBytes));
-
-        //}
-
-
-        ImageSource Convert(string InputText)
-        {
-            if (string.IsNullOrEmpty(InputText))
-                InputText = "";
-
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(InputText, QRCodeGenerator.ECCLevel.M);
-            PngByteQRCode qRCode = new PngByteQRCode(qrCodeData);
-            byte[] qrCodeBytes = qRCode.GetGraphic(20);
-            //QrCodeImage = ImageSource.FromStream(() => new MemoryStream(qrCodeBytes));
-            return ImageSource.FromStream(() => new MemoryStream(qrCodeBytes));
-
-        }
     }
 }

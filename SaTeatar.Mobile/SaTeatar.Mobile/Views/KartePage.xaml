@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels" 
+             xmlns:local="clr-namespace:SaTeatar.Mobile.Converters"
+             x:Class="SaTeatar.Mobile.Views.KartePage">
+    <ContentPage.BindingContext>
+        <viewModels:KarteViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span FontSize="10" Text="KUPLJENE KARTE " FontAttributes="Bold"/>
+                        <Span FontSize="10" Text="( " TextColor="Gray"/>
+                        <Span FontSize="10" Text="{Binding Broj}" FontAttributes="Bold"/>
+                        <Span FontSize="10" Text=" ) " TextColor="Gray"/>
+
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <!--<ListView ItemsSource="{Binding KarteVMQCodeLista}">-->
+            <ListView ItemsSource="{Binding ListaKarata}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="20" >
+                            <Frame BorderColor="Gray" CornerRadius="5">
+
+                                    <StackLayout Orientation="Horizontal" >
+
+                                <StackLayout Orientation="Vertical">
+                                    <Image HeightRequest ="200" WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding Qrcode, Converter={StaticResource imgConv}} "></Image>
+
+                                    <!--<Image  HeightRequest ="200" WidthRequest="200" Source="{Binding QrCodeImage }" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+                                </StackLayout>
+
+                                <StackLayout Orientation="Vertical">
+
+
+                                        <StackLayout>
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span FontSize="8" Text="BROJ KARTE: " TextColor="Gray"/>
+                                                        <Span FontSize="10" Text="{Binding Sifra}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Text="{Binding PredstavaNaziv}" FontSize="12" FontAttributes="Bold"/>
+                                            <Label Text="{Binding PozoristeNaziv}" FontSize="10"/>
+                                            <Label Text="{Binding DatumIzvodjenja}" FontSize="10"/>
+
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span FontSize="8" Text="ZONA: " TextColor="Gray"/>
+                                                        <Span FontSize="10" Text="{Binding ZonaNaziv}" FontAttributes="Bold"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span FontSize="8" Text="CIJENA: " TextColor="Gray"/>
+                                                        <Span FontSize="10" Text="{Binding Cijena}" TextColor="Red"/>
+                                                        <Span FontSize="10" Text=" KM"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                        </StackLayout>
+
+                                </StackLayout>
+                            </StackLayout>
+                            </Frame>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

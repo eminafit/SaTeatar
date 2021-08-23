@@ -27,7 +27,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal" >
+                            <StackLayout Orientation="Horizontal"  Padding="10">
                                 <StackLayout>
                                     <Image HeightRequest ="160" WidthRequest="160" Source="{Binding Izvodjenje.PredstavaSlika, Converter={StaticResource imgConv}} "></Image>
                                 </StackLayout>
@@ -114,7 +114,7 @@
                     </Label.FormattedText>
                 </Label>
                 <Button FontSize="10" Text="NASTAVITE KUPOVINU" Clicked="Button_Clicked_2"></Button>
-                <Button FontSize="10" x:Name="Btn_Rezervacija" Text="POTVRDITE NARUDZBU" Command="{Binding RezervisiCommand}" Clicked="Button_Clicked_3"></Button>
+                <Button FontSize="10" x:Name="Btn_Rezervacija" Text="POTVRDITE NARUDZBU" Clicked="Button_Clicked_3"></Button>
                 <Button FontSize="10" x:Name="Btn_Isprazni" Text="ISPRAZNITE KORPU" Command="{Binding IsprazniKorpuCommand}" BackgroundColor="Gray"/>
                 <!--Clicked="Button_Clicked_4"></Button>-->
             </StackLayout>

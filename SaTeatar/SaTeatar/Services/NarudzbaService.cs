@@ -17,5 +17,18 @@ namespace SaTeatar.Services
             : base(context, mapper)
         {
         }
+
+        public override IList<mNarudzba> Get(rNarudzbaSearch search)
+        {
+            var upit = _context.Narudzba.AsQueryable();
+
+            if (search.KupacId!=0)
+            {
+                upit = upit.Where(x => x.KupacId == search.KupacId);
+            }
+
+            var lista = upit.ToList();
+            return _mapper.Map<List<mNarudzba>>(lista);
+        }
     }
 }

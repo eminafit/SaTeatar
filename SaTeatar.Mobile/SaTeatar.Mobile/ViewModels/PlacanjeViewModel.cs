@@ -1,7 +1,9 @@
 ﻿using Acr.UserDialogs;
 using SaTeatar.Mobile.Helpers;
 using SaTeatar.Mobile.Models;
+using SaTeatar.Mobile.Views;
 using SaTeatar.Model.Models;
+using SaTeatar.Model.Requests;
 using Stripe;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Application = Xamarin.Forms.Application;
 
 namespace SaTeatar.Mobile.ViewModels
 {
@@ -17,10 +20,7 @@ namespace SaTeatar.Mobile.ViewModels
     {
         private readonly APIService _narudzbaService = new APIService("narudzba");
         private readonly APIService _karteService = new APIService("karte");
-        //public PlacanjeViewModel (INavigation nav)
-        //{
-        //    this.Navigation = nav;
-        //}
+        private readonly APIService _narudzbaStavkeService = new APIService("narudzbaStavke");
 
         bool IsDigitsOnly(string str)
         {
@@ -33,7 +33,7 @@ namespace SaTeatar.Mobile.ViewModels
             return true;
         }
 
-        public KorpaViewModel Narudzba { get; set; }
+        public mNarudzba Narudzba { get; set; }
 
         public PlacanjeViewModel()
         {
@@ -41,7 +41,6 @@ namespace SaTeatar.Mobile.ViewModels
 
         }
 
-        private readonly INavigation Navigation;
         public ICommand SubmitCommand { get; set; }
 
      //   public MCourse Course { get; set; }
@@ -143,7 +142,7 @@ namespace SaTeatar.Mobile.ViewModels
 
                 var options = new ChargeCreateOptions();
 
-                options.Amount = Convert.ToInt64(Narudzba.Narudzba.Iznos) * 100; // Convert.ToInt64(Course.Price) * 100;
+                options.Amount = Convert.ToInt64(Narudzba.Iznos) * 100; // Convert.ToInt64(Course.Price) * 100;
                 options.Currency = "usd";
                 options.Description = "opis";// Course.Name;
                 options.Source = stripeToken.Id;
@@ -152,9 +151,9 @@ namespace SaTeatar.Mobile.ViewModels
                 options.ReceiptEmail = user.Email.ToString();
                 var service = new ChargeService();
                 Charge charge = service.Create(options);
-                Narudzba.Narudzba.PaymentId = charge.Id;
-                await _narudzbaService.Update<mNarudzba>(Narudzba.Narudzba.NarudzbaId, Narudzba.Narudzba);
-                UserDialogs.Instance.Alert("Purchase was successful!");
+                Narudzba.PaymentId = charge.Id;
+                await _narudzbaService.Update<mNarudzba>(Narudzba.NarudzbaId, Narudzba);
+                UserDialogs.Instance.Alert("Uspjesno placanje!");
                 return true;
             }
             catch (Exception ex)
@@ -166,23 +165,23 @@ namespace SaTeatar.Mobile.ViewModels
 
         public async Task Plati()
         {
-            var nar = await _narudzbaService.GetById<mNarudzba>(Narudzba.Narudzba.NarudzbaId);
+            var nar = await _narudzbaService.GetById<mNarudzba>(Narudzba.NarudzbaId);
             if (nar.PaymentId!=string.Empty)
             {
-                await App.Current.MainPage.DisplayAlert("Information", "You already bought this!", "OK");
+                await App.Current.MainPage.DisplayAlert("Informacija", "Vec ste kupili ovo!", "OK");
             }
             else
             {
                 if (ExpMonth == null || ExpMonth == "" || ExpYear == null || ExpYear == "" || Number == null || Number == "" || Cvc == null || Cvc == "")
                 {
-                    UserDialogs.Instance.Alert("You have to fill all fields!", "Payment failed", "OK");
+                    UserDialogs.Instance.Alert("Trebate ispuniti sva polja!", "Placanje nije uspjelo", "OK");
                     return;
                 }
                 if (ExpMonth != null || ExpMonth != "" || ExpYear != null || ExpYear != "" || Number != null || Number != "" || Cvc != null || Cvc != "")
                 {
                     if (!IsDigitsOnly(ExpMonth) || !IsDigitsOnly(ExpMonth) || !IsDigitsOnly(Number) || !IsDigitsOnly(Cvc))
                     {
-                        UserDialogs.Instance.Alert("You can't use letters!", "Payment failed", "OK");
+                        UserDialogs.Instance.Alert("Ne mozete koristiti slova!", "Placanje nije uspjelo", "OK");
                         return;
                     }
                 }
@@ -195,18 +194,18 @@ namespace SaTeatar.Mobile.ViewModels
                 CancellationToken token = tokenSource.Token;
                 try
                 {
-                    UserDialogs.Instance.ShowLoading("Payment processing ...");
+                    UserDialogs.Instance.ShowLoading("Placanje u toku ...");
                     //await Task.Run(async () =>
                     //{
                         var Token = CreateTokenAsync();
-                        Console.Write(Narudzba.Narudzba.BrojNarudzbe + "Token :" + Token);
+                        Console.Write(Narudzba.BrojNarudzbe + "Token :" + Token);
                         if (Token.ToString() != null)
                         {
                             IsTransectionSuccess = await MakePaymentAsync(Token.Result);
                         }
                         else
                         {
-                            UserDialogs.Instance.Alert("Bad card credentials", null, "OK");
+                            UserDialogs.Instance.Alert("Netacni podaci na kartici", null, "OK");
                         }
                     //});
                 }
@@ -214,7 +213,7 @@ namespace SaTeatar.Mobile.ViewModels
                 {
                     UserDialogs.Instance.HideLoading();
                     UserDialogs.Instance.Alert(ex.Message, null, "OK");
-                    Console.Write(Narudzba.Narudzba.BrojNarudzbe + ex.Message);
+                    Console.Write(Narudzba.BrojNarudzbe + ex.Message);
                 }
                 finally
                 {
@@ -222,27 +221,42 @@ namespace SaTeatar.Mobile.ViewModels
                     {
                        // Narudzba.Narudzba.PaymentId = "pribavi";
 
-                        await _narudzbaService.Update<mNarudzba>(Narudzba.Narudzba.NarudzbaId, Narudzba.Narudzba);
+                        await _narudzbaService.Update<mNarudzba>(Narudzba.NarudzbaId, Narudzba);
+                        var search = new rNarudzbaStavkeSearch() { NarudzbaId = Narudzba.NarudzbaId };
+                        List<mNarudzbaStavke> nsl = await _narudzbaStavkeService.Get<List<mNarudzbaStavke>>(search);
 
-                        foreach (var karta in  Narudzba.KarteList)
+                        foreach (var ns in nsl)
                         {
+                            var karta = await _karteService.GetById<mKarta>(ns.KartaId);
                             karta.Placeno = true;
                             await _karteService.Update<mKarta>(karta.KartaId, karta);
+
                         }
 
-                        Console.Write(Narudzba.Narudzba.NarudzbaId + "Payment Successful");
+                        //foreach (var karta in  Narudzba.KarteList)
+                        //{
+                        //    karta.Placeno = true;
+                        //    await _karteService.Update<mKarta>(karta.KartaId, karta);
+                        //}
+
+                        Console.Write(Narudzba.NarudzbaId + "Uspjesno placanje");
 
                         UserDialogs.Instance.HideLoading();
+                        await Application.Current.MainPage.Navigation.PushAsync(new NavigationPage(new KartePage()));
+
 
                     }
                     else
                     {
                         UserDialogs.Instance.HideLoading();
-                        UserDialogs.Instance.Alert("Oops, something went wrong", "Payment failed", "OK");
-                        Console.Write(Narudzba.Narudzba.NarudzbaId + "Payment Failure ");
+                        UserDialogs.Instance.Alert("Nesto je poslo po zlu", "lacanje nije uspjelo", "OK");
+                        Console.Write(Narudzba.NarudzbaId + "Payment Failure ");
                     }
                 }
             }
+
+
+
         }
     }
 }

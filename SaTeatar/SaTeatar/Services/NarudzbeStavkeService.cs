@@ -16,5 +16,16 @@ namespace SaTeatar.Services
         public NarudzbeStavkeService(SaTeatarDbContext context, IMapper mapper) : base(context, mapper)
         {
         }
+
+        public override IList<mNarudzbaStavke> Get(rNarudzbaStavkeSearch search)
+        {
+            var upit = _context.NarudzbaStavke.AsQueryable();
+            if (search.NarudzbaId!=0)
+            {
+                upit = upit.Where(x => x.NarudzbaId == search.NarudzbaId);
+            }
+            var lista = upit.ToList();
+            return _mapper.Map<List<mNarudzbaStavke>>(lista);
+        }
     }
 }

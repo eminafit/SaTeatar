@@ -31,7 +31,6 @@ namespace SaTeatar.Mobile.Views
             //NavigationPage.SetHasBackButton(this, false); //get your back button bac
             model.Init();
 
-            if (model!=null & model.UkupniIznos==0)
                 if (model != null)
                 {
                     if (model.UkupniIznos == 0)
@@ -60,16 +59,17 @@ namespace SaTeatar.Mobile.Views
 
         }
 
-        private void Button_Clicked_3(object sender, EventArgs e)
+        private async void Button_Clicked_3(object sender, EventArgs e)
         {
+            await model.Rezervisi();
             //potvrdi narudzbu??
-            Navigation.PushAsync(new IzvodjenjaPage());
+            await Navigation.PushAsync(new HistorijaNarudzbiPage());
         }
 
         private void Button_Clicked_4(object sender, EventArgs e)
         {
             //ispraznite korpu
-            Navigation.PushAsync(new PlacanjePage(model));
+            Navigation.PushAsync(new PlacanjePage(model.Narudzba));
 
         }
 

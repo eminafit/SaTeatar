@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels"
+             x:Class="SaTeatar.Mobile.Views.NarudzbaStavkePage">
+    
+    <ContentPage.BindingContext>
+        <viewModels:NarudzbaStavkeViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+
+
+            <StackLayout Orientation="Vertical"
+                         VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand">
+                <Label Text="Detalji narudzbe"  Padding="10"/>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontSize="8" Text="BROJ NARUDZBE: " TextColor="Gray"/>
+                            <Span FontSize="10" Text="{Binding Narudzba.BrojNarudzbe}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontSize="8" Text="DATUM: " TextColor="Gray"/>
+                            <Span FontSize="10" Text="{Binding Narudzba.DatumStr}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontSize="8" Text="UKUPAN IZNOS: " TextColor="Gray"/>
+                            <Span FontSize="10" Text="{Binding Narudzba.Iznos}"/>
+                            <Span FontSize="10" Text=" KM"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <!--<Label Text="{Binding Narudzba.PaymentId}"/>-->
+
+
+            </StackLayout>
+
+
+            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span FontSize="10" Text="KARTE " FontAttributes="Bold"/>
+                        <Span FontSize="10" Text="( " TextColor="Gray"/>
+                        <Span FontSize="10" Text="{Binding Broj}" FontAttributes="Bold"/>
+                        <Span FontSize="10" Text=" ) " TextColor="Gray"/>
+
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            
+
+
+            <ListView ItemsSource="{Binding KarteList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="20" Orientation="Vertical" >
+                                <Frame BorderColor="Gray" CornerRadius="5">
+                                    <StackLayout>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontSize="8" Text="BROJ KARTE: " TextColor="Gray"/>
+                                                    <Span FontSize="10" Text="{Binding Sifra}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Text="{Binding PredstavaNaziv}" FontSize="12" FontAttributes="Bold"/>
+                                        <Label Text="{Binding PozoristeNaziv}" FontSize="10"/>
+                                        <Label Text="{Binding DatumIzvodjenja}" FontSize="10"/>
+                                        
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontSize="8" Text="ZONA: " TextColor="Gray"/>
+                                                    <Span FontSize="10" Text="{Binding ZonaNaziv}" FontAttributes="Bold"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontSize="8" Text="CIJENA: " TextColor="Gray"/>
+                                                    <Span FontSize="10" Text="{Binding Cijena}" TextColor="Red"/>
+                                                    <Span FontSize="10" Text=" KM"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    
+                                    </StackLayout>
+
+                                </Frame>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <Button FontSize="10" Text="{Binding Narudzba.PlacenoText}" IsEnabled="{Binding Narudzba.PlacenoTF}" Clicked="Button_Clicked_1"/>
+
+
+            <Button FontSize="10" Text="POVRATAK" Clicked="Button_Clicked" BackgroundColor="Gray" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

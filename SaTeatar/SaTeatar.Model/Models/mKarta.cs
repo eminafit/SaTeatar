@@ -13,6 +13,7 @@ namespace SaTeatar.Model.Models
         public int IzvodjenjeId { get; set; }
         public string Sifra { get; set; }
         public byte[] Qrcode { get; set; }
+        public DateTime DatumIzvodjenja { get; set; }
 
         public bool Placeno { get; set; }
         public int IzvodjenjeZonaId { get; set; }

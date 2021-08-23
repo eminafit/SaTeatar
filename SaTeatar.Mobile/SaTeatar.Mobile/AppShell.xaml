@@ -114,7 +114,14 @@
 
     <FlyoutItem Title="Korpa">
             <ShellContent Title="Korpa" Route="NarudzbaPage" ContentTemplate="{DataTemplate local:NarudzbaPage}" />
-            <!--<ShellContent Title="Historija narudzbi" Route="HistorijaNarudzbiPage" ContentTemplate="{DataTemplate local:HistorijaNarudzbiPage}" />-->
+    </FlyoutItem>
+
+    <FlyoutItem Title="Narudzbe">
+        <ShellContent Route="HistorijaNarudzbiPage" ContentTemplate="{DataTemplate local:HistorijaNarudzbiPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Karte">
+        <ShellContent Title="Karte" Route="KartePage" ContentTemplate="{DataTemplate local:KartePage}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Ocjene">
@@ -133,9 +140,7 @@
     <!--<FlyoutItem Title="Narudzba">
         <ShellContent Route="NarudzbaPage" ContentTemplate="{DataTemplate local:NarudzbaPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Historija narudzbi">
-        <ShellContent Route="HistorijaNarudzbiPage" ContentTemplate="{DataTemplate local:HistorijaNarudzbiPage}" />
-    </FlyoutItem>
+
     <FlyoutItem Title="Preporucene predstave">
         <ShellContent Route="PreporucenePredstavePage" ContentTemplate="{DataTemplate local:PreporucenePredstavePage}" />
     </FlyoutItem>

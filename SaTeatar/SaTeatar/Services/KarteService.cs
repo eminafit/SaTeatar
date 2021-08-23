@@ -19,6 +19,31 @@ namespace SaTeatar.Services
         {
         }
 
+        public override mKarta GetById(int id)
+        {
+            var upit = _context.Karte.Include(x => x.Izvodjenje.Predstava).Include(x => x.Izvodjenje.Pozoriste).Include(y => y.IzvodjenjeZona.Zona).Include(x => x.Kupac).AsQueryable();
+            var karta = upit.Where(x => x.KartaId == id).FirstOrDefaultAsync();
+
+            mKarta mk = new mKarta()
+            {
+                KartaId = karta.Result.KartaId,
+                KupacId=karta.Result.KupacId,
+                IzvodjenjeId=karta.Result.IzvodjenjeId,
+                IzvodjenjeZonaId=karta.Result.IzvodjenjeZonaId,
+                Qrcode=karta.Result.Qrcode,
+                PredstavaNaziv = karta.Result.Izvodjenje.Predstava.Naziv,
+                PozoristeNaziv = karta.Result.Izvodjenje.Pozoriste.Naziv,
+                Cijena = karta.Result.IzvodjenjeZona.Cijena,
+                Sifra = karta.Result.Sifra,
+                ZonaNaziv = karta.Result.IzvodjenjeZona.Zona.Naziv,
+                Placeno=karta.Result.Placeno,
+                DatumIzvodjenja=karta.Result.Izvodjenje.DatumVrijeme,
+               
+            };
+
+            return mk;
+        }
+
         public override IList<mKarta> Get(rKartaSearch search)
         {
             var upit = _context.Karte.Include(x=>x.Izvodjenje.Predstava).Include(x => x.Izvodjenje.Pozoriste).Include(y=>y.IzvodjenjeZona.Zona).Include(x=>x.Kupac).AsQueryable();
@@ -66,6 +91,7 @@ namespace SaTeatar.Services
                         k.PozoristeNaziv = item.Izvodjenje.Pozoriste.Naziv;
                         k.ZonaNaziv = item.IzvodjenjeZona.Zona.Naziv;
                         k.Cijena = item.IzvodjenjeZona.Cijena;
+                        k.DatumIzvodjenja = item.Izvodjenje.DatumVrijeme;
                     }
                 }
             }

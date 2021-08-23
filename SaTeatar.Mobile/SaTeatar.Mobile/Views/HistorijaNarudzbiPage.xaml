@@ -9,47 +9,66 @@
         <viewModels:HistorijaNarudzbiViewModel/>
     </ContentPage.BindingContext>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Historija narudzbi!"
+        <StackLayout Padding="20">
+            <Label Text="Narudzbe"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-
-
-
-            <!--<ListView ItemsSource="{Binding KarteVMQCodeLista}">-->
-                <ListView ItemsSource="{Binding ListaKarata}">
+            <StackLayout Padding="10" Orientation="Horizontal"                 
+                                         VerticalOptions="CenterAndExpand" 
+                                         HorizontalOptions="CenterAndExpand" >
+                <ListView ItemsSource="{Binding ListaNarudzbi}" ItemSelected="ListView_ItemSelected">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
 
-                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical" Padding="10">
+                                    <Frame BorderColor="Gray" CornerRadius="5">
+                                        <StackLayout>
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span FontSize="8" Text="BROJ NARUDZBE: " TextColor="Gray"/>
+                                                        <Span FontSize="10" Text="{Binding BrojNarudzbe}"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
 
-                                <StackLayout Orientation="Vertical">
-                                    <Image HeightRequest ="200" WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding Qrcode, Converter={StaticResource imgConv}} "></Image>
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span FontSize="8" Text="DATUM: " TextColor="Gray"/>
+                                                        <Span FontSize="10" Text="{Binding DatumStr}"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
 
-                                    <!--<Image  HeightRequest ="200" WidthRequest="200" Source="{Binding QrCodeImage }" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+                                            <Label>
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span FontSize="8" Text="UKUPAN IZNOS: " TextColor="Gray"/>
+                                                        <Span FontSize="10" Text="{Binding Iznos}" FontAttributes="Bold"/>
+                                                        <Span FontSize="10" Text=" KM"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                            <!--<Button FontSize="10" Text="{Binding PlacenoText}" IsEnabled="{Binding PlacenoTF}" />-->
+                                            <Label FontSize="10" Text="{Binding PlacenoText}" IsVisible="{Binding PlacenoTF}" TextColor="Red" HorizontalOptions="Center"/>
+                                        </StackLayout>
+                                    </Frame>
+
+
+
+
                                 </StackLayout>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding Sifra}"/>
-                                    <Label Text="{Binding PredstavaNaziv}"/>
-                                    <Label Text="{Binding PozoristeNaziv}"/>
-                                    <Label Text="{Binding ZonaNaziv}"/>
-                                    <Label Text="{Binding Cijena}"/>
-
-                                </StackLayout>
-                            </StackLayout>
 
                         </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
+
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

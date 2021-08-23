@@ -97,7 +97,7 @@ namespace SaTeatar.Mobile.ViewModels
             return qRCode.GetGraphic(20);
         }
 
-        async Task Rezervisi()
+        public async Task Rezervisi()
         {
             if (CartService.Cart.Count > 0)
             {
@@ -149,6 +149,7 @@ namespace SaTeatar.Mobile.ViewModels
                 }
 
                 CartService.Cart.Clear();
+                
             }
         }
 
