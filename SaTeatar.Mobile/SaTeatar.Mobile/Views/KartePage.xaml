@@ -36,11 +36,11 @@
                         <ViewCell>
                             <StackLayout Padding="20" >
                             <Frame BorderColor="Gray" CornerRadius="5">
-
+                                    <StackLayout>
                                     <StackLayout Orientation="Horizontal" >
 
                                 <StackLayout Orientation="Vertical">
-                                    <Image HeightRequest ="200" WidthRequest="200" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding Qrcode, Converter={StaticResource imgConv}} "></Image>
+                                    <Image HeightRequest ="150" WidthRequest="150" VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding Qrcode, Converter={StaticResource imgConv}} "></Image>
 
                                     <!--<Image  HeightRequest ="200" WidthRequest="200" Source="{Binding QrCodeImage }" VerticalOptions="Center" HorizontalOptions="Center"/>-->
                                 </StackLayout>
@@ -49,14 +49,14 @@
 
 
                                         <StackLayout>
-                                            <Label>
+                                            <!--<Label>
                                                 <Label.FormattedText>
                                                     <FormattedString>
                                                         <Span FontSize="8" Text="BROJ KARTE: " TextColor="Gray"/>
                                                         <Span FontSize="10" Text="{Binding BrKarte}" />
                                                     </FormattedString>
                                                 </Label.FormattedText>
-                                            </Label>
+                                            </Label>-->
                                             <Label Text="{Binding PredstavaNaziv}" FontSize="12" FontAttributes="Bold"/>
                                             <Label Text="{Binding PozoristeNaziv}" FontSize="10"/>
                                             <Label Text="{Binding DatumIzvodjenja}" FontSize="10"/>
@@ -84,7 +84,19 @@
 
                                 </StackLayout>
                             </StackLayout>
-                            </Frame>
+
+                                    <StackLayout HorizontalOptions="Center">
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span FontSize="8" Text="BROJ KARTE: " TextColor="Gray"/>
+                                                    <Span FontSize="10" Text="{Binding BrKarte}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                    </StackLayout>
+                                </Frame>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

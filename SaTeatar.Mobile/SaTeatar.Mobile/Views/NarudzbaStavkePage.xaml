@@ -15,7 +15,7 @@
             <StackLayout Orientation="Vertical"
                          VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand">
-                <Label Text="DETALJI NARUDZBE"  Padding="10" FontSize="10"/>
+                <Label Text="DETALJI NARUDZBE"  Padding="10" FontSize="10" HorizontalOptions="Center"/>
 
                 <Label>
                     <Label.FormattedText>

@@ -38,7 +38,6 @@ namespace SaTeatar.WinUI
                 public int BrKarti { get; set; }
             }
 
-
         }
 
         private async void frmPostavkeZaIzvjestaje_Load(object sender, EventArgs e)
@@ -58,74 +57,128 @@ namespace SaTeatar.WinUI
 
         private async void btnPrikazi_Click(object sender, EventArgs e)
         {
-            var obj = new dtoTopPosjetioci();
-            obj.Kupci = new List<dtoTopPosjetioci.dtoKupac>();
-            var pid = cmbPozorista.SelectedValue.ToString();
-            if (int.TryParse(pid, out int pozoristeId))
+            if (this.ValidateChildren())
             {
-                var pozoriste = await _pozoristaService.GetById<mPozorista>(pozoristeId);
-                obj.PozoristeNaziv = pozoriste.Naziv;
-                obj.DatumOd = dtpDatumOd.Value;
-                obj.DatumDo = dtpDatumDo.Value;
-                obj.BrojKupaca = int.Parse(txtBrPosjetitelja.Text);
 
-                var search = new rKartaSearch() { PozoristeId = pozoristeId , Placeno = true, DatumDo=obj.DatumDo, DatumOd=obj.DatumOd };
-                var karte = await _karteService.Get<List<mKarta>>(search);
 
-                //foreach (var item in karte)
-                //{
-                //    item.Placeno = true;
-                //    await _karteService.Update<mKarta>(item.KartaId, item);
-                //}
-
-                  var kupci_ids = karte.Select(x => x.KupacId).Distinct();
-
-                foreach (var id in kupci_ids)
+                var obj = new dtoTopPosjetioci();
+                obj.Kupci = new List<dtoTopPosjetioci.dtoKupac>();
+                var pid = cmbPozorista.SelectedValue.ToString();
+                if (int.TryParse(pid, out int pozoristeId))
                 {
-                    obj.Kupci.Add(new dtoTopPosjetioci.dtoKupac()
-                    {
-                        RedBr = 0,
-                        KupacId = id,
-                        KupacImePrezime = "...",
-                        BrKarti = 0
-                    }) ;
-                }
+                    var pozoriste = await _pozoristaService.GetById<mPozorista>(pozoristeId);
+                    obj.PozoristeNaziv = pozoriste.Naziv;
+                    obj.DatumOd = dtpDatumOd.Value;
+                    obj.DatumDo = dtpDatumDo.Value;
+                    obj.BrojKupaca = int.Parse(txtBrPosjetitelja.Text);
 
-                for (int i = 0; i < karte.Count; i++)
-                {
-                    for (int j = 0; j < obj.Kupci.Count; j++)
+                    var search = new rKartaSearch() { PozoristeId = pozoristeId, Placeno = true, DatumDo = obj.DatumDo, DatumOd = obj.DatumOd };
+                    var karte = await _karteService.Get<List<mKarta>>(search);
+
+                    var kupci_ids = karte.Select(x => x.KupacId).Distinct();
+
+                    foreach (var id in kupci_ids)
                     {
-                        if (karte[i].KupacId==obj.Kupci[j].KupacId)
+                        obj.Kupci.Add(new dtoTopPosjetioci.dtoKupac()
                         {
-                            if (obj.Kupci[j].BrKarti==0)
+                            RedBr = 0,
+                            KupacId = id,
+                            KupacImePrezime = "...",
+                            BrKarti = 0
+                        });
+                    }
+
+                    for (int i = 0; i < karte.Count; i++)
+                    {
+                        for (int j = 0; j < obj.Kupci.Count; j++)
+                        {
+                            if (karte[i].KupacId == obj.Kupci[j].KupacId)
                             {
-                                obj.Kupci[j].KupacImePrezime = $"{karte[i].KupacIme} {karte[i].KupacPrezime}";
-                                obj.Kupci[j].BrKarti += 1;
-                            }
-                            else
-                            {
-                                obj.Kupci[j].BrKarti += 1;
+                                if (obj.Kupci[j].BrKarti == 0)
+                                {
+                                    obj.Kupci[j].KupacImePrezime = $"{karte[i].KupacIme} {karte[i].KupacPrezime}";
+                                    obj.Kupci[j].BrKarti += 1;
+                                }
+                                else
+                                {
+                                    obj.Kupci[j].BrKarti += 1;
+                                }
                             }
                         }
                     }
+
+                    obj.Kupci.Sort((y, x) => x.BrKarti.CompareTo(y.BrKarti));
+                    //public void RemoveRange (int index, int count); //skida i index
+                    int range = obj.Kupci.Count - obj.BrojKupaca;
+                    if (range > 0)
+                    {
+                        obj.Kupci.RemoveRange(obj.BrojKupaca, range);
+                    }
+                    for (int i = 0; i < obj.Kupci.Count; i++)
+                    {
+                        obj.Kupci[i].RedBr = i + 1;
+                    }
                 }
 
-                // obj.Kupci.OrderBy(x => x.BrKarti);
-                obj.Kupci.Sort((y, x) => x.BrKarti.CompareTo(y.BrKarti));
-                //public void RemoveRange (int index, int count); //skida i index
-                int range = obj.Kupci.Count - obj.BrojKupaca;
-                if (range>0)
-                {
-                    obj.Kupci.RemoveRange(obj.BrojKupaca, range);
-                }
-                for (int i = 0; i < obj.Kupci.Count; i++)
-                {
-                    obj.Kupci[i].RedBr = i + 1;
-                }
+                frmTopPosjetiteljiIzvjestaj frm = new frmTopPosjetiteljiIzvjestaj(obj);
+                frm.Show();
             }
+        }
 
-            frmTopPosjetiteljiIzvjestaj frm = new frmTopPosjetiteljiIzvjestaj(obj);
-            frm.Show();
+        private void cmbPozorista_Validating(object sender, CancelEventArgs e)
+        {
+            if (cmbPozorista.SelectedValue == null || int.Parse(cmbPozorista.SelectedValue.ToString()) == 0)
+            {
+                errorProvider.SetError(cmbPozorista, Properties.Resources.Validation_RequiredField);
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(cmbPozorista, null);
+            }
+        }
+
+        private async void txtBrPosjetitelja_Validating(object sender, CancelEventArgs e)
+        {
+            var kupci = await _kupciService.Get<List<mKupci>>(null);
+            var brKupaca = kupci.Count;
+
+            if (!int.TryParse(txtBrPosjetitelja.Text, out int broj))
+            {
+                errorProvider.SetError(txtBrPosjetitelja, "Unesite broj");
+                e.Cancel = true;
+            }
+            else
+            {
+                if (broj<0 || broj>brKupaca)
+                {
+                    errorProvider.SetError(txtBrPosjetitelja, $"Broj moze biti u rasponu od 1 do {brKupaca}!");
+                    e.Cancel = true;
+                }
+                else
+                {
+                    errorProvider.SetError(txtBrPosjetitelja, null);
+                }
+            }          
+        }
+
+        private void dtpDatumOd_Validating(object sender, CancelEventArgs e)
+        {
+            //nemam sta
+        }
+
+        private void dtpDatumDo_Validating(object sender, CancelEventArgs e)
+        {
+            //da nije isti kao datumOD ili manji od njega
+            if (dtpDatumDo.Value.Date.CompareTo(dtpDatumOd.Value.Date) <= 0)
+            {
+                errorProvider.SetError(dtpDatumDo, "Pogresan datum, mora biti veci od prije odabranog datuma!");
+                e.Cancel = true;
+            }
+            else
+            {
+                errorProvider.SetError(dtpDatumDo, null);
+            }
         }
     }
 }

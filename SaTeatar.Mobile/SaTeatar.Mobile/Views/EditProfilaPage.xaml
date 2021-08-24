@@ -10,7 +10,7 @@
 
     <ContentPage.Content>
         <StackLayout Padding="20" Orientation="Vertical">
-            <Label  FontSize="10" TextColor="Gray" Text="LICNI PODACI" HorizontalOptions="Center" />
+            <Label  FontSize="10" Text="LICNI PODACI" HorizontalOptions="Center" />
             <Label  FontSize="10" TextColor="Gray" Text="KORISNIK:"/>
             <Entry  FontSize="10" x:Name="Username" Text="{Binding KorisnickoIme}" IsEnabled="False"></Entry>
             <Label  FontSize="10" TextColor="Gray" Text="IME:" />
@@ -21,7 +21,10 @@
             <Entry  FontSize="10" x:Name="Email" Text="{Binding Email}"></Entry>
             <Label  FontSize="10" TextColor="Gray" Text="LOZINKA:"/>
             <Entry  FontSize="10" x:Name="Password" Text="{Binding Lozinka}" IsPassword="true"></Entry>
-            <Button FontSize="10"   Text="SACUVAJ PODATKE" Clicked="Button_Clicked" Padding="15"></Button>
+
+            <StackLayout Padding="20">
+                <Button FontSize="10"   Text="SACUVAJ PODATKE" Clicked="Button_Clicked"></Button>
+            </StackLayout>
             <Label  FontSize="10" IsVisible="{Binding IsBusy}" Text="IZMJENA U TOKU, PRICEKAJTE..." HorizontalOptions="Center" TextColor="Gray"></Label>
         </StackLayout>
     </ContentPage.Content>

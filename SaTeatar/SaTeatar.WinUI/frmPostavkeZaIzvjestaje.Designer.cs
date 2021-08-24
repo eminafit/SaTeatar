@@ -29,6 +29,7 @@ namespace SaTeatar.WinUI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnPrikazi = new System.Windows.Forms.Button();
             this.dtpDatumDo = new System.Windows.Forms.DateTimePicker();
@@ -39,7 +40,10 @@ namespace SaTeatar.WinUI
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbPozorista = new System.Windows.Forms.ComboBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -76,6 +80,7 @@ namespace SaTeatar.WinUI
             this.dtpDatumDo.Name = "dtpDatumDo";
             this.dtpDatumDo.Size = new System.Drawing.Size(200, 22);
             this.dtpDatumDo.TabIndex = 7;
+            this.dtpDatumDo.Validating += new System.ComponentModel.CancelEventHandler(this.dtpDatumDo_Validating);
             // 
             // dtpDatumOd
             // 
@@ -83,6 +88,7 @@ namespace SaTeatar.WinUI
             this.dtpDatumOd.Name = "dtpDatumOd";
             this.dtpDatumOd.Size = new System.Drawing.Size(200, 22);
             this.dtpDatumOd.TabIndex = 6;
+            this.dtpDatumOd.Validating += new System.ComponentModel.CancelEventHandler(this.dtpDatumOd_Validating);
             // 
             // label4
             // 
@@ -108,6 +114,7 @@ namespace SaTeatar.WinUI
             this.txtBrPosjetitelja.Name = "txtBrPosjetitelja";
             this.txtBrPosjetitelja.Size = new System.Drawing.Size(167, 22);
             this.txtBrPosjetitelja.TabIndex = 3;
+            this.txtBrPosjetitelja.Validating += new System.ComponentModel.CancelEventHandler(this.txtBrPosjetitelja_Validating);
             // 
             // label2
             // 
@@ -134,19 +141,37 @@ namespace SaTeatar.WinUI
             this.cmbPozorista.Name = "cmbPozorista";
             this.cmbPozorista.Size = new System.Drawing.Size(217, 24);
             this.cmbPozorista.TabIndex = 0;
+            this.cmbPozorista.Validating += new System.ComponentModel.CancelEventHandler(this.cmbPozorista_Validating);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label5.Location = new System.Drawing.Point(18, 368);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(388, 17);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Napomena za testiranje - seed podataka ide od 01.06.2021.";
             // 
             // frmPostavkeZaIzvjestaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(418, 450);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmPostavkeZaIzvjestaje";
             this.Text = "frmPostavkeZaIzvjestaje";
             this.Load += new System.EventHandler(this.frmPostavkeZaIzvjestaje_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -162,5 +187,7 @@ namespace SaTeatar.WinUI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbPozorista;
+        private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.Label label5;
     }
 }

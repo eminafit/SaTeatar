@@ -312,7 +312,7 @@ namespace SaTeatar.WinUI.Izvodjenja
 
         private void cmbPozoriste_Validating(object sender, CancelEventArgs e)
         {
-            if (cmbPozoriste.SelectedValue == null || int.Parse(cmbPredstave.SelectedValue.ToString()) == 0)
+            if (cmbPozoriste.SelectedValue == null || int.Parse(cmbPozoriste.SelectedValue.ToString()) == 0)
             {
                 errorProvider.SetError(cmbPozoriste, Properties.Resources.Validation_RequiredField);
                 e.Cancel = true;
@@ -325,7 +325,7 @@ namespace SaTeatar.WinUI.Izvodjenja
 
         private void dtpDatumVrijeme_Validating(object sender, CancelEventArgs e)
         {
-            if (dtpDatumVrijeme.Value.Date<DateTime.Today)
+            if (dtpDatumVrijeme.Value.Date.CompareTo(DateTime.Today)<=0)
             {
                 errorProvider.SetError(dtpDatumVrijeme, "Pogresan datum!");
                 e.Cancel = true;

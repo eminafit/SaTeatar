@@ -28,7 +28,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell >
-                                    <StackLayout>
+                                    <StackLayout Padding="5">
                                         <Frame BorderColor="Gray" CornerRadius="5"  >
                                         <StackLayout Orientation="Horizontal"  Padding="5" >
                                             <StackLayout>
