@@ -8,20 +8,22 @@
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Odaberite predstavu koju zelite ocijeniti:"/>
-            <Picker ItemsSource="{Binding pregledanePredstaveList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedPredstava}"></Picker> <!--SelectedIndexChanged="Picker_SelectedIndexChanged"></Picker>-->
+        <StackLayout Padding="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label Text="OCIJENITE PREDSTAVE" FontSize="10" HorizontalOptions="Center" Padding="20"/>
+            
+            <Label Text="ODABERITE PREDSTAVU KOJU ZELITE OCIJENITI:" FontSize="8" TextColor="Gray"/>
+            <Picker FontSize="10" ItemsSource="{Binding pregledanePredstaveList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedPredstava}"></Picker> <!--SelectedIndexChanged="Picker_SelectedIndexChanged"></Picker>-->
 
-            <StackLayout Orientation="Horizontal">
-            <Label Text="Unesite ocjenu:"/>
-            <Entry Text="{Binding Ocjena}"></Entry>
+            <StackLayout Padding="20" Orientation="Horizontal">
+            <Label Text="UNESITE OCJENU (0-5):" FontSize="8" VerticalTextAlignment="Center" TextColor="Gray"/>
+            <Entry Text="{Binding Ocjena}" FontSize="10"></Entry>
             </StackLayout>
 
-            <StackLayout Orientation="Vertical">
-                <Label Text="Dodajte opis:"/>
-                <Entry Text="{Binding OpisOcjene}"></Entry>
+                <Label Text="OSTAVITE KOMENTAR:" FontSize="8" TextColor="Gray"/>
+                <Editor Text="{Binding OpisOcjene}" FontSize="10" HeightRequest="150"></Editor>
+            <StackLayout  Padding="10">
+            <Button Text="SACUVAJTE OCJENU" FontSize="10" Command="{Binding OcijeniCommand}"/>
             </StackLayout>
-            <Button Text="Ocijeni" Command="{Binding OcijeniCommand}"></Button>
 
 
         </StackLayout>

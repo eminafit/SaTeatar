@@ -7,29 +7,29 @@
         <viewModels:PostavkaObavijestiViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="postavke obavijesti"
+        <StackLayout Padding="20"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand">
+            <Label Text="POSTAVKE OBAVIJESTI"
+                   FontSize="10"
+                   Padding="15" 
+                   HorizontalOptions="Center"/>
+                    <ListView ItemsSource="{Binding ListaTipovaPredstava}" HeightRequest="110" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                        <StackLayout>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" Padding="2">
+                                                <CheckBox IsChecked="{Binding Checkirano}"/>
+                                                <Label  Text="{Binding Naziv}" FontSize="10" VerticalTextAlignment="Center"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
             
-            <ListView ItemsSource="{Binding ListaTipovaPredstava}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                            <StackLayout>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label  Text="{Binding Naziv}" />
-                                    <CheckBox IsChecked="{Binding Checkirano}"/>
-                                </StackLayout>
-                            </StackLayout>
-                        </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-            </ListView>
-            
-            <StackLayout>
-                <Button Text="Postavi obavijesti" Command="{Binding PostaviObavijestiCommand}"/>
-            </StackLayout>
+                <Button Text="SACUVAJ POSTAVKE" FontSize="10" Command="{Binding PostaviObavijestiCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

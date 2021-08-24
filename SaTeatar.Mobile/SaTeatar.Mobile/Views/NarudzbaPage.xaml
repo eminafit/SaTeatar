@@ -21,7 +21,7 @@
                            FontSize="10"
                         VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="CenterAndExpand" />
-                    <Label IsVisible="{Binding PraznaKorpa}" Text="Trenutno nemate nista u korpi!" FontSize="10" HorizontalOptions="CenterAndExpand" TextColor="Gray"/>
+                    <Label IsVisible="{Binding PraznaKorpa}" Text="Korpa je prazna!" FontSize="10" HorizontalOptions="CenterAndExpand" TextColor="Gray"/>
                 <StackLayout >
                     <StackLayout >
                     <ListView ItemsSource="{Binding KorpaList}">

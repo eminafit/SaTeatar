@@ -54,6 +54,8 @@ namespace SaTeatar.Mobile.ViewModels
                     await _PostavkeObavijestiService.Insert<mPostavkeObavijesti>(po);
                 }
             }
+
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         public async Task UkloniSveObavijesti()
@@ -80,23 +82,24 @@ namespace SaTeatar.Mobile.ViewModels
             List<mPostavkeObavijesti> postavkeObavijesti = await _PostavkeObavijestiService.Get<List<mPostavkeObavijesti>>(searchPO);
             if (postavkeObavijesti.Count > 0)
             {             
-                UvodniText = "Odabrali ste da birate obavijesti za tipove predstava: \n\n";
+                UvodniText = "ODABRALI STE DA PRIMATE OBAVIJESTI ZA TIPOVE PREDSTAVA \n\n";
 
                 foreach (var item in postavkeObavijesti)
                 {                    
-                    UvodniText += " - " + item.TipPredstaveNaziv + " \n";
+                    UvodniText += " - " + item.TipPredstaveNaziv.ToUpper() + " \n";
                 }
-                UvodniText += "\nAko zelite izmijeniti postavke obavijesti za odredjene tipove predstava kliknite na dugme 'Postavka obavijesti'.\n\n";
             }
             else
             {
-                UvodniText = "Niste postavili obavijesti. \n\n Ako zelite primati obavijesti za odredjene tipove predstava kliknite na dugme 'Postavka obavijesti'.\n\n\n";
+                UvodniText = "Niste postavili obavijesti\n\n".ToUpper();
             }
 
             var tipoviPredstava = await _tipoviPredstavaService.Get<List<mTipoviPredstava>>(null);
 
+            ListaTipovaPredstava.Clear();
             foreach (var item in tipoviPredstava)
             {
+                item.Naziv=item.Naziv.ToUpper();
                 ListaTipovaPredstava.Add(item);
             }
         }

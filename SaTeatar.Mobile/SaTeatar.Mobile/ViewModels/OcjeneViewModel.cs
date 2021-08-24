@@ -64,6 +64,12 @@ namespace SaTeatar.Mobile.ViewModels
 
         private async Task Ocijeni()
         {
+            if (Ocjena < 1 || Ocjena > 5)
+            {
+                await Application.Current.MainPage.DisplayAlert("Greska", "Ocjena moze biti samo u rasponu od 1 do 5", "Pokusajte opet");
+                return;
+            }
+
             if (!_ocjenjeno)
             {
                 var ocjena = new rOcjeneInsert();

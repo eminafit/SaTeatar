@@ -10,19 +10,19 @@
 
     <ContentPage.Content>
         <StackLayout Padding="20" Orientation="Vertical">
-            <Label Text="Licni podaci" HorizontalOptions="Center" />
-            <Label Text="Korisnik:"/>
-            <Entry x:Name="Username" Text="{Binding KorisnickoIme}" IsEnabled="False"></Entry>
-            <Label Text="Ime:" />
-            <Entry  x:Name="FirstName" Text="{Binding Ime}"></Entry>
-            <Label Text="Prezime: "/>
-            <Entry x:Name="LastName" Text="{Binding Prezime}"></Entry>
-            <Label Text="Email:"/>
-            <Entry x:Name="Email" Text="{Binding Email}"></Entry>
-            <Label Text="Lozinka:"/>
-            <Entry x:Name="Password" Text="{Binding Lozinka}" IsPassword="true"></Entry>
-            <Button  Text="Sacuvaj podatke" Clicked="Button_Clicked"></Button>
-            <Label IsVisible="{Binding IsBusy}" Text="Izmjena u toku, pricekajte..." HorizontalOptions="Center" TextColor="Gray"></Label>
+            <Label  FontSize="10" TextColor="Gray" Text="LICNI PODACI" HorizontalOptions="Center" />
+            <Label  FontSize="10" TextColor="Gray" Text="KORISNIK:"/>
+            <Entry  FontSize="10" x:Name="Username" Text="{Binding KorisnickoIme}" IsEnabled="False"></Entry>
+            <Label  FontSize="10" TextColor="Gray" Text="IME:" />
+            <Entry  FontSize="10"  x:Name="FirstName" Text="{Binding Ime}"></Entry>
+            <Label  FontSize="10" TextColor="Gray" Text="PREZIME: "/>
+            <Entry  FontSize="10" x:Name="LastName" Text="{Binding Prezime}"></Entry>
+            <Label  FontSize="10" TextColor="Gray" Text="EMAIL:"/>
+            <Entry  FontSize="10" x:Name="Email" Text="{Binding Email}"></Entry>
+            <Label  FontSize="10" TextColor="Gray" Text="LOZINKA:"/>
+            <Entry  FontSize="10" x:Name="Password" Text="{Binding Lozinka}" IsPassword="true"></Entry>
+            <Button FontSize="10"   Text="SACUVAJ PODATKE" Clicked="Button_Clicked" Padding="15"></Button>
+            <Label  FontSize="10" IsVisible="{Binding IsBusy}" Text="IZMJENA U TOKU, PRICEKAJTE..." HorizontalOptions="Center" TextColor="Gray"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

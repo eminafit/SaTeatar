@@ -84,9 +84,6 @@ namespace SaTeatar.Mobile.ViewModels
         }
         public async Task Init()
         {
-            //var searchKupac = new rKupciSearch() { KorisnickoIme = APIService.Username };
-            //var kupci = await _kupciService.Get<List<mKupci>>(searchKupac);
-            //_idKupca = kupci[0].KupacId;
             await PopuniListe();
         }
     }

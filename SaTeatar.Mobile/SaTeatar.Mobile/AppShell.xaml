@@ -104,12 +104,8 @@
     </FlyoutItem>
     
 
-
     <FlyoutItem Title="Obavijesti">
-        <Tab>
             <ShellContent Title="Pregled" Route="ObavijestiPage" ContentTemplate="{DataTemplate local:ObavijestiPage}" />
-            <ShellContent Title="Postavke" Route="PostavkeObavijestiStartPage" ContentTemplate="{DataTemplate local:PostavkeObavijestiStartPage}" />
-        </Tab>
     </FlyoutItem>
 
     <FlyoutItem Title="Korpa">
@@ -125,16 +121,11 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Ocjene">
-        <Tab>
-            <!--<ShellContent Title="Pregled" Route="OcjenePage" ContentTemplate="{DataTemplate local:OcjenePage}" />-->
-            <ShellContent Title="Ocijenite pregledane predstave" Route="OcjenePage" ContentTemplate="{DataTemplate local:OcjenePage}" />
-        </Tab>
+        <ShellContent Title="Ocjene" Route="OcjenePage" ContentTemplate="{DataTemplate local:OcjenePage}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Moj profil">
-        <Tab>
             <ShellContent Title="Licni podaci" Route="EditProfilaPage" ContentTemplate="{DataTemplate local:EditProfilaPage}" />
-        </Tab>
     </FlyoutItem>
 
     <!--<FlyoutItem Title="Narudzba">

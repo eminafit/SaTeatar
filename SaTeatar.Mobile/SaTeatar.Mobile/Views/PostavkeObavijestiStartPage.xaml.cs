@@ -31,5 +31,10 @@ namespace SaTeatar.Mobile.Views
             Navigation.PushAsync(new PostavkaObavijestiPage());
         }
 
+        private async void Button_Clicked_1(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+
+        }
     }
 }

@@ -7,30 +7,33 @@
         <viewModels:ObavijestiViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="20">
+
+            <Button Text="POSTAVKE OBAVIJESTI" Clicked="Button_Clicked" Padding="15" FontSize="10"/>
+
             <StackLayout IsVisible="{Binding Vidljivo, Mode=TwoWay}">
-            <Label Text="Nove obavijesti"
+            <Label Text="NOVE OBAVIJESTI" FontSize="10" FontAttributes="Bold" Padding="15"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <ListView ItemsSource="{Binding NoveObavijestiList}">
                 <ListView.ItemTemplate >
                     <DataTemplate>
                         <ViewCell>
-                            <Label Text="{Binding Poruka}"/>
+                            <Label Text="{Binding Poruka}" FontSize="10" Padding="10"/>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Oznaci kao procitano!" Command="{Binding OznaciKaoProcitanoCommand}"/>
+            <Button Text="OZNACI KAO PROCITANO" FontSize="10" Command="{Binding OznaciKaoProcitanoCommand}"/>
             </StackLayout>
-            <Label Text="Stare obavijesti"
+            <Label Text="STARE OBAVIJESTI" FontSize="10" FontAttributes="Bold" Padding="15"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <ListView ItemsSource="{Binding StareObavijestiList}">
                 <ListView.ItemTemplate >
                     <DataTemplate>
                         <ViewCell>
-                            <Label Padding="15" Text="{Binding Poruka}" TextColor="Gray"/>
+                            <Label Padding="10" Text="{Binding Poruka}" FontSize="10" TextColor="Gray"/>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
