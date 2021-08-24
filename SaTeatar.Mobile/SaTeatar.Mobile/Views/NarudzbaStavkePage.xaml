@@ -15,7 +15,7 @@
             <StackLayout Orientation="Vertical"
                          VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand">
-                <Label Text="Detalji narudzbe"  Padding="10"/>
+                <Label Text="DETALJI NARUDZBE"  Padding="10" FontSize="10"/>
 
                 <Label>
                     <Label.FormattedText>
@@ -45,9 +45,6 @@
                     </Label.FormattedText>
                 </Label>
 
-                <!--<Label Text="{Binding Narudzba.PaymentId}"/>-->
-
-
             </StackLayout>
 
 
@@ -76,7 +73,7 @@
                                             <Label.FormattedText>
                                                 <FormattedString>
                                                     <Span FontSize="8" Text="BROJ KARTE: " TextColor="Gray"/>
-                                                    <Span FontSize="10" Text="{Binding Sifra}" />
+                                                    <Span FontSize="10" Text="{Binding BrKarte}" />
                                                 </FormattedString>
                                             </Label.FormattedText>
                                         </Label>

@@ -170,10 +170,6 @@ namespace SaTeatar.Database
 
                 entity.Property(e => e.Qrcode).HasColumnName("QRCode");
 
-                entity.Property(e => e.Sifra)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
                 entity.HasOne(d => d.Izvodjenje)
                     .WithMany(p => p.Kartes)
                     .HasForeignKey(d => d.IzvodjenjeId)
@@ -297,10 +293,6 @@ namespace SaTeatar.Database
                 entity.ToTable("Narudzba");
 
                 entity.Property(e => e.NarudzbaId).HasColumnName("NarudzbaID");
-
-                entity.Property(e => e.BrojNarudzbe)
-                    .IsRequired()
-                    .HasMaxLength(20);
 
                 entity.Property(e => e.Datum).HasColumnType("datetime");
 

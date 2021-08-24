@@ -15,7 +15,6 @@ namespace SaTeatar.Mobile.Views
     public partial class PlacanjePage : ContentPage
     {
         private PlacanjeViewModel model = null;
-        private INavigation navigation;
         bool IsDigitsOnly(string str)
         {
             foreach (char c in str)
@@ -26,19 +25,7 @@ namespace SaTeatar.Mobile.Views
 
             return true;
         }
-        // MUser _user;
-        //public PaymentPage(MCourse course, MUser user)
-        //{
-        //    InitializeComponent();
-        //    _user = user;
-        //    SignedInUser.User = user;
-        //    var nav = new NavigationPage(new CoursesPage(_user));
-        //    navigation = nav.Navigation;
-        //    BindingContext = model = new PaymentVM(navigation)
-        //    {
-        //        Course = course
-        //    };
-        //}
+
         private mNarudzba _narudzba = null;
         public PlacanjePage(mNarudzba narudzba)
         {
@@ -180,10 +167,5 @@ namespace SaTeatar.Mobile.Views
             }
         }
 
-        //protected override async void OnDisappearing()
-        //{
-        //    await Navigation.PopToRootAsync();
-        //    base.OnDisappearing();
-        //}
     }
 }

@@ -296,8 +296,7 @@ namespace SaTeatar.Mobile.ViewModels
                 };
 
                 _kljuc = $"{Izvodjenje.IzvodjenjeId}_{IzvodjenjeZone.ZonaId}";
-                //Kolicina = 0;
-                //UkupnaCijena = 0;
+
                 bool imavec = false;
                 foreach (var item in CartService.Cart.Values)
                 {

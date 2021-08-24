@@ -8,7 +8,7 @@ namespace SaTeatar.Model.Requests
     {
         public int NarudzbaId { get; set; }
         public int KupacId { get; set; }
-        public string BrojNarudzbe { get; set; }
+        public Guid? BrNarudzbe { get; set; }
         public DateTime Datum { get; set; }
         public decimal Iznos { get; set; }
         public string PaymentId { get; set; }

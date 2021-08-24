@@ -53,7 +53,7 @@
                                                 <Label.FormattedText>
                                                     <FormattedString>
                                                         <Span FontSize="8" Text="BROJ KARTE: " TextColor="Gray"/>
-                                                        <Span FontSize="10" Text="{Binding Sifra}" />
+                                                        <Span FontSize="10" Text="{Binding BrKarte}" />
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                             </Label>

@@ -34,7 +34,7 @@ namespace SaTeatar.Services
                 PredstavaNaziv = karta.Result.Izvodjenje.Predstava.Naziv,
                 PozoristeNaziv = karta.Result.Izvodjenje.Pozoriste.Naziv,
                 Cijena = karta.Result.IzvodjenjeZona.Cijena,
-                Sifra = karta.Result.Sifra,
+                BrKarte = karta.Result.BrKarte,
                 ZonaNaziv = karta.Result.IzvodjenjeZona.Zona.Naziv,
                 Placeno=karta.Result.Placeno,
                 DatumIzvodjenja=karta.Result.Izvodjenje.DatumVrijeme,
@@ -92,6 +92,7 @@ namespace SaTeatar.Services
                         k.ZonaNaziv = item.IzvodjenjeZona.Zona.Naziv;
                         k.Cijena = item.IzvodjenjeZona.Cijena;
                         k.DatumIzvodjenja = item.Izvodjenje.DatumVrijeme;
+                        
                     }
                 }
             }

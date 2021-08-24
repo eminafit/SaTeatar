@@ -15,110 +15,109 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="20" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-            <Label Text="Korpa"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-
-            <Label IsVisible="{Binding PraznaKorpa}" Text="Trenutno nemate nista u korpi!" HorizontalOptions="CenterAndExpand" TextColor="Gray"/>
-
-            <StackLayout IsVisible="{Binding IsBusy}">
-            <ListView ItemsSource="{Binding KorpaList}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal"  Padding="10">
-                                <StackLayout>
-                                    <Image HeightRequest ="160" WidthRequest="160" Source="{Binding Izvodjenje.PredstavaSlika, Converter={StaticResource imgConv}} "></Image>
-                                </StackLayout>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding Izvodjenje.PredstavaNaziv}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="12"/>
-                                    <Label Text="{Binding Izvodjenje.PozoristeNaziv}"
-                                       LineBreakMode="NoWrap"
-                                       FontSize="10"/>
-
-                                    <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Izvodjenje.Datum}"
-                                       LineBreakMode="NoWrap"
-                                       FontSize="10"/>
-                                        <Label Text="u" FontSize="10"/>
-                                    <Label Text="{Binding Izvodjenje.Vrijeme}"
-                                       LineBreakMode="NoWrap"
-                                       FontSize="10"/>
-                                    </StackLayout>
-
-                                    <StackLayout Orientation="Horizontal">
-
-                                        <StackLayout Orientation="Vertical" VerticalOptions="Start">
-
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="Zona: " FontSize="10" TextColor="Gray"></Label>
-                                                <Label Text="{Binding IzvodjenjeZone.ZonaNaziv}" TextColor="Red" FontAttributes="Bold" FontSize="10"></Label>
+        <StackLayout Padding="20" VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+                    <Label Text="KORPA"
+                           Padding="20"
+                           FontSize="10"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+                    <Label IsVisible="{Binding PraznaKorpa}" Text="Trenutno nemate nista u korpi!" FontSize="10" HorizontalOptions="CenterAndExpand" TextColor="Gray"/>
+                <StackLayout >
+                    <StackLayout >
+                    <ListView ItemsSource="{Binding KorpaList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell >
+                                    <StackLayout>
+                                        <Frame BorderColor="Gray" CornerRadius="5"  >
+                                        <StackLayout Orientation="Horizontal"  Padding="5" >
+                                            <StackLayout>
+                                                <Image HeightRequest ="160" WidthRequest="160" Source="{Binding Izvodjenje.PredstavaSlika, Converter={StaticResource imgConv}} "></Image>
                                             </StackLayout>
 
-                                            <Label >
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="Cijena: " TextColor="Gray" FontSize="10"/>
-                                                        <Span Text="{Binding IzvodjenjeZone.Cijena}" FontSize="10"  TextColor="Red"/>
-                                                        <Span Text=" KM" FontSize="10"/>
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-                                            
-                                        </StackLayout>
+                                            <StackLayout Orientation="Vertical">
+                                                <Label Text="{Binding Izvodjenje.PredstavaNaziv}"
+                                                   LineBreakMode="NoWrap"
+                                                   Style="{DynamicResource ListItemTextStyle}"
+                                                   FontSize="12"/>
+                                                
+                                                <Label Text="{Binding Izvodjenje.PozoristeNaziv}"
+                                                   LineBreakMode="NoWrap"
+                                                   FontSize="10"/>
 
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Izvodjenje.Datum}"
+                                                   LineBreakMode="NoWrap"
+                                                   FontSize="10"/>
+                                                    <Label Text="u" FontSize="10"/>
+                                                    <Label Text="{Binding Izvodjenje.Vrijeme}"
+                                                   LineBreakMode="NoWrap"
+                                                   FontSize="10"/>
+                                                </StackLayout>
 
-                                        <StackLayout  VerticalOptions="End">
-                                            <Label Text="Kolicina: " TextColor="Gray" FontSize="10" HorizontalOptions="Center"></Label>
-                                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                                <Button Text="-" FontSize="10" Command="{Binding SmanjiKolicinuCommand}" Clicked="Button_Clicked_1"></Button>
-                                                <Entry Text="{Binding Kolicina}" FontSize="10"/>
-                                                <Button Text="+" FontSize="10" Command="{Binding PovecajKolicinuCommand}" Clicked="Button_Clicked"></Button>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <StackLayout Orientation="Vertical" VerticalOptions="Start">
+
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label Text="Zona: " FontSize="10" TextColor="Gray"></Label>
+                                                            <Label Text="{Binding IzvodjenjeZone.ZonaNaziv}" TextColor="Red" FontAttributes="Bold" FontSize="10"></Label>
+                                                        </StackLayout>
+
+                                                        <Label >
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="Cijena: " TextColor="Gray" FontSize="10"/>
+                                                                    <Span Text="{Binding IzvodjenjeZone.Cijena}" FontSize="10"  TextColor="Red"/>
+                                                                    <Span Text=" KM" FontSize="10"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+
+                                                    </StackLayout>
+                                                    <StackLayout  VerticalOptions="End">
+                                                        <Label Text="Kolicina: " TextColor="Gray" FontSize="10" HorizontalOptions="Center"></Label>
+                                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                                            <Button Text="-" FontSize="10" Command="{Binding SmanjiKolicinuCommand}" Clicked="Button_Clicked_1"></Button>
+                                                            <Entry Text="{Binding Kolicina}" FontSize="10"/>
+                                                            <Button Text="+" FontSize="10" Command="{Binding PovecajKolicinuCommand}" Clicked="Button_Clicked"></Button>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </StackLayout>
+
+                                                <Label >
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="UKUPNO: " FontSize="10"/>
+                                                            <Span Text="{Binding UkupnaCijena}" FontAttributes="Bold" FontSize="10"/>
+                                                            <Span Text=" KM" FontSize="10"/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
                                             </StackLayout>
                                         </StackLayout>
-
+                                    </Frame>
                                     </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
-
-                                    <Label >
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="UKUPNO: " FontSize="10"/>
-                                                <Span Text="{Binding UkupnaCijena}" FontAttributes="Bold" FontSize="10"/>
-                                                <Span Text=" KM" FontSize="10"/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    
-                                </StackLayout>
-
-                            </StackLayout>
-                        </ViewCell>
-
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
-            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                <Label>
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span FontSize="10" Text="UKUPAN IZNOS: "></Span>
-                            <Span FontSize="10" x:Name="UkupniIznos" Text="{Binding UkupniIznos}" FontAttributes="Bold"></Span>
-                            <Span FontSize="10" Text=" KM"></Span>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Button FontSize="10" Text="NASTAVITE KUPOVINU" Clicked="Button_Clicked_2"></Button>
-                <Button FontSize="10" x:Name="Btn_Rezervacija" Text="POTVRDITE NARUDZBU" Clicked="Button_Clicked_3"></Button>
-                <Button FontSize="10" x:Name="Btn_Isprazni" Text="ISPRAZNITE KORPU" Command="{Binding IsprazniKorpuCommand}" BackgroundColor="Gray"/>
-                <!--Clicked="Button_Clicked_4"></Button>-->
-            </StackLayout>
-            </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="{Binding IsBusy}">
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span FontSize="10" Text="UKUPAN IZNOS: "></Span>
+                                    <Span FontSize="10" x:Name="UkupniIznos" Text="{Binding UkupniIznos}" FontAttributes="Bold"></Span>
+                                    <Span FontSize="10" Text=" KM"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Button FontSize="10" Text="NASTAVITE KUPOVINU" Clicked="Button_Clicked_2"></Button>
+                        <Button FontSize="10" x:Name="Btn_Rezervacija" Text="POTVRDITE NARUDZBU" Clicked="Button_Clicked_3"></Button>
+                        <Button FontSize="10" x:Name="Btn_Isprazni" Text="ISPRAZNITE KORPU" Command="{Binding IsprazniKorpuCommand}" BackgroundColor="Gray"/>
+                    </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

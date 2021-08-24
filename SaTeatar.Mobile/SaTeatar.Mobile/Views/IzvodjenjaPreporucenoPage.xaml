@@ -17,20 +17,15 @@
 
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <!--<Label Text="Repertoar" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20"/>-->
 
-            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Naredna izvodjenja predstave "/>
-                        <Span Text="{Binding SelectedPredstava.Naziv}" FontSize="16"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20">
 
-            <!--<Picker ItemsSource="{Binding PredstavaList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedPredstava}"></Picker>-->
+                        <Label Text="NAREDNA IZVODJENJA PREDSTAVE" FontSize="10"/>
+                        <Label Text="{Binding SelectedPredstava.Naziv}" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
 
-            <Label Text="Trenutno nema zakazanih izvodjenja za ovu predstavu." IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" Padding="30" TextColor="Gray"/>
+            </StackLayout>
+
+            <Label Text="Trenutno nema zakazanih izvodjenja ove predstave." IsVisible="{Binding IsBusy}" FontSize="10" HorizontalOptions="CenterAndExpand" Padding="30" TextColor="Gray"/>
 
 
             <ListView ItemsSource="{Binding IzvodjenjaList}" ItemSelected="ListView_ItemSelected">
@@ -44,8 +39,8 @@
                                 <StackLayout Orientation="Vertical">
                                     <Label Text="{Binding PredstavaNaziv}"
                                        LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
+                                           FontAttributes="Bold"
+                                       FontSize="14"/>
                                     <Label Text="{Binding PozoristeNaziv}"
                                        LineBreakMode="NoWrap"
                                        FontSize="14"/>

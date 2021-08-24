@@ -14,10 +14,10 @@ namespace SaTeatar.Database
 
         public int NarudzbaId { get; set; }
         public int KupacId { get; set; }
-        public string BrojNarudzbe { get; set; }
         public DateTime Datum { get; set; }
         public decimal Iznos { get; set; }
         public string PaymentId { get; set; }
+        public Guid? BrNarudzbe { get; set; }
 
         public virtual Kupci Kupac { get; set; }
         public virtual ICollection<NarudzbaStavke> NarudzbaStavkes { get; set; }

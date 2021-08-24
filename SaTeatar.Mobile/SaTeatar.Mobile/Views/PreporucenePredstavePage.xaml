@@ -17,25 +17,25 @@
 
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <Label Text="Preporucujemo da pogledate:"
+            <Label Text="PREPORUCUJEMO DA POGLEDATE "
+                   FontSize="10"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
                    Padding="20"/>
-            <Label IsVisible="{Binding NemaPredstava}" Text="{Binding Poruka}" TextColor="Gray" HorizontalOptions="Center"/>
+            <Label IsVisible="{Binding NemaPredstava}" Text="{Binding Poruka}" FontSize="10" TextColor="Gray" HorizontalOptions="Center"/>
 
             <ListView ItemsSource="{Binding PreporucenePredstave}" ItemSelected="ListView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" Padding="10">
                                 <StackLayout>
-                                    <Image Source="{Binding Slika, Converter={StaticResource imgConv}} "></Image>
+                                    <Image HeightRequest="225" WidthRequest="225" Source="{Binding Slika, Converter={StaticResource imgConv}} "></Image>
                                 </StackLayout>
                                 <StackLayout Orientation="Vertical">
                                 <Label Text="{Binding Naziv}"
-                                       LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16"/>
+                                       FontSize="14"/>
                                     <Label Text="{Binding Tip}" TextColor="Gray" FontSize="12"/>
                                     <StackLayout Orientation="Horizontal" >
                                         <Label Text="Rezija:" TextColor="Gray" FontSize="12"/>

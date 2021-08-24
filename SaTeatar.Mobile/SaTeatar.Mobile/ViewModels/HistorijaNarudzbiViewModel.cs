@@ -67,9 +67,9 @@ namespace SaTeatar.Mobile.ViewModels
                     {
                         NarudzbaId = item.NarudzbaId,
                         KupacId = item.KupacId,
-                        BrojNarudzbe = item.BrojNarudzbe,
+                        BrojNarudzbe = item.BrNarudzbe.ToString(),
                         Datum = item.Datum,
-                        DatumStr = item.Datum.ToString("dd.MM.yyyy.") + " u " + item.Datum.ToString("HH:mm"),
+                        DatumStr = item.Datum.ToString("dd.MM.yyyy.") + " u " + item.Datum.ToString("HH:mm")+"h",
                         Iznos=item.Iznos,
                         PaymentId=item.PaymentId,
                     });

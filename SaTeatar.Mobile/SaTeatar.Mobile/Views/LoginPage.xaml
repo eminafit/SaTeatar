@@ -11,23 +11,22 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Padding="20" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
-            <StackLayout>
-                <Label Text="Korisnicko ime:" TextColor="Gray"/>
+            <StackLayout Padding="5">
+                <Label Text="KORISNICKO IME:" FontSize="10" TextColor="Gray"/>
                 <Entry x:Name="KorisnickoIme" Text="{Binding KorisnickoIme}"></Entry>
             </StackLayout>
-            <StackLayout>
-                <Label Text="Lozinka:" TextColor="Gray"/>
+            <StackLayout Padding="5">
+                <Label Text="LOZINKA:" FontSize="10" TextColor="Gray"/>
                 <Entry x:Name="Lozinka" Text="{Binding Lozinka}" IsPassword="True"></Entry>
             </StackLayout>
             <StackLayout>
-                <!--<Button Command="{Binding LoginCommand}" Text="Prijavite se" Clicked="Button_Clicked"></Button>-->
-                    <Button Text="Prijavite se" Clicked="Button_Clicked" IsEnabled="{Binding Log}"></Button>
-                    <Label IsVisible="{Binding IsBusy}" Text="Prijava u toku, pricekajte..." TextColor="Gray" HorizontalOptions="Center"></Label>
+                    <Button Text="PRIJAVITE SE" FontSize="10" Clicked="Button_Clicked" IsEnabled="{Binding Log}"></Button>
+                    <Label IsVisible="{Binding IsBusy}" Text="PRIJAVA U TOKU, PRICEKAJTE..." FontSize="8" TextColor="Gray" HorizontalOptions="Center"></Label>
             </StackLayout>
             </StackLayout>
             <StackLayout IsVisible="{Binding RegVisible}" Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
-                <Label  Text="Nemate korisnički račun?" HorizontalOptions="Center"  TextColor="Gray"/>
-                <Button Command="{Binding RegisterCommand}" Text="Registrujte se" BackgroundColor="Gray" ></Button>
+                <Label  Text="NEMATE KORISNICKI RACUN?" FontSize="8" HorizontalOptions="Center"  TextColor="Gray"/>
+                <Button Command="{Binding RegisterCommand}" Text="REGISTRUJTE SE" FontSize="10" BackgroundColor="Gray" ></Button>
             </StackLayout>
         </StackLayout>
        

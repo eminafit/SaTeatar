@@ -25,7 +25,7 @@ namespace SaTeatar.Mobile.ViewModels
 
         //public ObservableCollection<mPredstave> PredstavaList { get; set; } = new ObservableCollection<mPredstave>();
         public ObservableCollection<mIzvodjenja> IzvodjenjaList { get; set; } = new ObservableCollection<mIzvodjenja>();
-        public mPredstave SelectedPredstava;
+        public mPredstave SelectedPredstava { get; set; }
 
 
         ////predstave

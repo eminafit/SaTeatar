@@ -16,15 +16,23 @@
     
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <Label Text="Repertoar" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20"/>
-            <Label Text="Pretraga po tipu predstave:"/>
-            <Picker ItemsSource="{Binding TipoviPredstavaList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedTipProizvoda}"></Picker>
+            <Label Text="REPERTOAR" FontAttributes="Bold" FontSize="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="15"/>
+            <Label Text="PRETRAZITE IZVODJENJA" TextColor="Gray" FontSize="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="5"/>
 
-            <Label Text="Pretraga po predstavi:"/>
-            <Picker ItemsSource="{Binding PredstavaList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedPredstava}"></Picker>
+            <StackLayout Padding="10">
+                <Label Text="PO TIPU PREDSTAVE:" FontSize="10" TextColor="Gray"/>
+                <Picker ItemsSource="{Binding TipoviPredstavaList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedTipProizvoda}" FontSize="10"></Picker>
+            </StackLayout>
 
-            <Label Text="Pretraga po datumu:"/>
-            <DatePicker DateSelected="DatePicker_DateSelected"/>
+            <StackLayout Padding="10">
+                <Label Text="PO PREDSTAVI:" FontSize="10" TextColor="Gray"/>
+                <Picker ItemsSource="{Binding PredstavaList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedPredstava}" FontSize="10"></Picker>
+            </StackLayout>
+
+            <StackLayout Padding="10">
+                <Label Text="PO DATUMU:" FontSize="10" TextColor="Gray"/>
+                <DatePicker DateSelected="DatePicker_DateSelected" FontSize="10"/>
+            </StackLayout>
 
             <Label Text="Trenutno nema izvodjenja za zadanu pretragu." IsVisible="{Binding IsBusy}" HorizontalOptions="CenterAndExpand" Padding="30" TextColor="Gray"/>
 

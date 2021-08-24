@@ -11,7 +11,8 @@
 
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <Label Text="Narudzbe"
+            <Label Text="NARUDZBE"
+                   FontSize="10"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <StackLayout Padding="10" Orientation="Horizontal"                 

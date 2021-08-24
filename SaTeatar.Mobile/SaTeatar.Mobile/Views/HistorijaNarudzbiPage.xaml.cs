@@ -31,15 +31,6 @@ namespace SaTeatar.Mobile.Views
         private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var xnar = e.SelectedItem as XNaruzba;
-            var narudzba = new mNarudzba()
-            {
-                KupacId=xnar.KupacId,
-                BrojNarudzbe=xnar.BrojNarudzbe,
-                Datum=xnar.Datum,
-                Iznos=xnar.Iznos,
-                NarudzbaId=xnar.NarudzbaId,
-                PaymentId=xnar.PaymentId
-            };
             await Navigation.PushAsync(new NarudzbaStavkePage(xnar));
         }
 

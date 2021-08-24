@@ -110,7 +110,7 @@ namespace SaTeatar.Mobile.ViewModels
 
                 var narudzbaInsert = new rNarudzbaInsert()
                 {
-                    BrojNarudzbe = "Narudzba_000",
+                    BrNarudzbe = Guid.NewGuid(),
                     KupacId = _idKupca,
                     Datum = DateTime.Now,
                     Iznos = UkupniIznos,
@@ -131,9 +131,9 @@ namespace SaTeatar.Mobile.ViewModels
                             IzvodjenjeId = cartValue.Izvodjenje.IzvodjenjeId,
                             IzvodjenjeZonaId = cartValue.IzvodjenjeZone.IzvodjenjeZonaId,
                             Placeno = false,
-                            Sifra = "xyc"
+                            BrKarte =Guid.NewGuid()
                         };
-                        karta.Qrcode = GenerisiQrCode(karta.Sifra);
+                        karta.Qrcode = GenerisiQrCode(karta.BrKarte.ToString());
                         var mkarta = await _karteService.Insert<mKarta>(karta);
                         KarteList.Add(mkarta);
 

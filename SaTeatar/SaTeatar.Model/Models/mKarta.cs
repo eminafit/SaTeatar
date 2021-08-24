@@ -11,7 +11,7 @@ namespace SaTeatar.Model.Models
         public string KupacIme { get; set; }
         public string KupacPrezime { get; set; }
         public int IzvodjenjeId { get; set; }
-        public string Sifra { get; set; }
+        public Guid? BrKarte { get; set; }
         public byte[] Qrcode { get; set; }
         public DateTime DatumIzvodjenja { get; set; }
 

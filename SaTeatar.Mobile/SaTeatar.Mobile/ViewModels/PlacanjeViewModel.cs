@@ -43,8 +43,6 @@ namespace SaTeatar.Mobile.ViewModels
 
         public ICommand SubmitCommand { get; set; }
 
-     //   public MCourse Course { get; set; }
-
         private string StripeTestApiKey = "sk_test_51JNyRxCGG4akAYELQXXMQayAg3wwgEIH9srID9neI67oAexoag3TEfdoKUTanTc7s0rFfHdZnmjRWAcaH6LAeBAS00pTPF3fGM";
 
         private CreditCard _creditCardModel;
@@ -94,7 +92,7 @@ namespace SaTeatar.Mobile.ViewModels
             get { return _expYear; }
             set { SetProperty(ref _expYear, value); }
         }
-        public CreditCard CreditCardModel //
+        public CreditCard CreditCardModel 
         {
             get { return _creditCardModel; }
             set { SetProperty(ref _creditCardModel, value); }
@@ -142,9 +140,9 @@ namespace SaTeatar.Mobile.ViewModels
 
                 var options = new ChargeCreateOptions();
 
-                options.Amount = Convert.ToInt64(Narudzba.Iznos) * 100; // Convert.ToInt64(Course.Price) * 100;
+                options.Amount = Convert.ToInt64(Narudzba.Iznos) * 100; 
                 options.Currency = "usd";
-                options.Description = "opis";// Course.Name;
+                options.Description = "opis";
                 options.Source = stripeToken.Id;
                 options.StatementDescriptor = "Custom descriptor";
                 options.Capture = true;
@@ -158,7 +156,7 @@ namespace SaTeatar.Mobile.ViewModels
             }
             catch (Exception ex)
             {
-                Console.Write(/*Course.Name*/"narudzba" + " (CreateCharge)" + ex.Message);
+                Console.Write(Narudzba.BrNarudzbe.ToString() + " (CreateCharge)" + ex.Message);
                 throw ex;
             }
         }
@@ -198,7 +196,7 @@ namespace SaTeatar.Mobile.ViewModels
                     //await Task.Run(async () =>
                     //{
                         var Token = CreateTokenAsync();
-                        Console.Write(Narudzba.BrojNarudzbe + "Token :" + Token);
+                        Console.Write(Narudzba.BrNarudzbe.ToString() + "Token :" + Token);
                         if (Token.ToString() != null)
                         {
                             IsTransectionSuccess = await MakePaymentAsync(Token.Result);
@@ -213,14 +211,12 @@ namespace SaTeatar.Mobile.ViewModels
                 {
                     UserDialogs.Instance.HideLoading();
                     UserDialogs.Instance.Alert(ex.Message, null, "OK");
-                    Console.Write(Narudzba.BrojNarudzbe + ex.Message);
+                    Console.Write(Narudzba.BrNarudzbe.ToString() + ex.Message);
                 }
                 finally
                 {
                     if (IsTransectionSuccess)
                     {
-                       // Narudzba.Narudzba.PaymentId = "pribavi";
-
                         await _narudzbaService.Update<mNarudzba>(Narudzba.NarudzbaId, Narudzba);
                         var search = new rNarudzbaStavkeSearch() { NarudzbaId = Narudzba.NarudzbaId };
                         List<mNarudzbaStavke> nsl = await _narudzbaStavkeService.Get<List<mNarudzbaStavke>>(search);
@@ -232,12 +228,6 @@ namespace SaTeatar.Mobile.ViewModels
                             await _karteService.Update<mKarta>(karta.KartaId, karta);
 
                         }
-
-                        //foreach (var karta in  Narudzba.KarteList)
-                        //{
-                        //    karta.Placeno = true;
-                        //    await _karteService.Update<mKarta>(karta.KartaId, karta);
-                        //}
 
                         Console.Write(Narudzba.NarudzbaId + "Uspjesno placanje");
 

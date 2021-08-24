@@ -37,7 +37,6 @@ namespace SaTeatar.Mobile.Views
         private async void Button_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new NarudzbaPage());
-            //NavigationPage.SetHasBackButton(this, false);
 
         }
 

@@ -28,17 +28,5 @@ namespace SaTeatar.Mobile.Views
             model.Init();
 
         }
-
-        //protected override async void OnDisappearing()
-        //{
-        //    base.OnDisappearing();
-        //}
-
-        //protected override async bool OnBackButtonPressed()
-        //{
-        //     await Navigation.PopToRootAsync();
-        //    return true;
-        //    //return base.OnBackButtonPressed();
-        //}
     }
 }
