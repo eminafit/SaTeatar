@@ -1,4 +1,5 @@
 ﻿using SaTeatar.WinUI.Djelatnici;
+using SaTeatar.WinUI.Izvjestaji;
 using SaTeatar.WinUI.Izvodjenja;
 using SaTeatar.WinUI.Korisnici;
 using SaTeatar.WinUI.Pozorista;
@@ -221,6 +222,11 @@ namespace SaTeatar.WinUI
             frm.Show();
         }
 
-
+        private void top5NarudzbiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPostavkaIzvjestajaTopNarudzbe frm = new frmPostavkaIzvjestajaTopNarudzbe();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }

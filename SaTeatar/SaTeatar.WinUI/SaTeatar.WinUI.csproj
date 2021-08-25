@@ -134,16 +134,28 @@
     <Compile Include="frmIndex.Designer.cs">
       <DependentUpon>frmIndex.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPostavkeZaIzvjestaje.cs">
+    <Compile Include="Izvjestaji\frmPostavkaIzvjestajaTopNarudzbe.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPostavkeZaIzvjestaje.Designer.cs">
+    <Compile Include="Izvjestaji\frmPostavkaIzvjestajaTopNarudzbe.Designer.cs">
+      <DependentUpon>frmPostavkaIzvjestajaTopNarudzbe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvjestaji\frmPostavkeZaIzvjestaje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvjestaji\frmPostavkeZaIzvjestaje.Designer.cs">
       <DependentUpon>frmPostavkeZaIzvjestaje.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTopPosjetiteljiIzvjestaj.cs">
+    <Compile Include="Izvjestaji\frmTopNarudzbe.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTopPosjetiteljiIzvjestaj.Designer.cs">
+    <Compile Include="Izvjestaji\frmTopNarudzbe.Designer.cs">
+      <DependentUpon>frmTopNarudzbe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvjestaji\frmTopPosjetiteljiIzvjestaj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvjestaji\frmTopPosjetiteljiIzvjestaj.Designer.cs">
       <DependentUpon>frmTopPosjetiteljiIzvjestaj.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvodjenja\frmIzvodjenja.cs">
@@ -218,10 +230,16 @@
     <EmbeddedResource Include="frmIndex.resx">
       <DependentUpon>frmIndex.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPostavkeZaIzvjestaje.resx">
+    <EmbeddedResource Include="Izvjestaji\frmPostavkaIzvjestajaTopNarudzbe.resx">
+      <DependentUpon>frmPostavkaIzvjestajaTopNarudzbe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvjestaji\frmPostavkeZaIzvjestaje.resx">
       <DependentUpon>frmPostavkeZaIzvjestaje.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTopPosjetiteljiIzvjestaj.resx">
+    <EmbeddedResource Include="Izvjestaji\frmTopNarudzbe.resx">
+      <DependentUpon>frmTopNarudzbe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvjestaji\frmTopPosjetiteljiIzvjestaj.resx">
       <DependentUpon>frmTopPosjetiteljiIzvjestaj.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvodjenja\frmIzvodjenja.resx">
@@ -264,6 +282,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="rptTopNarudzbe.rdlc" />
     <EmbeddedResource Include="rptTopPosjetitelji.rdlc" />
     <None Include="dsSaTeatar.xsc">
       <DependentUpon>dsSaTeatar.xsd</DependentUpon>
@@ -311,5 +330,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

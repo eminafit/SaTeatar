@@ -22,6 +22,11 @@ namespace SaTeatar.WinUI.Pozorista
 
         private async void frmPozorista_Load(object sender, EventArgs e)
         {
+            await LoadPozorista();
+        }
+
+        private async Task LoadPozorista()
+        {
             var result = await _pozoristaService.Get<List<mPozorista>>(null);
             dgvPozorista.AutoGenerateColumns = false;
             dgvPozorista.DataSource = result;
@@ -31,9 +36,9 @@ namespace SaTeatar.WinUI.Pozorista
         {
             var pretraga = txtPretraga.Text;
             var request = new rPozoristaSearch() { Naziv = pretraga };
-            var upit = await _pozoristaService.Get<List<mPozorista>>(request);
+            var result = await _pozoristaService.Get<List<mPozorista>>(request);
             dgvPozorista.AutoGenerateColumns = false;
-            dgvPozorista.DataSource = upit;
+            dgvPozorista.DataSource = result;
         }
 
         private void dgvPozorista_MouseDoubleClick(object sender, MouseEventArgs e)

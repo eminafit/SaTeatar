@@ -21,6 +21,16 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Narudzbe" msprop:Generator_TableClassName="NarudzbeDataTable" msprop:Generator_TableVarName="tableNarudzbe" msprop:Generator_RowChangedName="NarudzbeRowChanged" msprop:Generator_TablePropName="Narudzbe" msprop:Generator_RowDeletingName="NarudzbeRowDeleting" msprop:Generator_RowChangingName="NarudzbeRowChanging" msprop:Generator_RowEvHandlerName="NarudzbeRowChangeEventHandler" msprop:Generator_RowDeletedName="NarudzbeRowDeleted" msprop:Generator_RowClassName="NarudzbeRow" msprop:Generator_UserTableName="Narudzbe" msprop:Generator_RowEvArgName="NarudzbeRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RedBr" msprop:Generator_ColumnVarNameInTable="columnRedBr" msprop:Generator_ColumnPropNameInRow="RedBr" msprop:Generator_ColumnPropNameInTable="RedBrColumn" msprop:Generator_UserColumnName="RedBr" type="xs:int" minOccurs="0" />
+              <xs:element name="Kupac" msprop:Generator_ColumnVarNameInTable="columnKupac" msprop:Generator_ColumnPropNameInRow="Kupac" msprop:Generator_ColumnPropNameInTable="KupacColumn" msprop:Generator_UserColumnName="Kupac" type="xs:string" minOccurs="0" />
+              <xs:element name="BrNarudzbe" msprop:Generator_ColumnVarNameInTable="columnBrNarudzbe" msprop:Generator_ColumnPropNameInRow="BrNarudzbe" msprop:Generator_ColumnPropNameInTable="BrNarudzbeColumn" msprop:Generator_UserColumnName="BrNarudzbe" type="xs:string" minOccurs="0" />
+              <xs:element name="Iznos" msprop:Generator_ColumnVarNameInTable="columnIznos" msprop:Generator_ColumnPropNameInRow="Iznos" msprop:Generator_ColumnPropNameInTable="IznosColumn" msprop:Generator_UserColumnName="Iznos" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>

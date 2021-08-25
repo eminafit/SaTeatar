@@ -36,6 +36,11 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.Napomena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Korisnik = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IzvodjenjeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtpDatumOD = new System.Windows.Forms.DateTimePicker();
+            this.dtpDatumDO = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnPretrazi = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIzvodjenja)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,17 +119,65 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.IzvodjenjeId.ReadOnly = true;
             this.IzvodjenjeId.Width = 125;
             // 
+            // dtpDatumOD
+            // 
+            this.dtpDatumOD.Location = new System.Drawing.Point(75, 45);
+            this.dtpDatumOD.Name = "dtpDatumOD";
+            this.dtpDatumOD.Size = new System.Drawing.Size(200, 22);
+            this.dtpDatumOD.TabIndex = 1;
+            // 
+            // dtpDatumDO
+            // 
+            this.dtpDatumDO.Location = new System.Drawing.Point(352, 45);
+            this.dtpDatumDO.Name = "dtpDatumDO";
+            this.dtpDatumDO.Size = new System.Drawing.Size(200, 22);
+            this.dtpDatumDO.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(316, 45);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 17);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Do:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(38, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 17);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Od:";
+            // 
+            // btnPretrazi
+            // 
+            this.btnPretrazi.Location = new System.Drawing.Point(604, 45);
+            this.btnPretrazi.Name = "btnPretrazi";
+            this.btnPretrazi.Size = new System.Drawing.Size(75, 23);
+            this.btnPretrazi.TabIndex = 5;
+            this.btnPretrazi.Text = "Pretrazi";
+            this.btnPretrazi.UseVisualStyleBackColor = true;
+            this.btnPretrazi.Click += new System.EventHandler(this.btnPretrazi_Click);
+            // 
             // frmIzvodjenja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnPretrazi);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dtpDatumDO);
+            this.Controls.Add(this.dtpDatumOD);
             this.Controls.Add(this.dgvIzvodjenja);
             this.Name = "frmIzvodjenja";
             this.Text = "Izvodjenja";
             this.Load += new System.EventHandler(this.frmIzvodjenja_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIzvodjenja)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -137,5 +190,10 @@ namespace SaTeatar.WinUI.Izvodjenja
         private System.Windows.Forms.DataGridViewTextBoxColumn Napomena;
         private System.Windows.Forms.DataGridViewTextBoxColumn Korisnik;
         private System.Windows.Forms.DataGridViewTextBoxColumn IzvodjenjeId;
+        private System.Windows.Forms.DateTimePicker dtpDatumOD;
+        private System.Windows.Forms.DateTimePicker dtpDatumDO;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnPretrazi;
     }
 }

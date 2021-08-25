@@ -17,5 +17,17 @@ namespace SaTeatar.WebAPI.Services
         {
 
         }
+
+        public override IList<mPozorista> Get(rPozoristaSearch search)
+        {
+            var upit = _context.Pozorista.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search.Naziv))
+            {
+                upit = upit.Where(x => x.Naziv.Contains(search.Naziv));
+            }
+            var lista = upit.ToList();
+            return _mapper.Map<List<mPozorista>>(lista);
+        }
     }
 }

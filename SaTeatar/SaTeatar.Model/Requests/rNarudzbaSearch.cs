@@ -12,5 +12,10 @@ namespace SaTeatar.Model.Requests
         public DateTime Datum { get; set; }
         public decimal Iznos { get; set; }
         public string PaymentId { get; set; }
+        public int PozoristeId { get; set; }
+
+        public DateTime DatumOD { get; set; }
+        public DateTime DatumDO { get; set; }
+
     }
 }

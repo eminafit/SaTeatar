@@ -16,7 +16,7 @@ namespace SaTeatar.WinUI.Korisnici
 {
     public partial class frmKorisnici : Form
     {
-        private readonly APIService _apiService = new APIService("korisnici");
+        private readonly APIService _korisniciService = new APIService("korisnici");
         public frmKorisnici()
         {
             InitializeComponent();
@@ -24,19 +24,21 @@ namespace SaTeatar.WinUI.Korisnici
 
         private async void btnPrikazi_Click(object sender, EventArgs e)
         {
-            //var result = "https://localhost:5001/korisnici".GetJsonAsync<dynamic>().Result;
-            //dgvKorisnici.DataSource = result;
 
-            var search = new rKorisniciSearch
-            {
-                Ime = txtPretraga.Text
-            };
+            var search = new rKorisniciSearch {KorisnickoIme = txtPretraga.Text};
 
-            var result = await _apiService.Get<List<mKorisnici>>(search);
+            var result = await _korisniciService.Get<List<mKorisnici>>(search);
             
             dgvKorisnici.AutoGenerateColumns = false;
             dgvKorisnici.DataSource = result;
 
+        }
+
+        private async Task LoadKorisnike()
+        {
+            var result = await _korisniciService.Get<List<mKorisnici>>(null);
+            dgvKorisnici.AutoGenerateColumns = false;
+            dgvKorisnici.DataSource = result;
         }
 
         private void dgvKorisnici_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -45,6 +47,16 @@ namespace SaTeatar.WinUI.Korisnici
 
             frmKorisniciDetalji frm = new frmKorisniciDetalji(int.Parse(id.ToString()));
             frm.Show();
+        }
+
+        private void txtPretraga_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void frmKorisnici_Load(object sender, EventArgs e)
+        {
+            await LoadKorisnike();
         }
     }
 }

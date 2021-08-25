@@ -26,16 +26,7 @@ namespace SaTeatar.WinUI.Izvodjenja
 
         private async void frmIzvodjenja_Load(object sender, EventArgs e)
         {
-            //var izvodjenja = await _izvodjenjaService.Get<List<mIzvodjenja>>(null);
-            //for (int i = 0; i < izvodjenja.Count(); i++)
-            //{
-            //    mPredstave p= await _predstaveService.GetById<mPredstave>(izvodjenja[i].PredstavaId);
-            //    izvodjenja[i].Predstava = p.Naziv;
-            //    mPredstave t = await _pozoristaService.GetById<mPredstave>(izvodjenja[i].PozoristeId);
-            //    izvodjenja[i].Pozoriste = t.Naziv;
-            //}
-            //dgvIzvodjenja.DataSource = izvodjenja;
-            await LoadIzvodjenja();
+           // await LoadIzvodjenja();
         }
 
         private async Task LoadIzvodjenja()
@@ -62,6 +53,20 @@ namespace SaTeatar.WinUI.Izvodjenja
             var idIzvodjenja = dgvIzvodjenja.Rows[redIndex].Cells["IzvodjenjeId"].Value;
             frmIzvodjenjeDetalji frm = new frmIzvodjenjeDetalji(int.Parse(idIzvodjenja.ToString()));
             frm.Show();
+        }
+
+        private async void btnPretrazi_Click(object sender, EventArgs e)
+        {
+            var DatumOd = dtpDatumOD.Value.Date;
+            var DatumDo = dtpDatumDO.Value.Date;
+
+            var search = new rIzvodjenjaSearch { DatumOD = DatumOd, DatumDO = DatumDo };
+            var result = await _izvodjenjaService.Get<List<mIzvodjenja>>(search);
+            result.Sort((x, y) => x.DatumVrijeme.CompareTo(y.DatumVrijeme));
+
+            dgvIzvodjenja.AutoGenerateColumns = false;
+            dgvIzvodjenja.DataSource = result;
+
         }
     }
 }

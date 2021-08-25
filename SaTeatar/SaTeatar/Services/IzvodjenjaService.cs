@@ -43,6 +43,14 @@ namespace SaTeatar.WebAPI.Services
                 upit = upit.Where(x => x.DatumVrijeme.Date.CompareTo(search.NaDatum.Date) == 0);
             }
 
+            if (search.DatumOD.CompareTo(DateTime.MinValue.AddHours(1))>0 &&
+                search.DatumDO.CompareTo(DateTime.MinValue.AddHours(1))>0 )
+
+            {
+                upit = upit.Where(x => x.DatumVrijeme.CompareTo(search.DatumOD) >= 0 &&
+                                       x.DatumVrijeme.CompareTo(search.DatumDO) <= 0);
+            }
+
             var izvodjenja = upit.ToList();
             return _mapper.Map<List<mIzvodjenja>>(izvodjenja);
         }

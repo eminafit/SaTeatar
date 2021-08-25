@@ -14,5 +14,7 @@ namespace SaTeatar.Model.Requests
         public int PredstavaId { get; set; }
         public DateTime DatumVrijeme { get; set; }
         public DateTime NaDatum { get; set; }
+        public DateTime DatumOD { get; set; }
+        public DateTime DatumDO { get; set; }
     }
 }
