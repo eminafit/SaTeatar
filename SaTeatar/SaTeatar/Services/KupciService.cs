@@ -17,7 +17,7 @@ namespace SaTeatar.Services
     public class KupciService : BaseCRUDService<mKupci, Kupci, rKupciSearch, rKupciInsert, rKupciUpdate>
         , IKupciService
     {
-        public KupciService(SaTeatarDbContext context, IMapper mapper) 
+        public KupciService(SaTeatarBpContext context, IMapper mapper) 
             : base(context, mapper)
         {
 

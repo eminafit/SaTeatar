@@ -12,7 +12,7 @@ namespace SaTeatar.WebAPI.Services
     public class ZoneService : BaseCRUDService<mZone, Zone, rZoneSearch, rZoneInsert, rZoneUpdate>
         , IZoneService
     {
-        public ZoneService(SaTeatarDbContext context, IMapper mapper) 
+        public ZoneService(SaTeatarBpContext context, IMapper mapper) 
             : base(context, mapper)
         {
         }

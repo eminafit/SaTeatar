@@ -12,7 +12,7 @@ namespace SaTeatar.WebAPI.Services
     public class DjelatniciService : BaseCRUDService<mDjelatnici, Djelatnici, rDjelatniciSearch, rDjelatniciInsert, rDjelatniciUpdate>
         , IDjelatniciService
     {
-        public DjelatniciService(SaTeatarDbContext context, IMapper mapper) 
+        public DjelatniciService(SaTeatarBpContext context, IMapper mapper) 
             : base(context, mapper)
         {
         }

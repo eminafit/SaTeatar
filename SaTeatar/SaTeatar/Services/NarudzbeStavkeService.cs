@@ -13,7 +13,7 @@ namespace SaTeatar.Services
     public class NarudzbeStavkeService : BaseCRUDService<mNarudzbaStavke, NarudzbaStavke, rNarudzbaStavkeSearch, rNarudzbaStavkeInsert, rNarudzbaStavkeUpdate>
         , INarudzbeStavkeService
     {
-        public NarudzbeStavkeService(SaTeatarDbContext context, IMapper mapper) : base(context, mapper)
+        public NarudzbeStavkeService(SaTeatarBpContext context, IMapper mapper) : base(context, mapper)
         {
         }
 

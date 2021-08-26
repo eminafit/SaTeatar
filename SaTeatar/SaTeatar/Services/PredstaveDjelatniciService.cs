@@ -13,7 +13,7 @@ namespace SaTeatar.WebAPI.Services
     public class PredstaveDjelatniciService : BaseCRUDService<mPredstaveDjelatnici, PredstaveDjelatnici, rPredstaveDjelatnicSearch, rPredstaveDjelatniciUpsert, rPredstaveDjelatniciUpsert>
         , IPredstaveDjelatniciService
     {
-        public PredstaveDjelatniciService(SaTeatarDbContext context, IMapper mapper) : base(context, mapper)
+        public PredstaveDjelatniciService(SaTeatarBpContext context, IMapper mapper) : base(context, mapper)
         {
         }
 

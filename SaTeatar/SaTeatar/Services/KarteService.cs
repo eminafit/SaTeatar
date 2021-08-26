@@ -15,7 +15,7 @@ namespace SaTeatar.Services
     public class KarteService : BaseCRUDService<mKarta, Karte, rKartaSearch, rKartaInsert, rKartaUpdate>
         , IKarteService
     {
-        public KarteService(SaTeatarDbContext context, IMapper mapper) : base(context, mapper)
+        public KarteService(SaTeatarBpContext context, IMapper mapper) : base(context, mapper)
         {
         }
 

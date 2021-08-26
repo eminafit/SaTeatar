@@ -14,7 +14,7 @@ namespace SaTeatar.Services
         , IKorisniciUlogeService
 
     {
-        public KorisniciUlogeService(SaTeatarDbContext context, IMapper mapper) : base(context, mapper)
+        public KorisniciUlogeService(SaTeatarBpContext context, IMapper mapper) : base(context, mapper)
         {
         }
 

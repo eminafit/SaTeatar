@@ -20,8 +20,8 @@ namespace SaTeatar
             var host = CreateHostBuilder(args).Build();
             using (var scope=host.Services.CreateScope())
             {
-                var database = scope.ServiceProvider.GetService<SaTeatarDbContext>();
-               // new SetupService().Init(database);
+                var database = scope.ServiceProvider.GetService<SaTeatarBpContext>();
+                new SetupService().Init(database);
             }
             host.Run();
         }

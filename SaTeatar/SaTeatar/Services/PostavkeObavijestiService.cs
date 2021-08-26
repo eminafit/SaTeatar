@@ -14,7 +14,7 @@ namespace SaTeatar.Services
     public class PostavkeObavijestiService : BaseCRUDService<mPostavkeObavijesti, PostavkeObavijesti, rPostavkaObavijestiSearch, rPostavkaObavijestiUpsert, rPostavkaObavijestiUpsert>
         , IPostavkeObavijestiService
     {
-        public PostavkeObavijestiService(SaTeatarDbContext context, IMapper mapper) 
+        public PostavkeObavijestiService(SaTeatarBpContext context, IMapper mapper) 
             : base(context, mapper)
         {
         }

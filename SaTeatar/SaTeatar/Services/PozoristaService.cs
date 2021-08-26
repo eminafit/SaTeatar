@@ -12,7 +12,7 @@ namespace SaTeatar.WebAPI.Services
     public class PozoristaService : BaseCRUDService <mPozorista, Pozorista, rPozoristaSearch, rPozoristaInsert, rPozoristaUpdate>
         , IPozoristaService
     {
-        public PozoristaService(SaTeatarDbContext context, IMapper mapper)
+        public PozoristaService(SaTeatarBpContext context, IMapper mapper)
             :base(context, mapper)
         {
 

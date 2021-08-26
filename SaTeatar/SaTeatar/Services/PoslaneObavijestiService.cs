@@ -14,7 +14,7 @@ namespace SaTeatar.Services
     public class PoslaneObavijestiService : BaseCRUDService<mPoslaneObavijesti, PoslaneObavijesti, rPoslaneObavijestiSearch, rPoslaneObavijestiInsert, rPoslaneObavijestiUpdate>
         , IPoslaneObavijestiService
     {
-        public PoslaneObavijestiService(SaTeatarDbContext context, IMapper mapper) 
+        public PoslaneObavijestiService(SaTeatarBpContext context, IMapper mapper) 
             : base(context, mapper)
         {
         }

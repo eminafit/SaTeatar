@@ -239,7 +239,7 @@ namespace SaTeatar.Mobile.ViewModels
                     else
                     {
                         UserDialogs.Instance.HideLoading();
-                        UserDialogs.Instance.Alert("Nesto je poslo po zlu", "lacanje nije uspjelo", "OK");
+                        UserDialogs.Instance.Alert("Nesto je poslo po zlu", "Placanje nije uspjelo", "OK");
                         Console.Write(Narudzba.NarudzbaId + "Payment Failure ");
                     }
                 }

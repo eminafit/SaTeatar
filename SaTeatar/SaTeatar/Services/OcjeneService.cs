@@ -13,7 +13,7 @@ namespace SaTeatar.Services
     public class OcjeneService : BaseCRUDService<mOcjene, Ocjene, rOcjeneSearch, rOcjeneInsert, rOcjeneUpdate>
         , IOcjeneService
     {
-        public OcjeneService(SaTeatarDbContext context, IMapper mapper) 
+        public OcjeneService(SaTeatarBpContext context, IMapper mapper) 
             : base(context, mapper)
         {
         }

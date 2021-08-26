@@ -15,7 +15,7 @@ namespace SaTeatar.Services
     public class UlogeService : BaseCRUDService<mUloge, Uloge, rUlogeSearch, rUlogeUpsert, rUlogeUpsert>
         , IUlogeService
     {
-        public UlogeService(SaTeatarDbContext context, IMapper mapper) : base(context, mapper)
+        public UlogeService(SaTeatarBpContext context, IMapper mapper) : base(context, mapper)
         {
         }
 

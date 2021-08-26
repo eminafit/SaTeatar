@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SaTeatar.Database;
 
 namespace SaTeatar.Migrations
 {
-    [DbContext(typeof(SaTeatarDbContext))]
-    [Migration("20210729111950_initialcreate")]
-    partial class initialcreate
+    [DbContext(typeof(SaTeatarBpContext))]
+    partial class SaTeatarBpContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,9 +110,6 @@ namespace SaTeatar.Migrations
                         .HasColumnType("int")
                         .HasColumnName("IzvodjenjeID");
 
-                    b.Property<decimal?>("Popust")
-                        .HasColumnType("decimal(5,2)");
-
                     b.Property<int>("ZonaId")
                         .HasColumnType("int")
                         .HasColumnName("ZonaID");
@@ -136,6 +131,11 @@ namespace SaTeatar.Migrations
                         .HasColumnName("KartaID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<Guid?>("BrKarte")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("(newid())");
+
                     b.Property<int>("IzvodjenjeId")
                         .HasColumnType("int")
                         .HasColumnName("IzvodjenjeID");
@@ -151,10 +151,9 @@ namespace SaTeatar.Migrations
                     b.Property<bool>("Placeno")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Sifra")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<byte[]>("Qrcode")
+                        .HasColumnType("varbinary(max)")
+                        .HasColumnName("QRCode");
 
                     b.HasKey("KartaId");
 
@@ -290,6 +289,67 @@ namespace SaTeatar.Migrations
                     b.ToTable("Kupci");
                 });
 
+            modelBuilder.Entity("SaTeatar.Database.Narudzba", b =>
+                {
+                    b.Property<int>("NarudzbaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("NarudzbaID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<Guid?>("BrNarudzbe")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("(newid())");
+
+                    b.Property<DateTime>("Datum")
+                        .HasColumnType("datetime");
+
+                    b.Property<decimal>("Iznos")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("KupacId")
+                        .HasColumnType("int")
+                        .HasColumnName("KupacID");
+
+                    b.Property<string>("PaymentId")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("PaymentID");
+
+                    b.HasKey("NarudzbaId");
+
+                    b.HasIndex("KupacId");
+
+                    b.ToTable("Narudzba");
+                });
+
+            modelBuilder.Entity("SaTeatar.Database.NarudzbaStavke", b =>
+                {
+                    b.Property<int>("NarudzbaStavkeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("NarudzbaStavkeID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("KartaId")
+                        .HasColumnType("int")
+                        .HasColumnName("KartaID");
+
+                    b.Property<int>("NarudzbaId")
+                        .HasColumnType("int")
+                        .HasColumnName("NarudzbaID");
+
+                    b.HasKey("NarudzbaStavkeId");
+
+                    b.HasIndex("KartaId");
+
+                    b.HasIndex("NarudzbaId");
+
+                    b.ToTable("NarudzbaStavke");
+                });
+
             modelBuilder.Entity("SaTeatar.Database.Ocjene", b =>
                 {
                     b.Property<int>("OcjenaId")
@@ -309,6 +369,7 @@ namespace SaTeatar.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Opis")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PredstavaId")
@@ -332,13 +393,24 @@ namespace SaTeatar.Migrations
                         .HasColumnName("PoslanaObavijestID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("DatumVazenja")
+                        .HasColumnType("datetime");
+
                     b.Property<int>("KupacId")
                         .HasColumnType("int")
                         .HasColumnName("KupacID");
 
+                    b.Property<string>("Poruka")
+                        .IsRequired()
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
                     b.Property<int>("PrestavaId")
                         .HasColumnType("int")
                         .HasColumnName("PrestavaID");
+
+                    b.Property<bool>("Procitano")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("VrijemeSlanja")
                         .HasColumnType("datetime");
@@ -650,6 +722,36 @@ namespace SaTeatar.Migrations
                     b.Navigation("Uloga");
                 });
 
+            modelBuilder.Entity("SaTeatar.Database.Narudzba", b =>
+                {
+                    b.HasOne("SaTeatar.Database.Kupci", "Kupac")
+                        .WithMany("Narudzbas")
+                        .HasForeignKey("KupacId")
+                        .HasConstraintName("FK_Narudzba_Kupci")
+                        .IsRequired();
+
+                    b.Navigation("Kupac");
+                });
+
+            modelBuilder.Entity("SaTeatar.Database.NarudzbaStavke", b =>
+                {
+                    b.HasOne("SaTeatar.Database.Karte", "Karta")
+                        .WithMany("NarudzbaStavkes")
+                        .HasForeignKey("KartaId")
+                        .HasConstraintName("FK_NarudzbaStavke_Karte")
+                        .IsRequired();
+
+                    b.HasOne("SaTeatar.Database.Narudzba", "Narudzba")
+                        .WithMany("NarudzbaStavkes")
+                        .HasForeignKey("NarudzbaId")
+                        .HasConstraintName("FK_NarudzbaStavke_Narudzba")
+                        .IsRequired();
+
+                    b.Navigation("Karta");
+
+                    b.Navigation("Narudzba");
+                });
+
             modelBuilder.Entity("SaTeatar.Database.Ocjene", b =>
                 {
                     b.HasOne("SaTeatar.Database.Kupci", "Kupac")
@@ -765,6 +867,11 @@ namespace SaTeatar.Migrations
                     b.Navigation("Kartes");
                 });
 
+            modelBuilder.Entity("SaTeatar.Database.Karte", b =>
+                {
+                    b.Navigation("NarudzbaStavkes");
+                });
+
             modelBuilder.Entity("SaTeatar.Database.Korisnici", b =>
                 {
                     b.Navigation("Izvodjenjas");
@@ -776,11 +883,18 @@ namespace SaTeatar.Migrations
                 {
                     b.Navigation("Kartes");
 
+                    b.Navigation("Narudzbas");
+
                     b.Navigation("Ocjenes");
 
                     b.Navigation("PoslaneObavijestis");
 
                     b.Navigation("PostavkeObavijestis");
+                });
+
+            modelBuilder.Entity("SaTeatar.Database.Narudzba", b =>
+                {
+                    b.Navigation("NarudzbaStavkes");
                 });
 
             modelBuilder.Entity("SaTeatar.Database.Pozorista", b =>

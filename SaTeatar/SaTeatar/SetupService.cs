@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using QRCoder;
 using SaTeatar.Database;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,11 @@ namespace SaTeatar.WebAPI
 {
     public class SetupService
     {
-        public void Init(SaTeatarDbContext context)
+        public void Init(SaTeatarBpContext context)
         {
             context.Database.Migrate(); //pokrece migraciju
 
             //add new data or update
-
-            //radjen je context.SaveChanges() svako malo da bi dobila "ispravne" ideve u bazi
-            //inace ih ne dodjeljuje redom kojim su pisani u kodu
-            //a to mi je bitno zbog seeda medjutabela i ostalih veza
-            //pokusala sam seed raditi kroz migracije (SaTeatarDbContext_Data.cs u Database)
-            //ali onda build predugo traje (nisam nijedan docekala) ili mi je preslab laptop, ne znam
-            //znam da je ruzno rjesenje ali bolje trenutno nemam i ne gubi mi se vise vrijeme na ovo
 
             if (!context.Uloge.Any(x => x.Naziv == "Administrator"))
             {
@@ -296,11 +290,11 @@ namespace SaTeatar.WebAPI
             if (!context.Zone.Any(x => x.PozoristeId == 1))
             {
                 //#1 Kamerni teatar 55
-                context.Zone.Add(new Zone() { Naziv = "Zona A", PozoristeId = 1, UkupanBrojSjedista = 15 });
+                context.Zone.Add(new Zone() { Naziv = "Zona I", PozoristeId = 1, UkupanBrojSjedista = 15 });
                 context.SaveChanges();
-                context.Zone.Add(new Zone() { Naziv = "Zona B", PozoristeId = 1, UkupanBrojSjedista = 45 });
+                context.Zone.Add(new Zone() { Naziv = "Zona II", PozoristeId = 1, UkupanBrojSjedista = 45 });
                 context.SaveChanges();
-                context.Zone.Add(new Zone() { Naziv = "Zona C", PozoristeId = 1, UkupanBrojSjedista = 135 });
+                context.Zone.Add(new Zone() { Naziv = "Zona III", PozoristeId = 1, UkupanBrojSjedista = 135 });
                 context.SaveChanges();
 
                 //#2 Narodno pozoriste Sarajevo
@@ -315,19 +309,19 @@ namespace SaTeatar.WebAPI
 
                 //#3 Sartr
                 context.SaveChanges();
-                context.Zone.Add(new Zone() { Naziv = "Zona A", PozoristeId = 3, UkupanBrojSjedista = 10 });
+                context.Zone.Add(new Zone() { Naziv = "Zona 1", PozoristeId = 3, UkupanBrojSjedista = 10 });
                 context.SaveChanges();
-                context.Zone.Add(new Zone() { Naziv = "Zona B", PozoristeId = 3, UkupanBrojSjedista = 30 });
+                context.Zone.Add(new Zone() { Naziv = "Zona 2", PozoristeId = 3, UkupanBrojSjedista = 30 });
                 context.SaveChanges();
-                context.Zone.Add(new Zone() { Naziv = "Zona C", PozoristeId = 3, UkupanBrojSjedista = 40 });
+                context.Zone.Add(new Zone() { Naziv = "Zona 3", PozoristeId = 3, UkupanBrojSjedista = 40 });
                 context.SaveChanges();
 
                 //#4 Pozoriste mladih Sarajevo
-                context.Zone.Add(new Zone() { Naziv = "Zona A", PozoristeId = 4, UkupanBrojSjedista = 20 });
+                context.Zone.Add(new Zone() { Naziv = "Zona Srednja", PozoristeId = 4, UkupanBrojSjedista = 20 });
                 context.SaveChanges();
-                context.Zone.Add(new Zone() { Naziv = "Zona B", PozoristeId = 4, UkupanBrojSjedista = 40 });
+                context.Zone.Add(new Zone() { Naziv = "Zona Desna", PozoristeId = 4, UkupanBrojSjedista = 40 });
                 context.SaveChanges();
-                context.Zone.Add(new Zone() { Naziv = "Zona C", PozoristeId = 4, UkupanBrojSjedista = 120 });
+                context.Zone.Add(new Zone() { Naziv = "Zona Lijeva", PozoristeId = 4, UkupanBrojSjedista = 120 });
                 context.SaveChanges();
 
             }
@@ -987,82 +981,82 @@ namespace SaTeatar.WebAPI
 
             if (!context.PredstaveDjelatnici.Any(x => x.DjelatnikId == 1))
             {
-            //#1 Helverova noc
+                //#1 Helverova noc
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 1, DjelatnikId = 1 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 1, DjelatnikId = 2 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 1, DjelatnikId = 3 });
 
-            //#2 Mirna Bosna
+                //#2 Mirna Bosna
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 2, DjelatnikId = 4 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 2, DjelatnikId = 5 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 2, DjelatnikId = 6 });
 
-            //3 Knjiga mojih zivota
+                //3 Knjiga mojih zivota
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 3, DjelatnikId = 7 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 3, DjelatnikId = 8 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 3, DjelatnikId = 9 });
 
-            //#4 Tajna dzema od malina
+                //#4 Tajna dzema od malina
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 4, DjelatnikId = 10 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 4, DjelatnikId = 11 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 4, DjelatnikId = 12 });
 
-            //#5 Ay Carmela
+                //#5 Ay Carmela
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 5, DjelatnikId = 13 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 5, DjelatnikId = 14 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 5, DjelatnikId = 15 });
 
-            //#6 Dogville
+                //#6 Dogville
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 6, DjelatnikId = 16 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 6, DjelatnikId = 17 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 6, DjelatnikId = 18 });
 
-            //#7 Snijeg
+                //#7 Snijeg
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 7, DjelatnikId = 1 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 7, DjelatnikId = 17 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 7, DjelatnikId = 19 });
 
-            //#8 Princeza na zrnu graska
+                //#8 Princeza na zrnu graska
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 8, DjelatnikId = 20 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 8, DjelatnikId = 21 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 8, DjelatnikId = 22 });
 
-            //#9 Zaljubljeni krokodil
+                //#9 Zaljubljeni krokodil
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 9, DjelatnikId = 26 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 9, DjelatnikId = 27 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 9, DjelatnikId = 28 });
 
-            //#10 Patkica Blatkica
+                //#10 Patkica Blatkica
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 10, DjelatnikId = 23 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 10, DjelatnikId = 24 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 10, DjelatnikId = 25 });
 
-            //#11 Okovani prometej
+                //#11 Okovani prometej
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 11, DjelatnikId = 29 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 11, DjelatnikId = 30 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 11, DjelatnikId = 31 });
 
-            //#12 Palcica
+                //#12 Palcica
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 12, DjelatnikId = 32 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 12, DjelatnikId = 33 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 12, DjelatnikId = 34 });
 
-            //#13 Uspavana ljepotica
+                //#13 Uspavana ljepotica
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 13, DjelatnikId = 35 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 13, DjelatnikId = 36 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 13, DjelatnikId = 37 });
 
-            //#14 La Traviata
+                //#14 La Traviata
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 14, DjelatnikId = 38 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 14, DjelatnikId = 39 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 14, DjelatnikId = 40 });
 
-            //#15 Don Giovanni
+                //#15 Don Giovanni
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 15, DjelatnikId = 41 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 15, DjelatnikId = 42 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 15, DjelatnikId = 43 });
 
-            //#16 Rigoletto
+                //#16 Rigoletto
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 16, DjelatnikId = 38 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 16, DjelatnikId = 40 });
                 context.PredstaveDjelatnici.Add(new PredstaveDjelatnici() { PredstavaId = 16, DjelatnikId = 44 });
@@ -1071,409 +1065,135 @@ namespace SaTeatar.WebAPI
 
             if (!context.Izvodjenja.Any(x => x.PredstavaId == 1))
             {
-                //#1 Helverova noc 1/6/21
+                //#1 Helverova noc 1/10/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 1,
                     PozoristeId = 1,
                     Napomena = "",
                     KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 1, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#2 Helverova noc 8/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 1,
-                    PozoristeId = 1,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 8, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#3 Helverova noc 15/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 1,
-                    PozoristeId = 1,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 15, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#4 Helverova noc 22/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 1,
-                    PozoristeId = 1,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 22, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#5 Helverova noc 29/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 1,
-                    PozoristeId = 1,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 29, 20, 0, 0),
+                    DatumVrijeme = new DateTime(2021, 10, 1, 20, 0, 0),
                 });
                 context.SaveChanges();
 
-                //#6 Mirna Bosna 3/6/21
+                //#2 Mirna Bosna 3/10/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 2,
                     PozoristeId = 1,
                     Napomena = "",
                     KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 3, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#7 Mirna Bosna 10/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 2,
-                    PozoristeId = 1,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 10, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#8 Mirna Bosna 17/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 2,
-                    PozoristeId = 1,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 17, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#9 Mirna Bosna 24/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 2,
-                    PozoristeId = 1,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 24, 20, 0, 0),
+                    DatumVrijeme = new DateTime(2021, 10, 3, 20, 0, 0),
                 });
                 context.SaveChanges();
 
-                //#10 Knjiga mojih zivota 5/6/21
+                //#3 Knjiga mojih zivota 5/10/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 3,
                     PozoristeId = 1,
                     Napomena = "",
                     KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 5, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#11 Knjiga mojih zivota 12/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 3,
-                    PozoristeId = 1,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 12, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#12 Knjiga mojih zivota 19/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 3,
-                    PozoristeId = 1,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 19, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#13 Knjiga mojih zivota 26/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 3,
-                    PozoristeId = 1,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 26, 20, 0, 0),
+                    DatumVrijeme = new DateTime(2021, 10, 5, 20, 0, 0),
                 });
                 context.SaveChanges();
 
-                //#14 Tajna dzema od malina 2/6/21
+                //#4 Tajna dzema od malina 2/10/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 4,
                     PozoristeId = 3,
                     Napomena = "",
                     KorisnikId = 3,
-                    DatumVrijeme = new DateTime(2021, 6, 2, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#15 Tajna dzema od malina 9/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 4,
-                    PozoristeId = 3,
-                    Napomena = "",
-                    KorisnikId = 3,
-                    DatumVrijeme = new DateTime(2021, 6, 9, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#16 Tajna dzema od malina 16/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 4,
-                    PozoristeId = 3,
-                    Napomena = "",
-                    KorisnikId = 3,
-                    DatumVrijeme = new DateTime(2021, 6, 16, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#17 Tajna dzema od malina 23/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 4,
-                    PozoristeId = 3,
-                    Napomena = "",
-                    KorisnikId = 3,
-                    DatumVrijeme = new DateTime(2021, 6, 23, 20, 0, 0),
+                    DatumVrijeme = new DateTime(2021, 10, 2, 20, 0, 0),
                 });
                 context.SaveChanges();
 
-                //#18 Ay Carmela 4/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 5,
-                    PozoristeId = 3,
-                    Napomena = "",
-                    KorisnikId = 3,
-                    DatumVrijeme = new DateTime(2021, 6, 4, 20, 0, 0),
-                });
-                context.SaveChanges();
-
-                //#19 Dogville 1/6/21
+                //#5 Dogville 1/10/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 6,
                     PozoristeId = 2,
                     Napomena = "",
                     KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 1, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#20 Dogville 15/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 6,
-                    PozoristeId = 2,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 15, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#21 Dogville 29/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 6,
-                    PozoristeId = 2,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 29, 20, 0, 0),
+                    DatumVrijeme = new DateTime(2021, 10, 1, 20, 0, 0),
                 });
                 context.SaveChanges();
 
-                //#22 Snijeg 2/6/21
+                //#6 Snijeg 2/10/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 7,
                     PozoristeId = 2,
                     Napomena = "",
                     KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 2, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#23 Snijeg 16/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 7,
-                    PozoristeId = 2,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 16, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#24 Snijeg 30/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 7,
-                    PozoristeId = 2,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 30, 20, 0, 0),
+                    DatumVrijeme = new DateTime(2021, 10, 2, 20, 0, 0),
                 });
                 context.SaveChanges();
 
-                //#25 Princeza na zrnu graska 2/6/21
+                //#7 Princeza na zrnu graska 2/11/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 8,
                     PozoristeId = 4,
                     Napomena = "",
                     KorisnikId = 3,
-                    DatumVrijeme = new DateTime(2021, 6, 2, 15, 0, 0),
-                });
-                context.SaveChanges();
-                //#26 Princeza na zrnu graska 16/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 8,
-                    PozoristeId = 4,
-                    Napomena = "",
-                    KorisnikId = 3,
-                    DatumVrijeme = new DateTime(2021, 6, 16, 15, 0, 0),
+                    DatumVrijeme = new DateTime(2021, 11, 2, 15, 0, 0),
                 });
                 context.SaveChanges();
 
-                //#27 Zaljubljeni krokodil 3/6/21
+                //#8 Zaljubljeni krokodil 3/11/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 9,
                     PozoristeId = 4,
                     Napomena = "",
                     KorisnikId = 3,
-                    DatumVrijeme = new DateTime(2021, 6, 3, 15, 0, 0),
-                });
-                context.SaveChanges();
-                //#28 Zaljubljeni krokodil 17/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 9,
-                    PozoristeId = 4,
-                    Napomena = "",
-                    KorisnikId = 3,
-                    DatumVrijeme = new DateTime(2021, 6, 17, 15, 0, 0),
+                    DatumVrijeme = new DateTime(2021, 11, 3, 15, 0, 0),
                 });
                 context.SaveChanges();
 
-                //#29 Patkica Blatkica 4/6/21
+                //#9 Patkica Blatkica 4/11/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 10,
                     PozoristeId = 4,
                     Napomena = "",
                     KorisnikId = 3,
-                    DatumVrijeme = new DateTime(2021, 6, 4, 14, 0, 0),
-                });
-                context.SaveChanges();
-                //#30 Patkica Blatkica 18/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 10,
-                    PozoristeId = 4,
-                    Napomena = "",
-                    KorisnikId = 3,
-                    DatumVrijeme = new DateTime(2021, 6, 18, 14, 0, 0),
+                    DatumVrijeme = new DateTime(2021, 11, 4, 14, 0, 0),
                 });
                 context.SaveChanges();
 
-                //#31 Okovani prometej 5/6/21
+                //#10 Okovani prometej 5/10/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 11,
                     PozoristeId = 2,
                     Napomena = "",
                     KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 5, 20, 0, 0),
-                });
-                context.SaveChanges();
-                //#32 Okovani prometej 19/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 11,
-                    PozoristeId = 2,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 19, 20, 0, 0),
+                    DatumVrijeme = new DateTime(2021, 10, 5, 20, 0, 0),
                 });
                 context.SaveChanges();
 
-                //#33 Palcica 12/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 12,
-                    PozoristeId = 2,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 12, 18, 0, 0),
-                });
-                context.SaveChanges();
-                //#34 Palcica 26/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 12,
-                    PozoristeId = 2,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 26, 18, 0, 0),
-                });
-                context.SaveChanges();
-
-                //#35 Uspavana ljepotica 12/6/21
+                //#11 Uspavana ljepotica 12/11/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 13,
                     PozoristeId = 2,
                     Napomena = "",
                     KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 12, 21, 0, 0),
-                });
-                context.SaveChanges();
-                //#36 Uspavana ljepotica 26/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 13,
-                    PozoristeId = 2,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 26, 21, 0, 0),
+                    DatumVrijeme = new DateTime(2021, 11, 12, 21, 0, 0),
                 });
                 context.SaveChanges();
 
-                //#37 La Traviata 6/6/21
+                //#12 La Traviata 6/11/21
                 context.Izvodjenja.Add(new Izvodjenja()
                 {
                     PredstavaId = 14,
                     PozoristeId = 2,
                     Napomena = "",
                     KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 6, 21, 0, 0),
-                });
-                context.SaveChanges();
-
-                //#38 Don Giovanni 13/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 15,
-                    PozoristeId = 2,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 13, 21, 0, 0),
-                });
-                context.SaveChanges();
-
-                //#39 Rigoletto 20/6/21
-                context.Izvodjenja.Add(new Izvodjenja()
-                {
-                    PredstavaId = 16,
-                    PozoristeId = 2,
-                    Napomena = "",
-                    KorisnikId = 2,
-                    DatumVrijeme = new DateTime(2021, 6, 20, 21, 0, 0),
+                    DatumVrijeme = new DateTime(2021, 11, 6, 21, 0, 0),
                 });
                 context.SaveChanges();
 
@@ -1481,49 +1201,50 @@ namespace SaTeatar.WebAPI
 
             if (!context.IzvodjenjaZone.Any(x => x.IzvodjenjeId == 1))
             {
-                //# Helverova noc
+                //#1 Helverova noc 1/10/21
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 1,
                     ZonaId = 1,
                     Cijena = 20,
-                     
-                });
-                context.SaveChanges();
 
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 1,
-                    ZonaId = 2,
-                    Cijena = 10,
-                     
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 1,
+                    ZonaId = 2,
+                    Cijena = 10,
+
+                });
+                context.SaveChanges();
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 1,
                     ZonaId = 3,
                     Cijena = 5,
-                     
+
+                });
+                context.SaveChanges();
+
+                //#2 Mirna Bosna 3/10/21
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 2,
+                    ZonaId = 1,
+                    Cijena = 15,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 2,
-                    ZonaId = 1,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 2,
                     ZonaId = 2,
                     Cijena = 10,
-                     
+
                 });
                 context.SaveChanges();
 
@@ -1532,25 +1253,26 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 2,
                     ZonaId = 3,
                     Cijena = 5,
-                     
+
+                });
+                context.SaveChanges();
+
+                //#3 Knjiga mojih zivota 5/10/21
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 3,
+                    ZonaId = 1,
+                    Cijena = 10,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 3,
-                    ZonaId = 1,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 3,
                     ZonaId = 2,
-                    Cijena = 10,
-                     
+                    Cijena = 7,
+
                 });
                 context.SaveChanges();
 
@@ -1559,1349 +1281,641 @@ namespace SaTeatar.WebAPI
                     IzvodjenjeId = 3,
                     ZonaId = 3,
                     Cijena = 5,
-                     
+
+                });
+                context.SaveChanges();
+
+                //#4 Tajna dzema od malina 2/10/21
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 4,
+                    ZonaId = 8,
+                    Cijena = 15,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 4,
-                    ZonaId = 1,
-                    Cijena = 20,
-                     
+                    ZonaId = 9,
+                    Cijena = 10,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 4,
-                    ZonaId = 2,
-                    Cijena = 10,
-                     
+                    ZonaId = 10,
+                    Cijena = 5,
+
                 });
                 context.SaveChanges();
 
+                //#5 Dogville 1/10/21
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
-                    IzvodjenjeId = 4,
-                    ZonaId = 3,
-                    Cijena = 5,
-                     
+                    IzvodjenjeId = 5,
+                    ZonaId = 4,
+                    Cijena = 20,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 5,
-                    ZonaId = 1,
-                    Cijena = 20,
-                     
+                    ZonaId = 5,
+                    Cijena = 15,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 5,
-                    ZonaId = 2,
+                    ZonaId = 6,
                     Cijena = 10,
-                     
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 5,
-                    ZonaId = 3,
+                    ZonaId = 7,
                     Cijena = 5,
-                     
+
                 });
                 context.SaveChanges();
 
-                //# Mirna Bosna
+                //#6 Snijeg 2/10/21
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 6,
-                    ZonaId = 1,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
+                    ZonaId = 4,
+                    Cijena = 20,
 
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 6,
-                    ZonaId = 2,
-                    Cijena = 10,
-                     
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 6,
-                    ZonaId = 3,
+                    ZonaId = 5,
+                    Cijena = 15,
+
+                });
+                context.SaveChanges();
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 6,
+                    ZonaId = 6,
+                    Cijena = 10,
+
+                });
+                context.SaveChanges();
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 6,
+                    ZonaId = 7,
                     Cijena = 5,
-                     
+
+                });
+                context.SaveChanges();
+
+
+                //#7 Princeza na zrnu graska 2/11/21
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 7,
+                    ZonaId = 11,
+                    Cijena = 15,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 7,
-                    ZonaId = 1,
-                    Cijena = 15,
-                     
+                    ZonaId = 12,
+                    Cijena = 10,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 7,
-                    ZonaId = 2,
-                    Cijena = 10,
-                     
+                    ZonaId = 13,
+                    Cijena = 5,
+
                 });
                 context.SaveChanges();
 
+
+                //#8 Zaljubljeni krokodil 3/11/21
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
-                    IzvodjenjeId = 7,
-                    ZonaId = 3,
-                    Cijena = 5,
-                     
+                    IzvodjenjeId = 8,
+                    ZonaId = 11,
+                    Cijena = 15,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 8,
-                    ZonaId = 1,
-                    Cijena = 15,
-                     
+                    ZonaId = 12,
+                    Cijena = 10,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 8,
-                    ZonaId = 2,
-                    Cijena = 10,
-                     
+                    ZonaId = 13,
+                    Cijena = 5,
+
                 });
                 context.SaveChanges();
 
+                //#9 Patkica Blatkica 4/11/21
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
-                    IzvodjenjeId = 8,
-                    ZonaId = 3,
-                    Cijena = 5,
-                     
+                    IzvodjenjeId = 9,
+                    ZonaId = 11,
+                    Cijena = 15,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 9,
-                    ZonaId = 1,
-                    Cijena = 15,
-                     
+                    ZonaId = 12,
+                    Cijena = 10,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 9,
-                    ZonaId = 2,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 9,
-                    ZonaId = 3,
+                    ZonaId = 13,
                     Cijena = 5,
-                     
+
                 });
                 context.SaveChanges();
 
-                //# Knjiga mojih zivota
+                //#10 Okovani prometej 5/10/21
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 10,
-                    ZonaId = 1,
-                    Cijena = 15,
-                     
+                    ZonaId = 4,
+                    Cijena = 40,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 10,
-                    ZonaId = 2,
-                    Cijena = 10,
-                     
+                    ZonaId = 5,
+                    Cijena = 30,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 10,
-                    ZonaId = 3,
-                    Cijena = 5,
-                     
+                    ZonaId = 6,
+                    Cijena = 20,
+
+                });
+                context.SaveChanges();
+
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 10,
+                    ZonaId = 7,
+                    Cijena = 10,
+
+                });
+                context.SaveChanges();
+
+
+                //#11 Uspavana ljepotica 12/11/21
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 11,
+                    ZonaId = 4,
+                    Cijena = 40,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 11,
-                    ZonaId = 1,
-                    Cijena = 15,
-                     
+                    ZonaId = 5,
+                    Cijena = 30,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 11,
-                    ZonaId = 2,
-                    Cijena = 10,
-                     
+                    ZonaId = 6,
+                    Cijena = 20,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 11,
-                    ZonaId = 3,
-                    Cijena = 5,
-                     
+                    ZonaId = 7,
+                    Cijena = 10,
+
+                });
+                context.SaveChanges();
+
+                //#12 La Traviata 6/11/21
+                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
+                {
+                    IzvodjenjeId = 12,
+                    ZonaId = 4,
+                    Cijena = 40,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 12,
-                    ZonaId = 1,
-                    Cijena = 15,
-                     
+                    ZonaId = 5,
+                    Cijena = 30,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 12,
-                    ZonaId = 2,
-                    Cijena = 10,
-                     
+                    ZonaId = 6,
+                    Cijena = 20,
+
                 });
                 context.SaveChanges();
 
                 context.IzvodjenjaZone.Add(new IzvodjenjaZone()
                 {
                     IzvodjenjeId = 12,
-                    ZonaId = 3,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 13,
-                    ZonaId = 1,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 13,
-                    ZonaId = 2,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 13,
-                    ZonaId = 3,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                //Tajna dzema od malina
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 14,
-                    ZonaId = 8,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 14,
-                    ZonaId = 9,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 14,
-                    ZonaId = 10,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 15,
-                    ZonaId = 8,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 15,
-                    ZonaId = 9,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 15,
-                    ZonaId = 10,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 16,
-                    ZonaId = 8,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 16,
-                    ZonaId = 9,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 16,
-                    ZonaId = 10,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 17,
-                    ZonaId = 8,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 17,
-                    ZonaId = 9,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 17,
-                    ZonaId = 10,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                //Ay Carmela
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 18,
-                    ZonaId = 8,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 18,
-                    ZonaId = 9,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 18,
-                    ZonaId = 10,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                //Dogville
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 19,
-                    ZonaId = 4,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 19,
-                    ZonaId = 5,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 19,
-                    ZonaId = 6,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 19,
-                    ZonaId = 7,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 20,
-                    ZonaId = 4,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 20,
-                    ZonaId = 5,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 20,
-                    ZonaId = 6,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 20,
-                    ZonaId = 7,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 21,
-                    ZonaId = 4,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 21,
-                    ZonaId = 5,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 21,
-                    ZonaId = 6,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 21,
-                    ZonaId = 7,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                //Snijeg 
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 22,
-                    ZonaId = 4,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 22,
-                    ZonaId = 5,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 22,
-                    ZonaId = 6,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 22,
-                    ZonaId = 7,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 23,
-                    ZonaId = 4,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 23,
-                    ZonaId = 5,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 23,
-                    ZonaId = 6,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 23,
-                    ZonaId = 7,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 24,
-                    ZonaId = 4,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 24,
-                    ZonaId = 5,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 24,
-                    ZonaId = 6,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 24,
-                    ZonaId = 7,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                //Princeza na zrnu graska 
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 25,
-                    ZonaId = 11,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 25,
-                    ZonaId = 12,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 25,
-                    ZonaId = 13,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 26,
-                    ZonaId = 11,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 26,
-                    ZonaId = 12,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 26,
-                    ZonaId = 13,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                //Zaljubljeni krokodil
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 27,
-                    ZonaId = 11,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 27,
-                    ZonaId = 12,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 27,
-                    ZonaId = 13,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 28,
-                    ZonaId = 11,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 28,
-                    ZonaId = 12,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 28,
-                    ZonaId = 13,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                //Patkica Blatkica
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 29,
-                    ZonaId = 11,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 29,
-                    ZonaId = 12,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 29,
-                    ZonaId = 13,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 30,
-                    ZonaId = 11,
-                    Cijena = 15,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 30,
-                    ZonaId = 12,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 30,
-                    ZonaId = 13,
-                    Cijena = 5,
-                     
-                });
-                context.SaveChanges();
-
-                //Okovani prometej
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 31,
-                    ZonaId = 4,
-                    Cijena = 40,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 31,
-                    ZonaId = 5,
-                    Cijena = 30,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 31,
-                    ZonaId = 6,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 32,
                     ZonaId = 7,
                     Cijena = 10,
-                     
+
                 });
                 context.SaveChanges();
 
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 31,
-                    ZonaId = 4,
-                    Cijena = 40,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 32,
-                    ZonaId = 5,
-                    Cijena = 30,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 32,
-                    ZonaId = 6,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 32,
-                    ZonaId = 7,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                //Palcica
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 33,
-                    ZonaId = 4,
-                    Cijena = 40,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 33,
-                    ZonaId = 5,
-                    Cijena = 30,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 33,
-                    ZonaId = 6,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 33,
-                    ZonaId = 7,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 34,
-                    ZonaId = 4,
-                    Cijena = 40,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 34,
-                    ZonaId = 5,
-                    Cijena = 30,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 34,
-                    ZonaId = 6,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 34,
-                    ZonaId = 7,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                //Uspavana ljepotica
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 35,
-                    ZonaId = 4,
-                    Cijena = 40,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 35,
-                    ZonaId = 5,
-                    Cijena = 30,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 35,
-                    ZonaId = 6,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 35,
-                    ZonaId = 7,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 36,
-                    ZonaId = 4,
-                    Cijena = 40,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 36,
-                    ZonaId = 5,
-                    Cijena = 30,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 36,
-                    ZonaId = 6,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 36,
-                    ZonaId = 7,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                //La Traviata
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 37,
-                    ZonaId = 4,
-                    Cijena = 40,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 37,
-                    ZonaId = 5,
-                    Cijena = 30,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 37,
-                    ZonaId = 6,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 37,
-                    ZonaId = 7,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                //Don Giovanni
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 38,
-                    ZonaId = 4,
-                    Cijena = 40,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 38,
-                    ZonaId = 5,
-                    Cijena = 30,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 38,
-                    ZonaId = 6,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 38,
-                    ZonaId = 7,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
-
-                //Rigoletto
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 39,
-                    ZonaId = 4,
-                    Cijena = 40,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 39,
-                    ZonaId = 5,
-                    Cijena = 30,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 39,
-                    ZonaId = 6,
-                    Cijena = 20,
-                     
-                });
-                context.SaveChanges();
-
-                context.IzvodjenjaZone.Add(new IzvodjenjaZone()
-                {
-                    IzvodjenjeId = 39,
-                    ZonaId = 7,
-                    Cijena = 10,
-                     
-                });
-                context.SaveChanges();
             }
 
             if (!context.Karte.Any(x => x.KupacId == 1))
             {
-                //Helverova noc, Izvodjenja 1 - 5 - Kupci 1,2,4,5,7,8,9,10
-                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 1, IzvodjenjeZonaId = 1, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 1, IzvodjenjeZonaId = 1, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 2, IzvodjenjeZonaId = 2, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 2, IzvodjenjeZonaId = 2, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 2, IzvodjenjeZonaId = 2, Placeno = false, });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 2, KupacId = 4, IzvodjenjeZonaId = 5, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 2, KupacId = 4, IzvodjenjeZonaId = 5, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 2, KupacId = 5, IzvodjenjeZonaId = 6, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 2, KupacId = 7, IzvodjenjeZonaId = 6, Placeno = false, });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 3, KupacId = 8, IzvodjenjeZonaId = 9, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 3, KupacId = 8, IzvodjenjeZonaId = 9, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 3, KupacId = 8, IzvodjenjeZonaId = 9, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 3, KupacId = 8, IzvodjenjeZonaId = 9, Placeno = false, });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 4, KupacId = 9, IzvodjenjeZonaId = 10, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 4, KupacId = 9, IzvodjenjeZonaId = 10, Placeno = false, });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 5, KupacId = 10, IzvodjenjeZonaId = 13, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 5, KupacId = 10, IzvodjenjeZonaId = 13, Placeno = false,  });
-
-                //Mirna Bosna, Izvodjenja 6 - 9 - Kupci 1, 3, 5, 9, 
-                context.Karte.Add(new Karte() { IzvodjenjeId = 6, KupacId = 1, IzvodjenjeZonaId = 16, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 6, KupacId = 1, IzvodjenjeZonaId = 16, Placeno = false, });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 7, KupacId = 3, IzvodjenjeZonaId = 20, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 7, KupacId = 3, IzvodjenjeZonaId = 20, Placeno = false, });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 8, KupacId = 5, IzvodjenjeZonaId = 24, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 8, KupacId = 5, IzvodjenjeZonaId = 24, Placeno = false, });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 9, KupacId = 9, IzvodjenjeZonaId = 25, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 9, KupacId = 9, IzvodjenjeZonaId = 25, Placeno = false, });
-
-                //Knjiga mojih zivota, Izvodjenja 10 - 13 - Kupci 2, 6, 8, 10
-                context.Karte.Add(new Karte() { IzvodjenjeId = 10, KupacId = 2, IzvodjenjeZonaId = 28, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 10, KupacId = 2, IzvodjenjeZonaId = 28, Placeno = false, });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 11, KupacId = 6, IzvodjenjeZonaId = 32, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 11, KupacId = 6, IzvodjenjeZonaId = 32, Placeno = false, });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 12, KupacId = 8, IzvodjenjeZonaId = 34, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 12, KupacId = 8, IzvodjenjeZonaId = 34, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 12, KupacId = 8, IzvodjenjeZonaId = 34, Placeno = false, });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 13, KupacId = 10, IzvodjenjeZonaId = 38, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 13, KupacId = 10, IzvodjenjeZonaId = 38, Placeno = false, });
-
-                //Tajna dzema od malina, Izvodjenja 14 - 17 - Kupci 1, 5, 7, 9
-                context.Karte.Add(new Karte() { IzvodjenjeId = 14, KupacId = 1, IzvodjenjeZonaId = 40, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 14, KupacId = 1, IzvodjenjeZonaId = 40, Placeno = false,  });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 15, KupacId = 5, IzvodjenjeZonaId = 43, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 15, KupacId = 5, IzvodjenjeZonaId = 43, Placeno = false,  });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 16, KupacId = 7, IzvodjenjeZonaId = 47, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 16, KupacId = 7, IzvodjenjeZonaId = 47, Placeno = false,  });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 17, KupacId = 9, IzvodjenjeZonaId = 51, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 17, KupacId = 9, IzvodjenjeZonaId = 51, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 17, KupacId = 9, IzvodjenjeZonaId = 51, Placeno = false,  });
-
-                //Ay Carmela, Izvodjenje 18 - Kupci 1,2,7,8,9
-                context.Karte.Add(new Karte() { IzvodjenjeId = 18, KupacId = 1, IzvodjenjeZonaId = 52, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 18, KupacId = 2, IzvodjenjeZonaId = 52, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 18, KupacId = 7, IzvodjenjeZonaId = 52, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 18, KupacId = 8, IzvodjenjeZonaId = 52, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 18, KupacId = 9, IzvodjenjeZonaId = 52, Placeno = false,  });
-
-                //Dogville, Izvodjenja 19 - 21 - Kupci 3, 7, 5, 10
-                context.Karte.Add(new Karte() { IzvodjenjeId = 19, KupacId = 3, IzvodjenjeZonaId = 55, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 19, KupacId = 3, IzvodjenjeZonaId = 55, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 19, KupacId = 7, IzvodjenjeZonaId = 56, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 19, KupacId = 7, IzvodjenjeZonaId = 56, Placeno = false,  });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 20, KupacId = 10, IzvodjenjeZonaId = 61, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 20, KupacId = 10, IzvodjenjeZonaId = 61, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 20, KupacId = 10, IzvodjenjeZonaId = 61, Placeno = false, });
-
-                context.Karte.Add(new Karte() { IzvodjenjeId = 21, KupacId = 5, IzvodjenjeZonaId = 64, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 21, KupacId = 5, IzvodjenjeZonaId = 64, Placeno = false, });
+                var DatumNarudzbe = new DateTime(2021, 8, 1, 20, 0, 0);
+                var paymentId = "xyz";
 
 
-                //Snijeg, Izvodjenja 22 - 24 - Kupci 3,4,7
-                context.Karte.Add(new Karte() { IzvodjenjeId = 22, KupacId = 3, IzvodjenjeZonaId = 67, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 22, KupacId = 3, IzvodjenjeZonaId = 67, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 22, KupacId = 3, IzvodjenjeZonaId = 67, Placeno = false,  });
+                /////////
 
-                context.Karte.Add(new Karte() { IzvodjenjeId = 23, KupacId = 4, IzvodjenjeZonaId = 72, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 23, KupacId = 4, IzvodjenjeZonaId = 72, Placeno = false,  });
+                //k 1,2
+                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 1, IzvodjenjeZonaId = 1, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 1, IzvodjenjeZonaId = 1, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
 
-                context.Karte.Add(new Karte() { IzvodjenjeId = 24, KupacId = 7, IzvodjenjeZonaId = 77, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 24, KupacId = 7, IzvodjenjeZonaId = 77, Placeno = false,  });
+                //n1
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe, Iznos = 40, PaymentId = paymentId, KupacId = 1 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 1, NarudzbaId = 1 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 2, NarudzbaId = 1 });
+                context.SaveChanges();
 
-                //Princeza na zrnu graska, Izvodjenja 25, 26 - Kupci 2,3,6
-                context.Karte.Add(new Karte() { IzvodjenjeId = 25, KupacId = 2, IzvodjenjeZonaId = 79, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 25, KupacId = 2, IzvodjenjeZonaId = 79, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 25, KupacId = 3, IzvodjenjeZonaId = 80, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 25, KupacId = 3, IzvodjenjeZonaId = 80, Placeno = false,  });
+                //k 3,4
+                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 2, IzvodjenjeZonaId = 2, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 2, IzvodjenjeZonaId = 2, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
 
-                context.Karte.Add(new Karte() { IzvodjenjeId = 26, KupacId = 6, IzvodjenjeZonaId = 84, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 26, KupacId = 6, IzvodjenjeZonaId = 84, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 26, KupacId = 6, IzvodjenjeZonaId = 84, Placeno = false,  });
+                //n2
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(1), Iznos = 20, PaymentId = paymentId, KupacId = 2 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 3, NarudzbaId = 2 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 4, NarudzbaId = 2 });
+                context.SaveChanges();
 
-                //Zaljubljeni krokodil, Izvodjenja 27,28 - Kupci 1,9,10
-                context.Karte.Add(new Karte() { IzvodjenjeId = 27, KupacId = 1, IzvodjenjeZonaId = 85, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 27, KupacId = 1, IzvodjenjeZonaId = 85, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 27, KupacId = 9, IzvodjenjeZonaId = 86, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 27, KupacId = 9, IzvodjenjeZonaId = 86, Placeno = false,  });
+                //k 5,6
+                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 3, IzvodjenjeZonaId = 3, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 1, KupacId = 3, IzvodjenjeZonaId = 3, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
 
-                context.Karte.Add(new Karte() { IzvodjenjeId = 28, KupacId = 10, IzvodjenjeZonaId = 90, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 28, KupacId = 10, IzvodjenjeZonaId = 90, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 28, KupacId = 10, IzvodjenjeZonaId = 90, Placeno = false,  });
+                //n3
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(2), Iznos = 10, PaymentId = paymentId, KupacId = 3 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 5, NarudzbaId = 3 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 6, NarudzbaId = 3 });
+                context.SaveChanges();
 
-                //Patkica Blatkica, Izvodjenja 29,30 - Kupci 3,6,10
-                context.Karte.Add(new Karte() { IzvodjenjeId = 29, KupacId = 3, IzvodjenjeZonaId = 91, Placeno = false,});
-                context.Karte.Add(new Karte() { IzvodjenjeId = 29, KupacId = 3, IzvodjenjeZonaId = 91, Placeno = false,});
-                context.Karte.Add(new Karte() { IzvodjenjeId = 29, KupacId = 6, IzvodjenjeZonaId = 92, Placeno = false,});
-                context.Karte.Add(new Karte() { IzvodjenjeId = 29, KupacId = 6, IzvodjenjeZonaId = 92, Placeno = false,});
+                /////////
 
-                context.Karte.Add(new Karte() { IzvodjenjeId = 30, KupacId = 10, IzvodjenjeZonaId = 96, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 30, KupacId = 10, IzvodjenjeZonaId = 96, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 30, KupacId = 10, IzvodjenjeZonaId = 96, Placeno = false,  });
+                //k 7,8
+                context.Karte.Add(new Karte() { IzvodjenjeId = 2, KupacId = 8, IzvodjenjeZonaId = 4, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 2, KupacId = 8, IzvodjenjeZonaId = 4, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
 
-                //Okovani prometej, Izvodjenja 31,32 - Kupci - 4,8,9,10
-                context.Karte.Add(new Karte() { IzvodjenjeId = 31, KupacId = 4, IzvodjenjeZonaId = 97, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 31, KupacId = 4, IzvodjenjeZonaId = 97, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 31, KupacId = 8, IzvodjenjeZonaId = 98, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 31, KupacId = 8, IzvodjenjeZonaId = 98, Placeno = false, });
+                //n4
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(3), Iznos = 30, PaymentId = paymentId, KupacId = 8 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 7, NarudzbaId = 4 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 8, NarudzbaId = 4 });
+                context.SaveChanges();
 
-                context.Karte.Add(new Karte() { IzvodjenjeId = 32, KupacId = 9, IzvodjenjeZonaId = 103, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 32, KupacId = 9, IzvodjenjeZonaId = 103, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 32, KupacId = 10, IzvodjenjeZonaId = 104, Placeno = false,});
-                context.Karte.Add(new Karte() { IzvodjenjeId = 32, KupacId = 10, IzvodjenjeZonaId = 104, Placeno = false,});
-                context.Karte.Add(new Karte() { IzvodjenjeId = 32, KupacId = 10, IzvodjenjeZonaId = 104, Placeno = false,});
+                //k 9,10
+                context.Karte.Add(new Karte() { IzvodjenjeId = 2, KupacId = 4, IzvodjenjeZonaId = 6, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 2, KupacId = 4, IzvodjenjeZonaId = 6, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n5
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(4), Iznos = 10, PaymentId = paymentId, KupacId = 4 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 9, NarudzbaId = 5 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 10, NarudzbaId = 5 });
+                context.SaveChanges();
+
+                ///// 
+                //k 11,12
+                context.Karte.Add(new Karte() { IzvodjenjeId = 3, KupacId = 1, IzvodjenjeZonaId = 7, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 3, KupacId = 1, IzvodjenjeZonaId = 7, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n6
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(5), Iznos = 20, PaymentId = paymentId, KupacId = 1 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 11, NarudzbaId = 6 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 12, NarudzbaId = 6 });
+                context.SaveChanges();
+
+                //k 13,14
+                context.Karte.Add(new Karte() { IzvodjenjeId = 3, KupacId = 3, IzvodjenjeZonaId = 8, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 3, KupacId = 3, IzvodjenjeZonaId = 8, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n7
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(6), Iznos = 14, PaymentId = paymentId, KupacId = 3 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 13, NarudzbaId = 7 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 14, NarudzbaId = 7 });
+                context.SaveChanges();
+
+                //////////
+
+                //k 15,16
+                context.Karte.Add(new Karte() { IzvodjenjeId = 4, KupacId = 5, IzvodjenjeZonaId = 11, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 4, KupacId = 5, IzvodjenjeZonaId = 11, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n8
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(7), Iznos = 20, PaymentId = paymentId, KupacId = 5 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 15, NarudzbaId = 8 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 16, NarudzbaId = 8 });
+                context.SaveChanges();
+
+                //k 17,18
+                context.Karte.Add(new Karte() { IzvodjenjeId = 4, KupacId = 9, IzvodjenjeZonaId = 12, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 4, KupacId = 9, IzvodjenjeZonaId = 12, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n9
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(8), Iznos = 10, PaymentId = paymentId, KupacId = 9 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 17, NarudzbaId = 9 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 18, NarudzbaId = 9 });
+                context.SaveChanges();
+
+                //////
+                //k 19,20
+                context.Karte.Add(new Karte() { IzvodjenjeId = 5, KupacId = 2, IzvodjenjeZonaId = 13, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 5, KupacId = 2, IzvodjenjeZonaId = 13, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n10
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(9), Iznos = 40, PaymentId = paymentId, KupacId = 2 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 19, NarudzbaId = 10 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 20, NarudzbaId = 10 });
+                context.SaveChanges();
+
+                // k 21,22                                                                                                   
+                context.Karte.Add(new Karte() { IzvodjenjeId = 5, KupacId = 6, IzvodjenjeZonaId = 16, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 5, KupacId = 6, IzvodjenjeZonaId = 16, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n11
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(10), Iznos = 10, PaymentId = paymentId, KupacId = 6 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 21, NarudzbaId = 11 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 22, NarudzbaId = 11 });
+                context.SaveChanges();
+
+                ////
+                //k 23, 24
+                context.Karte.Add(new Karte() { IzvodjenjeId = 6, KupacId = 8, IzvodjenjeZonaId = 18, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 6, KupacId = 8, IzvodjenjeZonaId = 18, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n12
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(11), Iznos = 30, PaymentId = paymentId, KupacId = 8 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 23, NarudzbaId = 12 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 24, NarudzbaId = 12 });
+                context.SaveChanges();
+
+                //k 25,26
+                context.Karte.Add(new Karte() { IzvodjenjeId = 6, KupacId = 10, IzvodjenjeZonaId = 19, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 6, KupacId = 10, IzvodjenjeZonaId = 19, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n13
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(12), Iznos = 20, PaymentId = paymentId, KupacId = 10 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 25, NarudzbaId = 13 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 26, NarudzbaId = 13 });
+                context.SaveChanges();
 
 
-                //Palcica, Izvodjenja 33,34 - Kupci 5,8,9,10
-                context.Karte.Add(new Karte() { IzvodjenjeId = 33, KupacId = 5, IzvodjenjeZonaId = 105, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 33, KupacId = 5, IzvodjenjeZonaId = 105, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 33, KupacId = 8, IzvodjenjeZonaId = 106, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 33, KupacId = 8, IzvodjenjeZonaId = 106, Placeno = false,  });
+                //k 27,28
+                context.Karte.Add(new Karte() { IzvodjenjeId = 7, KupacId = 1, IzvodjenjeZonaId = 22, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 7, KupacId = 1, IzvodjenjeZonaId = 22, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
 
-                context.Karte.Add(new Karte() { IzvodjenjeId = 34, KupacId = 9, IzvodjenjeZonaId = 109, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 34, KupacId = 9, IzvodjenjeZonaId = 109, Placeno = false,  });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 34, KupacId = 10, IzvodjenjeZonaId = 110, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 34, KupacId = 10, IzvodjenjeZonaId = 110, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 34, KupacId = 10, IzvodjenjeZonaId = 110, Placeno = false, });
+                //n14
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(13), Iznos = 20, PaymentId = paymentId, KupacId = 1 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 27, NarudzbaId = 14 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 28, NarudzbaId = 14 });
+                context.SaveChanges();
 
-                //Uspavana ljepotica, Izvodjenja 35, 36 - Kupci - 2,3,9,10
-                context.Karte.Add(new Karte() { IzvodjenjeId = 35, KupacId = 2, IzvodjenjeZonaId = 113, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 35, KupacId = 2, IzvodjenjeZonaId = 113, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 35, KupacId = 3, IzvodjenjeZonaId = 114, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 35, KupacId = 3, IzvodjenjeZonaId = 114, Placeno = false, });
+                //k 29, 30
+                context.Karte.Add(new Karte() { IzvodjenjeId = 7, KupacId = 5, IzvodjenjeZonaId = 23, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 7, KupacId = 5, IzvodjenjeZonaId = 23, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
 
-                context.Karte.Add(new Karte() { IzvodjenjeId = 36, KupacId = 9, IzvodjenjeZonaId = 119, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 36, KupacId = 9, IzvodjenjeZonaId = 119, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 36, KupacId = 10, IzvodjenjeZonaId = 120, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 36, KupacId = 10, IzvodjenjeZonaId = 120, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 36, KupacId = 10, IzvodjenjeZonaId = 120, Placeno = false, });
+                //n15
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(14), Iznos = 10, PaymentId = paymentId, KupacId = 5 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 29, NarudzbaId = 15 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 30, NarudzbaId = 15 });
+                context.SaveChanges();
 
-                //La Traviata, Izvodjenje 37 - Kupci 7,9,10
-                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 7, IzvodjenjeZonaId = 121, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 7, IzvodjenjeZonaId = 121, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 7, IzvodjenjeZonaId = 121, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 7, IzvodjenjeZonaId = 121, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 9, IzvodjenjeZonaId = 123, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 9, IzvodjenjeZonaId = 123, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 10, IzvodjenjeZonaId = 124, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 10, IzvodjenjeZonaId = 124, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 37, KupacId = 10, IzvodjenjeZonaId = 124, Placeno = false, });
+                //k 31,32,33
+                context.Karte.Add(new Karte() { IzvodjenjeId = 8, KupacId = 7, IzvodjenjeZonaId = 25, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 8, KupacId = 7, IzvodjenjeZonaId = 25, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 8, KupacId = 7, IzvodjenjeZonaId = 25, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
 
-                //Don Giovanni, Izvodjenje 38 - Kupci 6,9,8
-                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 7, IzvodjenjeZonaId = 125, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 7, IzvodjenjeZonaId = 125, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 7, IzvodjenjeZonaId = 125, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 7, IzvodjenjeZonaId = 125, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 9, IzvodjenjeZonaId = 127, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 9, IzvodjenjeZonaId = 127, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 10, IzvodjenjeZonaId = 128, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 10, IzvodjenjeZonaId = 128, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 38, KupacId = 10, IzvodjenjeZonaId = 128, Placeno = false, });
+                //n16
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(15), Iznos = 30, PaymentId = paymentId, KupacId = 7 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 31, NarudzbaId = 16 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 32, NarudzbaId = 16 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 33, NarudzbaId = 16 });
+                context.SaveChanges();
 
-                //Rigoletto, Izvodjenje 39 - Kupci 5,6,9,10
-                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 5, IzvodjenjeZonaId = 129, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 5, IzvodjenjeZonaId = 129, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 6, IzvodjenjeZonaId = 130, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 6, IzvodjenjeZonaId = 130, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 9, IzvodjenjeZonaId = 131, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 9, IzvodjenjeZonaId = 131, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 10, IzvodjenjeZonaId = 132, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 10, IzvodjenjeZonaId = 132, Placeno = false, });
-                context.Karte.Add(new Karte() { IzvodjenjeId = 39, KupacId = 10, IzvodjenjeZonaId = 132, Placeno = false, });
+                //k 34, 35
+                context.Karte.Add(new Karte() { IzvodjenjeId = 9, KupacId = 9, IzvodjenjeZonaId = 27, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 9, KupacId = 9, IzvodjenjeZonaId = 27, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n17
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(16), Iznos = 30, PaymentId = paymentId, KupacId = 9 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 34, NarudzbaId = 17 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 35, NarudzbaId = 17 });
+                context.SaveChanges();
+
+                //k 36,37,38,39
+                context.Karte.Add(new Karte() { IzvodjenjeId = 10, KupacId = 4, IzvodjenjeZonaId = 30, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 10, KupacId = 4, IzvodjenjeZonaId = 30, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 10, KupacId = 4, IzvodjenjeZonaId = 30, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 10, KupacId = 4, IzvodjenjeZonaId = 30, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n18
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(17), Iznos = 160, PaymentId = paymentId, KupacId = 4 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 36, NarudzbaId = 18 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 37, NarudzbaId = 18 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 38, NarudzbaId = 18 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 39, NarudzbaId = 18 });
+                context.SaveChanges();
+
+                //k 40,41,42
+                context.Karte.Add(new Karte() { IzvodjenjeId = 11, KupacId = 6, IzvodjenjeZonaId = 35, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 11, KupacId = 6, IzvodjenjeZonaId = 35, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 11, KupacId = 6, IzvodjenjeZonaId = 35, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n19
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(18), Iznos = 90, PaymentId = paymentId, KupacId = 6 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 40, NarudzbaId = 19 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 41, NarudzbaId = 19 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 42, NarudzbaId = 19 });
+                context.SaveChanges();
+
+                //k 43,44
+                context.Karte.Add(new Karte() { IzvodjenjeId = 12, KupacId = 7, IzvodjenjeZonaId = 38, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 12, KupacId = 7, IzvodjenjeZonaId = 38, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n20
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(19), Iznos = 80, PaymentId = paymentId, KupacId = 7 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 43, NarudzbaId = 20 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 44, NarudzbaId = 20 });
+                context.SaveChanges();
+
+                //k 45,46
+                context.Karte.Add(new Karte() { IzvodjenjeId = 12, KupacId = 10, IzvodjenjeZonaId = 41, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+                context.Karte.Add(new Karte() { IzvodjenjeId = 12, KupacId = 10, IzvodjenjeZonaId = 41, Placeno = true, Qrcode = null, BrKarte = Guid.NewGuid() });
+                context.SaveChanges();
+
+                //n21
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(20), Iznos = 20, PaymentId = paymentId, KupacId = 10 });
+                context.SaveChanges();
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 45, NarudzbaId = 21 });
+                context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 46, NarudzbaId = 21 });
+                context.SaveChanges();
+
+                var karte = context.Karte.AsQueryable();
+                foreach (var item in karte)
+                {
+                    item.Qrcode = GenerisiQrCode(item.BrKarte.ToString());
+                    context.Karte.Update(item);
+                }
+                context.SaveChanges();
+
+
             }
 
             if (!context.Ocjene.Any(x => x.PredstavaId == 1))
             {
-            //#1 Kupac - Predstave 1, 2, 4, 5, 9
+                //#1 Kupac - Predstave 1, 2, 4, 5, 9
                 context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 2, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 4, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 5, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 9, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
 
-            //#2 Kupac - Predstave 1, 3, 5, 8, 13
+                //#2 Kupac - Predstave 1, 3, 5, 8, 13
                 context.Ocjene.Add(new Ocjene() { KupacId = 2, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 2, PredstavaId = 3, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 2, PredstavaId = 5, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 2, PredstavaId = 8, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 2, PredstavaId = 13, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
 
-            //#3 Kupac - Predstave 2, 6, 7, 8, 10, 13
+                //#3 Kupac - Predstave 2, 6, 7, 8, 10, 13
                 context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 2, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 6, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 7, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
@@ -2909,26 +1923,26 @@ namespace SaTeatar.WebAPI
                 context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 10, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 13, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 6) });
 
-            //#4 Kupac - Predstave 1, 7, 11
+                //#4 Kupac - Predstave 1, 7, 11
                 context.Ocjene.Add(new Ocjene() { KupacId = 4, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 4, PredstavaId = 7, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 4, PredstavaId = 11, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 6) });
 
-            //#5 Kupac - Predstave 1, 2, 4, 12, 16
+                //#5 Kupac - Predstave 1, 2, 4, 12, 16
                 context.Ocjene.Add(new Ocjene() { KupacId = 5, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 5, PredstavaId = 2, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 5, PredstavaId = 4, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 5, PredstavaId = 12, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 5, PredstavaId = 16, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
 
-            //#6 Kupac - Predstave 3, 8, 10, 15, 16
+                //#6 Kupac - Predstave 3, 8, 10, 15, 16
                 context.Ocjene.Add(new Ocjene() { KupacId = 6, PredstavaId = 3, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 6, PredstavaId = 8, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 6, PredstavaId = 10, Ocjena = 1, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 6, PredstavaId = 15, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 6, PredstavaId = 16, Ocjena = 1, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
 
-            //#7 Kupac - Predstave 1, 4, 5, 6, 7, 14
+                //#7 Kupac - Predstave 1, 4, 5, 6, 7, 14
                 context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 4, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 5, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
@@ -2936,7 +1950,7 @@ namespace SaTeatar.WebAPI
                 context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 7, Ocjena = 2, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 14, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 6) });
 
-            //#8 Kupac - Predstave 1, 3, 5, 11, 12, 15
+                //#8 Kupac - Predstave 1, 3, 5, 11, 12, 15
                 context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 3, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 5, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
@@ -2944,7 +1958,7 @@ namespace SaTeatar.WebAPI
                 context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 12, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 5) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 14, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 6) });
 
-            //#9 Kupac - Predstave 1, 2, 4, 5, 9, 11, 12, 13, 14, 15, 16
+                //#9 Kupac - Predstave 1, 2, 4, 5, 9, 11, 12, 13, 14, 15, 16
                 context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 2, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 4, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
@@ -2957,7 +1971,7 @@ namespace SaTeatar.WebAPI
                 context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 15, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 10) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 16, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 11) });
 
-            //#10 Kupac - Predstave 1, 3, 6, 9, 10, 11, 12, 13, 14, 16
+                //#10 Kupac - Predstave 1, 3, 6, 9, 10, 11, 12, 13, 14, 16
                 context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 3, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 6, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
@@ -2973,6 +1987,17 @@ namespace SaTeatar.WebAPI
 
             context.SaveChanges();
 
+        }
+
+        byte[] GenerisiQrCode(string InputText)
+        {
+            if (string.IsNullOrEmpty(InputText))
+                InputText = "";
+
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(InputText, QRCodeGenerator.ECCLevel.M);
+            PngByteQRCode qRCode = new PngByteQRCode(qrCodeData);
+            return qRCode.GetGraphic(20);
         }
     }
 }

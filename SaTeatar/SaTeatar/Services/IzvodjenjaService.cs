@@ -13,7 +13,7 @@ namespace SaTeatar.WebAPI.Services
     public class IzvodjenjaService : BaseCRUDService<mIzvodjenja, Izvodjenja, rIzvodjenjaSearch, rIzvodjenjaInsert, rIzvodjenjaUpdate>
         , IIzvodjenjaService
     {
-        public IzvodjenjaService(SaTeatarDbContext context, IMapper mapper) 
+        public IzvodjenjaService(SaTeatarBpContext context, IMapper mapper) 
             : base(context, mapper)
         {
         }

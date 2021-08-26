@@ -14,7 +14,7 @@ namespace SaTeatar.Services
     public class NarudzbaService : BaseCRUDService<mNarudzba, Narudzba, rNarudzbaSearch, rNarudzbaInsert, rNarudzbaUpdate>
         , INarudzbaService
     {
-        public NarudzbaService(SaTeatarDbContext context, IMapper mapper) 
+        public NarudzbaService(SaTeatarBpContext context, IMapper mapper) 
             : base(context, mapper)
         {
         }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SaTeatar.Migrations
 {
-    public partial class initialcreate : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -99,6 +99,29 @@ namespace SaTeatar.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_VrsteDjelatnika", x => x.VrstaDjelatnikaID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Narudzba",
+                columns: table => new
+                {
+                    NarudzbaID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    KupacID = table.Column<int>(type: "int", nullable: false),
+                    Datum = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Iznos = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaymentID = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    BrNarudzbe = table.Column<Guid>(type: "uniqueidentifier", nullable: true, defaultValueSql: "(newid())")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Narudzba", x => x.NarudzbaID);
+                    table.ForeignKey(
+                        name: "FK_Narudzba_Kupci",
+                        column: x => x.KupacID,
+                        principalTable: "Kupci",
+                        principalColumn: "KupacID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -267,7 +290,7 @@ namespace SaTeatar.Migrations
                     PredstavaID = table.Column<int>(type: "int", nullable: false),
                     Datum = table.Column<DateTime>(type: "datetime", nullable: false),
                     Ocjena = table.Column<int>(type: "int", nullable: false),
-                    Opis = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Opis = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -294,7 +317,10 @@ namespace SaTeatar.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     KupacID = table.Column<int>(type: "int", nullable: false),
                     PrestavaID = table.Column<int>(type: "int", nullable: false),
-                    VrijemeSlanja = table.Column<DateTime>(type: "datetime", nullable: false)
+                    VrijemeSlanja = table.Column<DateTime>(type: "datetime", nullable: false),
+                    Poruka = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
+                    Procitano = table.Column<bool>(type: "bit", nullable: false),
+                    DatumVazenja = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -347,8 +373,7 @@ namespace SaTeatar.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IzvodjenjeID = table.Column<int>(type: "int", nullable: false),
                     ZonaID = table.Column<int>(type: "int", nullable: false),
-                    Cijena = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Popust = table.Column<decimal>(type: "decimal(5,2)", nullable: true)
+                    Cijena = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -375,9 +400,10 @@ namespace SaTeatar.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     KupacID = table.Column<int>(type: "int", nullable: false),
                     IzvodjenjeID = table.Column<int>(type: "int", nullable: false),
-                    Sifra = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Placeno = table.Column<bool>(type: "bit", nullable: false),
-                    IzvodjenjeZonaID = table.Column<int>(type: "int", nullable: false)
+                    IzvodjenjeZonaID = table.Column<int>(type: "int", nullable: false),
+                    QRCode = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    BrKarte = table.Column<Guid>(type: "uniqueidentifier", nullable: true, defaultValueSql: "(newid())")
                 },
                 constraints: table =>
                 {
@@ -399,6 +425,32 @@ namespace SaTeatar.Migrations
                         column: x => x.KupacID,
                         principalTable: "Kupci",
                         principalColumn: "KupacID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NarudzbaStavke",
+                columns: table => new
+                {
+                    NarudzbaStavkeID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NarudzbaID = table.Column<int>(type: "int", nullable: false),
+                    KartaID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NarudzbaStavke", x => x.NarudzbaStavkeID);
+                    table.ForeignKey(
+                        name: "FK_NarudzbaStavke_Karte",
+                        column: x => x.KartaID,
+                        principalTable: "Karte",
+                        principalColumn: "KartaID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_NarudzbaStavke_Narudzba",
+                        column: x => x.NarudzbaID,
+                        principalTable: "Narudzba",
+                        principalColumn: "NarudzbaID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -458,6 +510,21 @@ namespace SaTeatar.Migrations
                 column: "UlogaID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Narudzba_KupacID",
+                table: "Narudzba",
+                column: "KupacID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NarudzbaStavke_KartaID",
+                table: "NarudzbaStavke",
+                column: "KartaID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NarudzbaStavke_NarudzbaID",
+                table: "NarudzbaStavke",
+                column: "NarudzbaID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Ocjene_KupacID",
                 table: "Ocjene",
                 column: "KupacID");
@@ -511,10 +578,10 @@ namespace SaTeatar.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Karte");
+                name: "KorisniciUloge");
 
             migrationBuilder.DropTable(
-                name: "KorisniciUloge");
+                name: "NarudzbaStavke");
 
             migrationBuilder.DropTable(
                 name: "Ocjene");
@@ -529,25 +596,31 @@ namespace SaTeatar.Migrations
                 name: "PredstaveDjelatnici");
 
             migrationBuilder.DropTable(
-                name: "IzvodjenjaZone");
+                name: "Uloge");
 
             migrationBuilder.DropTable(
-                name: "Uloge");
+                name: "Karte");
+
+            migrationBuilder.DropTable(
+                name: "Narudzba");
+
+            migrationBuilder.DropTable(
+                name: "Djelatnici");
+
+            migrationBuilder.DropTable(
+                name: "IzvodjenjaZone");
 
             migrationBuilder.DropTable(
                 name: "Kupci");
 
             migrationBuilder.DropTable(
-                name: "Djelatnici");
+                name: "VrsteDjelatnika");
 
             migrationBuilder.DropTable(
                 name: "Izvodjenja");
 
             migrationBuilder.DropTable(
                 name: "Zone");
-
-            migrationBuilder.DropTable(
-                name: "VrsteDjelatnika");
 
             migrationBuilder.DropTable(
                 name: "Korisnici");

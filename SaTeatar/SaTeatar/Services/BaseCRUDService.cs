@@ -12,7 +12,7 @@ namespace SaTeatar.WebAPI.Services
         , ICRUDService<TModel, TSearch, TInsert, TUpdate>
         where TModel: class where TDatabase: class where TSearch: class where TInsert: class where TUpdate: class
     {
-        public BaseCRUDService(SaTeatarDbContext context, IMapper mapper)
+        public BaseCRUDService(SaTeatarBpContext context, IMapper mapper)
             : base(context, mapper)
         {
         }

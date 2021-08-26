@@ -63,7 +63,7 @@ namespace SaTeatar
             });
 
             //konekcija na bazu
-            services.AddDbContext<SaTeatarDbContext>(options =>
+            services.AddDbContext<SaTeatarBpContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAuthentication("BasicAuthentication")

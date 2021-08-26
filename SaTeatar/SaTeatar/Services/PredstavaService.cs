@@ -18,7 +18,7 @@ namespace SaTeatar.WebAPI.Services
     public class PredstavaService : BaseCRUDService<mPredstave, Predstave, rPredstavaSearch, rPredstavaInsert, rPredstavaUpdate>
         , IPredstavaService
     {
-        public PredstavaService(SaTeatarDbContext context, IMapper mapper)
+        public PredstavaService(SaTeatarBpContext context, IMapper mapper)
             : base(context, mapper)
         {
 

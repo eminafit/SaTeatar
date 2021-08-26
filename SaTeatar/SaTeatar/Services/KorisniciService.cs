@@ -20,7 +20,7 @@ namespace SaTeatar.WebAPI.Services
         : BaseCRUDService<mKorisnici, Korisnici, rKorisniciSearch, rKorisniciInsert, rKorisniciUpdate>
         , IKorisniciService
     {
-        public KorisniciService(SaTeatarDbContext context, IMapper mapper)
+        public KorisniciService(SaTeatarBpContext context, IMapper mapper)
             : base(context, mapper)
         {
         }
