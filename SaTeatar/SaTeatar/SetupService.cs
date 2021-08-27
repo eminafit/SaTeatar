@@ -1985,8 +1985,75 @@ namespace SaTeatar.WebAPI
 
             }
 
+            var kupci = context.Kupci.ToList();
+
+            if (!context.PostavkeObavijesti.Any(x=>x.KupacId==1))
+            {
+                foreach (var kupac in kupci)
+                {
+                    context.PostavkeObavijesti.Add(new PostavkeObavijesti() { KupacId = kupac.KupacId, TipPredstaveId = 1 });
+                    context.PostavkeObavijesti.Add(new PostavkeObavijesti() { KupacId = kupac.KupacId, TipPredstaveId = 2 });
+                    context.PostavkeObavijesti.Add(new PostavkeObavijesti() { KupacId = kupac.KupacId, TipPredstaveId = 3 });
+                }
+                context.SaveChanges();
+            }
+
+            var izvodjenja = context.Izvodjenja.Include(x => x.Pozoriste).Include(x => x.Predstava).AsQueryable();
+
+            if (!context.PoslaneObavijesti.Any(x=>x.KupacId==1))
+            {
+
+                foreach (var item in izvodjenja)
+                {
+                    if (item.IzvodjenjeId<10)
+                    {
+                        foreach (var kupac in kupci)
+                        {
+                            context.PoslaneObavijesti.Add(new PoslaneObavijesti()
+                            {
+                                DatumVazenja = item.DatumVrijeme,
+                                KupacId = kupac.KupacId,
+                                PrestavaId = item.PredstavaId,
+                                VrijemeSlanja = DateTime.Now,
+                                Poruka = NapraviObavijest(item),
+                                Procitano = true
+                            });
+                        }
+                    }
+                    else
+                    {
+                        foreach (var kupac in kupci)
+                        {
+                            context.PoslaneObavijesti.Add(new PoslaneObavijesti()
+                            {
+                                DatumVazenja = item.DatumVrijeme,
+                                KupacId = kupac.KupacId,
+                                PrestavaId = item.PredstavaId,
+                                VrijemeSlanja = DateTime.Now,
+                                Poruka = NapraviObavijest(item),
+                                Procitano = false
+                            });
+                        }
+                    }
+                }
+                context.SaveChanges();
+            }
+
             context.SaveChanges();
 
+        }
+
+
+
+        string NapraviObavijest (Izvodjenja izvodjenje)
+        {
+
+            var obavijest = $"Postovani,\nObavjestavamo Vas da se predstava \"{izvodjenje.Predstava.Naziv}\" izvodi " +
+                $"{izvodjenje.DatumVrijeme.ToString("dd.MM.yyyy.")} " +
+                $"u { izvodjenje.DatumVrijeme.ToString("HH:mm")}h " +
+                $"u pozoristu \"{izvodjenje.Pozoriste.Naziv}\".";
+
+            return obavijest;
         }
 
         byte[] GenerisiQrCode(string InputText)
