@@ -221,11 +221,11 @@ namespace SaTeatar.Mobile.ViewModels
             OcjenaStr = string.Empty;
             for (int i = 0; i < (int)ProsjecnaOcjena; i++)
             {
-                OcjenaStr += "o";
+                OcjenaStr += "*";
             }
             var ost = ProsjecnaOcjena - (int)ProsjecnaOcjena;
             if (ost>=0.5)
-                OcjenaStr += "c";
+                OcjenaStr += "`";
 
             //formatdatum
             DatumStr = Izvodjenje.DatumVrijeme.ToString("dd.MM.yyyy.");

@@ -1779,7 +1779,7 @@ namespace SaTeatar.WebAPI
                 context.SaveChanges();
 
                 //n14
-                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(13), Iznos = 20, PaymentId = paymentId, KupacId = 1 });
+                context.Narudzba.Add(new Narudzba() { BrNarudzbe = Guid.NewGuid(), Datum = DatumNarudzbe.AddDays(13), Iznos = 20, PaymentId = string.Empty, KupacId = 1 });
                 context.SaveChanges();
                 context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 27, NarudzbaId = 14 });
                 context.NarudzbaStavke.Add(new NarudzbaStavke() { KartaId = 28, NarudzbaId = 14 });
