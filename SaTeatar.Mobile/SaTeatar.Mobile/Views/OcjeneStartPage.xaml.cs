@@ -12,28 +12,24 @@ using Xamarin.Forms.Xaml;
 namespace SaTeatar.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class KartePage : ContentPage
+    public partial class OcjeneStartPage : ContentPage
     {
-        private KarteViewModel model = null;
-
-        public KartePage()
+        public OcjeneViewModel model = null;
+        public OcjeneStartPage()
         {
             InitializeComponent();
-            BindingContext = model = new KarteViewModel();
-
+            BindingContext = model = new OcjeneViewModel();
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
-            base.OnAppearing();
-            model.Init();
-
+            await model.Init();
         }
 
         private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var karta = e.SelectedItem as mKarta;
-            await Navigation.PushAsync(new KartaQrCodePage(karta));
+            var ocjena = e.SelectedItem as mOcjene;
+            await Navigation.PushAsync(new OcjenePage(ocjena));
         }
     }
 }

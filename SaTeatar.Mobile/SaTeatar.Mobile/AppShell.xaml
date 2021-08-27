@@ -121,7 +121,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="Ocjene">
-        <ShellContent Title="Ocjene" Route="OcjenePage" ContentTemplate="{DataTemplate local:OcjenePage}" />
+        <ShellContent Title="Ocjene" Route="OcjeneStartPage" ContentTemplate="{DataTemplate local:OcjeneStartPage}" />
     </FlyoutItem>
 
     <FlyoutItem Title="Moj profil">

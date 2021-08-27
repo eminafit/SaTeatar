@@ -34,13 +34,6 @@ namespace SaTeatar.Mobile.ViewModels
 
         public ObservableCollection<XNaruzba> ListaNarudzbi { get; set; } = new ObservableCollection<XNaruzba>();
 
-        //bool isBusy = false;
-        //public bool IsBusy
-        //{
-        //    get { return isBusy; }
-        //    set { SetProperty(ref isBusy, value); }
-        //}
-
         string _placeno = string.Empty;
         public string Placeno
         {
@@ -48,6 +41,26 @@ namespace SaTeatar.Mobile.ViewModels
             set { SetProperty(ref _placeno, value); }
         }
 
+        int _broj = 0;
+        public int brojNarudzbi
+        {
+            get { return _broj; }
+            set { SetProperty(ref _broj, value); }
+        }
+
+        int _brojne = 0;
+        public int brojNeplacenih
+        {
+            get { return _brojne; }
+            set { SetProperty(ref _brojne, value); }
+        }
+
+        int _brojpl = 0;
+        public int brojPlacenih
+        {
+            get { return _brojpl; }
+            set { SetProperty(ref _brojpl, value); }
+        }
 
         public async void Init()
         {
@@ -56,7 +69,6 @@ namespace SaTeatar.Mobile.ViewModels
 
             var lnar = await _narudzbaService.Get<List<mNarudzba>>(null);
             lnar.Sort(( y,x) => x.Datum.CompareTo(y.Datum));
-
 
             ListaNarudzbi.Clear();
             if (lnar.Count>0)
@@ -74,7 +86,6 @@ namespace SaTeatar.Mobile.ViewModels
                         PaymentId=item.PaymentId,
                     });
 
-
                 }
 
                 foreach (var item in ListaNarudzbi)
@@ -83,9 +94,12 @@ namespace SaTeatar.Mobile.ViewModels
                     {
                         item.PlacenoTF = false;
                         item.PlacenoText = "PLACENO";
+                        brojPlacenih++;
                     }
                 }
             }
+            brojNarudzbi = ListaNarudzbi.Count;
+            brojNeplacenih = brojNarudzbi - brojPlacenih;
         }
 
     }

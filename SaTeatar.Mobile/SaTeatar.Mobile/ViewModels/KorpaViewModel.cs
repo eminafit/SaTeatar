@@ -23,7 +23,6 @@ namespace SaTeatar.Mobile.ViewModels
 
         public KorpaViewModel()
         {
-            //PromijenjenaKolicnaCommand = new Command(() => PromijenjenaKolicina());
             RezervisiCommand = new Command(async () => await Rezervisi());
             IsprazniKorpuCommand = new Command(() =>
             {
@@ -101,12 +100,6 @@ namespace SaTeatar.Mobile.ViewModels
         {
             if (CartService.Cart.Count > 0)
             {
-
-                //dodaj karte
-                //var searchId = new rKupciSearch { KorisnickoIme = APIService.Username };
-                //var kupac = PrijavljeniKupac.Kupac;
-                //var kupci = await _kupciService.Get<List<mKupci>>(searchId);
-                //var idKupca = kupci[0].KupacId;
 
                 var narudzbaInsert = new rNarudzbaInsert()
                 {

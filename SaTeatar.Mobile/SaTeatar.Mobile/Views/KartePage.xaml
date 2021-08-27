@@ -29,8 +29,11 @@
                 </Label.FormattedText>
             </Label>
 
+            <Button FontSize="10" HorizontalOptions="Center" Text="POREDAJ PO DATUMU IZVODJENJA" IsVisible="{Binding IzvodjenjeTF}" Command="{Binding SortIzvodjenjaCommand}"/>
+            <Button FontSize="10" HorizontalOptions="Center" Text="POREDAJ PO DATUMU KUPOVINE" IsVisible="{Binding IsBusy}" Command="{Binding SortKupovinaCommand}"/>
+
             <!--<ListView ItemsSource="{Binding KarteVMQCodeLista}">-->
-            <ListView ItemsSource="{Binding ListaKarata}">
+            <ListView ItemsSource="{Binding ListaKarata}" ItemSelected="ListView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

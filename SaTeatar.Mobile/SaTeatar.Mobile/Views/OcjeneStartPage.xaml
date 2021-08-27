@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels"
+             x:Class="SaTeatar.Mobile.Views.OcjeneStartPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:OcjeneViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="OCJENE"
+                   FontSize="10"
+                   Padding="15"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <ListView ItemsSource="{Binding OcjeneList}" ItemSelected="ListView_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="5">
+                                <Frame BorderColor="Gray" CornerRadius="5">
+                                    <StackLayout>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding PredstavaNaziv}" FontSize="12" FontAttributes="Bold"/>
+                                                <Span FontSize="10" Text="   ( "/>
+                                                <Span FontSize="10" Text="{Binding Ocjena}" FontAttributes="Bold"/>
+                                                <Span FontSize="10" Text=" )"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Text="KOMENTAR:" TextColor="Gray" FontSize="10"/>
+                                    <Editor Text="{Binding Opis}" HeightRequest="50" FontSize="10" IsEnabled="False"></Editor>
+                                </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

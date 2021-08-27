@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModels="clr-namespace:SaTeatar.Mobile.ViewModels" 
+             xmlns:local="clr-namespace:SaTeatar.Mobile.Converters"
+             x:Class="SaTeatar.Mobile.Views.KartaQrCodePage">
+
+    <ContentPage.BindingContext>
+        <viewModels:KartaQrCodeViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageConverter x:Key="imgConv"></local:ImageConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Image VerticalOptions="Center" HorizontalOptions="Center" Source="{Binding Karta.Qrcode, Converter={StaticResource imgConv}} "></Image>
+                <Button Text="ZATVORI" FontSize="10" HorizontalOptions="Center" Clicked="Button_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

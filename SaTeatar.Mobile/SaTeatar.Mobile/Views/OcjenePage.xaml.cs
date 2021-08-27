@@ -1,4 +1,5 @@
 ﻿using SaTeatar.Mobile.ViewModels;
+using SaTeatar.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,14 @@ namespace SaTeatar.Mobile.Views
     public partial class OcjenePage : ContentPage
     {
         private OcjeneViewModel model = null;
-        public OcjenePage()
+        public OcjenePage(mOcjene ocjena)
         {
             InitializeComponent();
-            BindingContext = model = new OcjeneViewModel();
+            BindingContext = model = new OcjeneViewModel() 
+            {
+                Ocjena=ocjena
+            };
+
         }
 
         protected async override void OnAppearing()

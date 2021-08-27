@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SaTeatar.Database;
 using SaTeatar.Model.Models;
 using SaTeatar.Model.Requests;
@@ -20,24 +21,22 @@ namespace SaTeatar.Services
 
         public override IList<mOcjene> Get(rOcjeneSearch search)
         {
-            var upit = _context.Ocjene.AsQueryable();
+            var upit = _context.Ocjene.Include(x=>x.Predstava).AsQueryable();
 
-            if (search!=null)
+            
+            if (search.PredstavaId != 0)
             {
-                if (search.PredstavaId != 0)
-                {
-                    upit = upit.Where(x => x.PredstavaId == search.PredstavaId);
-                }
-
-                if (search.KupacId!=0)
-                {
-                    upit = upit.Where(x=>x.KupacId==search.KupacId);
-                }
+                upit = upit.Where(x => x.PredstavaId == search.PredstavaId);
             }
+
+            if (search.KupacId!=0)
+            {
+                upit = upit.Where(x=>x.KupacId==search.KupacId);
+            }
+            
 
             var list = upit.ToList();
             return _mapper.Map<List<mOcjene>>(list);
-            //return base.Get(search);    
         }
     }
 }

@@ -11,10 +11,38 @@
 
     <ContentPage.Content>
         <StackLayout Padding="20">
-            <Label Text="NARUDZBE"
-                   FontSize="10"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="15">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span  FontSize="10" Text="NARUDZBE"/>
+                        <Span  FontSize="10" Text="   ( "/>
+                        <Span  FontSize="10" Text="{Binding brojNarudzbi}" FontAttributes="Bold"/>
+                        <Span  FontSize="10" Text=" )"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span  FontSize="8" Text="PLACENO: "/>
+                        <Span  FontSize="9" Text="{Binding brojPlacenih}" FontAttributes="Bold"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span  FontSize="8" Text="NEPLACENO: "/>
+                        <Span  FontSize="9" Text="{Binding brojNeplacenih}" TextColor="Red" FontAttributes="Bold"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+
+
             <StackLayout Padding="10" Orientation="Horizontal"                 
                                          VerticalOptions="CenterAndExpand" 
                                          HorizontalOptions="CenterAndExpand" >
@@ -30,7 +58,7 @@
                                                 <Label.FormattedText>
                                                     <FormattedString>
                                                         <Span FontSize="8" Text="BROJ NARUDZBE: " TextColor="Gray"/>
-                                                        <Span FontSize="10" Text="{Binding BrojNarudzbe}"/>
+                                                        <Span FontSize="10" Text="{Binding BrojNarudzbe}" FontAttributes="Bold"/>
                                                     </FormattedString>
                                                 </Label.FormattedText>
                                             </Label>

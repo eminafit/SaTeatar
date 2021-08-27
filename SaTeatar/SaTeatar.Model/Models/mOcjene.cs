@@ -9,6 +9,7 @@ namespace SaTeatar.Model.Models
         public int OcjenaId { get; set; }
         public int KupacId { get; set; }
         public int PredstavaId { get; set; }
+        public string PredstavaNaziv { get; set; }
         public DateTime Datum { get; set; }
         public int Ocjena { get; set; }
         public string Opis { get; set; }

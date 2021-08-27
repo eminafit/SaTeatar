@@ -9,14 +9,15 @@
     
     <ContentPage.Content>
         <StackLayout Padding="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label Text="OCIJENITE PREDSTAVE" FontSize="10" HorizontalOptions="Center" Padding="20"/>
-            
-            <Label Text="ODABERITE PREDSTAVU KOJU ZELITE OCIJENITI:" FontSize="8" TextColor="Gray"/>
-            <Picker FontSize="10" ItemsSource="{Binding pregledanePredstaveList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedPredstava}"></Picker> <!--SelectedIndexChanged="Picker_SelectedIndexChanged"></Picker>-->
+            <Label Text="OCIJENITE PREDSTAVU" FontSize="10" HorizontalOptions="Center" Padding="20"/>
+            <Label Text="{Binding PredstavaNaziv}" FontSize="14" HorizontalOptions="Center" FontAttributes="Bold"/>
+
+            <!--<Label Text="ODABERITE PREDSTAVU KOJU ZELITE OCIJENITI:" FontSize="8" TextColor="Gray"/>
+            <Picker FontSize="10" ItemsSource="{Binding pregledanePredstaveList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedPredstava}"></Picker>--> 
 
             <StackLayout Padding="20" Orientation="Horizontal">
             <Label Text="UNESITE OCJENU (0-5):" FontSize="8" VerticalTextAlignment="Center" TextColor="Gray"/>
-            <Entry Text="{Binding Ocjena}" FontSize="10"></Entry>
+            <Entry Text="{Binding OcjenaBr}" FontSize="10"></Entry>
             </StackLayout>
 
                 <Label Text="OSTAVITE KOMENTAR:" FontSize="8" TextColor="Gray"/>
