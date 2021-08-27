@@ -383,7 +383,7 @@ namespace SaTeatar.WinUI.Izvodjenja
                         {
                             await _izvodjenjaZoneService.Insert<mIzvodjenjaZone>(item);
                         }
-                        MessageBox.Show("Uspjesno dodane cijene karta!", "OK!");
+                        MessageBox.Show("Uspjesno dodane cijene karti!", "OK!");
                         this.Close();
                     }
 
@@ -402,5 +402,6 @@ namespace SaTeatar.WinUI.Izvodjenja
                 MessageBox.Show("Unesite ispravan format cijene!", "OK");
             }
         }
+
     }
 }

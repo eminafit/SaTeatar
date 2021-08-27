@@ -68,5 +68,7 @@ namespace SaTeatar.WinUI.Izvodjenja
             dgvIzvodjenja.DataSource = result;
 
         }
+
+
     }
 }

@@ -20,6 +20,7 @@ namespace SaTeatar.WebAPI.Services
         public override IList<mIzvodjenjaZone> Get(rIzvodjenjaZoneSearch search)
         {
             var upit = _context.IzvodjenjaZone.Include(x=>x.Zona).AsQueryable();
+
             if (search.ZonaId!=0 )
             {
                 upit = upit.Where(x => x.ZonaId == search.ZonaId);

@@ -15,6 +15,7 @@ namespace SaTeatar.Mobile.ViewModels
     public class IzvodjenjaViewModel : BaseViewModel
     {
         private readonly APIService _izvodjenjaService = new APIService("izvodjenja");
+        private readonly APIService _izvodjenjaZoneService = new APIService("IzvodjenjaZone");
         private readonly APIService _tipoviPredstavaService = new APIService("tipoviPredstava");
         private readonly APIService _predstavaService = new APIService("Predstava");
         
@@ -82,6 +83,41 @@ namespace SaTeatar.Mobile.ViewModels
         private async Task Pretrazi(rIzvodjenjaSearch search)
         {
             List<mIzvodjenja> ilist = await _izvodjenjaService.Get<List<mIzvodjenja>>(search);
+
+            //provjera da li su unesene cijene za zone
+            List<int> idsZaBrisat = new List<int>();
+            foreach (var item in ilist)
+            {
+                bool obrisi = false;
+                var searchiz = new rIzvodjenjaZoneSearch() { IzvodjenjeId = item.IzvodjenjeId };
+                var izvZone = await _izvodjenjaZoneService.Get<List<mIzvodjenjaZone>>(searchiz);
+                if (izvZone.Count==0)
+                {
+                    obrisi = true;
+                }
+
+                if (izvZone.Count>0)
+                {
+                    foreach (var iz in izvZone)
+                    {
+                        if (iz.Cijena==0)
+                        {
+                            obrisi = true;
+                        }
+                    }
+                }
+                if (obrisi)
+                {
+                   // ilist.Remove(item); //
+                    idsZaBrisat.Add(ilist.IndexOf(item));
+                }
+            }
+
+            foreach (var item in idsZaBrisat)
+            {
+                ilist.RemoveAt(item);
+            }
+
             ilist.Sort((x, y) => x.DatumVrijeme.CompareTo(y.DatumVrijeme));
             if (ilist.Count == 0)
             {

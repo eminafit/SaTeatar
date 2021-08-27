@@ -43,11 +43,11 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.btnSacuvaj = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.dgvZone = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnSacuvajCijeneZona = new System.Windows.Forms.Button();
             this.ZonaNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IzvodjenjeZonaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cijena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnSacuvajCijeneZona = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZone)).BeginInit();
             this.SuspendLayout();
@@ -169,25 +169,6 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.dgvZone.TabIndex = 16;
             this.dgvZone.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvZone_DataError);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(450, 48);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(197, 17);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Dodajte cijene za svaku zonu:";
-            // 
-            // btnSacuvajCijeneZona
-            // 
-            this.btnSacuvajCijeneZona.Location = new System.Drawing.Point(605, 256);
-            this.btnSacuvajCijeneZona.Name = "btnSacuvajCijeneZona";
-            this.btnSacuvajCijeneZona.Size = new System.Drawing.Size(151, 23);
-            this.btnSacuvajCijeneZona.TabIndex = 17;
-            this.btnSacuvajCijeneZona.Text = "Sacuvaj cijene zona";
-            this.btnSacuvajCijeneZona.UseVisualStyleBackColor = true;
-            this.btnSacuvajCijeneZona.Click += new System.EventHandler(this.btnSacuvajCijeneZona_Click);
-            // 
             // ZonaNaziv
             // 
             this.ZonaNaziv.DataPropertyName = "ZonaNaziv";
@@ -214,6 +195,25 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.Cijena.Name = "Cijena";
             this.Cijena.Width = 125;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(450, 48);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(197, 17);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Dodajte cijene za svaku zonu:";
+            // 
+            // btnSacuvajCijeneZona
+            // 
+            this.btnSacuvajCijeneZona.Location = new System.Drawing.Point(605, 256);
+            this.btnSacuvajCijeneZona.Name = "btnSacuvajCijeneZona";
+            this.btnSacuvajCijeneZona.Size = new System.Drawing.Size(151, 23);
+            this.btnSacuvajCijeneZona.TabIndex = 17;
+            this.btnSacuvajCijeneZona.Text = "Sacuvaj cijene zona";
+            this.btnSacuvajCijeneZona.UseVisualStyleBackColor = true;
+            this.btnSacuvajCijeneZona.Click += new System.EventHandler(this.btnSacuvajCijeneZona_Click);
+            // 
             // frmIzvodjenjeDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -235,6 +235,7 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.Controls.Add(this.label1);
             this.Name = "frmIzvodjenjeDetalji";
             this.Text = "Izvodjenje";
+//            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmIzvodjenjeDetalji_FormClosing);
             this.Load += new System.EventHandler(this.frmIzvodjenjeDetalji_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZone)).EndInit();
