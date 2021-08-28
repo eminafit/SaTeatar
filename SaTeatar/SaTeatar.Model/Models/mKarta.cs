@@ -14,6 +14,7 @@ namespace SaTeatar.Model.Models
         public Guid? BrKarte { get; set; }
         public byte[] Qrcode { get; set; }
         public DateTime DatumIzvodjenja { get; set; }
+        public DateTime DatumNarudzbe { get; set; }
 
         public bool Placeno { get; set; }
         public int IzvodjenjeZonaId { get; set; }

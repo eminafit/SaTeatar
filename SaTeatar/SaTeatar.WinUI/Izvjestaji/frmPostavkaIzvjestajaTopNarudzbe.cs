@@ -60,7 +60,6 @@ namespace SaTeatar.WinUI.Izvjestaji
             if (this.ValidateChildren())
             {
 
-
                 var dtobj = new dtoTopNarudzbe();
                 dtobj.Narudzbe = new List<dtoTopNarudzbe.dtoNarudzba>();
 
@@ -69,8 +68,6 @@ namespace SaTeatar.WinUI.Izvjestaji
 
                 dtobj.DatumOd = DatumOd;
                 dtobj.DatumDo = DatumDo;
-
-
 
 
                 var id = cmbPozoriste.SelectedValue.ToString();

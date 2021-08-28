@@ -40,5 +40,10 @@ namespace SaTeatar.Mobile.Views
 
         }
 
+        private async void Button_Clicked_1(object sender, EventArgs e)
+        {
+            var ocjena = new mOcjene() { PredstavaId = _izvodjenje.PredstavaId, PredstavaNaziv=_izvodjenje.PredstavaNaziv };
+            await Navigation.PushAsync(new OcjenePage(ocjena));
+        }
     }
 }

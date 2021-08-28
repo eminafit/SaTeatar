@@ -76,7 +76,7 @@ namespace SaTeatar.Mobile.ViewModels
 
             if (brojac > 0)
             {
-                await Application.Current.MainPage.DisplayAlert("Obavijest", $"Imate nove obavijest! ({brojac})", "OK");
+                await Application.Current.MainPage.DisplayAlert("Obavijest", $"Imate nove obavijesti! ({brojac})", "OK");
                 Vidljivo = true;
             }
             else

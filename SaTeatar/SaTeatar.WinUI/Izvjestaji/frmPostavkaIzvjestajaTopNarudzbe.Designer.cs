@@ -38,6 +38,8 @@ namespace SaTeatar.WinUI.Izvjestaji
             this.label3 = new System.Windows.Forms.Label();
             this.btnPrikazi = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,11 +108,33 @@ namespace SaTeatar.WinUI.Izvjestaji
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label6.Location = new System.Drawing.Point(25, 279);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(321, 17);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "seed narudzbi je u periodu od 01. do 21.08.2021.";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label5.Location = new System.Drawing.Point(24, 258);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(158, 17);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Napomena za testiranje";
+            // 
             // frmPostavkaIzvjestajaTopNarudzbe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(372, 303);
+            this.ClientSize = new System.Drawing.Size(371, 327);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnPrikazi);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -137,5 +161,7 @@ namespace SaTeatar.WinUI.Izvjestaji
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnPrikazi;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }

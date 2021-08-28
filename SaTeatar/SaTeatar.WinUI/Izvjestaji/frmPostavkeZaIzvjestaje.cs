@@ -70,7 +70,7 @@ namespace SaTeatar.WinUI
                     obj.PozoristeNaziv = pozoriste.Naziv;
                     obj.DatumOd = dtpDatumOd.Value;
                     obj.DatumDo = dtpDatumDo.Value;
-                    obj.BrojKupaca = int.Parse(txtBrPosjetitelja.Text);
+                    obj.BrojKupaca = 3;
 
                     var search = new rKartaSearch() { PozoristeId = pozoristeId, Placeno = true, DatumDo = obj.DatumDo, DatumOd = obj.DatumOd };
                     var karte = await _karteService.Get<List<mKarta>>(search);
@@ -138,34 +138,39 @@ namespace SaTeatar.WinUI
             }
         }
 
-        private async void txtBrPosjetitelja_Validating(object sender, CancelEventArgs e)
-        {
-            var kupci = await _kupciService.Get<List<mKupci>>(null);
-            var brKupaca = kupci.Count;
+        //private async void txtBrPosjetitelja_Validating(object sender, CancelEventArgs e)
+        //{
+        //    var kupci = await _kupciService.Get<List<mKupci>>(null);
+        //    var brKupaca = kupci.Count;
+        //    if (string.IsNullOrWhiteSpace(txtBrPosjetitelja.Text))
+        //    {
+        //        errorProvider.SetError(txtBrPosjetitelja, "Unesite broj");
+        //        e.Cancel = true;
+        //    }
+        //    else
+        //    if (!int.TryParse(txtBrPosjetitelja.Text, out int broj))
+        //    {
+        //        errorProvider.SetError(txtBrPosjetitelja, "Unesite broj");
+        //        e.Cancel = true;
+        //    }
+        //    else
+        //    {
+        //        if (broj<0 || broj>brKupaca)
+        //        {
+        //            errorProvider.SetError(txtBrPosjetitelja, $"Broj moze biti u rasponu od 1 do {brKupaca}!");
+        //            e.Cancel = true;
+        //        }
+        //        else
+        //        {
+        //            errorProvider.SetError(txtBrPosjetitelja, null);
+        //        }
+        //    }          
+        //}
 
-            if (!int.TryParse(txtBrPosjetitelja.Text, out int broj))
-            {
-                errorProvider.SetError(txtBrPosjetitelja, "Unesite broj");
-                e.Cancel = true;
-            }
-            else
-            {
-                if (broj<0 || broj>brKupaca)
-                {
-                    errorProvider.SetError(txtBrPosjetitelja, $"Broj moze biti u rasponu od 1 do {brKupaca}!");
-                    e.Cancel = true;
-                }
-                else
-                {
-                    errorProvider.SetError(txtBrPosjetitelja, null);
-                }
-            }          
-        }
-
-        private void dtpDatumOd_Validating(object sender, CancelEventArgs e)
-        {
-            //nemam sta
-        }
+        //private void dtpDatumOd_Validating(object sender, CancelEventArgs e)
+        //{
+        //    //nemam sta
+        //}
 
         private void dtpDatumDo_Validating(object sender, CancelEventArgs e)
         {
@@ -180,5 +185,7 @@ namespace SaTeatar.WinUI
                 errorProvider.SetError(dtpDatumDo, null);
             }
         }
+
+
     }
 }

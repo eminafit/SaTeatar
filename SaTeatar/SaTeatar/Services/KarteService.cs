@@ -46,59 +46,70 @@ namespace SaTeatar.Services
 
         public override IList<mKarta> Get(rKartaSearch search)
         {
-            var upit = _context.Karte.Include(x=>x.Izvodjenje.Predstava).Include(x => x.Izvodjenje.Pozoriste).Include(y=>y.IzvodjenjeZona.Zona).Include(x=>x.Kupac).AsQueryable();
-            
-            if (search.KupacId!=0)
-            {
-                upit = upit.Where(x => x.KupacId == search.KupacId);
-            }
-
-            if (search.IzvodjenjeZonaId!=0)
-            {
-                upit = upit.Where(x => x.IzvodjenjeZonaId == search.IzvodjenjeZonaId);
-            }
-
-            if (search.PredstavaId != 0)
-            {
-                upit = upit.Where(x => x.Izvodjenje.PredstavaId == search.PredstavaId);
-            }
-
-            if (search.PozoristeId != 0)
-            {
-                upit = upit.Where(x => x.Izvodjenje.PozoristeId == search.PozoristeId);
-            }
 
             if (search.DatumOd.CompareTo(DateTime.MinValue.AddHours(1)) > 0 && search.DatumDo.CompareTo(DateTime.MinValue.AddHours(1)) > 0)
             {
-                upit = upit.Where(x => x.Izvodjenje.DatumVrijeme.CompareTo(search.DatumOd) >= 0 && x.Izvodjenje.DatumVrijeme.CompareTo(search.DatumDo) <= 0);
+                var upitn = _context.NarudzbaStavke.Include(x => x.Narudzba).Include(x => x.Karta).Include(x=>x.Karta.Kupac).AsQueryable();
+
+                upitn = upitn.Where(x =>x.Karta.Izvodjenje.PozoristeId==search.PozoristeId 
+                                    && x.Karta.Placeno==true
+                                    && x.Narudzba.Datum.CompareTo(search.DatumOd) >= 0 
+                                    && x.Narudzba.Datum.CompareTo(search.DatumDo) <= 0);
+                var lk = upitn.Select(x => x.Karta).ToList();
+                return _mapper.Map<List<mKarta>>(lk);
             }
-
-            upit = upit.Where(x => x.Placeno == search.Placeno);
-            
-
-            var lista = upit.ToList();
-            var mlista= _mapper.Map<List<mKarta>>(lista);
-
-            foreach (var item in upit)
+            else
             {
-                foreach (var k in mlista)
+                var upit = _context.Karte.Include(x => x.Izvodjenje.Predstava).Include(x => x.Izvodjenje.Pozoriste).Include(y => y.IzvodjenjeZona.Zona).Include(x => x.Kupac).AsQueryable();
+
+                if (search.KupacId != 0)
                 {
-                    if (item.KartaId == k.KartaId)
+                    upit = upit.Where(x => x.KupacId == search.KupacId);
+                }
+
+                if (search.IzvodjenjeZonaId != 0)
+                {
+                    upit = upit.Where(x => x.IzvodjenjeZonaId == search.IzvodjenjeZonaId);
+                }
+
+                if (search.PredstavaId != 0)
+                {
+                    upit = upit.Where(x => x.Izvodjenje.PredstavaId == search.PredstavaId);
+                }
+
+                if (search.PozoristeId != 0)
+                {
+                    upit = upit.Where(x => x.Izvodjenje.PozoristeId == search.PozoristeId);
+                }
+
+
+
+                upit = upit.Where(x => x.Placeno == search.Placeno);
+
+
+                var lista = upit.ToList();
+                var mlista = _mapper.Map<List<mKarta>>(lista);
+
+                foreach (var item in upit)
+                {
+                    foreach (var k in mlista)
                     {
-                        k.PredstavaNaziv = item.Izvodjenje.Predstava.Naziv;
-                        k.PredstavaId = item.Izvodjenje.Predstava.PredstavaId;
-                        k.PozoristeId = item.Izvodjenje.Pozoriste.PozoristeId;
-                        k.PozoristeNaziv = item.Izvodjenje.Pozoriste.Naziv;
-                        k.ZonaNaziv = item.IzvodjenjeZona.Zona.Naziv;
-                        k.Cijena = item.IzvodjenjeZona.Cijena;
-                        k.DatumIzvodjenja = item.Izvodjenje.DatumVrijeme;
-                        
+                        if (item.KartaId == k.KartaId)
+                        {
+                            k.PredstavaNaziv = item.Izvodjenje.Predstava.Naziv;
+                            k.PredstavaId = item.Izvodjenje.Predstava.PredstavaId;
+                            k.PozoristeId = item.Izvodjenje.Pozoriste.PozoristeId;
+                            k.PozoristeNaziv = item.Izvodjenje.Pozoriste.Naziv;
+                            k.ZonaNaziv = item.IzvodjenjeZona.Zona.Naziv;
+                            k.Cijena = item.IzvodjenjeZona.Cijena;
+                            k.DatumIzvodjenja = item.Izvodjenje.DatumVrijeme;
+
+                        }
                     }
                 }
+
+                return mlista;
             }
-
-            return mlista;
-
         }
     }
 }

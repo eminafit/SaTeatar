@@ -44,8 +44,11 @@
 
             <StackLayout Orientation="Horizontal">
                 <StackLayout>
-                    <Image Source="{Binding Izvodjenje.PredstavaSlika, Converter={StaticResource imgConv}} "></Image>
-                </StackLayout>
+                    <Image Source="{Binding Izvodjenje.PredstavaSlika, Converter={StaticResource imgConv}} " HeightRequest="225" WidthRequest="225"></Image>
+                        <!--<StackLayout>
+                            <Button Text="OCIJENITE PREDSTAVU" FontSize="6" HorizontalOptions="Center" Clicked="Button_Clicked_1" BackgroundColor="DarkOrange"/>
+                        </StackLayout>-->
+                    </StackLayout>
 
                 <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="5">
 
@@ -61,7 +64,16 @@
                 </StackLayout>
             </StackLayout>
 
+
+
             <StackLayout Padding="15">
+
+                    <StackLayout Padding="10">
+                        <Label FontSize="6" TextColor="Gray" Text="ISKUSTVA DRUGIH POSJETILACA: " HorizontalOptions="Center"/>
+                        <Label FontSize="8" Text="{Binding TopOcjenaOpis}" HorizontalOptions="Center"/>
+                    </StackLayout>
+
+                
                 <Label Text="ODABERITE ZONU: " FontSize="8" HorizontalOptions="Center" TextColor="Gray"></Label>
                 <Picker ItemsSource="{Binding ZoneList}" ItemDisplayBinding="{Binding Naziv}" SelectedItem="{Binding SelectedZona}"  HorizontalTextAlignment="Center" TextColor="Red" FontSize="12" FontAttributes="Bold"></Picker>
 
@@ -87,17 +99,16 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                
-                <Label/>
+                    <Label/>
 
-                <Label Text="ODABERITE KOLICINU: " FontSize="8" HorizontalOptions="Center" TextColor="Gray" ></Label>
+                    <Label Text="ODABERITE KOLICINU: " FontSize="8" HorizontalOptions="Center" TextColor="Gray" ></Label>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                     <Button Text="-" Command="{Binding SmanjiKolicinuCommand}" FontSize="10"></Button>
                     <Entry Text="{Binding Kolicina}" Keyboard="Numeric" FontSize="10" HorizontalTextAlignment="Center"></Entry>
                     <Button Text="+" Command="{Binding PovecajKolicinuCommand}" FontSize="10"></Button>
                 </StackLayout>
 
-                <Label Padding="10" HorizontalOptions="Center">
+                <Label Padding="5" HorizontalOptions="Center">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Ukupan iznos za platiti: " FontSize="10"/>

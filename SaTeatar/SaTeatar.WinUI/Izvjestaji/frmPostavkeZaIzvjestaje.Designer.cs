@@ -34,13 +34,12 @@ namespace SaTeatar.WinUI
             this.label5 = new System.Windows.Forms.Label();
             this.cmbPozorista = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtBrPosjetitelja = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dtpDatumOd = new System.Windows.Forms.DateTimePicker();
             this.dtpDatumDo = new System.Windows.Forms.DateTimePicker();
             this.btnPrikazi = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,11 +51,11 @@ namespace SaTeatar.WinUI
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label5.Location = new System.Drawing.Point(12, 307);
+            this.label5.Location = new System.Drawing.Point(36, 252);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(388, 17);
+            this.label5.Size = new System.Drawing.Size(158, 17);
             this.label5.TabIndex = 1;
-            this.label5.Text = "Napomena za testiranje - seed podataka ide od 01.06.2021.";
+            this.label5.Text = "Napomena za testiranje";
             // 
             // cmbPozorista
             // 
@@ -76,27 +75,10 @@ namespace SaTeatar.WinUI
             this.label1.TabIndex = 1;
             this.label1.Text = "Pozoriste:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 98);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Broj posjetitelja:";
-            // 
-            // txtBrPosjetitelja
-            // 
-            this.txtBrPosjetitelja.Location = new System.Drawing.Point(174, 95);
-            this.txtBrPosjetitelja.Name = "txtBrPosjetitelja";
-            this.txtBrPosjetitelja.Size = new System.Drawing.Size(167, 22);
-            this.txtBrPosjetitelja.TabIndex = 3;
-            this.txtBrPosjetitelja.Validating += new System.ComponentModel.CancelEventHandler(this.txtBrPosjetitelja_Validating);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(47, 146);
+            this.label3.Location = new System.Drawing.Point(47, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 17);
             this.label3.TabIndex = 4;
@@ -105,7 +87,7 @@ namespace SaTeatar.WinUI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(47, 186);
+            this.label4.Location = new System.Drawing.Point(47, 137);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 17);
             this.label4.TabIndex = 5;
@@ -113,15 +95,15 @@ namespace SaTeatar.WinUI
             // 
             // dtpDatumOd
             // 
-            this.dtpDatumOd.Location = new System.Drawing.Point(141, 141);
+            this.dtpDatumOd.Location = new System.Drawing.Point(141, 92);
             this.dtpDatumOd.Name = "dtpDatumOd";
             this.dtpDatumOd.Size = new System.Drawing.Size(200, 22);
             this.dtpDatumOd.TabIndex = 6;
-            this.dtpDatumOd.Validating += new System.ComponentModel.CancelEventHandler(this.dtpDatumOd_Validating);
+         //   this.dtpDatumOd.Validating += new System.ComponentModel.CancelEventHandler(this.dtpDatumOd_Validating);
             // 
             // dtpDatumDo
             // 
-            this.dtpDatumDo.Location = new System.Drawing.Point(141, 186);
+            this.dtpDatumDo.Location = new System.Drawing.Point(141, 137);
             this.dtpDatumDo.Name = "dtpDatumDo";
             this.dtpDatumDo.Size = new System.Drawing.Size(200, 22);
             this.dtpDatumDo.TabIndex = 7;
@@ -129,7 +111,7 @@ namespace SaTeatar.WinUI
             // 
             // btnPrikazi
             // 
-            this.btnPrikazi.Location = new System.Drawing.Point(199, 249);
+            this.btnPrikazi.Location = new System.Drawing.Point(199, 200);
             this.btnPrikazi.Name = "btnPrikazi";
             this.btnPrikazi.Size = new System.Drawing.Size(125, 23);
             this.btnPrikazi.TabIndex = 8;
@@ -137,11 +119,22 @@ namespace SaTeatar.WinUI
             this.btnPrikazi.UseVisualStyleBackColor = true;
             this.btnPrikazi.Click += new System.EventHandler(this.btnPrikazi_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label6.Location = new System.Drawing.Point(37, 273);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(321, 17);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "seed narudzbi je u periodu od 01. do 21.08.2021.";
+            // 
             // frmPostavkeZaIzvjestaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 363);
+            this.ClientSize = new System.Drawing.Size(394, 329);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnPrikazi);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dtpDatumDo);
@@ -150,10 +143,8 @@ namespace SaTeatar.WinUI
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtBrPosjetitelja);
             this.Name = "frmPostavkeZaIzvjestaje";
-            this.Text = "Top posjetitelji";
+            this.Text = "Top 3 posjetitelja";
             this.Load += new System.EventHandler(this.frmPostavkeZaIzvjestaje_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
@@ -169,9 +160,8 @@ namespace SaTeatar.WinUI
         private System.Windows.Forms.DateTimePicker dtpDatumOd;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtBrPosjetitelja;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbPozorista;
+        private System.Windows.Forms.Label label6;
     }
 }

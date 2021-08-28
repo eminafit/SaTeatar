@@ -22,15 +22,15 @@ namespace SaTeatar.WinUI.Pozorista
 
         private async void frmPozorista_Load(object sender, EventArgs e)
         {
-            await LoadPozorista();
+           // await LoadPozorista();
         }
 
-        private async Task LoadPozorista()
-        {
-            var result = await _pozoristaService.Get<List<mPozorista>>(null);
-            dgvPozorista.AutoGenerateColumns = false;
-            dgvPozorista.DataSource = result;
-        }
+        //private async Task LoadPozorista()
+        //{
+        //    var result = await _pozoristaService.Get<List<mPozorista>>(null);
+        //    dgvPozorista.AutoGenerateColumns = false;
+        //    dgvPozorista.DataSource = result;
+        //}
 
         private async void btnPretrazi_Click(object sender, EventArgs e)
         {

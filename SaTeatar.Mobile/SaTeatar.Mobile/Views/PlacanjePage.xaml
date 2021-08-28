@@ -87,7 +87,14 @@
             <StackLayout HorizontalOptions="FillAndExpand" >
                 <Button x:Name="Submit_Button" Text="POTVRDI" Command="{Binding SubmitCommand}" FontSize="10" />
             </StackLayout>
-            
+
+            <StackLayout HorizontalOptions="Center" VerticalOptions="End" Padding="50">
+                <Label FontSize="6" TextColor="Gray" Text="TESTNI BROJEVI KARTICA: "/>
+                <Entry FontSize="8" TextColor="Gray" Text="4242424242424242"/>
+                <Entry FontSize="8" TextColor="Gray" Text="4000000760000002"/>
+                <Entry FontSize="8" TextColor="Gray" Text="4000001240000000"/>
+                <Entry FontSize="8" TextColor="Gray" Text="4000004840008001"/>
+            </StackLayout>
             
         </StackLayout>
     </ContentView>

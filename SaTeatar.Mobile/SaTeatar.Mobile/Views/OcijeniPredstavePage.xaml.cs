@@ -1,5 +1,4 @@
 ﻿using SaTeatar.Mobile.ViewModels;
-using SaTeatar.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +11,10 @@ using Xamarin.Forms.Xaml;
 namespace SaTeatar.Mobile.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OcjeneStartPage : ContentPage
+    public partial class OcijeniPredstavePage : ContentPage
     {
         public OcjeneViewModel model = null;
-        public OcjeneStartPage()
+        public OcijeniPredstavePage()
         {
             InitializeComponent();
             BindingContext = model = new OcjeneViewModel();
@@ -23,18 +22,8 @@ namespace SaTeatar.Mobile.Views
 
         protected async override void OnAppearing()
         {
+            base.OnAppearing();
             await model.Init();
-        }
-
-        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            var ocjena = e.SelectedItem as mOcjene;
-            await Navigation.PushAsync(new OcjenePage(ocjena));
-        }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new OcijeniPredstavePage());
         }
     }
 }

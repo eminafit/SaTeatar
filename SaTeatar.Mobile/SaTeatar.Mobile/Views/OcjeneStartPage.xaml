@@ -33,8 +33,18 @@
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
-                                    <Label Text="KOMENTAR:" TextColor="Gray" FontSize="10"/>
-                                    <Editor Text="{Binding Opis}" HeightRequest="50" FontSize="10" IsEnabled="False"></Editor>
+
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="KOMENTAR: " TextColor="Gray" FontSize="8"/>
+                                                    <Span Text="{Binding Opis}" FontSize="10"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <!--<Label Text="KOMENTAR:" TextColor="Gray" FontSize="10"/>
+                                    <Editor Text="{Binding Opis}" HeightRequest="50" FontSize="10" IsEnabled="False"></Editor>-->
                                 </StackLayout>
                                 </Frame>
                             </StackLayout>
@@ -42,6 +52,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <StackLayout HorizontalOptions="Center" VerticalOptions="Center" Padding="20">
+
+                <Button Text="OCIJENI OSTALE PREDSTAVE" FontSize="10" Clicked="Button_Clicked"/>
+            </StackLayout>
             
         </StackLayout>
     </ContentPage.Content>

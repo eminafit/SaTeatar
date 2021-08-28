@@ -37,7 +37,6 @@ namespace SaTeatar.WinUI.Djelatnici
             this.btnPretrazi = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPrezime = new System.Windows.Forms.TextBox();
-            this.DjelatnikId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ImePrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDjelatnici)).BeginInit();
@@ -67,7 +66,6 @@ namespace SaTeatar.WinUI.Djelatnici
             this.dgvDjelatnici.AllowUserToDeleteRows = false;
             this.dgvDjelatnici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDjelatnici.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DjelatnikId,
             this.ImePrezime,
             this.Status});
             this.dgvDjelatnici.Location = new System.Drawing.Point(28, 171);
@@ -125,15 +123,6 @@ namespace SaTeatar.WinUI.Djelatnici
             this.txtPrezime.Size = new System.Drawing.Size(295, 22);
             this.txtPrezime.TabIndex = 6;
             // 
-            // DjelatnikId
-            // 
-            this.DjelatnikId.DataPropertyName = "DjelatnikId";
-            this.DjelatnikId.HeaderText = "DjelatnikId";
-            this.DjelatnikId.MinimumWidth = 6;
-            this.DjelatnikId.Name = "DjelatnikId";
-            this.DjelatnikId.ReadOnly = true;
-            this.DjelatnikId.Width = 125;
-            // 
             // ImePrezime
             // 
             this.ImePrezime.DataPropertyName = "ImePrezime";
@@ -146,7 +135,7 @@ namespace SaTeatar.WinUI.Djelatnici
             // Status
             // 
             this.Status.DataPropertyName = "Status";
-            this.Status.HeaderText = "Status";
+            this.Status.HeaderText = "Aktivan";
             this.Status.MinimumWidth = 6;
             this.Status.Name = "Status";
             this.Status.ReadOnly = true;
@@ -186,7 +175,6 @@ namespace SaTeatar.WinUI.Djelatnici
         private System.Windows.Forms.Button btnPretrazi;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPrezime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DjelatnikId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImePrezime;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Status;
     }

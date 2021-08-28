@@ -154,6 +154,13 @@ namespace SaTeatar.Mobile.ViewModels
             set { SetProperty(ref _ukbool, value); NotifyPropertyChanged(); }
         }
 
+        string _TopOcjenaOpis = string.Empty;
+        public string TopOcjenaOpis
+        {
+            get { return _TopOcjenaOpis; }
+            set { SetProperty(ref _TopOcjenaOpis, value); NotifyPropertyChanged(); }
+        }
+
         public ICommand PovecajKolicinuCommand { get; set; }
         public ICommand SmanjiKolicinuCommand { get; set; }
         
@@ -216,6 +223,8 @@ namespace SaTeatar.Mobile.ViewModels
             //ocjene predstave
             var searchOcjene = new rOcjeneSearch { PredstavaId = Izvodjenje.PredstavaId };
             var ocjene = await _ocjeneService.Get<List<mOcjene>>(searchOcjene);
+            ocjene.Sort((y, x) => x.Ocjena.CompareTo(y.Ocjena));
+            TopOcjenaOpis = ocjene[0].Opis + " ( " + ocjene[0].Ocjena + " ) ";
             ProsjecnaOcjena = ocjene.Select(x => x.Ocjena).Average();
             ProsjecnaOcjena = Math.Round(ProsjecnaOcjena, 2, MidpointRounding.AwayFromZero);
             OcjenaStr = string.Empty;

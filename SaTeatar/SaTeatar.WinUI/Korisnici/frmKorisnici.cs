@@ -34,12 +34,12 @@ namespace SaTeatar.WinUI.Korisnici
 
         }
 
-        private async Task LoadKorisnike()
-        {
-            var result = await _korisniciService.Get<List<mKorisnici>>(null);
-            dgvKorisnici.AutoGenerateColumns = false;
-            dgvKorisnici.DataSource = result;
-        }
+        //private async Task LoadKorisnike()
+        //{
+        //    var result = await _korisniciService.Get<List<mKorisnici>>(null);
+        //    dgvKorisnici.AutoGenerateColumns = false;
+        //    dgvKorisnici.DataSource = result;
+        //}
 
         private void dgvKorisnici_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -54,9 +54,9 @@ namespace SaTeatar.WinUI.Korisnici
 
         }
 
-        private async void frmKorisnici_Load(object sender, EventArgs e)
-        {
-            await LoadKorisnike();
-        }
+        //private async void frmKorisnici_Load(object sender, EventArgs e)
+        //{
+        //    await LoadKorisnike();
+        //}
     }
 }
