@@ -67,7 +67,7 @@ namespace SaTeatar.WinUI.Predstave
             int rowindex = dgvPredstave.CurrentCell.RowIndex;
             int columnindex = dgvPredstave.CurrentCell.ColumnIndex;
             var value = dgvPredstave.CurrentCell.Value; 
-            var id = dgvPredstave.Rows[rowindex].Cells[0].Value;
+            var id = dgvPredstave.Rows[rowindex].Cells["PredstavaId"].Value;
             frmPredstaveDetalji frm = new frmPredstaveDetalji(int.Parse(id.ToString()));
             frm.Show();
         }

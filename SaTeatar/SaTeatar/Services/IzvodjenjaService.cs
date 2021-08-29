@@ -47,8 +47,8 @@ namespace SaTeatar.WebAPI.Services
                 search.DatumDO.CompareTo(DateTime.MinValue.AddHours(1))>0 )
 
             {
-                upit = upit.Where(x => x.DatumVrijeme.CompareTo(search.DatumOD) >= 0 &&
-                                       x.DatumVrijeme.CompareTo(search.DatumDO) <= 0);
+                upit = upit.Where(x => x.DatumVrijeme.Date.CompareTo(search.DatumOD.Date) >= 0 &&
+                                       x.DatumVrijeme.Date.CompareTo(search.DatumDO.Date) <= 0);
             }
 
             var izvodjenja = upit.ToList();

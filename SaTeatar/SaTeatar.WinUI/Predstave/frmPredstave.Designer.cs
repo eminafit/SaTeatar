@@ -33,6 +33,7 @@ namespace SaTeatar.WinUI.Predstave
             this.label1 = new System.Windows.Forms.Label();
             this.cmbTipoviPredstave = new System.Windows.Forms.ComboBox();
             this.Naziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PredstavaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPredstave)).BeginInit();
             this.SuspendLayout();
@@ -44,6 +45,7 @@ namespace SaTeatar.WinUI.Predstave
             this.dgvPredstave.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPredstave.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Naziv,
+            this.PredstavaId,
             this.Status});
             this.dgvPredstave.Location = new System.Drawing.Point(29, 136);
             this.dgvPredstave.Name = "dgvPredstave";
@@ -81,6 +83,16 @@ namespace SaTeatar.WinUI.Predstave
             this.Naziv.ReadOnly = true;
             this.Naziv.Width = 125;
             // 
+            // PredstavaId
+            // 
+            this.PredstavaId.DataPropertyName = "PredstavaId";
+            this.PredstavaId.HeaderText = "PredstavaId";
+            this.PredstavaId.MinimumWidth = 6;
+            this.PredstavaId.Name = "PredstavaId";
+            this.PredstavaId.ReadOnly = true;
+            this.PredstavaId.Visible = false;
+            this.PredstavaId.Width = 125;
+            // 
             // Status
             // 
             this.Status.DataPropertyName = "Status";
@@ -115,6 +127,7 @@ namespace SaTeatar.WinUI.Predstave
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbTipoviPredstave;
         private System.Windows.Forms.DataGridViewTextBoxColumn Naziv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PredstavaId;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Status;
     }
 }

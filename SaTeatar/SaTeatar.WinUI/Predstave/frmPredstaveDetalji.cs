@@ -50,11 +50,12 @@ namespace SaTeatar.WinUI.Predstave
                 cmbTipPredstave.SelectedValue = predstava.TipPredstaveId;
                 chbStatus.Checked = predstava.Status;
 
-                predstavaDjelatnici = await _predstaveDjelatnici.Get<List<mPredstaveDjelatnici>>(new rPredstaveDjelatnicSearch() { PredstavaId = (int)_id });  
+                predstavaDjelatnici = await _predstaveDjelatnici.Get<List<mPredstaveDjelatnici>>(new rPredstaveDjelatnicSearch() { PredstavaId = (int)_id });
+
 
                 for (int i = 0; i < predstavaDjelatnici.Count; i++)
                 {
-                    if (predstavaDjelatnici[i].Djelatnik.VrstaDjelatnikaId==1)
+                    if (predstavaDjelatnici[i].Djelatnik.VrstaDjelatnikaId==1 || predstavaDjelatnici[i].Djelatnik.VrstaDjelatnikaId == 3)
                     {
                         cmbRezija.SelectedValue = predstavaDjelatnici[i].DjelatnikId;
                     }
@@ -64,6 +65,8 @@ namespace SaTeatar.WinUI.Predstave
                         ListaVecDodatihGlumacIDeva.Add(predstavaDjelatnici[i].DjelatnikId);
                     }
                 }
+
+
                 // pbSlika.Visible = false;
                 if (predstava.Slika?.Length>0)
                 {
@@ -118,6 +121,8 @@ namespace SaTeatar.WinUI.Predstave
         private async Task LoadReziseri()
         {
             var result = await _djelatnici.Get<List<mDjelatnici>>(new rDjelatniciSearch() { VrstaDjelatnikaId = 1 });
+            var result2 = await _djelatnici.Get<List<mDjelatnici>>(new rDjelatniciSearch() { VrstaDjelatnikaId = 3 });
+            result.AddRange(result2);
             result.Insert(0, new mDjelatnici());
             cmbRezija.DisplayMember = "ImePrezime";
             cmbRezija.ValueMember = "DjelatnikId";
@@ -128,22 +133,27 @@ namespace SaTeatar.WinUI.Predstave
         {
             if (this.ValidateChildren())
             {
-                var idTPObj = cmbTipPredstave.SelectedValue;
 
-                if (int.TryParse(idTPObj.ToString(), out int tipid))
-                {
-                    inrequest.TipPredstaveId = tipid;
-                }
-
-                inrequest.Naziv = txtNaziv.Text;
-                inrequest.Opis = txtOpis.Text;
-                inrequest.Status = chbStatus.Checked;
-                inrequest.Slika = null;
 
                 var listGlumciIdCB = lbGlumci.SelectedItems.Cast<mDjelatnici>().Select(x => x.DjelatnikId).ToList();
 
                 if (!_id.HasValue)
                 {
+                    var idTPObj = cmbTipPredstave.SelectedValue;
+
+                    if (int.TryParse(idTPObj.ToString(), out int tipid))
+                    {
+                        inrequest.TipPredstaveId = tipid;
+                    }
+
+                    inrequest.Naziv = txtNaziv.Text;
+                    inrequest.Opis = txtOpis.Text;
+                    inrequest.Status = chbStatus.Checked;
+                    if (!dodanaSlika)
+                    {
+                        inrequest.Slika = null;
+                    }
+
                     var insertPredstave = await _predstaveService.Insert<mPredstave>(inrequest);
 
                     for (int i = 0; i < listGlumciIdCB.Count; i++)
@@ -218,6 +228,7 @@ namespace SaTeatar.WinUI.Predstave
                     {
                         uprequest.TipPredstaveId = tipidpu;
                     }
+
                     if (!dodanaSlika)
                     {
                         uprequest.Slika = predstava.Slika;
@@ -256,7 +267,7 @@ namespace SaTeatar.WinUI.Predstave
 
                 Image image = Image.FromFile(fileName);
                 pbSlika.Image = image;
-                pbSlika.Visible = true;
+                //pbSlika.Visible = true;
             }
         }
 

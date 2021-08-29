@@ -34,6 +34,7 @@ namespace SaTeatar.WinUI.Pozorista
             this.txtPretraga = new System.Windows.Forms.TextBox();
             this.btnPretrazi = new System.Windows.Forms.Button();
             this.Naziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PozoristeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Adresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPozorista)).BeginInit();
             this.SuspendLayout();
@@ -45,6 +46,7 @@ namespace SaTeatar.WinUI.Pozorista
             this.dgvPozorista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPozorista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Naziv,
+            this.PozoristeId,
             this.Adresa});
             this.dgvPozorista.Location = new System.Drawing.Point(12, 112);
             this.dgvPozorista.Name = "dgvPozorista";
@@ -90,6 +92,16 @@ namespace SaTeatar.WinUI.Pozorista
             this.Naziv.ReadOnly = true;
             this.Naziv.Width = 125;
             // 
+            // PozoristeId
+            // 
+            this.PozoristeId.DataPropertyName = "PozoristeId";
+            this.PozoristeId.HeaderText = "PozoristeId";
+            this.PozoristeId.MinimumWidth = 6;
+            this.PozoristeId.Name = "PozoristeId";
+            this.PozoristeId.ReadOnly = true;
+            this.PozoristeId.Visible = false;
+            this.PozoristeId.Width = 125;
+            // 
             // Adresa
             // 
             this.Adresa.DataPropertyName = "Adresa";
@@ -124,6 +136,7 @@ namespace SaTeatar.WinUI.Pozorista
         private System.Windows.Forms.TextBox txtPretraga;
         private System.Windows.Forms.Button btnPretrazi;
         private System.Windows.Forms.DataGridViewTextBoxColumn Naziv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PozoristeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Adresa;
     }
 }

@@ -30,10 +30,6 @@ namespace SaTeatar.WinUI.Izvodjenja
         private void InitializeComponent()
         {
             this.dgvIzvodjenja = new System.Windows.Forms.DataGridView();
-            this.Predstava = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pozoriste = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DatumVrijeme = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Korisnik = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtpDatumOD = new System.Windows.Forms.DateTimePicker();
             this.dtpDatumDO = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,6 +37,11 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.btnPretrazi = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.Predstava = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IzvodjenjeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pozoriste = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DatumVrijeme = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Korisnik = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIzvodjenja)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.dgvIzvodjenja.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvIzvodjenja.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Predstava,
+            this.IzvodjenjeId,
             this.Pozoriste,
             this.DatumVrijeme,
             this.Korisnik});
@@ -62,42 +64,6 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.dgvIzvodjenja.Size = new System.Drawing.Size(688, 284);
             this.dgvIzvodjenja.TabIndex = 0;
             this.dgvIzvodjenja.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dgvIzvodjenja_MouseDoubleClick);
-            // 
-            // Predstava
-            // 
-            this.Predstava.DataPropertyName = "PredstavaNaziv";
-            this.Predstava.HeaderText = "Predstava";
-            this.Predstava.MinimumWidth = 6;
-            this.Predstava.Name = "Predstava";
-            this.Predstava.ReadOnly = true;
-            this.Predstava.Width = 125;
-            // 
-            // Pozoriste
-            // 
-            this.Pozoriste.DataPropertyName = "PozoristeNaziv";
-            this.Pozoriste.HeaderText = "Pozoriste";
-            this.Pozoriste.MinimumWidth = 6;
-            this.Pozoriste.Name = "Pozoriste";
-            this.Pozoriste.ReadOnly = true;
-            this.Pozoriste.Width = 125;
-            // 
-            // DatumVrijeme
-            // 
-            this.DatumVrijeme.DataPropertyName = "DatumVrijeme";
-            this.DatumVrijeme.HeaderText = "Datum i vrijeme";
-            this.DatumVrijeme.MinimumWidth = 6;
-            this.DatumVrijeme.Name = "DatumVrijeme";
-            this.DatumVrijeme.ReadOnly = true;
-            this.DatumVrijeme.Width = 150;
-            // 
-            // Korisnik
-            // 
-            this.Korisnik.DataPropertyName = "KorisnikKorisnickoIme";
-            this.Korisnik.HeaderText = "Korisnik";
-            this.Korisnik.MinimumWidth = 6;
-            this.Korisnik.Name = "Korisnik";
-            this.Korisnik.ReadOnly = true;
-            this.Korisnik.Width = 125;
             // 
             // dtpDatumOD
             // 
@@ -161,6 +127,52 @@ namespace SaTeatar.WinUI.Izvodjenja
             this.label5.TabIndex = 10;
             this.label5.Text = "Napomena za testiranje";
             // 
+            // Predstava
+            // 
+            this.Predstava.DataPropertyName = "PredstavaNaziv";
+            this.Predstava.HeaderText = "Predstava";
+            this.Predstava.MinimumWidth = 6;
+            this.Predstava.Name = "Predstava";
+            this.Predstava.ReadOnly = true;
+            this.Predstava.Width = 125;
+            // 
+            // IzvodjenjeId
+            // 
+            this.IzvodjenjeId.DataPropertyName = "IzvodjenjeId";
+            this.IzvodjenjeId.HeaderText = "IzvodjenjeId";
+            this.IzvodjenjeId.MinimumWidth = 6;
+            this.IzvodjenjeId.Name = "IzvodjenjeId";
+            this.IzvodjenjeId.ReadOnly = true;
+            this.IzvodjenjeId.Visible = false;
+            this.IzvodjenjeId.Width = 125;
+            // 
+            // Pozoriste
+            // 
+            this.Pozoriste.DataPropertyName = "PozoristeNaziv";
+            this.Pozoriste.HeaderText = "Pozoriste";
+            this.Pozoriste.MinimumWidth = 6;
+            this.Pozoriste.Name = "Pozoriste";
+            this.Pozoriste.ReadOnly = true;
+            this.Pozoriste.Width = 125;
+            // 
+            // DatumVrijeme
+            // 
+            this.DatumVrijeme.DataPropertyName = "DatumVrijeme";
+            this.DatumVrijeme.HeaderText = "Datum i vrijeme";
+            this.DatumVrijeme.MinimumWidth = 6;
+            this.DatumVrijeme.Name = "DatumVrijeme";
+            this.DatumVrijeme.ReadOnly = true;
+            this.DatumVrijeme.Width = 150;
+            // 
+            // Korisnik
+            // 
+            this.Korisnik.DataPropertyName = "KorisnikKorisnickoIme";
+            this.Korisnik.HeaderText = "Korisnik";
+            this.Korisnik.MinimumWidth = 6;
+            this.Korisnik.Name = "Korisnik";
+            this.Korisnik.ReadOnly = true;
+            this.Korisnik.Width = 125;
+            // 
             // frmIzvodjenja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -191,11 +203,12 @@ namespace SaTeatar.WinUI.Izvodjenja
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnPretrazi;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Predstava;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IzvodjenjeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pozoriste;
         private System.Windows.Forms.DataGridViewTextBoxColumn DatumVrijeme;
         private System.Windows.Forms.DataGridViewTextBoxColumn Korisnik;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
     }
 }

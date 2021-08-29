@@ -45,10 +45,14 @@ namespace SaTeatar.WinUI.Pozorista
                 if (_id.HasValue)
                 {
                     uprequest.Logo = file;
+                    dodanaSlika = true;
+
                 }
                 else
                 {
                     inrequest.Logo = file;
+                    dodanaSlika = true;
+
                 }
                 txtSlikaInput.Text = filename;
                 Image slika = Image.FromFile(filename);
@@ -72,15 +76,22 @@ namespace SaTeatar.WinUI.Pozorista
                     }
                     await _pozoristaService.Update<mPozorista>(_id, uprequest);
                     MessageBox.Show("Pozoriste uspjesno izmijenjeno!");
+                    this.Close();
+
 
                 }
                 else
                 {
                     inrequest.Naziv = txtNaziv.Text;
                     inrequest.Adresa = txtAdresa.Text;
-
+                    if (!dodanaSlika)
+                    {
+                        inrequest.Logo = null;
+                    }
                     pozoriste = await _pozoristaService.Insert<mPozorista>(inrequest);
                     MessageBox.Show("Pozoriste uspjesno dodato!");
+                    this.Close();
+
                 }
             }
         }

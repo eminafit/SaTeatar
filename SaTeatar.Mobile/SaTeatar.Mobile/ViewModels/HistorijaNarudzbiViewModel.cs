@@ -67,10 +67,14 @@ namespace SaTeatar.Mobile.ViewModels
             var kupac = PrijavljeniKupac.Kupac;
             var search = new rNarudzbaSearch() { KupacId = kupac.KupacId };
 
-            var lnar = await _narudzbaService.Get<List<mNarudzba>>(null);
+            var lnar = await _narudzbaService.Get<List<mNarudzba>>(search);
             lnar.Sort(( y,x) => x.Datum.CompareTo(y.Datum));
 
             ListaNarudzbi.Clear();
+            brojNarudzbi = 0;
+            brojNeplacenih = 0;
+            brojPlacenih = 0;
+
             if (lnar.Count>0)
             {
                 foreach (var item in lnar)
@@ -98,6 +102,9 @@ namespace SaTeatar.Mobile.ViewModels
                     }
                 }
             }
+
+
+
             brojNarudzbi = ListaNarudzbi.Count;
             brojNeplacenih = brojNarudzbi - brojPlacenih;
         }

@@ -38,6 +38,7 @@ namespace SaTeatar.WinUI.Djelatnici
             this.label3 = new System.Windows.Forms.Label();
             this.txtPrezime = new System.Windows.Forms.TextBox();
             this.ImePrezime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DjelatnikId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDjelatnici)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +68,7 @@ namespace SaTeatar.WinUI.Djelatnici
             this.dgvDjelatnici.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDjelatnici.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ImePrezime,
+            this.DjelatnikId,
             this.Status});
             this.dgvDjelatnici.Location = new System.Drawing.Point(28, 171);
             this.dgvDjelatnici.Name = "dgvDjelatnici";
@@ -132,6 +134,16 @@ namespace SaTeatar.WinUI.Djelatnici
             this.ImePrezime.ReadOnly = true;
             this.ImePrezime.Width = 125;
             // 
+            // DjelatnikId
+            // 
+            this.DjelatnikId.DataPropertyName = "DjelatnikId";
+            this.DjelatnikId.HeaderText = "DjelatnikId";
+            this.DjelatnikId.MinimumWidth = 6;
+            this.DjelatnikId.Name = "DjelatnikId";
+            this.DjelatnikId.ReadOnly = true;
+            this.DjelatnikId.Visible = false;
+            this.DjelatnikId.Width = 125;
+            // 
             // Status
             // 
             this.Status.DataPropertyName = "Status";
@@ -176,6 +188,7 @@ namespace SaTeatar.WinUI.Djelatnici
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPrezime;
         private System.Windows.Forms.DataGridViewTextBoxColumn ImePrezime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DjelatnikId;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Status;
     }
 }
