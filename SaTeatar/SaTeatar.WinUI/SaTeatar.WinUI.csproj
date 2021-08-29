@@ -128,11 +128,23 @@
     <Compile Include="frmIndex.Designer.cs">
       <DependentUpon>frmIndex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvjestaji\frmOcjeneIzvjestaj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvjestaji\frmOcjeneIzvjestaj.Designer.cs">
+      <DependentUpon>frmOcjeneIzvjestaj.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvjestaji\frmPostavkaIzvjestajaTopNarudzbe.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Izvjestaji\frmPostavkaIzvjestajaTopNarudzbe.Designer.cs">
       <DependentUpon>frmPostavkaIzvjestajaTopNarudzbe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvjestaji\frmPostavkeOcjeneIzvjestaj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvjestaji\frmPostavkeOcjeneIzvjestaj.Designer.cs">
+      <DependentUpon>frmPostavkeOcjeneIzvjestaj.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvjestaji\frmPostavkeZaIzvjestaje.cs">
       <SubType>Form</SubType>
@@ -224,8 +236,14 @@
     <EmbeddedResource Include="frmIndex.resx">
       <DependentUpon>frmIndex.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvjestaji\frmOcjeneIzvjestaj.resx">
+      <DependentUpon>frmOcjeneIzvjestaj.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvjestaji\frmPostavkaIzvjestajaTopNarudzbe.resx">
       <DependentUpon>frmPostavkaIzvjestajaTopNarudzbe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvjestaji\frmPostavkeOcjeneIzvjestaj.resx">
+      <DependentUpon>frmPostavkeOcjeneIzvjestaj.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvjestaji\frmPostavkeZaIzvjestaje.resx">
       <DependentUpon>frmPostavkeZaIzvjestaje.cs</DependentUpon>
@@ -276,6 +294,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="rptOcjene.rdlc" />
     <EmbeddedResource Include="rptTopNarudzbe.rdlc" />
     <EmbeddedResource Include="rptTopPosjetitelji.rdlc" />
     <None Include="dsSaTeatar.xsc">

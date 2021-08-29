@@ -229,6 +229,10 @@ namespace SaTeatar.WinUI
             frm.ShowDialog();
         }
 
-
+        private void najboljeOcijenjenePredstaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPostavkeOcjeneIzvjestaj frm = new frmPostavkeOcjeneIzvjestaj();
+            frm.ShowDialog();
+        }
     }
 }

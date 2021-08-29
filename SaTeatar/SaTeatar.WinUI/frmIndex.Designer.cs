@@ -55,6 +55,7 @@ namespace SaTeatar.WinUI
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.najboljeOcijenjenePredstaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -212,7 +213,8 @@ namespace SaTeatar.WinUI
             // 
             this.izvjestajiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.topPosjetiteljiToolStripMenuItem,
-            this.top5NarudzbiToolStripMenuItem});
+            this.top5NarudzbiToolStripMenuItem,
+            this.najboljeOcijenjenePredstaveToolStripMenuItem});
             this.izvjestajiToolStripMenuItem.Name = "izvjestajiToolStripMenuItem";
             this.izvjestajiToolStripMenuItem.Size = new System.Drawing.Size(98, 29);
             this.izvjestajiToolStripMenuItem.Text = "Izvjestaji";
@@ -220,14 +222,14 @@ namespace SaTeatar.WinUI
             // topPosjetiteljiToolStripMenuItem
             // 
             this.topPosjetiteljiToolStripMenuItem.Name = "topPosjetiteljiToolStripMenuItem";
-            this.topPosjetiteljiToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.topPosjetiteljiToolStripMenuItem.Size = new System.Drawing.Size(348, 30);
             this.topPosjetiteljiToolStripMenuItem.Text = "Top 3 posjetitelja";
             this.topPosjetiteljiToolStripMenuItem.Click += new System.EventHandler(this.topPosjetiteljiToolStripMenuItem_Click);
             // 
             // top5NarudzbiToolStripMenuItem
             // 
             this.top5NarudzbiToolStripMenuItem.Name = "top5NarudzbiToolStripMenuItem";
-            this.top5NarudzbiToolStripMenuItem.Size = new System.Drawing.Size(240, 30);
+            this.top5NarudzbiToolStripMenuItem.Size = new System.Drawing.Size(348, 30);
             this.top5NarudzbiToolStripMenuItem.Text = "Top 5 narudzbi";
             this.top5NarudzbiToolStripMenuItem.Click += new System.EventHandler(this.top5NarudzbiToolStripMenuItem_Click);
             // 
@@ -248,6 +250,13 @@ namespace SaTeatar.WinUI
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(62, 25);
             this.toolStripStatusLabel.Text = "Status";
+            // 
+            // najboljeOcijenjenePredstaveToolStripMenuItem
+            // 
+            this.najboljeOcijenjenePredstaveToolStripMenuItem.Name = "najboljeOcijenjenePredstaveToolStripMenuItem";
+            this.najboljeOcijenjenePredstaveToolStripMenuItem.Size = new System.Drawing.Size(348, 30);
+            this.najboljeOcijenjenePredstaveToolStripMenuItem.Text = "Najbolje ocijenjene predstave";
+            this.najboljeOcijenjenePredstaveToolStripMenuItem.Click += new System.EventHandler(this.najboljeOcijenjenePredstaveToolStripMenuItem_Click);
             // 
             // frmIndex
             // 
@@ -299,6 +308,7 @@ namespace SaTeatar.WinUI
         private System.Windows.Forms.ToolStripMenuItem izvjestajiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem topPosjetiteljiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem top5NarudzbiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem najboljeOcijenjenePredstaveToolStripMenuItem;
     }
 }
 

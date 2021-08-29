@@ -12,7 +12,7 @@
   <xs:element name="dsSaTeatar" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsSaTeatar" msprop:Generator_UserDSName="dsSaTeatar">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Posjetitelji" msprop:Generator_TableClassName="PosjetiteljiDataTable" msprop:Generator_TableVarName="tablePosjetitelji" msprop:Generator_RowChangedName="PosjetiteljiRowChanged" msprop:Generator_TablePropName="Posjetitelji" msprop:Generator_RowDeletingName="PosjetiteljiRowDeleting" msprop:Generator_RowChangingName="PosjetiteljiRowChanging" msprop:Generator_RowEvHandlerName="PosjetiteljiRowChangeEventHandler" msprop:Generator_RowDeletedName="PosjetiteljiRowDeleted" msprop:Generator_RowClassName="PosjetiteljiRow" msprop:Generator_UserTableName="Posjetitelji" msprop:Generator_RowEvArgName="PosjetiteljiRowChangeEvent">
+        <xs:element name="Posjetitelji" msprop:Generator_TableClassName="PosjetiteljiDataTable" msprop:Generator_TableVarName="tablePosjetitelji" msprop:Generator_TablePropName="Posjetitelji" msprop:Generator_RowDeletingName="PosjetiteljiRowDeleting" msprop:Generator_RowChangingName="PosjetiteljiRowChanging" msprop:Generator_RowEvHandlerName="PosjetiteljiRowChangeEventHandler" msprop:Generator_RowDeletedName="PosjetiteljiRowDeleted" msprop:Generator_UserTableName="Posjetitelji" msprop:Generator_RowChangedName="PosjetiteljiRowChanged" msprop:Generator_RowEvArgName="PosjetiteljiRowChangeEvent" msprop:Generator_RowClassName="PosjetiteljiRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="RedBr" msprop:Generator_ColumnVarNameInTable="columnRedBr" msprop:Generator_ColumnPropNameInRow="RedBr" msprop:Generator_ColumnPropNameInTable="RedBrColumn" msprop:Generator_UserColumnName="RedBr" type="xs:long" minOccurs="0" />
@@ -21,13 +21,22 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Narudzbe" msprop:Generator_TableClassName="NarudzbeDataTable" msprop:Generator_TableVarName="tableNarudzbe" msprop:Generator_RowChangedName="NarudzbeRowChanged" msprop:Generator_TablePropName="Narudzbe" msprop:Generator_RowDeletingName="NarudzbeRowDeleting" msprop:Generator_RowChangingName="NarudzbeRowChanging" msprop:Generator_RowEvHandlerName="NarudzbeRowChangeEventHandler" msprop:Generator_RowDeletedName="NarudzbeRowDeleted" msprop:Generator_RowClassName="NarudzbeRow" msprop:Generator_UserTableName="Narudzbe" msprop:Generator_RowEvArgName="NarudzbeRowChangeEvent">
+        <xs:element name="Narudzbe" msprop:Generator_TableClassName="NarudzbeDataTable" msprop:Generator_TableVarName="tableNarudzbe" msprop:Generator_TablePropName="Narudzbe" msprop:Generator_RowDeletingName="NarudzbeRowDeleting" msprop:Generator_RowChangingName="NarudzbeRowChanging" msprop:Generator_RowEvHandlerName="NarudzbeRowChangeEventHandler" msprop:Generator_RowDeletedName="NarudzbeRowDeleted" msprop:Generator_UserTableName="Narudzbe" msprop:Generator_RowChangedName="NarudzbeRowChanged" msprop:Generator_RowEvArgName="NarudzbeRowChangeEvent" msprop:Generator_RowClassName="NarudzbeRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="RedBr" msprop:Generator_ColumnVarNameInTable="columnRedBr" msprop:Generator_ColumnPropNameInRow="RedBr" msprop:Generator_ColumnPropNameInTable="RedBrColumn" msprop:Generator_UserColumnName="RedBr" type="xs:int" minOccurs="0" />
               <xs:element name="Kupac" msprop:Generator_ColumnVarNameInTable="columnKupac" msprop:Generator_ColumnPropNameInRow="Kupac" msprop:Generator_ColumnPropNameInTable="KupacColumn" msprop:Generator_UserColumnName="Kupac" type="xs:string" minOccurs="0" />
               <xs:element name="BrNarudzbe" msprop:Generator_ColumnVarNameInTable="columnBrNarudzbe" msprop:Generator_ColumnPropNameInRow="BrNarudzbe" msprop:Generator_ColumnPropNameInTable="BrNarudzbeColumn" msprop:Generator_UserColumnName="BrNarudzbe" type="xs:string" minOccurs="0" />
               <xs:element name="Iznos" msprop:Generator_ColumnVarNameInTable="columnIznos" msprop:Generator_ColumnPropNameInRow="Iznos" msprop:Generator_ColumnPropNameInTable="IznosColumn" msprop:Generator_UserColumnName="Iznos" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Predstave" msprop:Generator_TableClassName="PredstaveDataTable" msprop:Generator_TableVarName="tablePredstave" msprop:Generator_TablePropName="Predstave" msprop:Generator_RowDeletingName="PredstaveRowDeleting" msprop:Generator_RowChangingName="PredstaveRowChanging" msprop:Generator_RowEvHandlerName="PredstaveRowChangeEventHandler" msprop:Generator_RowDeletedName="PredstaveRowDeleted" msprop:Generator_UserTableName="Predstave" msprop:Generator_RowChangedName="PredstaveRowChanged" msprop:Generator_RowEvArgName="PredstaveRowChangeEvent" msprop:Generator_RowClassName="PredstaveRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RedBr" msprop:Generator_ColumnVarNameInTable="columnRedBr" msprop:Generator_ColumnPropNameInRow="RedBr" msprop:Generator_ColumnPropNameInTable="RedBrColumn" msprop:Generator_UserColumnName="RedBr" type="xs:int" minOccurs="0" />
+              <xs:element name="Predstava" msprop:Generator_ColumnVarNameInTable="columnPredstava" msprop:Generator_ColumnPropNameInRow="Predstava" msprop:Generator_ColumnPropNameInTable="PredstavaColumn" msprop:Generator_UserColumnName="Predstava" type="xs:string" minOccurs="0" />
+              <xs:element name="ProsjecnaOcjena" msprop:Generator_ColumnVarNameInTable="columnProsjecnaOcjena" msprop:Generator_ColumnPropNameInRow="ProsjecnaOcjena" msprop:Generator_ColumnPropNameInTable="ProsjecnaOcjenaColumn" msprop:Generator_UserColumnName="ProsjecnaOcjena" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
