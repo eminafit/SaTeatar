@@ -223,18 +223,27 @@ namespace SaTeatar.Mobile.ViewModels
             //ocjene predstave
             var searchOcjene = new rOcjeneSearch { PredstavaId = Izvodjenje.PredstavaId };
             var ocjene = await _ocjeneService.Get<List<mOcjene>>(searchOcjene);
-            ocjene.Sort((y, x) => x.Ocjena.CompareTo(y.Ocjena));
-            TopOcjenaOpis = ocjene[0].Opis + " ( " + ocjene[0].Ocjena + " ) ";
-            ProsjecnaOcjena = ocjene.Select(x => x.Ocjena).Average();
-            ProsjecnaOcjena = Math.Round(ProsjecnaOcjena, 2, MidpointRounding.AwayFromZero);
-            OcjenaStr = string.Empty;
-            for (int i = 0; i < (int)ProsjecnaOcjena; i++)
+            if (ocjene.Count>0)
             {
-                OcjenaStr += "*";
+                ocjene.Sort((y, x) => x.Ocjena.CompareTo(y.Ocjena));
+                TopOcjenaOpis = ocjene[0].Opis + " ( " + ocjene[0].Ocjena + " ) ";
+                ProsjecnaOcjena = ocjene.Select(x => x.Ocjena).Average();
+                ProsjecnaOcjena = Math.Round(ProsjecnaOcjena, 2, MidpointRounding.AwayFromZero);
+                OcjenaStr = string.Empty;
+                for (int i = 0; i < (int)ProsjecnaOcjena; i++)
+                {
+                    OcjenaStr += "*";
+                }
+                var ost = ProsjecnaOcjena - (int)ProsjecnaOcjena;
+                if (ost>=0.5)
+                    OcjenaStr += "`";
             }
-            var ost = ProsjecnaOcjena - (int)ProsjecnaOcjena;
-            if (ost>=0.5)
-                OcjenaStr += "`";
+            else
+            {
+                ProsjecnaOcjena = 0;
+                OcjenaStr = string.Empty;
+                TopOcjenaOpis = string.Empty;
+            }
 
             //formatdatum
             DatumStr = Izvodjenje.DatumVrijeme.ToString("dd.MM.yyyy.");

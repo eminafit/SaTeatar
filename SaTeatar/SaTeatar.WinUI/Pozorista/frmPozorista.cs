@@ -20,25 +20,23 @@ namespace SaTeatar.WinUI.Pozorista
             InitializeComponent();
         }
 
-        private async void frmPozorista_Load(object sender, EventArgs e)
+        private void frmPozorista_Load(object sender, EventArgs e)
         {
-           // await LoadPozorista();
         }
 
-        //private async Task LoadPozorista()
-        //{
-        //    var result = await _pozoristaService.Get<List<mPozorista>>(null);
-        //    dgvPozorista.AutoGenerateColumns = false;
-        //    dgvPozorista.DataSource = result;
-        //}
 
         private async void btnPretrazi_Click(object sender, EventArgs e)
         {
             var pretraga = txtPretraga.Text;
             var request = new rPozoristaSearch() { Naziv = pretraga };
             var result = await _pozoristaService.Get<List<mPozorista>>(request);
+            result.Sort((x, y) => x.Naziv.CompareTo(y.Naziv));
             dgvPozorista.AutoGenerateColumns = false;
             dgvPozorista.DataSource = result;
+            if (result.Count == 0)
+            {
+                MessageBox.Show("Nema rezultata za zadanu pretragu", "OK");
+            }
         }
 
         private void dgvPozorista_MouseDoubleClick(object sender, MouseEventArgs e)

@@ -28,18 +28,16 @@ namespace SaTeatar.WinUI.Korisnici
             var search = new rKorisniciSearch {KorisnickoIme = txtPretraga.Text};
 
             var result = await _korisniciService.Get<List<mKorisnici>>(search);
+            result.Sort((x, y) => x.Ime.CompareTo(y.Ime));
             
             dgvKorisnici.AutoGenerateColumns = false;
             dgvKorisnici.DataSource = result;
-
+            if (result.Count == 0)
+            {
+                MessageBox.Show("Nema rezultata za zadanu pretragu", "OK");
+            }
         }
 
-        //private async Task LoadKorisnike()
-        //{
-        //    var result = await _korisniciService.Get<List<mKorisnici>>(null);
-        //    dgvKorisnici.AutoGenerateColumns = false;
-        //    dgvKorisnici.DataSource = result;
-        //}
 
         private void dgvKorisnici_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -54,9 +52,6 @@ namespace SaTeatar.WinUI.Korisnici
 
         }
 
-        //private async void frmKorisnici_Load(object sender, EventArgs e)
-        //{
-        //    await LoadKorisnike();
-        //}
+
     }
 }

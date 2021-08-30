@@ -44,6 +44,8 @@ namespace SaTeatar.WinUI.Izvjestaji
         private async void frmPostavkaIzvjestajaTopNarudzbe_Load(object sender, EventArgs e)
         {
             await LoadPozorista();
+            dtpDatumOd.Value = new DateTime(2021, 8, 1);
+            dtpDatumDo.Value = new DateTime(2021, 8, 21);
         }
 
         private async Task LoadPozorista()

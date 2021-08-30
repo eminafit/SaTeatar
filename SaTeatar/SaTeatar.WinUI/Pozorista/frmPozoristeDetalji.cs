@@ -90,7 +90,8 @@ namespace SaTeatar.WinUI.Pozorista
                     }
                     pozoriste = await _pozoristaService.Insert<mPozorista>(inrequest);
                     MessageBox.Show("Pozoriste uspjesno dodato!");
-                    this.Close();
+                    btnSacuvaj.Enabled = false;
+                    //this.Close();
 
                 }
             }
@@ -178,9 +179,9 @@ namespace SaTeatar.WinUI.Pozorista
             }
             else
             {
-                if (txtAdresa.Text.Length < 15)
+                if (txtAdresa.Text.Length < 5)
                 {
-                    errorProvider.SetError(txtAdresa, "Adresa mora sadrzavati bar 15 karaktera!");
+                    errorProvider.SetError(txtAdresa, "Adresa mora sadrzavati bar 5 karaktera!");
                     e.Cancel = true;
                 }
                 else

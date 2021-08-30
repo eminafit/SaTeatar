@@ -120,9 +120,9 @@ namespace SaTeatar.WinUI.Predstave
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(29, 326);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 17);
+            this.label4.Size = new System.Drawing.Size(58, 17);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Status: ";
+            this.label4.Text = "Aktivna:";
             // 
             // cmbTipPredstave
             // 

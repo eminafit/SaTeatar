@@ -173,9 +173,9 @@ namespace SaTeatar.WinUI.Korisnici
             this.chbStatus.AutoSize = true;
             this.chbStatus.Location = new System.Drawing.Point(243, 298);
             this.chbStatus.Name = "chbStatus";
-            this.chbStatus.Size = new System.Drawing.Size(70, 21);
+            this.chbStatus.Size = new System.Drawing.Size(76, 21);
             this.chbStatus.TabIndex = 13;
-            this.chbStatus.Text = "Status";
+            this.chbStatus.Text = "Aktivan";
             this.chbStatus.UseVisualStyleBackColor = true;
             // 
             // label7

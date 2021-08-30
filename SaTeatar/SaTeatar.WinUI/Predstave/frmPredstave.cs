@@ -55,9 +55,10 @@ namespace SaTeatar.WinUI.Predstave
                 (
                     new rPredstavaSearch()
                     {
-                        TipPredstaveId = tipId
+                        TipPredstaveId = tipId,
                     }
-                );
+                ); 
+            result.Sort((x, y) => x.Naziv.CompareTo(y.Naziv));
             dgvPredstave.AutoGenerateColumns = false;
             dgvPredstave.DataSource = result;
         }

@@ -33,6 +33,7 @@ namespace SaTeatar.WinUI.Djelatnici
 
         private async void frmDjelatniciDetalji_Load(object sender, EventArgs e)
         {
+            chStatus.Checked = true;
             await LoadVrstaDjelatnika();
 
 

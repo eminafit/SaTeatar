@@ -10,6 +10,8 @@ namespace SaTeatar.Model.Requests
         public int TipPredstaveId { get; set; }
 
         public int KupacId { get; set; }
+        public bool Status { get; set; }
+
 
     }
 }

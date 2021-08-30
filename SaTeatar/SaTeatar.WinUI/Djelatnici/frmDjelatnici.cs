@@ -57,6 +57,7 @@ namespace SaTeatar.WinUI.Djelatnici
                         VrstaDjelatnikaId = vdid 
                     }
                 );
+            result.Sort((x, y) => x.Ime.CompareTo(y.Ime));
             dgvDjelatnici.AutoGenerateColumns = false;
             dgvDjelatnici.DataSource = result;
         }
@@ -71,8 +72,14 @@ namespace SaTeatar.WinUI.Djelatnici
                         Prezime=txtPrezime.Text
                     }
                 );
+            result.Sort((x, y) => x.Ime.CompareTo(y.Ime));
             dgvDjelatnici.AutoGenerateColumns = false;
             dgvDjelatnici.DataSource = result;
+
+            if (result.Count==0)
+            {
+                MessageBox.Show("Nema rezultata za zadanu pretragu", "OK");
+            }
         }
 
         private void dgvDjelatnici_MouseDoubleClick(object sender, MouseEventArgs e)

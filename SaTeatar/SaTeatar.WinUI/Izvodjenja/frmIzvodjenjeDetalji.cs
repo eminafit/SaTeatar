@@ -62,6 +62,7 @@ namespace SaTeatar.WinUI.Izvodjenja
                 txtNapomena.Text = _izvodjenje.Napomena;
                 cmbPredstave.SelectedValue = _izvodjenje.PredstavaId;
                 cmbPozoriste.SelectedValue = _izvodjenje.PozoristeId;
+                cmbPozoriste.Enabled = false;
                 _postojecePozoristeId = _izvodjenje.PozoristeId;
                 _postojecePozoristeId = _izvodjenje.PozoristeId;
                 dtpDatumVrijeme.Value = _izvodjenje.DatumVrijeme;
@@ -81,7 +82,9 @@ namespace SaTeatar.WinUI.Izvodjenja
 
         private async Task LoadPredstave()
         {
-            var upit = await _predstaveService.Get<List<mPredstave>>(null);
+            var search = new rPredstavaSearch() { Status = true };
+            var upit = await _predstaveService.Get<List<mPredstave>>(search);
+            upit.Sort((x, y) => x.Naziv.CompareTo(y.Naziv));
             upit.Insert(0, new mPredstave());
             cmbPredstave.DisplayMember = "Naziv";
             cmbPredstave.ValueMember = "PredstavaId";
@@ -91,6 +94,8 @@ namespace SaTeatar.WinUI.Izvodjenja
         private async Task LoadPozorista()
         {
             var upit = await _pozoristaService.Get<List<mPozorista>>(null);
+            upit.Sort((x, y) => x.Naziv.CompareTo(y.Naziv));
+
             upit.Insert(0, new mPozorista());
             cmbPozoriste.DisplayMember = "Naziv";
             cmbPozoriste.ValueMember = "PozoristeId";
@@ -121,27 +126,15 @@ namespace SaTeatar.WinUI.Izvodjenja
                     }
                 }
 
-                var idPoz = cmbPozoriste.SelectedValue;
-                if (int.TryParse(idPoz.ToString(), out int idpozorista))
-                {
-                    if (idpozorista != 0)
-                    {
-                        if (_id.HasValue)
-                        {
-                            uprequest.PozoristeId = idpozorista;
-                        }
-                        else
-                        {
-                            inrequest.PozoristeId = idpozorista;
-                        }
-                    }
-                }
+
 
                 if (_id.HasValue)
                 {
+                    var izv = await _izvodjenjaService.GetById<mIzvodjenja>(_id);
                     uprequest.Napomena = txtNapomena.Text;
                     uprequest.KorisnikId = _izvodjenje.KorisnikId; 
                     uprequest.DatumVrijeme = dtpDatumVrijeme.Value;
+                    uprequest.PozoristeId = izv.PozoristeId;
 
                     _izvodjenje = await _izvodjenjaService.Update<mIzvodjenja>(_id, uprequest);
                     MessageBox.Show("Izvodjenje uspjesno izmijenjeno!");
@@ -149,12 +142,23 @@ namespace SaTeatar.WinUI.Izvodjenja
                 }
                 else
                 {
+                    var idPoz = cmbPozoriste.SelectedValue;
+                    if (int.TryParse(idPoz.ToString(), out int idpozorista))
+                    {
+                        if (idpozorista != 0)
+                        {
+                            inrequest.PozoristeId = idpozorista;
+                        }
+                    }
+
                     inrequest.KorisnikId = APIService.TrenutniKorisnik.KorisnikId;
                     inrequest.DatumVrijeme = dtpDatumVrijeme.Value;
                     inrequest.Napomena = txtNapomena.Text;
 
                     _izvodjenje = await _izvodjenjaService.Insert<mIzvodjenja>(inrequest);
                     MessageBox.Show("Izvodjenje uspjesno dodato!");
+                    cmbPozoriste.Enabled = false;
+                    btnSacuvaj.Enabled = false;
                     PosaljiObavijest();
                 }
 
@@ -172,16 +176,16 @@ namespace SaTeatar.WinUI.Izvodjenja
                 }
 
                 //ako ima i ako se pozoriste promijenilo
-                if (izs.Count > 0 && promjenaPozorista)
-                {
-                    //obrisi stare zapise (odnose se na zone drugog pozorista)
-                    foreach (var item in izs) 
-                    {
-                        await _izvodjenjaZoneService.Delete<mIzvodjenjaZone>(item.IzvodjenjeZonaId);
-                    }
-                    //dodaj nove
-                    DodajZone();
-                }
+                //if (izs.Count > 0 && promjenaPozorista)
+                //{
+                //    //obrisi stare zapise (odnose se na zone drugog pozorista)
+                //    foreach (var item in izs) 
+                //    {
+                //        await _izvodjenjaZoneService.Delete<mIzvodjenjaZone>(item.IzvodjenjeZonaId);
+                //    }
+                //    //dodaj nove
+                //    DodajZone();
+                //}
 
                 //ako ima i ako se pozoriste nije promijenilo
                 if (izs.Count > 0 && !promjenaPozorista)
@@ -189,8 +193,7 @@ namespace SaTeatar.WinUI.Izvodjenja
                     //prikazi postojece/uradi update
                     PrikaziZone(izs);
                 }
-
-
+              //  this.Close();
             }        
         }
 
@@ -359,7 +362,7 @@ namespace SaTeatar.WinUI.Izvodjenja
 
                 if (!greska)
                 {
-                    if (update && !promjenaPozorista)
+                    if (update)
                     {
                         for (int rows = 0; rows < dgvZone.Rows.Count; rows++)
                         {

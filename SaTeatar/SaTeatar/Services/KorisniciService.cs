@@ -90,17 +90,17 @@ namespace SaTeatar.WebAPI.Services
 
             if (!string.IsNullOrWhiteSpace(search?.Ime))
             {
-                query = query.Where(x => x.Ime == search.Ime);
+                query = query.Where(x => x.Ime.Contains(search.Ime));
             }
 
             if (!string.IsNullOrWhiteSpace(search?.Prezime))
             {
-                query = query.Where(x => x.Prezime == search.Prezime);
+                query = query.Where(x => x.Prezime.Contains(search.Prezime));
             }
 
             if (!string.IsNullOrWhiteSpace(search?.KorisnickoIme))
             {
-                query = query.Where(x => x.KorisnickoIme == search.KorisnickoIme);
+                query = query.Where(x => x.KorisnickoIme.Contains(search.KorisnickoIme));
             }
 
             var entities = query.ToList();

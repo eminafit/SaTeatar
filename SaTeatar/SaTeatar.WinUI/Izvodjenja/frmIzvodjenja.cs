@@ -24,8 +24,10 @@ namespace SaTeatar.WinUI.Izvodjenja
             InitializeComponent();
         }
 
-        private async void frmIzvodjenja_Load(object sender, EventArgs e)
+        private void frmIzvodjenja_Load(object sender, EventArgs e)
         {
+            dtpDatumOD.Value = new DateTime(2021, 10, 1);
+            dtpDatumDO.Value = new DateTime(2021, 11, 6);
            // await LoadIzvodjenja();
         }
 
@@ -66,6 +68,11 @@ namespace SaTeatar.WinUI.Izvodjenja
 
             dgvIzvodjenja.AutoGenerateColumns = false;
             dgvIzvodjenja.DataSource = result;
+
+            if (result.Count == 0)
+            {
+                MessageBox.Show("Nema rezultata za zadanu pretragu", "OK");
+            }
 
         }
 

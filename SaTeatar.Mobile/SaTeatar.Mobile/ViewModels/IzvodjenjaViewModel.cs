@@ -113,11 +113,13 @@ namespace SaTeatar.Mobile.ViewModels
                 }
             }
 
+            idsZaBrisat.Sort((y, x) => x.CompareTo(y));
             foreach (var item in idsZaBrisat)
             {
                 ilist.RemoveAt(item);
             }
 
+            ilist.Sort((x, y) => x.PredstavaNaziv.CompareTo(y.PredstavaNaziv));
             ilist.Sort((x, y) => x.DatumVrijeme.CompareTo(y.DatumVrijeme));
             if (ilist.Count == 0)
             {
@@ -125,11 +127,15 @@ namespace SaTeatar.Mobile.ViewModels
             }
 
             IzvodjenjaList.Clear(); //pozivace se vise puta?
-            foreach (var i in ilist)
+            if (ilist.Count>0)
             {
-                i.Datum = i.DatumVrijeme.ToString("dd.MM.yyyy.");
-                i.Vrijeme = i.DatumVrijeme.ToString("HH:mm") + "h";
-                IzvodjenjaList.Add(i);
+                foreach (var i in ilist)
+                {
+                    i.Datum = i.DatumVrijeme.ToString("dd.MM.yyyy.");
+                    i.Vrijeme = i.DatumVrijeme.ToString("HH:mm") + "h";
+                    IzvodjenjaList.Add(i);
+                }
+
             }
         }
 
@@ -163,7 +169,9 @@ namespace SaTeatar.Mobile.ViewModels
 
             if (PredstavaList.Count == 0)
             {
-                var tplist = await _predstavaService.Get<List<mPredstave>>(null);
+                var search = new rPredstavaSearch() { Status = true };
+                var tplist = await _predstavaService.Get<List<mPredstave>>(search);
+                tplist.Sort((x, y) => x.Naziv.CompareTo(y.Naziv));
 
                 foreach (var tp in tplist)
                 {

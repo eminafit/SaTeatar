@@ -41,6 +41,9 @@ namespace SaTeatar.WinUI.Predstave
             await LoadTipoviPredstava();
             await LoadReziseri();
 
+            chbStatus.Checked = true;
+
+
             if (_id.HasValue)
             {
                 predstava = await _predstaveService.GetById<mPredstave>(_id);
@@ -133,7 +136,6 @@ namespace SaTeatar.WinUI.Predstave
         {
             if (this.ValidateChildren())
             {
-
 
                 var listGlumciIdCB = lbGlumci.SelectedItems.Cast<mDjelatnici>().Select(x => x.DjelatnikId).ToList();
 

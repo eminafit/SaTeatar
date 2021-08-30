@@ -32,6 +32,7 @@ namespace SaTeatar.WinUI.Korisnici
 
         private async void frmKorisniciDetalji_Load(object sender, EventArgs e)
         {
+            chbStatus.Checked = true;
             var sveulogem = await _ulogeService.Get<List<mUloge>>(null);
             //YourList.GroupBy(i => i.Id).Select(i => i.FirstOrDefault()).ToList();
             IEnumerable<mUloge> sve = sveulogem.GroupBy(i => i.UlogaId).Select(i => i.FirstOrDefault()).ToList();

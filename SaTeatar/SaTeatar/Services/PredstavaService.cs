@@ -39,6 +39,11 @@ namespace SaTeatar.WebAPI.Services
                 query = query.Where(x => x.TipPredstaveId == search.TipPredstaveId);
 
             }
+            if (search.Status==true)
+            {
+                query = query.Where(x => x.Status == search.Status);
+
+            }
 
             var entities = query.ToList();
 

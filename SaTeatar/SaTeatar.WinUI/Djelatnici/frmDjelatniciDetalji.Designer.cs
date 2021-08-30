@@ -156,9 +156,9 @@ namespace SaTeatar.WinUI.Djelatnici
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(91, 339);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 17);
+            this.label5.Size = new System.Drawing.Size(58, 17);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Status:";
+            this.label5.Text = "Aktivan:";
             this.label5.UseWaitCursor = true;
             // 
             // chStatus
