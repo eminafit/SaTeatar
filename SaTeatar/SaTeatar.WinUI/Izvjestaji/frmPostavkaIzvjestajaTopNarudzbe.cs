@@ -17,6 +17,8 @@ namespace SaTeatar.WinUI.Izvjestaji
         private readonly APIService _pozoristeService = new APIService("pozorista");
         private readonly APIService _narudzbaService = new APIService("narudzba");
         private readonly APIService _kupciService = new APIService("kupci");
+        APIService _zoneService = new APIService("zone");
+
 
         public frmPostavkaIzvjestajaTopNarudzbe()
         {
@@ -50,7 +52,27 @@ namespace SaTeatar.WinUI.Izvjestaji
 
         private async Task LoadPozorista()
         {
-            var pozorista = await  _pozoristeService.Get<List<mPozorista>>(null);
+            var pozorista = await _pozoristeService.Get<List<mPozorista>>(null);
+
+            //neispravno unesena pozorista (bez zona)
+            var indexiZaBrisat = new List<int>();
+            for (int i = 0; i < pozorista.Count; i++)
+            {
+                var search = new rZoneSearch() { PozoristeId = pozorista[i].PozoristeId };
+                var zone = await _zoneService.Get<List<mZone>>(search);
+                if (zone.Count == 0)
+                {
+                    indexiZaBrisat.Add(i);
+                }
+            }
+
+            indexiZaBrisat.Sort((y, x) => x.CompareTo(y));
+            foreach (var item in indexiZaBrisat)
+            {
+                pozorista.RemoveAt(item);
+            }
+
+            pozorista.Sort((x, y) => x.Naziv.CompareTo(y.Naziv));
             pozorista.Insert(0, new mPozorista());
             cmbPozoriste.DisplayMember = "Naziv";
             cmbPozoriste.ValueMember = "PozoristeId";
@@ -81,6 +103,12 @@ namespace SaTeatar.WinUI.Izvjestaji
 
                     var search = new rNarudzbaSearch { PozoristeId = idPozorista, DatumOD = DatumOd, DatumDO = DatumDo };
                     var narudzbe = await _narudzbaService.Get<List<mNarudzba>>(search);
+                    if (narudzbe.Count==0)
+                    {
+                        MessageBox.Show("Nema rezultata za navedenu pretragu", "Pokusajte opet!");
+                        return;
+                    }
+
                     narudzbe.Sort((y, x) => x.Iznos.CompareTo(y.Iznos));
                     if (narudzbe.Count>5)
                     {

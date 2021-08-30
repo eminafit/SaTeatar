@@ -11,7 +11,7 @@
             
             <Label Text="{Binding UvodniText, Mode=TwoWay}" FontSize="10" TextColor="Gray" HorizontalOptions="Center"></Label>
             <Button FontSize="10" Text="IZMJENITE POSTAVKE OBAVIJESTI"  Clicked="Button_Clicked" />
-            <Button FontSize="10" Text="UKLONITE SVE OBAVIJESTI"  Command="{Binding UkloniSveObavijestiCommand}" Clicked="Button_Clicked_1" />
+            <Button FontSize="10" Text="UKLONITE SVE OBAVIJESTI" IsVisible="{Binding IsBusy}"  Command="{Binding UkloniSveObavijestiCommand}" Clicked="Button_Clicked_1" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

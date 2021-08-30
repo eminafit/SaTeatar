@@ -8,6 +8,7 @@ using Flurl;
 using Flurl.Http;
 using SaTeatar.Model;
 using SaTeatar.Model.Models;
+using SaTeatar.Model.Requests;
 
 namespace SaTeatar.WinUI
 {
@@ -113,6 +114,34 @@ namespace SaTeatar.WinUI
 
                 MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return default(T);
+            }
+        }
+
+        public async Task<mKorisnici> GetTrenutniKorisnik()
+        {
+            try
+            {
+                var url = $"{ Properties.Settings.Default.APIUrl}/Korisnici/GetTrenutniKorisnik";
+                return await url.WithBasicAuth(Username, Password).GetJsonAsync<mKorisnici>();
+            }
+            catch (FlurlHttpException)
+            {
+
+                return default;
+                
+            }
+        }
+
+        public async Task<mKorisnici> Login(rKorisniciSearch request)
+        {
+            try
+            {
+                var url = $"{ Properties.Settings.Default.APIUrl}/Korisnici/Login";
+                return await url.WithBasicAuth(Username, Password).PostJsonAsync(request).ReceiveJson<mKorisnici>();
+            }
+            catch (FlurlHttpException)
+            {
+                return default;
             }
         }
     }

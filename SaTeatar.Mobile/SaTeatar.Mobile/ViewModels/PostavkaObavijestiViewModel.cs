@@ -73,6 +73,7 @@ namespace SaTeatar.Mobile.ViewModels
 
         public async Task Init()
         {
+            IsBusy = false;
             var search = new rKupciSearch() { KorisnickoIme = APIService.Username };
             var kupci = await _kupciService.Get<List<mKupci>>(search);
             var idKupca = kupci[0].KupacId;
@@ -88,10 +89,12 @@ namespace SaTeatar.Mobile.ViewModels
                 {                    
                     UvodniText += " - " + item.TipPredstaveNaziv.ToUpper() + " \n";
                 }
+                IsBusy = true;
             }
             else
             {
                 UvodniText = "Niste postavili obavijesti\n\n".ToUpper();
+                IsBusy = false;
             }
 
             var tipoviPredstava = await _tipoviPredstavaService.Get<List<mTipoviPredstava>>(null);

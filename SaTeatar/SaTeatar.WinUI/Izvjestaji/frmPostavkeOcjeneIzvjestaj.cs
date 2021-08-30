@@ -1,4 +1,5 @@
 ﻿using SaTeatar.Model.Models;
+using SaTeatar.Model.Requests;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,8 @@ namespace SaTeatar.WinUI.Izvjestaji
         private readonly APIService _ocjeneService = new APIService("ocjene");
         private readonly APIService _predstavaService = new APIService("predstava");
         private readonly APIService _izvodjenjaService = new APIService("izvodjenja");
+        APIService _zoneService = new APIService("zone");
+
         public frmPostavkeOcjeneIzvjestaj()
         {
             InitializeComponent();
@@ -30,6 +33,26 @@ namespace SaTeatar.WinUI.Izvjestaji
         private async Task LoadPozorista()
         {
             var pozorista = await _pozoristaService.Get<List<mPozorista>>(null);
+
+            //neispravno unesena pozorista (bez zona)
+            var indexiZaBrisat = new List<int>();
+            for (int i = 0; i < pozorista.Count; i++)
+            {
+                var search = new rZoneSearch() { PozoristeId = pozorista[i].PozoristeId };
+                var zone = await _zoneService.Get<List<mZone>>(search);
+                if (zone.Count == 0)
+                {
+                    indexiZaBrisat.Add(i);
+                }
+            }
+
+            indexiZaBrisat.Sort((y, x) => x.CompareTo(y));
+            foreach (var item in indexiZaBrisat)
+            {
+                pozorista.RemoveAt(item);
+            }
+
+            pozorista.Sort((x, y) => x.Naziv.CompareTo(y.Naziv));
             pozorista.Insert(0, new mPozorista());
             cmbPozorista.DisplayMember = "Naziv";
             cmbPozorista.ValueMember = "PozoristeId";

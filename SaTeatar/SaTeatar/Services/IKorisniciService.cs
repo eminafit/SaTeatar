@@ -14,6 +14,6 @@ namespace SaTeatar.WebAPI.Services
 
         mKorisnici GetTrenutniKorisnik();
 
-        void SetTrenutniKorisnik(mKorisnici korisnik);
+        //void SetTrenutniKorisnik(mKorisnici korisnik);
     }
 }

@@ -27,8 +27,7 @@ namespace SaTeatar.WebAPI.Services
             }
 
             var lista = upit.ToList();
-            var rezultat = _mapper.Map<IList<mZone>>(lista);
-            return rezultat;   
+            return _mapper.Map<IList<mZone>>(lista);
         }
     }
 }

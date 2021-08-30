@@ -17,6 +17,8 @@ namespace SaTeatar.WinUI.Korisnici
     public partial class frmKorisnici : Form
     {
         private readonly APIService _korisniciService = new APIService("korisnici");
+        private readonly APIService _korisniciUlogeService = new APIService("korisniciuloge");
+
         public frmKorisnici()
         {
             InitializeComponent();
@@ -45,6 +47,8 @@ namespace SaTeatar.WinUI.Korisnici
 
             frmKorisniciDetalji frm = new frmKorisniciDetalji(int.Parse(id.ToString()));
             frm.Show();
+                    
+           
         }
 
         private void txtPretraga_TextChanged(object sender, EventArgs e)

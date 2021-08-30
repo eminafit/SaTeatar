@@ -49,14 +49,14 @@ namespace SaTeatar.Services
                     narudzbe.Add(nar);
                 }
 
-                return _mapper.Map<List<mNarudzba>>(narudzbe);
 
-                if (search.DatumOD.CompareTo(DateTime.Now.AddHours(1))>0 &&
-                    search.DatumDO.CompareTo(DateTime.Now.AddHours(1)) > 0)
+                if (search.DatumOD.CompareTo(DateTime.MinValue.AddHours(1))>0 &&
+                    search.DatumDO.CompareTo(DateTime.MinValue.AddHours(1)) > 0)
                 {
                     narudzbe = narudzbe.Where(x => x.Datum.CompareTo(search.DatumOD) >= 0 &&
                                                    x.Datum.CompareTo(search.DatumDO) <= 0).ToList();
                 }
+                return _mapper.Map<List<mNarudzba>>(narudzbe);
             }
 
             var upit = _context.Narudzba.AsQueryable();

@@ -49,7 +49,7 @@ namespace SaTeatar.WebAPI.Security
             {
                 if (user!=null)
                 {
-                    _korisniciService.SetTrenutniKorisnik(user);
+                    //_korisniciService.SetTrenutniKorisnik(user);
 
                     var claims = new List<Claim>
                 {

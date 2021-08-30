@@ -17,6 +17,8 @@ namespace SaTeatar.WinUI
         private readonly APIService _pozoristaService = new APIService("pozorista");
         private readonly APIService _karteService = new APIService("karte");
         private readonly APIService _kupciService = new APIService("kupci");
+        APIService _zoneService = new APIService("zone");
+
         public frmPostavkeZaIzvjestaje()
         {
             InitializeComponent();
@@ -50,11 +52,30 @@ namespace SaTeatar.WinUI
         private async Task LoadPozorista()
         {
             var pozorista = await _pozoristaService.Get<List<mPozorista>>(null);
+
+            //neispravno unesena pozorista (bez zona)
+            var indexiZaBrisat = new List<int>();
+            for (int i = 0; i < pozorista.Count; i++)
+            {
+                var search = new rZoneSearch() { PozoristeId = pozorista[i].PozoristeId };
+                var zone = await _zoneService.Get<List<mZone>>(search);
+                if (zone.Count == 0)
+                {
+                    indexiZaBrisat.Add(i);
+                }
+            }
+
+            indexiZaBrisat.Sort((y, x) => x.CompareTo(y));
+            foreach (var item in indexiZaBrisat)
+            {
+                pozorista.RemoveAt(item);
+            }
+
+            pozorista.Sort((x, y) => x.Naziv.CompareTo(y.Naziv));
             pozorista.Insert(0, new mPozorista());
             cmbPozorista.DisplayMember = "Naziv";
             cmbPozorista.ValueMember = "PozoristeId";
             cmbPozorista.DataSource = pozorista;
-
         }
 
         private async void btnPrikazi_Click(object sender, EventArgs e)
@@ -76,6 +97,12 @@ namespace SaTeatar.WinUI
 
                     var search = new rKartaSearch() { PozoristeId = pozoristeId, Placeno = true, DatumDo = obj.DatumDo, DatumOd = obj.DatumOd };
                     var karte = await _karteService.Get<List<mKarta>>(search);
+
+                    if (karte.Count == 0)
+                    {
+                        MessageBox.Show("Nema rezultata za navedenu pretragu", "Pokusajte opet!");
+                        return;
+                    }
 
                     var kupci_ids = karte.Select(x => x.KupacId).Distinct();
 
@@ -140,39 +167,6 @@ namespace SaTeatar.WinUI
             }
         }
 
-        //private async void txtBrPosjetitelja_Validating(object sender, CancelEventArgs e)
-        //{
-        //    var kupci = await _kupciService.Get<List<mKupci>>(null);
-        //    var brKupaca = kupci.Count;
-        //    if (string.IsNullOrWhiteSpace(txtBrPosjetitelja.Text))
-        //    {
-        //        errorProvider.SetError(txtBrPosjetitelja, "Unesite broj");
-        //        e.Cancel = true;
-        //    }
-        //    else
-        //    if (!int.TryParse(txtBrPosjetitelja.Text, out int broj))
-        //    {
-        //        errorProvider.SetError(txtBrPosjetitelja, "Unesite broj");
-        //        e.Cancel = true;
-        //    }
-        //    else
-        //    {
-        //        if (broj<0 || broj>brKupaca)
-        //        {
-        //            errorProvider.SetError(txtBrPosjetitelja, $"Broj moze biti u rasponu od 1 do {brKupaca}!");
-        //            e.Cancel = true;
-        //        }
-        //        else
-        //        {
-        //            errorProvider.SetError(txtBrPosjetitelja, null);
-        //        }
-        //    }          
-        //}
-
-        //private void dtpDatumOd_Validating(object sender, CancelEventArgs e)
-        //{
-        //    //nemam sta
-        //}
 
         private void dtpDatumDo_Validating(object sender, CancelEventArgs e)
         {

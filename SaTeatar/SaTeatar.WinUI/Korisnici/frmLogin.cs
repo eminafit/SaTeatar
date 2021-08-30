@@ -31,13 +31,8 @@ namespace SaTeatar.WinUI.Korisnici
                 try
                 {
                     btnPrijava.Enabled = false;
-
-                    var result = await _api.Get<List<mKorisnici>>(null);
+                    APIService.TrenutniKorisnik = await _api.GetTrenutniKorisnik();
                     frmIndex frm = new frmIndex(); 
-                    var search = new rKorisniciSearch() { KorisnickoIme = APIService.Username };
-                    List<mKorisnici> lista = await _api.Get<List<mKorisnici>>(search);
-                    APIService.TrenutniKorisnik = lista[0];
-                    //  Hide();
                     txtLozinka.Clear();
                     this.Visible = false;
                     frm.Show();

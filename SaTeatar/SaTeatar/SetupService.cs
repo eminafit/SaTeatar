@@ -2,10 +2,8 @@
 using QRCoder;
 using SaTeatar.Database;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SaTeatar.WebAPI
 {
@@ -63,6 +61,13 @@ namespace SaTeatar.WebAPI
                     Status = true
                 });
                 context.SaveChanges();
+            }
+
+            if (!context.KorisniciUloge.Any(x => x.KorisnikId == 1))
+            {
+                context.KorisniciUloge.Add(new KorisniciUloge() { KorisnikId = 1, UlogaId = 1, DatumIzmjene = new DateTime(2021, 5, 1, 8, 0, 0) });
+                context.KorisniciUloge.Add(new KorisniciUloge() { KorisnikId = 2, UlogaId = 2, DatumIzmjene = new DateTime(2021, 5, 1, 9, 0, 0) });
+                context.KorisniciUloge.Add(new KorisniciUloge() { KorisnikId = 3, UlogaId = 2, DatumIzmjene = new DateTime(2021, 5, 1, 10, 0, 0) });
             }
 
             if (!context.Kupci.Any(x => x.KorisnickoIme == "mobile"))
@@ -278,13 +283,6 @@ namespace SaTeatar.WebAPI
                 context.VrsteDjelatnika.Add(new VrsteDjelatnika() { Naziv = "Koreograf" });
                 context.SaveChanges();
 
-            }
-
-            if (!context.KorisniciUloge.Any(x => x.KorisnikId == 1))
-            {
-                context.KorisniciUloge.Add(new KorisniciUloge() { KorisnikId = 1, UlogaId = 1, DatumIzmjene = new DateTime(2021, 5, 1, 8, 0, 0) });
-                context.KorisniciUloge.Add(new KorisniciUloge() { KorisnikId = 2, UlogaId = 2, DatumIzmjene = new DateTime(2021, 5, 1, 9, 0, 0) });
-                context.KorisniciUloge.Add(new KorisniciUloge() { KorisnikId = 3, UlogaId = 2, DatumIzmjene = new DateTime(2021, 5, 1, 10, 0, 0) });
             }
 
             if (!context.Zone.Any(x => x.PozoristeId == 1))
@@ -1905,7 +1903,7 @@ namespace SaTeatar.WebAPI
                 context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 3, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 1, PredstavaId = 8, Ocjena = 3, Opis = "...opis...", Datum = new DateTime(2021, 7, 3) });
-          
+
                 //#2 Kupac 
                 context.Ocjene.Add(new Ocjene() { KupacId = 2, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 2, PredstavaId = 6, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
@@ -1913,7 +1911,7 @@ namespace SaTeatar.WebAPI
                 //#3 Kupac 
                 context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 1, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 3, PredstavaId = 3, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
-  
+
                 //#4 Kupac
                 context.Ocjene.Add(new Ocjene() { KupacId = 4, PredstavaId = 2, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 4) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 4, PredstavaId = 11, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 6) });
@@ -1925,19 +1923,19 @@ namespace SaTeatar.WebAPI
                 //#6 Kupac 
                 context.Ocjene.Add(new Ocjene() { KupacId = 6, PredstavaId = 6, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 6, PredstavaId = 13, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
-  
+
                 //#7 Kupac 
                 context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 9, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 7, PredstavaId = 14, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
- 
+
                 //#8 Kupac
                 context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 2, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 8, PredstavaId = 7, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
- 
+
                 //#9 Kupac 
                 context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 4, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 9, PredstavaId = 10, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
- 
+
                 //#10 Kupac 
                 context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 7, Ocjena = 5, Opis = "...opis...", Datum = new DateTime(2021, 7, 1) });
                 context.Ocjene.Add(new Ocjene() { KupacId = 10, PredstavaId = 14, Ocjena = 4, Opis = "...opis...", Datum = new DateTime(2021, 7, 2) });
@@ -1968,12 +1966,12 @@ namespace SaTeatar.WebAPI
                     context.Ocjene.Update(item);
                     context.SaveChanges();
                 }
-         
+
             }
 
             var kupci = context.Kupci.ToList();
 
-            if (!context.PostavkeObavijesti.Any(x=>x.KupacId==1))
+            if (!context.PostavkeObavijesti.Any(x => x.TipPredstaveId == 1))
             {
                 foreach (var kupac in kupci)
                 {
@@ -1986,12 +1984,12 @@ namespace SaTeatar.WebAPI
 
             var izvodjenja = context.Izvodjenja.Include(x => x.Pozoriste).Include(x => x.Predstava).AsQueryable();
 
-            if (!context.PoslaneObavijesti.Any(x=>x.KupacId==1))
+            if (!context.PoslaneObavijesti.Any(x => x.KupacId == 1))
             {
 
                 foreach (var item in izvodjenja)
                 {
-                    if (item.IzvodjenjeId<10)
+                    if (item.IzvodjenjeId < 10)
                     {
                         foreach (var kupac in kupci)
                         {
@@ -2031,7 +2029,7 @@ namespace SaTeatar.WebAPI
 
 
 
-        string NapraviObavijest (Izvodjenja izvodjenje)
+        string NapraviObavijest(Izvodjenja izvodjenje)
         {
 
             var obavijest = $"Postovani,\nObavjestavamo Vas da se predstava \"{izvodjenje.Predstava.Naziv}\" izvodi " +

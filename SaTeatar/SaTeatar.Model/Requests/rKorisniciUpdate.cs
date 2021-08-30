@@ -7,6 +7,7 @@ namespace SaTeatar.Model.Requests
 {
     public class rKorisniciUpdate
     {
+        public int KorisnikId { get; set; }
 
         [Required(AllowEmptyStrings = false)]
         [MinLength(3)]

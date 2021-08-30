@@ -25,27 +25,7 @@ namespace SaTeatar.WebAPI.Services
         {
         }
 
-        //public static string GenerateSalt()
-        //{
-        //    var buf = new byte[16];
-        //    (new RNGCryptoServiceProvider()).GetBytes(buf);
-        //    return Convert.ToBase64String(buf);
-        //}
-        //public static string GenerateHash(string salt, string password)
-        //{
-        //    byte[] src = Convert.FromBase64String(salt);
-        //    byte[] bytes = Encoding.Unicode.GetBytes(password);
-        //    byte[] dst = new byte[src.Length + bytes.Length];
-
-        //    System.Buffer.BlockCopy(src, 0, dst, 0, src.Length);
-        //    System.Buffer.BlockCopy(bytes, 0, dst, src.Length, bytes.Length);
-
-        //    HashAlgorithm algorithm = HashAlgorithm.Create("SHA1");
-        //    byte[] inArray = algorithm.ComputeHash(dst);
-        //    return Convert.ToBase64String(inArray);
-        //}
-
-        static mKorisnici TrenutniKorisnik = null;
+        static Korisnici TrenutniKorisnik = null;
 
         public override mKorisnici Insert(rKorisniciInsert request)
         {
@@ -58,7 +38,7 @@ namespace SaTeatar.WebAPI.Services
 
             if (request.Lozinka != request.LozinkaPotvrda)
             {
-                throw new UserException("Lozinka nije ispravna");
+                throw new UserException("Lozinka se ne podudaraju");
             }
 
             var entity = _mapper.Map<Korisnici>(request);
@@ -111,16 +91,39 @@ namespace SaTeatar.WebAPI.Services
         }
         //za add i update treba lozinka
 
+        public override mKorisnici Update(int id, rKorisniciUpdate request)
+        {
+            Korisnici korisnik = new Korisnici();
+            if (request.KorisnikId != TrenutniKorisnik.KorisnikId)
+            {
+
+                korisnik = _context.Korisnici.AsNoTracking().Where(x => x.KorisnikId == request.KorisnikId).FirstOrDefault();
+            }
+            else
+            {
+                korisnik = TrenutniKorisnik;
+            }
+
+            var entitet = _mapper.Map<Korisnici>(request);
+            var hash = GenerateSaltHash.GenerateHash(korisnik.LozinkaSalt, request.Lozinka);
+            if (hash!=korisnik.LozinkaHash)
+            {             
+                return null;
+            }
+            entitet.LozinkaSalt = korisnik.LozinkaSalt;
+            entitet.LozinkaHash = korisnik.LozinkaHash;
+
+            _context.Korisnici.Update(entitet);
+            _context.SaveChanges();
+
+            return _mapper.Map<mKorisnici>(entitet);
+        }
 
         //autorizacija
         public async Task<mKorisnici>Login(string username, string password)
         {
-            var entity = await _context.Korisnici.Include("KorisniciUloges.Uloga").FirstOrDefaultAsync(x => x.KorisnickoIme == username);
+            var entity = await _context.Korisnici.AsNoTracking().Include("KorisniciUloges.Uloga").FirstOrDefaultAsync(x => x.KorisnickoIme == username);
 
-            //if (entity==null)
-            //{
-            //    throw new UserException("Pogresan username ili password");
-            //}
             if (entity!=null)
             {
                 var hash = GenerateSaltHash.GenerateHash(entity.LozinkaSalt, password);
@@ -129,10 +132,10 @@ namespace SaTeatar.WebAPI.Services
                     throw new UserException("Pogresan username ili password");
                 }
             }
-
-
-            //    TrenutniKorisnik = _mapper.Map<mKorisnici>(entity);
-            //      setovan u basicauthandleru
+            
+            
+                SetTrenutniKorisnik(entity);
+            
 
             return _mapper.Map<mKorisnici>(entity);
 
@@ -140,14 +143,12 @@ namespace SaTeatar.WebAPI.Services
 
         public mKorisnici GetTrenutniKorisnik()
         {
-            return TrenutniKorisnik;
-            //throw new NotImplementedException();
+            return _mapper.Map<mKorisnici>(TrenutniKorisnik);
         }
 
-        public void SetTrenutniKorisnik(mKorisnici korisnik)
+        public void SetTrenutniKorisnik(Korisnici korisnik)
         {
             TrenutniKorisnik = korisnik;
-            //throw new NotImplementedException();
         }
     }
 }

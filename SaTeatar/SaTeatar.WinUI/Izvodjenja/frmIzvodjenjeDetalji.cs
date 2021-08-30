@@ -93,13 +93,31 @@ namespace SaTeatar.WinUI.Izvodjenja
 
         private async Task LoadPozorista()
         {
-            var upit = await _pozoristaService.Get<List<mPozorista>>(null);
-            upit.Sort((x, y) => x.Naziv.CompareTo(y.Naziv));
+            var pozorista = await _pozoristaService.Get<List<mPozorista>>(null);
 
-            upit.Insert(0, new mPozorista());
+            //neispravno unesena pozorista (bez zona)
+            var indexiZaBrisat = new List<int>();
+            for (int i = 0; i < pozorista.Count; i++)
+            {
+                var search = new rZoneSearch() { PozoristeId = pozorista[i].PozoristeId };
+                var zone = await _zoneService.Get<List<mZone>>(search);
+                if (zone.Count==0)
+                {
+                    indexiZaBrisat.Add(i);
+                }
+            }
+
+            indexiZaBrisat.Sort((y, x) => x.CompareTo(y));
+            foreach (var item in indexiZaBrisat)
+            {
+                pozorista.RemoveAt(item);
+            }
+
+            pozorista.Sort((x, y) => x.Naziv.CompareTo(y.Naziv));
+            pozorista.Insert(0, new mPozorista());
             cmbPozoriste.DisplayMember = "Naziv";
             cmbPozoriste.ValueMember = "PozoristeId";
-            cmbPozoriste.DataSource = upit;
+            cmbPozoriste.DataSource = pozorista;
         }
 
         private async void btnSacuvaj_Click(object sender, EventArgs e)

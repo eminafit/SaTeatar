@@ -73,8 +73,14 @@ namespace SaTeatar.WinUI.Korisnici
 
                 if (_id.HasValue)
                 {
+                   // var admin = await _korisniciService.GetById<mKorisnici>(_id);
+
+
+
+
                     var request = new rKorisniciUpdate()
                     {
+                        KorisnikId=(int)_id,
                         Ime = txtIme.Text,
                         Prezime = txtPrezime.Text,
                         Email = txtEmail.Text,
@@ -84,8 +90,13 @@ namespace SaTeatar.WinUI.Korisnici
                         Status = chbStatus.Checked
                     };
 
-                    await _korisniciService.Update<mKorisnici>(_id, request);
+                    var result = await _korisniciService.Update<mKorisnici>(_id, request);
 
+                    if (result==null)
+                    {
+                        MessageBox.Show("Pogresno korisnicko ime ili lozinka", "OK");
+                        return;
+                    }
 
                     //brisanje postojecih uloga ukoliko je trenutni korisnik admin
                     var search = new rKorisniciUlogeSearch() { KorisnikId = (int)_id };
