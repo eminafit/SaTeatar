@@ -20,7 +20,7 @@ services:
     environment:
       - ConnectionStrings:DefaultConnection=Server=sateatar-sql,1433;Database=1589;User=sa;Password=QWElkj132!;ConnectRetryCount=250
     ports:
-      - 5010:5010
+      - 54698:5010
     networks:
       - sateatarnet      
     links:
