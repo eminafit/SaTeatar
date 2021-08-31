@@ -29,6 +29,7 @@ namespace SaTeatar.Mobile.Views
             //await Navigation.PopToRootAsync();
             //NavigationPage.SetHasNavigationBar(this, false); //get your navbar back
             //NavigationPage.SetHasBackButton(this, false); //get your back button bac
+            Btn_Rezervacija.IsEnabled = true;
             model.Init();
 
                 if (model != null)
@@ -61,6 +62,7 @@ namespace SaTeatar.Mobile.Views
 
         private async void Button_Clicked_3(object sender, EventArgs e)
         {
+            Btn_Rezervacija.IsEnabled = false;
             await model.Rezervisi();
             //potvrdi narudzbu??
             await Navigation.PushAsync(new HistorijaNarudzbiPage());

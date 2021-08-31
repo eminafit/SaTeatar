@@ -36,6 +36,7 @@ namespace SaTeatar.Mobile.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
+            BtnDodajUKorpu.IsEnabled = false;
             await Navigation.PushAsync(new NarudzbaPage());
 
         }

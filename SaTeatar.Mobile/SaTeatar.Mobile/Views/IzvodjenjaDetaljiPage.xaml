@@ -120,7 +120,7 @@
 
 
                 <StackLayout >
-                    <Button Command="{Binding NaruciCommand}" Text="DODAJ U KORPU" Clicked="Button_Clicked" IsEnabled="{Binding UKbool}" FontSize="10" HorizontalOptions="Center"></Button>
+                        <Button  x:Name="BtnDodajUKorpu" Command="{Binding NaruciCommand}" Text="DODAJ U KORPU" Clicked="Button_Clicked" IsEnabled="{Binding UKbool}" FontSize="10" HorizontalOptions="Center"></Button>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
