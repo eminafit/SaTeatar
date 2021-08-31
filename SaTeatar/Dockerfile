@@ -11,6 +11,8 @@ FROM build AS publish
 RUN dotnet publish "SaTeatar" -c Release -o /app
 FROM base AS final
 WORKDIR /app
+ADD ./SaTeatar/Images ./Images
 COPY --from=publish /app .
+
 
 ENTRYPOINT ["dotnet", "SaTeatar.dll"]

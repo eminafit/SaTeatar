@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=Trat1nc!c@2
+      - SA_PASSWORD=QWElkj132!
       - MSSQL_PID=Developer
     ports:
       - 1401:1433
@@ -18,7 +18,7 @@ services:
     build:
       context: .
     environment:
-      - ConnectionStrings:DefaultConnection=Server=sateatar-sql,1433;Database=SaTeatarDockerCompose;User=sa;Password=Trat1nc!c@2;ConnectRetryCount=0
+      - ConnectionStrings:DefaultConnection=Server=sateatar-sql,1433;Database=1589;User=sa;Password=QWElkj132!;ConnectRetryCount=250
     ports:
       - 5010:5010
     networks:
