@@ -108,7 +108,6 @@ namespace SaTeatar.Mobile.ViewModels
                 }
                 if (obrisi)
                 {
-                   // ilist.Remove(item); //
                     idsZaBrisat.Add(ilist.IndexOf(item));
                 }
             }
@@ -126,7 +125,7 @@ namespace SaTeatar.Mobile.ViewModels
                 IsBusy = true;
             }
 
-            IzvodjenjaList.Clear(); //pozivace se vise puta?
+            IzvodjenjaList.Clear();
             if (ilist.Count>0)
             {
                 foreach (var i in ilist)

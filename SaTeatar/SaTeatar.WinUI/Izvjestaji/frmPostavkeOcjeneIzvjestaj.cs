@@ -148,10 +148,14 @@ namespace SaTeatar.WinUI.Izvjestaji
                     dtobj.PozoristeId = pozoriste.PozoristeId;
                     dtobj.PozoristeNaziv = pozoriste.Naziv;
                 }
+                if (konacna.Count==0)
+                {
+                    MessageBox.Show("Nema rezultata za navedenu pretragu", "Pokusajte opet!");
+                    return;
+                }
 
                 dtobj.ListaPredstavaOcjena = new List<PredstavaOcjene>();
                 dtobj.ListaPredstavaOcjena = konacna;
-                // var br = konacna.Count();
                 frmOcjeneIzvjestaj frm = new frmOcjeneIzvjestaj(dtobj);
                 frm.Show();
             }

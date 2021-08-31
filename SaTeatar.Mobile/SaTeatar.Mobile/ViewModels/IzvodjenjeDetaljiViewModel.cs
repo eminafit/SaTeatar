@@ -319,7 +319,6 @@ namespace SaTeatar.Mobile.ViewModels
                 foreach (var item in CartService.Cart.Values)
                 {
                     if(item._kljuc==_kljuc)
-                    //if (item.Izvodjenje.IzvodjenjeId==Izvodjenje.IzvodjenjeId && item.IzvodjenjeZone.ZonaId==SelectedZona.ZonaId)
                     {
                         imavec = true;
                         Kolicina = item.Kolicina;

@@ -23,25 +23,8 @@ namespace SaTeatar.Mobile.ViewModels
 
         }
 
-        //public ObservableCollection<mPredstave> PredstavaList { get; set; } = new ObservableCollection<mPredstave>();
         public ObservableCollection<mIzvodjenja> IzvodjenjaList { get; set; } = new ObservableCollection<mIzvodjenja>();
         public mPredstave SelectedPredstava { get; set; }
-
-
-        ////predstave
-        //mPredstave _selectedPredstava = null;
-        //public mPredstave SelectedPredstava
-        //{
-        //    get { return _selectedPredstava; }
-        //    set
-        //    {
-        //        SetProperty(ref _selectedPredstava, value);
-        //        if (value != null)
-        //        {
-        //            InitCommand.Execute(null);
-        //        }
-        //    }
-        //}
 
         public ICommand InitCommand { get; set; }
 
@@ -54,7 +37,7 @@ namespace SaTeatar.Mobile.ViewModels
                 IsBusy = true;
             }
 
-            IzvodjenjaList.Clear(); //pozivace se vise puta?
+            IzvodjenjaList.Clear(); 
             foreach (var i in ilist)
             {
                 i.Datum = i.DatumVrijeme.ToString("dd.MM.yyyy.");
@@ -66,16 +49,6 @@ namespace SaTeatar.Mobile.ViewModels
         public async Task Init()
         {
             IsBusy = false;
-
-            //if (PredstavaList.Count == 0)
-            //{
-            //    var tplist = await _predstavaService.Get<List<mPredstave>>(null);
-
-            //    foreach (var tp in tplist)
-            //    {
-            //        PredstavaList.Add(tp);
-            //    }
-            //}
 
             if (SelectedPredstava != null)
             {

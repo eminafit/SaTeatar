@@ -73,10 +73,6 @@ namespace SaTeatar.WinUI.Korisnici
 
                 if (_id.HasValue)
                 {
-                   // var admin = await _korisniciService.GetById<mKorisnici>(_id);
-
-
-
 
                     var request = new rKorisniciUpdate()
                     {
@@ -98,19 +94,18 @@ namespace SaTeatar.WinUI.Korisnici
                         return;
                     }
 
-                    //brisanje postojecih uloga ukoliko je trenutni korisnik admin
                     var search = new rKorisniciUlogeSearch() { KorisnikId = (int)_id };
-                        List<mKorisniciUloge> ulogekorisnika = await _korisniciUlogeService.Get<List<mKorisniciUloge>>(search);
-                        foreach (var uk in ulogekorisnika)
-                        {
-                            await _korisniciUlogeService.Delete<mKorisniciUloge>(uk.KorisnikUlogaId);
-                        }
+                    List<mKorisniciUloge> ulogekorisnika = await _korisniciUlogeService.Get<List<mKorisniciUloge>>(search);
+                    foreach (var uk in ulogekorisnika)
+                    {
+                        await _korisniciUlogeService.Delete<mKorisniciUloge>(uk.KorisnikUlogaId);
+                    }
 
-                        //dodaj nove
-                        foreach (mUloge uloga in lbUloge.SelectedItems)
-                        {
-                            await _korisniciUlogeService.Insert<mKorisniciUloge>(new mKorisniciUloge() { UlogaId = uloga.UlogaId, KorisnikId = (int)_id, DatumIzmjene = DateTime.Now });
-                        }
+                    //dodaj nove
+                    foreach (mUloge uloga in lbUloge.SelectedItems)
+                    {
+                        await _korisniciUlogeService.Insert<mKorisniciUloge>(new mKorisniciUloge() { UlogaId = uloga.UlogaId, KorisnikId = (int)_id, DatumIzmjene = DateTime.Now });
+                    }
                     
 
                     MessageBox.Show("Uspjesno izmijenjen korisnik!");
@@ -315,28 +310,6 @@ namespace SaTeatar.WinUI.Korisnici
             }
         }
 
-        //private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        //{
 
-        //}
-
-        //private bool ValidateData(object data)
-        //{
-        //    ValidationContext context = new ValidationContext(data, null, null);
-        //    IList<ValidationResult> errors = new List<ValidationResult>();
-
-        //    if (!Validator.TryValidateObject(data, context, errors, true))
-        //    {
-        //        foreach (ValidationResult result in errors)
-        //            MessageBox.Show(result.ErrorMessage);
-
-        //        return false;
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Success!!!");
-        //        return true;
-        //    }
-        //}
     }
 }

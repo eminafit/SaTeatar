@@ -19,7 +19,6 @@ namespace SaTeatar.Services
         {
         }
 
-       // [HttpGet("{KorisnikId}")]
         public override IList<mUloge> Get(rUlogeSearch search)
         {
             var upit = _context.KorisniciUloge.Include(x=>x.Uloga).AsQueryable();
@@ -30,8 +29,6 @@ namespace SaTeatar.Services
             }
 
             var entities = upit.Select(x => x.Uloga).ToList();
-            //var distinct = entities.Distinct();
-
             return _mapper.Map<IList<mUloge>>(entities);
         }
 

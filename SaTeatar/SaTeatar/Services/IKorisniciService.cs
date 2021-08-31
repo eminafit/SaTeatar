@@ -13,7 +13,5 @@ namespace SaTeatar.WebAPI.Services
         Task<mKorisnici> Login(string username, string password);
 
         mKorisnici GetTrenutniKorisnik();
-
-        //void SetTrenutniKorisnik(mKorisnici korisnik);
     }
 }

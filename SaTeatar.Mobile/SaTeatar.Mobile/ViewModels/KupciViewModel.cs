@@ -24,7 +24,6 @@ namespace SaTeatar.Mobile.ViewModels
             RegistrujSeCommand = new Command(async () => await Registracija());
             UpdateProfilaCommand = new Command(async () => await UpdateProfila());
             PovratakNaLoginCommand = new Command(() => PovratakNaLogin());
-          //  InitCommand = new Command(() => Init());
         }
         public rKupciInsert KupacInsert { get; set; }
         public rKupciUpdate KupacUpdate { get; set; }
@@ -32,7 +31,6 @@ namespace SaTeatar.Mobile.ViewModels
 
         public ICommand RegistrujSeCommand { get; set; }
         public ICommand UpdateProfilaCommand { get; set; }
-        // public ICommand InitCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChangedEH;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -171,13 +169,5 @@ namespace SaTeatar.Mobile.ViewModels
             Lozinka = string.Empty;
         }
 
-        //public void Init()
-        //{
-        //    var kupac = PrijavljeniKupac.Kupac;
-        //    Ime = kupac.Ime;
-        //    Prezime = kupac.Prezime;
-        //    Email = kupac.Email;
-        //    KorisnickoIme = kupac.KorisnickoIme;
-        //}
     }
 }

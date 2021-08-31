@@ -28,7 +28,6 @@ namespace SaTeatar.WebAPI.Services
             var list = query.ToList();
             var result = _mapper.Map<IList<mPredstaveDjelatnici>>(list);
             return result;
-           // return base.Get(search);    
         }
     }
 }

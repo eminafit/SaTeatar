@@ -39,7 +39,6 @@ namespace SaTeatar.WinUI.Predstave
         {
             var idObj = cmbTipoviPredstave.SelectedValue;
 
-           // var idn = int.Parse(idObj.ToString());
             if (int.TryParse(idObj.ToString(), out int id))
             {
                 if (id!=0)

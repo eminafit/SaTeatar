@@ -17,6 +17,7 @@ namespace SaTeatar.WinUI.Pozorista
     public partial class frmPozoristeDetalji : Form
     {
         APIService _pozoristaService = new APIService("pozorista");
+        APIService _izvodjenjaService = new APIService("izvodjenja");
         APIService _zoneService = new APIService("zone");
         private int? _id = null;
 
@@ -32,7 +33,6 @@ namespace SaTeatar.WinUI.Pozorista
         rPozoristaUpdate uprequest = new rPozoristaUpdate();
         mPozorista pozoriste = new mPozorista();
         private bool dodanaSlika = false;
-            
 
         private void btnDodajSliku_Click(object sender, EventArgs e)
         {
@@ -68,6 +68,7 @@ namespace SaTeatar.WinUI.Pozorista
             {
                 if (_id.HasValue)
                 {
+
                     uprequest.Naziv = txtNaziv.Text;
                     uprequest.Adresa = txtAdresa.Text;
                     if (!dodanaSlika)
@@ -77,8 +78,6 @@ namespace SaTeatar.WinUI.Pozorista
                     await _pozoristaService.Update<mPozorista>(_id, uprequest);
                     MessageBox.Show("Pozoriste uspjesno izmijenjeno!");
                     this.Close();
-
-
                 }
                 else
                 {
@@ -91,8 +90,6 @@ namespace SaTeatar.WinUI.Pozorista
                     pozoriste = await _pozoristaService.Insert<mPozorista>(inrequest);
                     MessageBox.Show("Pozoriste uspjesno dodato!");
                     btnSacuvaj.Enabled = false;
-                    //this.Close();
-
                 }
             }
         }
@@ -102,14 +99,10 @@ namespace SaTeatar.WinUI.Pozorista
             if (pozoriste.PozoristeId==0)
             {
                 MessageBox.Show("Pozoriste se treba najprije dodati! Kliknuti na dugme 'Sacuvaj'");
-
-               // btnSacuvaj_Click(null, null);
             }
             else
             {
                 frmZonaDetalji frm = new frmZonaDetalji(pozoriste.PozoristeId, pozoriste.Naziv);
-                //frm.MdiParent = this;
-               // frm.Parent = this;
                 frm.Show();
             }
         }
@@ -118,6 +111,17 @@ namespace SaTeatar.WinUI.Pozorista
         {
             if (_id.HasValue)
             {
+                var searchizv = new rIzvodjenjaSearch() { PozoristeId = (int)_id };
+                var izvodjenja = await _izvodjenjaService.Get<List<mIzvodjenja>>(searchizv);
+                if (izvodjenja.Count != 0)
+                {
+                    btnDodajZone.Enabled = false;
+                }
+                else
+                {
+                    btnDodajZone.Enabled = true;
+                }
+
                 pozoriste = await _pozoristaService.GetById<mPozorista>(_id);
 
                 txtNaziv.Text = pozoriste.Naziv;

@@ -29,7 +29,7 @@ namespace SaTeatar.WinUI.Predstave
 
         }
 
-        rPredstavaInsert inrequest = new rPredstavaInsert(); //zbog slike
+        rPredstavaInsert inrequest = new rPredstavaInsert(); 
         rPredstavaUpdate uprequest = new rPredstavaUpdate();
         mPredstave predstava = null;
         List<int> ListaVecDodatihGlumacIDeva = new List<int>();
@@ -69,8 +69,6 @@ namespace SaTeatar.WinUI.Predstave
                     }
                 }
 
-
-                // pbSlika.Visible = false;
                 if (predstava.Slika?.Length>0)
                 {
                     using (MemoryStream ms = new MemoryStream(predstava.Slika))
@@ -269,7 +267,6 @@ namespace SaTeatar.WinUI.Predstave
 
                 Image image = Image.FromFile(fileName);
                 pbSlika.Image = image;
-                //pbSlika.Visible = true;
             }
         }
 

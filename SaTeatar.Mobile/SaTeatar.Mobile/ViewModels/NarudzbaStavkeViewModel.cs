@@ -18,7 +18,6 @@ namespace SaTeatar.Mobile.ViewModels
 
         public NarudzbaStavkeViewModel()
         {
-            //InitCommand = new Command(() => Init());
         }
         public ObservableCollection<mKarta> KarteList { get; set; } = new ObservableCollection<mKarta>();
 

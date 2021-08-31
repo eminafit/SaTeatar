@@ -46,15 +46,8 @@ namespace SaTeatar.Services
             var listaUsernameaKupaca = _context.Kupci.Select(x => x.KorisnickoIme).ToList();
             if (listaUsernameaKorisnika.Contains(request.KorisnickoIme) || listaUsernameaKupaca.Contains(request.KorisnickoIme))
             {
-                //throw new UserException("Korisnicko ime vec postoji!");
                 return null;
             }
-
-            //if (request.Lozinka != request.LozinkaPotvrda)
-            //{
-            //    throw new UserException("Lozinka nije ispravna");
-            //}
-
 
             var entitet = _mapper.Map<Kupci>(request);
 
@@ -80,7 +73,6 @@ namespace SaTeatar.Services
 
             var lista = upit.ToList();
             return _mapper.Map<List<mKupci>>(lista);
-           // return base.Get(search);
         }
 
         public override mKupci Insert (rKupciInsert request)
@@ -134,10 +126,6 @@ namespace SaTeatar.Services
         {
             var entity = _context.Kupci.AsNoTracking().Where(x => x.KorisnickoIme == username).FirstOrDefault();
 
-            //if (entity == null)
-            //{
-            //    throw new UserException("Pogresan username ili password");
-            //}
             if (entity!=null)
             {
                 var hash = GenerateSaltHash.GenerateHash(entity.LozinkaSalt, password);
@@ -149,12 +137,6 @@ namespace SaTeatar.Services
                     return _mapper.Map<mKupci>(entity);
             }
             return null;
-
-
-            //    TrenutniKorisnik = _mapper.Map<mKorisnici>(entity);
-            //      setovan u basicauthandleru
-
-            //return _mapper.Map<mKupci>(entity);
 
         }
     }

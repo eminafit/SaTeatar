@@ -182,42 +182,23 @@ namespace SaTeatar.WinUI.Izvodjenja
 
                 //dodavanje cijene za zone
 
-                //vidi ima li zapisa sa ovo izvodjenje
                 var searchiz = new rIzvodjenjaZoneSearch() { IzvodjenjeId = _izvodjenje.IzvodjenjeId  };
                 List<mIzvodjenjaZone> izs = await _izvodjenjaZoneService.Get<List<mIzvodjenjaZone>>(searchiz);
 
-                //ako nema nikako
                 if (izs.Count == 0)
                 {
-                    //dodaj nove
                     DodajZone();
                 }
 
-                //ako ima i ako se pozoriste promijenilo
-                //if (izs.Count > 0 && promjenaPozorista)
-                //{
-                //    //obrisi stare zapise (odnose se na zone drugog pozorista)
-                //    foreach (var item in izs) 
-                //    {
-                //        await _izvodjenjaZoneService.Delete<mIzvodjenjaZone>(item.IzvodjenjeZonaId);
-                //    }
-                //    //dodaj nove
-                //    DodajZone();
-                //}
-
-                //ako ima i ako se pozoriste nije promijenilo
                 if (izs.Count > 0 && !promjenaPozorista)
                 {
-                    //prikazi postojece/uradi update
                     PrikaziZone(izs);
                 }
-              //  this.Close();
             }        
         }
 
         private async void DodajZone()
         {
-            //var search = new rZoneSearch() { PozoristeId = int.Parse(cmbPozoriste.SelectedValue.ToString()) };
             var search = new rZoneSearch() { PozoristeId = _izvodjenje.PozoristeId };
             var zone = await _zoneService.Get<List<mZone>>(search);
             izvodjenjaZoneInsert.Clear();

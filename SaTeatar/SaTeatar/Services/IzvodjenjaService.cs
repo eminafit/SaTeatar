@@ -23,6 +23,11 @@ namespace SaTeatar.WebAPI.Services
         {
             var upit = _context.Izvodjenja.Include(s => s.Predstava).Include(o => o.Pozoriste).Include(p => p.Korisnik).AsQueryable();
 
+            if (search.PozoristeId!=0)
+            {
+                upit = upit.Where(x => x.PozoristeId == search.PozoristeId);
+            }
+
             if (search.PredstavaId != 0)
             {
                 upit = upit.Where(x => x.PredstavaId == search.PredstavaId);

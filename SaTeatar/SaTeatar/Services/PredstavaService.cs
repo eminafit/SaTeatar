@@ -24,34 +24,9 @@ namespace SaTeatar.WebAPI.Services
 
         }
 
-
-        public override IList<mPredstave> Get(rPredstavaSearch search)
-        {
-            var query = _context.Predstave.AsQueryable();
-
-            if (!string.IsNullOrWhiteSpace(search?.Naziv))
-            {
-                query = query.Where(x => x.Naziv.Contains(search.Naziv));
-            }
-
-            if (search?.TipPredstaveId != 0)
-            {
-                query = query.Where(x => x.TipPredstaveId == search.TipPredstaveId);
-
-            }
-            if (search.Status==true)
-            {
-                query = query.Where(x => x.Status == search.Status);
-
-            }
-
-            var entities = query.ToList();
-
-            var result = _mapper.Map<IList<mPredstave>>(entities);
-
-            return result;
-        }
-
+        //navela sam user based collaborative u prijavi, nismo to radili na nastavi pa sam pokusala napraviti
+        //po ovom tutorialu https://docs.microsoft.com/en-us/dotnet/machine-learning/tutorials/movie-recommendation
+        //git https://github.com/dotnet/samples/tree/main/machine-learning/tutorials/MovieRecommendation
         public List<mPredstave> Recommend(int KupacId)
         {
             // pokusaj sa podacima direktno iz baze
@@ -144,9 +119,6 @@ namespace SaTeatar.WebAPI.Services
             return preporucenePredstave;
         }
 
-        //navela sam user based collaborative u prijavi, nismo to radili na nastavi pa sam pokusala napraviti
-        //po ovom tutorialu https://docs.microsoft.com/en-us/dotnet/machine-learning/tutorials/movie-recommendation
-        //git https://github.com/dotnet/samples/tree/main/machine-learning/tutorials/MovieRecommendation
         //ovo ispod je sa csv fajlovima kako je navedeno u tutorialu.. nek stoji za svaki slucaj
 
         public List<mPredstave> RecommenderSaCSVfajlovima(int KupacId)
@@ -200,7 +172,6 @@ namespace SaTeatar.WebAPI.Services
             return _mapper.Map<List<mPredstave>>(preporucenePredstave);
         }
 
-        /*public*/
         static (IDataView training, IDataView test) LoadData(MLContext mlContext)
         {
             var trainingDataPath = Path.Combine(Environment.CurrentDirectory, "Data", "recommendation-ratings-train.csv");
@@ -212,7 +183,6 @@ namespace SaTeatar.WebAPI.Services
             return (trainingDataView, testDataView);
         }
 
-        /*public*/
         static ITransformer BuildAndTrainModel(MLContext mlContext, IDataView trainingDataView)
         {
             IEstimator<ITransformer> estimator = mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "KupacIdEncoded", inputColumnName: "KupacId")
@@ -234,7 +204,6 @@ namespace SaTeatar.WebAPI.Services
             return model;
         }
 
-        /*public*/
         static void EvaluateModel(MLContext mlContext, IDataView testDataView, ITransformer model)
         {
             Console.WriteLine("=============== Evaluating the model ===============");
@@ -247,7 +216,6 @@ namespace SaTeatar.WebAPI.Services
 
         }
 
-        /*public*/
         static void UseModelForSinglePrediction(MLContext mlContext, ITransformer model)
         {
             Console.WriteLine("=============== Making a prediction ===============");
@@ -267,13 +235,38 @@ namespace SaTeatar.WebAPI.Services
             }
         }
 
-        /*public*/
         static void SaveModel(MLContext mlContext, DataViewSchema trainingDataViewSchema, ITransformer model)
         {
             var modelPath = Path.Combine(Environment.CurrentDirectory, "Data", "PredstaveRecommenderModel.zip");
 
             Console.WriteLine("=============== Saving the model to a file ===============");
             mlContext.Model.Save(model, trainingDataViewSchema, modelPath);
+        }
+        public override IList<mPredstave> Get(rPredstavaSearch search)
+        {
+            var query = _context.Predstave.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search?.Naziv))
+            {
+                query = query.Where(x => x.Naziv.Contains(search.Naziv));
+            }
+
+            if (search?.TipPredstaveId != 0)
+            {
+                query = query.Where(x => x.TipPredstaveId == search.TipPredstaveId);
+
+            }
+            if (search.Status==true)
+            {
+                query = query.Where(x => x.Status == search.Status);
+
+            }
+
+            var entities = query.ToList();
+
+            var result = _mapper.Map<IList<mPredstave>>(entities);
+
+            return result;
         }
     }
 }

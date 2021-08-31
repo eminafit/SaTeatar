@@ -11,23 +11,29 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Padding="20" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
-            <StackLayout Padding="5">
-                <Label Text="KORISNICKO IME:" FontSize="10" TextColor="Gray"/>
-                <Entry x:Name="KorisnickoIme" Text="{Binding KorisnickoIme}"></Entry>
-            </StackLayout>
-            <StackLayout Padding="5">
-                <Label Text="LOZINKA:" FontSize="10" TextColor="Gray"/>
-                <Entry x:Name="Lozinka" Text="{Binding Lozinka}" IsPassword="True"></Entry>
-            </StackLayout>
-            <StackLayout>
+                
+                <StackLayout Padding="5">
+                    <Label Text="KORISNICKO IME:" FontSize="10" TextColor="Gray"/>
+                    <Entry FontSize="10" x:Name="KorisnickoIme" Text="{Binding KorisnickoIme}"></Entry>
+                </StackLayout>
+                
+                <StackLayout Padding="5">
+                    <Label Text="LOZINKA:" FontSize="10" TextColor="Gray"/>
+                    <Entry FontSize="10" x:Name="Lozinka" Text="{Binding Lozinka}" IsPassword="True"></Entry>
+                </StackLayout>
+                
+                <StackLayout Padding="10">
                     <Button Text="PRIJAVITE SE" FontSize="10" Clicked="Button_Clicked" IsEnabled="{Binding Log}"></Button>
                     <Label IsVisible="{Binding IsBusy}" Text="PRIJAVA U TOKU, PRICEKAJTE..." FontSize="8" TextColor="Gray" HorizontalOptions="Center"></Label>
+                </StackLayout>
+                
             </StackLayout>
-            </StackLayout>
+            
             <StackLayout IsVisible="{Binding RegVisible}" Padding="20" VerticalOptions="Center" HorizontalOptions="Center">
                 <Label  Text="NEMATE KORISNICKI RACUN?" FontSize="8" HorizontalOptions="Center"  TextColor="Gray"/>
                 <Button Command="{Binding RegisterCommand}" Text="REGISTRUJTE SE" FontSize="10" BackgroundColor="Gray" ></Button>
             </StackLayout>
+            
         </StackLayout>
        
     </ContentPage.Content>

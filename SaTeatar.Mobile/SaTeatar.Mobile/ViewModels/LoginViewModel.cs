@@ -79,8 +79,6 @@ namespace SaTeatar.Mobile.ViewModels
                 IsBusy = false;
 
                 PrijavljeniKupac.Kupac = kupac;
-                //await Application.Current.MainPage.Navigation.PushAsync(new PreporucenePredstavePage());
-
                 Application.Current.MainPage = new AppShell();
             }
             else

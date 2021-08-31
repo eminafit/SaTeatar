@@ -11,11 +11,6 @@ using Xamarin.Forms;
 
 namespace SaTeatar.Mobile.ViewModels
 {
-    //sa korisnicke strane
-    //kod logina kupca provjeriti da li ima obavijesti koje vaze do tog dana i koje su neprocitane
-    //ako ima onda ga obavijesti o tome
-    //kad otvori obavijest, oznaciti je kao procitanu
-
     class ObavijestiViewModel : BaseViewModel
     {
         private readonly APIService _poslaneObavijestiService = new APIService("poslaneObavijesti");

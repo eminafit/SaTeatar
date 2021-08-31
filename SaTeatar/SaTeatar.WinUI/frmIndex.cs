@@ -218,14 +218,12 @@ namespace SaTeatar.WinUI
         private void topPosjetiteljiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPostavkeZaIzvjestaje frm = new frmPostavkeZaIzvjestaje();
-            //frm.MdiParent = this;
             frm.ShowDialog();
         }
 
         private void top5NarudzbiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPostavkaIzvjestajaTopNarudzbe frm = new frmPostavkaIzvjestajaTopNarudzbe();
-            //frm.MdiParent = this;
             frm.ShowDialog();
         }
 

@@ -12,9 +12,6 @@ using Xamarin.Forms;
 
 namespace SaTeatar.Mobile.ViewModels
 {
-    //kupac treba
-    //imati mogucnost da ocijeni samo onu predstavu koju je gledao (kupio kartu)
-    //imati mogucnost da izmijeni postojecu ocjenu
     public class OcjeneViewModel : BaseViewModel
     {
         private readonly APIService _predstaveService = new APIService("predstava");
@@ -142,28 +139,6 @@ namespace SaTeatar.Mobile.ViewModels
                 return;
             }
 
-
-            //if (!_ocjenjeno)
-            //{
-            //    var ocjena = new rOcjeneInsert();
-            //    if (SelectedPredstava != null && Ocjena != 0)
-            //    {
-            //        ocjena.KupacId = _idKupca;
-            //        ocjena.PredstavaId = SelectedPredstava.PredstavaId;
-            //        ocjena.Ocjena = Ocjena;
-            //        ocjena.Opis = OpisOcjene;
-            //        ocjena.Datum = DateTime.Now;
-            //    }
-
-            //    await _ocjeneService.Insert<mOcjene>(ocjena);
-            //}
-            //else
-            //{
-            //    var ocjena = new rOcjeneUpdate();
-
-
-            //    await _ocjeneService.Update<mOcjene>(_idOcjene, ocjena);
-            //}
         }
 
         public async Task Init()
@@ -199,15 +174,9 @@ namespace SaTeatar.Mobile.ViewModels
 
             if (predstaveList.Count == 0)
             {
-                //neocjenjene
-                // karte -> izvodjenje -> predstava (vise, jer moze kupiti vise karti)
                 var search = new rOcjeneSearch() { KupacId = _idKupca };
                 var ocjenep = await _ocjeneService.Get<List<mOcjene>>(search);
                 var ocjenjenePredstaveIds = ocjenep.Select(x => x.PredstavaId);
-
-                //var searchKarte = new rKartaSearch() { KupacId = _idKupca, Placeno = true };
-                //List<mKarta> karte = await _karteService.Get<List<mKarta>>(searchKarte); //dobijem i predstaveid
-                //var pregledanePredstaveIds = karte.Select(x => x.PredstavaId).Distinct();
 
                 var predstave = await _predstaveService.Get<List<mPredstave>>(null);
 
@@ -220,25 +189,7 @@ namespace SaTeatar.Mobile.ViewModels
                 }
             }
 
-            //if (SelectedPredstava != null)
-            //{
-            //    var search = new rOcjeneSearch() { PredstavaId = SelectedPredstava.PredstavaId, KupacId = _idKupca };
-            //    var ocjene = await _ocjeneService.Get<List<mOcjene>>(search);
-            //    if (ocjene.Count > 0)
-            //    {
-            //        Ocjena = ocjene[0].Ocjena;
-            //        _ocjenjeno = true;
-            //        _idOcjene = ocjene[0].OcjenaId;
-            //        OpisOcjene = ocjene[0].Opis;
-            //    }
-            //    else
-            //    {
-            //        Ocjena = 0;
-            //        OpisOcjene = string.Empty;
-            //        _ocjenjeno = false;
-            //        _idOcjene = 0;
-            //    }
-            //}
+
         }
     }
 }

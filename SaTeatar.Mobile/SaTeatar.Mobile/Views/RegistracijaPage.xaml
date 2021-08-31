@@ -13,25 +13,52 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Padding="20" Orientation="Vertical">
-                <Label Text="Registracija korisnika" HorizontalOptions="Center" />
-                <Label Text="Ime:" />
-                <Entry x:Name="FirstName" Text="{Binding KupacInsert.Ime}"></Entry>
-                <Label Text="Prezime: "/>
-                <Entry x:Name="LastName" Text="{Binding KupacInsert.Prezime}"></Entry>
-                <Label Text="Email:"/>
-                <Entry x:Name="Email" Text="{Binding KupacInsert.Email}"></Entry>
-                <Label Text="Korisnicko ime:"/>
-                <Entry x:Name="Username" Text="{Binding KupacInsert.KorisnickoIme}"></Entry>
-                <Label Text="Lozinka:"/>
-                <Entry x:Name="Password" Text="{Binding KupacInsert.Lozinka}" IsPassword="True"></Entry>
-                <Label Text="Potvrda lozinke:"/>
-                <Entry x:Name="PasswordConfirm" Text="{Binding KupacInsert.LozinkaPotvrda}" IsPassword="True"></Entry>
-                <Button Text="Registrujte se" Clicked="Button_Clicked"></Button>
-                <Label IsVisible="{Binding IsBusy}" Text="Registracija u toku, pricekajte..." HorizontalOptions="Center" TextColor="Gray"></Label>
+                <Label Text="REGISTRACIJA KORISNIKA" FontSize="10" HorizontalOptions="Center" Padding="15" />
+
+                <StackLayout Padding="5">
+                    <Label FontSize="10" TextColor="Gray" Text="IME:" />
+                    <Entry FontSize="10" x:Name="FirstName" Text="{Binding KupacInsert.Ime}" TextChanged="firstname_changed" Unfocused="firstname_unfocused"/>
+                    <Label x:Name="ErrorLabel_FirstName"  IsVisible="{Binding IsError_FirstName}" TextColor="Red" FontSize="8" />
+                </StackLayout>
+
+                <StackLayout Padding="5">
+                    <Label FontSize="10" TextColor="Gray" Text="PREZIME: "/>
+                    <Entry FontSize="10" x:Name="LastName" Text="{Binding KupacInsert.Prezime}" TextChanged="lastname_changed"  Unfocused="lastname_unfocused"/>
+                    <Label x:Name="ErrorLabel_LastName"  IsVisible="{Binding IsError_LastName}" TextColor="Red" FontSize="8" />
+                </StackLayout>
+
+                <StackLayout Padding="5">
+                    <Label FontSize="10" TextColor="Gray" Text="EMAIL:"/>
+                    <Entry FontSize="10" x:Name="Email" Text="{Binding KupacInsert.Email}" TextChanged="email_changed" Unfocused="email_unfocused"/>
+                    <Label x:Name="ErrorLabel_Email"  IsVisible="{Binding IsError_Email}" TextColor="Red" FontSize="8" />
+                </StackLayout>
+
+                <StackLayout Padding="5">
+                    <Label FontSize="10" TextColor="Gray" Text="KORISNICKO IME:"/>
+                    <Entry FontSize="10" x:Name="Username" Text="{Binding KupacInsert.KorisnickoIme}" TextChanged="username_changed" Unfocused="username_unfocused"/>
+                    <Label x:Name="ErrorLabel_Username"  IsVisible="{Binding IsError_Username}" TextColor="Red" FontSize="8" />
+                </StackLayout>
+
+                <StackLayout Padding="5">
+                    <Label FontSize="10" TextColor="Gray" Text="LOZINKA:"/>
+                    <Entry FontSize="10" x:Name="Password" Text="{Binding KupacInsert.Lozinka}" IsPassword="True" TextChanged="password_changed" Unfocused="password_unfocused" />
+                    <Label x:Name="ErrorLabel_Password"  IsVisible="{Binding IsError_Password}" TextColor="Red" FontSize="8" />
+                </StackLayout>
+
+                <StackLayout Padding="5">
+                    <Label FontSize="10" TextColor="Gray" Text="POTVRDA LOZINKE:"/>
+                    <Entry FontSize="10" x:Name="PasswordConfirmation" Text="{Binding KupacInsert.LozinkaPotvrda}" IsPassword="True" TextChanged="passwordconfirmation_changed" Unfocused="passwordconfirmation_unfocused"/>
+                    <Label x:Name="ErrorLabel_PasswordConfirmation"  IsVisible="{Binding IsError_PasswordConfirmation}" TextColor="Red" FontSize="8" />
+                </StackLayout>
+
+                <StackLayout Padding="10">
+                    <Button Text="REGISTRUJTE SE" FontSize="10" Clicked="Button_Clicked"/>
+                    <Label FontSize="8" IsVisible="{Binding IsBusy}" Text="REGISTRACIJA U TOKU, PRICEKAJTE..." HorizontalOptions="Center" TextColor="Gray"/>
+                </StackLayout>
+                
             </StackLayout>
             <StackLayout>
-                <Button Text="&lt;&lt;" Command="{Binding PovratakNaLoginCommand}" BackgroundColor="White" TextColor="Gray" HorizontalOptions="Center"></Button>
-
+                <Button Text="&lt;&lt;" Command="{Binding PovratakNaLoginCommand}" BackgroundColor="White" TextColor="Gray" HorizontalOptions="Center"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

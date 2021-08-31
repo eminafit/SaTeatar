@@ -77,7 +77,13 @@ namespace SaTeatar.WinUI.Pozorista
             }
             else
             {
-                errorProvider.SetError(txtUkupanBrojSjedista, null);
+                if (!int.TryParse(txtUkupanBrojSjedista.Text, out int broj))
+                {
+                    errorProvider.SetError(txtUkupanBrojSjedista, "Pogresan format. Unesite broj!");
+                    e.Cancel = true;
+                }
+                else
+                    errorProvider.SetError(txtUkupanBrojSjedista, null);
             }
         }
     }
