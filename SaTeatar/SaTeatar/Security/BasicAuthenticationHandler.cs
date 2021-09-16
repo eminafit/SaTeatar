@@ -45,17 +45,16 @@ namespace SaTeatar.WebAPI.Security
             user = await _korisniciService.Login(username, password);
             kupac = await _kupciService.Login(username, password);
 
-            try
-            {
+            
                 if (user!=null)
                 {
                     //_korisniciService.SetTrenutniKorisnik(user);
 
                     var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.NameIdentifier, user.KorisnickoIme),
-                    new Claim(ClaimTypes.Name, user.Ime),
-                };
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, user.KorisnickoIme),
+                        new Claim(ClaimTypes.Name, user.Ime),
+                    };
 
                     foreach (var role in user.KorisniciUloges)
                     {
@@ -71,22 +70,21 @@ namespace SaTeatar.WebAPI.Security
                 else if (kupac != null)
                 {
                     var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.NameIdentifier, kupac.KorisnickoIme),
-                    new Claim(ClaimTypes.Name, kupac.Ime),
-                };
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, kupac.KorisnickoIme),
+                        new Claim(ClaimTypes.Name, kupac.Ime),
+                    };
                     var identity = new ClaimsIdentity(claims, Scheme.Name);
                     var principal = new ClaimsPrincipal(identity);
                     var ticket = new AuthenticationTicket(principal, Scheme.Name);
 
                     return AuthenticateResult.Success(ticket);
                 }
-            }
-            catch (Exception)
-            {
-                return AuthenticateResult.Fail("Incorrect password or username");
-            }
-            return AuthenticateResult.Fail("Incorrect password or username");
+                else
+                {
+                    return AuthenticateResult.Fail("Incorrect password or username");
+                }
+
 
         }
     }

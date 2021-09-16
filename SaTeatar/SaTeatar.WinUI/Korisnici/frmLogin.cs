@@ -28,23 +28,34 @@ namespace SaTeatar.WinUI.Korisnici
                 APIService.Username = txtKorisnickoIme.Text;
                 APIService.Password = txtLozinka.Text;
 
-                try
-                {
+                //try
+                //{
                     btnPrijava.Enabled = false;
-                    APIService.TrenutniKorisnik = await _api.GetTrenutniKorisnik();
-                    frmIndex frm = new frmIndex(); 
-                    txtLozinka.Clear();
-                    this.Visible = false;
-                    frm.Show();
+                    var korisnik = await _api.GetTrenutniKorisnik();
+                    APIService.TrenutniKorisnik = korisnik; 
+                    if (korisnik==null)
+                    {
+                        MessageBox.Show("Pogresno korisnicko ime ili lozinka!");
+                        txtLozinka.Clear();
+                        txtKorisnickoIme.Clear();
+                        btnPrijava.Enabled = true;
+                    }
+                    else
+                    {
+                        frmIndex frm = new frmIndex(); 
+                        txtLozinka.Clear();
+                        this.Visible = false;
+                        frm.Show();
+                    }
 
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Pogresno korisnicko ime ili lozinka!");
-                    txtLozinka.Clear();
-                    txtKorisnickoIme.Clear();
-                    btnPrijava.Enabled = true;
-                }
+                //}
+                //catch (Exception)
+                //{
+                //    MessageBox.Show("Pogresno korisnicko ime ili lozinka!");
+                //    txtLozinka.Clear();
+                //    txtKorisnickoIme.Clear();
+                //    btnPrijava.Enabled = true;
+                //}
             }
         }
 
@@ -73,5 +84,7 @@ namespace SaTeatar.WinUI.Korisnici
                 errorProvider.SetError(txtLozinka, null);
             }
         }
+
+
     }
 }
