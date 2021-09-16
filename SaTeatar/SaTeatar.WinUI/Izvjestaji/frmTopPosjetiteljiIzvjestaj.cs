@@ -26,8 +26,8 @@ namespace SaTeatar.WinUI
         {
             var rpc = new ReportParameterCollection();
             rpc.Add(new ReportParameter( "Pozoriste", _objTP.PozoristeNaziv));
-            rpc.Add(new ReportParameter( "DatumOd", _objTP.DatumOd.ToString("dd.MM.yyyy.")));
-            rpc.Add(new ReportParameter( "DatumDo", _objTP.DatumDo.ToString("dd.MM.yyyy.")));
+            //rpc.Add(new ReportParameter( "DatumOd", _objTP.DatumOd.ToString("dd.MM.yyyy.")));
+            //rpc.Add(new ReportParameter( "DatumDo", _objTP.DatumDo.ToString("dd.MM.yyyy.")));
             rpc.Add(new ReportParameter( "DatumOdStr", _objTP.DatumOd.ToString("dd.MM.yyyy.")));
             rpc.Add(new ReportParameter( "DatumDoStr", _objTP.DatumDo.ToString("dd.MM.yyyy.")));
 
